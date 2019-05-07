@@ -53,7 +53,14 @@ The Xanadu Sphinx theme supports the following options. These should be added to
 the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``project_nav_name``
-    The name of the project to appear in the left navigation bar
+    The name of the project to appear in the left navigation bar,
+    under the Xanadu logo
+
+``project_logo``
+    If the project has a logo, set this to the path of the logo
+    image file to appear in the left navigation bar,
+    under the Xanadu logo. If defined, the project logo
+    *replaces* ``project_nav_name``.
 
 ``touch_icon``
     Path to the main navigation sidebar Xanadu logo.
@@ -67,6 +74,18 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 ``large_toc``
     If the table of contents is large enough to be scrollable, set
     this option to ``True``
+
+``disqus_comments_shortname``
+    Disqus comment account shortname. If provided, the right hand
+    sidebar of each page will contain a scrollable disqus comment box.
+
+``google_analytics_account``:
+    Google analytics universal account ID to enable tracking
+    and analytics
+
+``homepage``
+    Allow a separate homepage from the standard ``index.html`` Sphinx
+    landing page
 
 
 Support

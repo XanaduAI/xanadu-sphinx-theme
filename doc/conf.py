@@ -107,7 +107,7 @@ html_theme_options = {
     # Set your Disqus short name to enable comments
     # "disqus_comments_shortname": "",
 
-    # Set you GA account ID to enable tracking
+    # Set your GA account ID to enable tracking
     # "google_analytics_account": "",
 
     # Specify a base_url used to generate sitemap.xml links. If not

@@ -1,4 +1,5 @@
 *~
+dist/*
 *.pyc
 doc/_build
 .idea
