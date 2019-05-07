@@ -5,14 +5,9 @@ The Xanadu Sphinx theme is an open-source Sphinx theme used for Xanadu open-sour
 Python packages.
 
 
-.. image:: doc/_static/screenshot1.png
-    :width: 500px
-    :align: center
+.. raw:: html
 
-
-.. image:: doc/_static/screenshot2.png
-    :width: 500px
-    :align: center
+    <img src="https://i.imgur.com/tKwJWwe.png" width="400px"  align="left"> <img src="https://i.imgur.com/QnoTFzt.png" width="400px"  align="left">
 
 
 A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_theme>`_
