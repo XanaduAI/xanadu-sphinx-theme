@@ -6,39 +6,67 @@ Python packages. A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_
 Sphinx theme, the theme has the following features:
 
 
-- **Responsive**:
+- **Responsive**: fluid layout that automatically adjusts for phone, tablet,
+  and computer screens
 
-- **Best of both worlds**. Support for **hybrid quantum & classical** models
+- **In-built LaTeX macros**: comes with in-built support for MathJAX and common
+  predefined quantum optics LaTeX macros
 
-- **Batteries included**. Provides **optimization and machine learning** tools
-
-- **Device independent**. The same quantum circuit model can be **run on different backends**
-
-- **Large plugin ecosystem**. Install plugins to run your computational circuits on more devices, including Strawberry Fields, Rigetti Forest, ProjectQ, and Qiskit
-
-- **Compatible with existing machine learning libraries**. Quantum circuits can interface with PyTorch, Tensorflow, or NumPy (via autograd), allowing hybrid CPU-GPU-QPU computations.
-
+- **Cohesive design**: supports the Xanadu color scheme
 
 
 Installation
 ============
 
-Xanadu Sphinx Theme requires Python 3. Installation can be done using pip:
+Xanadu Sphinx Theme requires Python 3. The latest version of the Xanadu Sphinx theme
+can be installed directly from the GitHub repository using ``pip``:
 
 .. code-block:: bash
 
-    $ python -m pip install xanadu-sphinx-theme
+    $ pip install git+https://github.com/XanaduAI/xanadu-sphinx-theme
+
+
+For use on `Read the Docs <https://readthedocs.org>`_, add the following
+to your ``doc/requirements.txt`` file:
+
+.. code-block:: bash
+
+    git+git://github.com/XanaduAI/xanadu-sphinx-theme#egg=xanadu-sphinx-theme
 
 
 Getting started
 ===============
 
-For getting started with PennyLane, check out our `qubit rotation <https://pennylane.readthedocs.io/en/latest/tutorials/qubit_rotation.html>`_, `Gaussian transformation <https://pennylane.readthedocs.io/en/latest/tutorials/gaussian_transformation.html>`_, `hybrid computation <https://pennylane.readthedocs.io/en/latest/tutorials/hybrid_computation.html>`_, and other machine learning tutorials.
+Once installed, simply add the following line to your Sphinx ``conf.py`` configuration
+file to start using the Xanadu Sphinx theme:
 
-Our `documentation <https://pennylane.readthedocs.io>`_ is also a great starting point to familiarize yourself with the hybrid classical-quantum machine learning approach, and explore the available optimization tools provided by PennyLane. Play around with the numerous devices and plugins available for running your hybrid optimizations — these include the `IBM QX4 quantum chip <https://quantumexperience.ng.bluemix.net/qx/experience>`__, provided by the `PennyLane-PQ <https://github.com/XanaduAI/pennylane-pq>`_ and `PennyLane-qiskit <https://github.com/carstenblank/pennylane-qiskit>`_ plugins, as well as the `Rigetti Aspen-1 QPU <https://www.rigetti.com/qpu>`__.
+.. code-block:: python
 
-Finally, detailed documentation on the PennyLane API is provided, for full details on available quantum operations and expectations, and detailed guides on `how to write your own <https://pennylane.readthedocs.io/en/latest/API/overview.html>`_ PennyLane-compatible quantum device.
 
+    html_theme = 'xanadu'
+
+
+Configuration
+=============
+
+The Xanadu Sphinx theme supports the following options. These should be added to
+the ``html_theme_options`` dictionary in your ``conf.py`` file.
+
+``project_nav_name``
+    The name of the project to appear in the left navigation bar
+
+``touch_icon``
+    Path to the main navigation sidebar Xanadu logo.
+    You may find one to use here: ``doc/_static/xanadu_logo.png``
+
+``touch_icon_small``
+    Path to the main navigation sidebar small Xanadu logo.
+    This is used if the table of contents is large, to save space.
+    You may find one to use here: ``doc/_static/xanadu_logo_small.png``
+
+``large_toc``
+    If the table of contents is large enough to be scrollable, set
+    this option to ``True``
 
 
 Support
@@ -48,7 +76,6 @@ Support
 - **Issue Tracker:** https://github.com/XanaduAI/xanadu-sphinx-theme/issues
 
 If you are having issues, please let us know by posting the issue on our Github issue tracker.
-
 
 
 License

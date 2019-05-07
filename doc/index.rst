@@ -7,9 +7,22 @@ Python packages. A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_
 Sphinx theme, the theme has the following features:
 
 
-- **Responsive**:
+- **Responsive**: fluid layout that automatically adjusts for phone, tablet,
+  and computer screens
 
 
+.. raw:: html
+
+    <br>
+
+- **In-built** :math:`\LaTeX{}` **macros**: comes with in-built support for MathJAX
+  and common predefined quantum optics :math:`\LaTeX{}` macros
+
+.. raw:: html
+
+    <br>
+
+- **Cohesive design**: supports the Xanadu color scheme
 
 
 Support

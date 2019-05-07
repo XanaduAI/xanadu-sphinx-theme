@@ -18,15 +18,18 @@
 
 
 # -- Project information -----------------------------------------------------
+import re
+import xanadu_sphinx_theme
 
 project = 'Xanadu Sphinx Theme'
 copyright = 'Copyright 2018, Xanadu Quantum Technologies Inc.'
 author = 'Xanadu Inc.'
 
-# The short X.Y version
-version = ''
-# The full version, including alpha/beta/rc tags
-release = ''
+# The full version, including alpha/beta/rc tags.
+release = xanadu_sphinx_theme.__version__
+
+# The short X.Y version.
+version = re.match(r'^(\d+\.\d+)', release).expand(r'\1')
 
 
 # -- General configuration ---------------------------------------------------

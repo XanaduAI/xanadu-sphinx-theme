@@ -39,7 +39,7 @@ body {
   max-width: 900px;
   float: left;
   width: 100%;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 90px);
 }
 
 a.headerlink {
