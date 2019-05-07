@@ -43,17 +43,17 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
     landing page
 
 ``latex_macros``
-	Define custom :math:`\LaTeX{}` macros. This is a multiline raw string
-	of the form
+    Define custom :math:`\LaTeX{}` macros. This is a multiline raw string
+    of the form
 
-	.. code-block:: python
+    .. code-block:: python
 
-		latex_macros = r"""
-		macroname: ['\\text{\#1}', 1],
-		anothermacroname: ['\\hat{b}', 0],
-		"""
+        latex_macros = r"""
+        macroname: ['\\text{\#1}', 1],
+        anothermacroname: ['\\hat{b}', 0],
+        """
 
-	where the second argument in the list is the number of arguments
-	the macro takes.
+    where the second argument in the list is the number of arguments
+    the macro takes.
 
-	Note that both the backslash and the # symbol must be escaped.
+    Note that both the backslash and the # symbol must be escaped.

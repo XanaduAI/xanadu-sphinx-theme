@@ -45,13 +45,29 @@ to your ``doc/requirements.txt`` file:
 Getting started
 ===============
 
-Once installed, simply add the following line to your Sphinx ``conf.py`` configuration
-file to start using the Xanadu Sphinx theme:
+Once installed, simply modify the following variables of your Sphinx ``conf.py``
+configuration file to start using the Xanadu Sphinx theme:
 
 .. code-block:: python
 
-
     html_theme = 'xanadu'
+
+    html_sidebars = {
+        '**' : [
+            'logo-text.html',
+            'searchbox.html',
+            'globaltoc.html',
+        ]
+    }
+
+    html_theme_options = {
+        "project_nav_name": "Project Name",
+        "touch_icon": "_static/xanadu_logo.png",
+        "touch_icon_small": "_static/xanadu_logo_small.png",
+    }
+
+The files ``xanadu_logo.png`` and ``xanadu_logo_small.png`` can be downloaded
+from the ``doc/_static/`` folder of this repository.
 
 
 Configuration
@@ -94,6 +110,22 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 ``homepage``
     Allow a separate homepage from the standard ``index.html`` Sphinx
     landing page
+
+``latex_macros``
+    Define custom :math:`\LaTeX{}` macros. This is a multiline raw string
+    of the form
+
+    .. code-block:: python
+
+        latex_macros = r"""
+        macroname: ['\\text{\#1}', 1],
+        anothermacroname: ['\\hat{b}', 0],
+        """
+
+    where the second argument in the list is the number of arguments
+    the macro takes.
+
+    Note that both the backslash and the # symbol must be escaped.
 
 
 Support

@@ -25,6 +25,21 @@ file to start using the Xanadu Sphinx theme:
 
     html_theme = 'xanadu'
 
+    html_sidebars = {
+        '**' : [
+            'logo-text.html',
+            'searchbox.html',
+            'globaltoc.html',
+        ]
+    }
+
+    html_theme_options = {
+        "project_nav_name": "Project Name",
+        "touch_icon": "_static/xanadu_logo.png",
+        "touch_icon_small": "_static/xanadu_logo_small.png",
+    }
+
+Additional configuration options are detailed in :ref:`configuration`.
 
 Downloads
 ---------
