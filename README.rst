@@ -6,8 +6,10 @@ Python packages.
 
 
 .. raw:: html
-
-    <img src="https://i.imgur.com/tKwJWwe.png" width="400px"  align="left"> <img src="https://i.imgur.com/QnoTFzt.png" width="400px"  align="left">
+    
+    <p align="center">
+    <img src="https://i.imgur.com/tKwJWwe.png" width="700px"  align="center">
+    </p>
 
 
 A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_theme>`_
