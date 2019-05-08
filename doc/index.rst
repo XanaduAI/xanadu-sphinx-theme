@@ -2,13 +2,13 @@ Xanadu Sphinx Theme
 ===================
 
 
-The Xanadu Sphinx theme is an open-source Sphinx theme used for Xanadu open-source
+The Xanadu Sphinx Theme is an open-source Sphinx theme used for Xanadu open-source
 Python packages. A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_theme>`_
 Sphinx theme, the theme has the following features:
 
 
 - **Responsive**: fluid layout that automatically adjusts for phone, tablet,
-  and computer screens
+  and computer screens,
 
 
 .. raw:: html
@@ -16,13 +16,13 @@ Sphinx theme, the theme has the following features:
     <br>
 
 - **In-built** :math:`\LaTeX{}` **macros**: comes with in-built support for MathJAX
-  and common predefined quantum optics :math:`\LaTeX{}` macros
+  and common predefined quantum optics :math:`\LaTeX{}` macros,
 
 .. raw:: html
 
     <br>
 
-- **Cohesive design**: supports the Xanadu color scheme
+- **Cohesive design**: supports the Xanadu color scheme.
 
 
 Support
@@ -38,7 +38,7 @@ If you are having issues, please let us know by posting the issue on our Github 
 License
 -------
 
-The Xanadu Sphinx theme is **free** and **open source**, released under the Apache License, Version 2.0.
+The Xanadu Sphinx Theme is **free** and **open source**, released under the Apache License, Version 2.0.
 
 
 .. toctree::

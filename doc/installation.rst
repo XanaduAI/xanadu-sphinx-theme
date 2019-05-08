@@ -2,7 +2,7 @@ Installation and getting started
 ================================
 
 
-Xanadu Sphinx Theme requires Python 3. The latest version of the Xanadu Sphinx theme
+Xanadu Sphinx Theme requires Python 3. The latest version of the Xanadu Sphinx Theme
 can be installed directly from the GitHub repository using ``pip``:
 
 .. code-block:: bash
@@ -18,12 +18,14 @@ to your ``doc/requirements.txt`` file:
     git+git://github.com/XanaduAI/xanadu-sphinx-theme#egg=xanadu-sphinx-theme
 
 
-Once installed, simply add the following line to your Sphinx ``conf.py`` configuration
-file to start using the Xanadu Sphinx theme:
+Once installed, simply add/modify the following variables of your Sphinx ``conf.py``
+configuration file to start using the Xanadu Sphinx Theme:
 
 .. code-block:: python
 
     html_theme = 'xanadu'
+
+.. code-block:: python
 
     html_sidebars = {
         '**' : [
@@ -32,6 +34,8 @@ file to start using the Xanadu Sphinx theme:
             'globaltoc.html',
         ]
     }
+
+.. code-block:: python
 
     html_theme_options = {
         "project_nav_name": "Project Name",
@@ -47,7 +51,7 @@ Downloads
 To help get you started with your Sphinx documentation, here are some
 useful downloads:
 
-* ``\An`` example :download:`conf.py` file. Simply replace the relevant
+* An example :download:`conf.py` file. Simply replace the relevant
   fields.
 
 * :download:`_static/xanadu_logo.png`: Xanadu logo for the sidebar

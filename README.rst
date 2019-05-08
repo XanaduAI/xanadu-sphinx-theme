@@ -1,4 +1,4 @@
-Xanadu Sphinx theme
+Xanadu Sphinx Theme
 ###################
 
 .. raw:: html
@@ -7,7 +7,7 @@ Xanadu Sphinx theme
     <img src="https://i.imgur.com/tKwJWwe.png" width="600px"  align="center">
     </p>
 
-The Xanadu Sphinx theme is an open-source Sphinx theme used for Xanadu open-source
+The Xanadu Sphinx Theme is an open-source Sphinx theme used for Xanadu open-source
 Python packages.
 
 
@@ -16,23 +16,23 @@ Sphinx theme, the theme has the following features:
 
 
 - **Responsive**: fluid layout that automatically adjusts for phone, tablet,
-  and computer screens
+  and computer screens,
 
 - **In-built LaTeX macros**: comes with in-built support for MathJAX and common
-  predefined quantum optics LaTeX macros
+  predefined quantum optics LaTeX macros,
 
-- **Cohesive design**: supports the Xanadu color scheme
+- **Cohesive design**: supports the Xanadu color scheme.
 
 
 Installation
 ============
 
-Xanadu Sphinx Theme requires Python 3. The latest version of the Xanadu Sphinx theme
+Xanadu Sphinx Theme requires Python 3. The latest version of the Xanadu Sphinx Theme
 can be installed directly from the GitHub repository using ``pip``:
 
 .. code-block:: bash
 
-    $ pip install git+https://github.com/XanaduAI/xanadu-sphinx-theme
+    pip install git+https://github.com/XanaduAI/xanadu-sphinx-theme
 
 
 For use on `Read the Docs <https://readthedocs.org>`_, add the following
@@ -46,12 +46,14 @@ to your ``doc/requirements.txt`` file:
 Getting started
 ===============
 
-Once installed, simply modify the following variables of your Sphinx ``conf.py``
-configuration file to start using the Xanadu Sphinx theme:
+Once installed, simply add/modify the following variables of your Sphinx ``conf.py``
+configuration file to start using the Xanadu Sphinx Theme:
 
 .. code-block:: python
 
     html_theme = 'xanadu'
+
+.. code-block:: python
 
     html_sidebars = {
         '**' : [
@@ -60,6 +62,8 @@ configuration file to start using the Xanadu Sphinx theme:
             'globaltoc.html',
         ]
     }
+
+.. code-block:: python
 
     html_theme_options = {
         "project_nav_name": "Project Name",
@@ -74,12 +78,12 @@ from the ``doc/_static/`` folder of this repository.
 Configuration
 =============
 
-The Xanadu Sphinx theme supports the following options. These should be added to
+The Xanadu Sphinx Theme supports the following options. These should be added to
 the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``project_nav_name``
     The name of the project to appear in the left navigation bar,
-    under the Xanadu logo
+    under the Xanadu logo.
 
 ``project_logo``
     If the project has a logo, set this to the path of the logo
@@ -89,16 +93,16 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``touch_icon``
     Path to the main navigation sidebar Xanadu logo.
-    You may find one to use here: ``doc/_static/xanadu_logo.png``
+    You may find one to use here: ``doc/_static/xanadu_logo.png``.
 
 ``touch_icon_small``
     Path to the main navigation sidebar small Xanadu logo.
     This is used if the table of contents is large, to save space.
-    You may find one to use here: ``doc/_static/xanadu_logo_small.png``
+    You may find one to use here: ``doc/_static/xanadu_logo_small.png``.
 
 ``large_toc``
     If the table of contents is large enough to be scrollable, set
-    this option to ``True``
+    this option to ``True``.
 
 ``disqus_comments_shortname``
     Disqus comment account shortname. If provided, the right hand
@@ -106,15 +110,15 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``google_analytics_account``
     Google analytics universal account ID to enable tracking
-    and analytics
+    and analytics.
 
 ``homepage``
     Allow a separate homepage from the standard ``index.html`` Sphinx
-    landing page
+    landing page.
 
 ``latex_macros``
     Define custom :math:`\LaTeX{}` macros. This is a multiline raw string
-    of the form
+    of the form:
 
     .. code-block:: python
 
@@ -141,4 +145,4 @@ If you are having issues, please let us know by posting the issue on our Github 
 License
 =======
 
-The Xanadu Sphinx theme is **free** and **open source**, released under the Apache License, Version 2.0.
+The Xanadu Sphinx Theme is **free** and **open source**, released under the Apache License, Version 2.0.
