@@ -104,7 +104,7 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
     Disqus comment account shortname. If provided, the right hand
     sidebar of each page will contain a scrollable disqus comment box.
 
-``google_analytics_account``:
+``google_analytics_account``
     Google analytics universal account ID to enable tracking
     and analytics
 
