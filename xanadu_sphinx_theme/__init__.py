@@ -14,6 +14,7 @@
 """Xanadu Sphinx Theme"""
 import os
 
+from .custom_directives import IncludeDirective, GalleryItemDirective, CustomGalleryItemDirective
 from ._version import __version__
 
 
@@ -32,5 +33,9 @@ def setup(app):
         app.add_html_theme("xanadu", theme_path)
 
     app.connect("html-page-context", update_context)
+    app.add_directive("includenodoc", IncludeDirective)
+    app.add_directive("galleryitem", GalleryItemDirective)
+    app.add_directive("customgalleryitem", CustomGalleryItemDirective)
+    app.add_stylesheet(os.path.join(theme_path, "static/gallery.css"))
 
     return {"version": __version__, "parallel_read_safe": True}

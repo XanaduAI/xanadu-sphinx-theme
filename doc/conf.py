@@ -43,7 +43,25 @@ needs_sphinx = '1.6'
 # ones.
 extensions = [
     'sphinx.ext.mathjax',
+    'sphinx_gallery.gen_gallery'
 ]
+
+sphinx_gallery_conf = {
+    # path to your example scripts
+    'examples_dirs': '../examples',
+    # path where to save gallery generated examples
+    'gallery_dirs': 'gallery',
+    # execute files that match the following filename pattern,
+    # and skip those that don't. If the following option is not provided,
+    # all example scripts in the 'examples_dirs' folder will be skiped.
+    'filename_pattern': r'example_(?!skip)',
+    # first notebook cell in generated Jupyter notebooks
+    'first_notebook_cell': ("# This cell is added by sphinx-gallery\n"
+                            "# It can be customized to whatever you like\n"
+                            "%matplotlib inline"),
+    # thumbnail size
+    'thumbnail_size': (400, 400),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -119,6 +137,9 @@ html_theme_options = {
 
     # Allow the project link to be overriden to a custom URL.
     # "projectlink": "http://myproject.url",
+
+    "github_repo": "XanaduAI/xanadu-sphinx-theme",
+    "gallery_dirs": sphinx_gallery_conf['gallery_dirs']
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

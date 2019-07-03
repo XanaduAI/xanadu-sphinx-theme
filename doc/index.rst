@@ -15,6 +15,13 @@ Sphinx theme, the theme has the following features:
 
     <br>
 
+- **Sphinx gallery** support and integration: provides support for creating and
+  customizing a gallery of executable tutorials via the Sphinx gallery plugin.
+
+.. raw:: html
+
+    <br>
+
 - **In-built** :math:`\LaTeX{}` **macros**: comes with in-built support for MathJAX
   and common predefined quantum optics :math:`\LaTeX{}` macros,
 
@@ -47,4 +54,12 @@ The Xanadu Sphinx Theme is **free** and **open source**, released under the Apac
    :hidden:
 
    installation
+   custom_directives
    configuration
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Gallery
+   :hidden:
+
+   gallery/example_gallery_item

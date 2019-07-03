@@ -22,7 +22,7 @@ with open("xanadu_sphinx_theme/_version.py") as f:
     version = f.readlines()[-1].split()[-1].strip("\"'")
 
 
-requirements = ["sphinx"]
+requirements = ["sphinx", "sphinx_gallery"]
 
 
 info = {
