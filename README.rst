@@ -4,9 +4,7 @@ Xanadu Sphinx Theme
 .. raw:: html
 
     <p align="center">
-    <img src="https://i.imgur.com/URsJmBv.png" width="200px"  align="center">
-    <img src="https://i.imgur.com/xnJmpht.png" width="200px"  align="center">
-    <img src="https://i.imgur.com/0Pi9Iv9.png" width="200px"  align="center">
+    <img src="https://i.imgur.com/URsJmBv.png" width="700px"  align="center">
     </p>
 
 The Xanadu Sphinx Theme is an open-source Sphinx theme used for Xanadu open-source
