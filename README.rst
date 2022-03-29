@@ -12,26 +12,25 @@ Sphinx theme, the theme has the following features:
 * *Responsive*. Fluid layout that automatically adjusts for phone, tablet,
   and computer screens.
 
-* *LaTeX Macros*. Comes with builtin support for MathJAX and common predefined
+* *LaTeX Macros*. Comes with built-in support for MathJAX and common predefined
   quantum optics LaTeX macros.
 
-* *Cohesive Design*. Supports all Xanadu product colour schemes.
+* *Cohesive Design*. Unifies the appearance of all Xanadu Sphinx documentation.
 
 
 Installation
 ============
 
-Xanadu Sphinx Theme requires Python 3.7 or later. The latest version of the XST
-can be installed directly from the GitHub repository using
-``pip``:
+The Xanadu Sphinx Theme requires Python 3.7 or later. The latest version of the
+XST can be installed directly from the GitHub repository using ``pip``:
 
 .. code-block:: bash
 
     pip install git+https://github.com/XanaduAI/xanadu-sphinx-theme
 
 
-For use on `Read the Docs <https://readthedocs.org>`_, add the following
-to your ``doc/requirements.txt`` file:
+For use on `Read the Docs <https://readthedocs.org>`_, add the following to your
+``doc/requirements.txt`` file:
 
 .. code-block:: bash
 
