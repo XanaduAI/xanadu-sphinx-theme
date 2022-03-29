@@ -1,12 +1,9 @@
-Xanadu Sphinx Theme
-###################
-
 .. image:: doc/_static/xst_title.svg
     :alt: Xanadu Sphinx Theme
     :height: 65
     :width: 100%
 
-The Xanadu Sphinx Theme (XST) is a Sphinx theme used for open-source Xanadu
+The **Xanadu Sphinx Theme** (XST) is a Sphinx theme used for open-source Xanadu
 software projects.
 
 A fork of the `Guzzle <https://github.com/guzzle/guzzle_sphinx_theme>`_
