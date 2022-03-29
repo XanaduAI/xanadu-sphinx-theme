@@ -1,7 +1,7 @@
 Xanadu Sphinx Theme
 ###################
 
-.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/pheonix/docs/_static/xst_title.svg
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/pheonix/doc/_static/xst_title.svg
     :alt: Xanadu Sphinx Theme
     :height: 65
     :width: 100%
