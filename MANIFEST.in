@@ -1,4 +1,0 @@
-include README.rst
-include doc/*
-include LICENSE
-recursive-include xanadu_sphinx_theme *
