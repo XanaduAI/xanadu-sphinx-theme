@@ -190,26 +190,23 @@
   {%- endblock %}
 
 {%- block footer %}
-  {% include "footer.html" %}
-{%- endblock %}
+  <script type="text/javascript">
+    $("#mobile-toggle").click(function () {
+      $("#left-column").slideToggle("slow");
+    });
+  </script>
 
-<script type="text/javascript">
-  $("#mobile-toggle").click(function () {
-    $("#left-column").slideToggle("slow");
-  });
-</script>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+  <!-- NanoScroller -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-migrate-1.0.0.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-<!-- NanoDcroller -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
-<script type="text/javascript">
+  <script type="text/javascript">
     $('a.reference.internal').each(function(){
       var link = $(this).attr("href");
 
@@ -221,61 +218,72 @@
       }
     });
 
+    console.log("Before...", document.querySelectorAll(".document > .section"));
     $(".document > .section").removeClass("section");
+    console.log("After...", document.querySelectorAll(".document > .section"))
     $(".comment-container .nano-content").css("height", $("#content").height());
     $(".comment-container").css("height", $("#content").height());
     $(".nano").nanoScroller();
-</script>
-<script type="text/javascript">
-    $(window).scroll(function(){
-      var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
-      if (scrollBottom < 342) {
-        $('.comment-container').css("height", "calc(100% - " + (342 - scrollBottom) + "px)");
-        $('.comment-container .nano-content').css("height", "calc(100% - 119px)");
-      }
-    });
-</script>
-<script type="text/javascript">
-  if ($('.current').length) {
-    var target = $('.current')[0]
-    var rect = target.getBoundingClientRect();
-    if (rect.bottom > window.innerHeight) {
-        $(".nano").nanoScroller({ scrollTo: $('.current') });
-    } else {
-        $(".nano").nanoScroller({ scrollTop: 0 });
-    }
-  }
-  $(document).ready(function () {
-      $(".css-transitions-only-after-page-load").each(function (index, element) {
-          setTimeout(function () { $(element).removeClass("css-transitions-only-after-page-load") }, 10);
-      });
-      if (window.location.hash) {
-        var target = $("[id='"+window.location.hash.substr(1)+"']");
-        if (target.closest(".collapse").length) {
-          target.closest(".collapse").addClass("show");
-          target.closest(".collapse").prev().find(".rotate").addClass("up");
-        }
-      }
-  });
-</script>
-<script type="text/javascript">
-  var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
-  if (downloadNote.length >= 1) {
-    var tutorialUrlArray = $("#tutorial-type").text().split('/');
-    tutorialUrlArray[0] = "examples";
-
-    var githubLink = "{{ theme_github_repository_url }}" + "/blob/HEAD/" + tutorialUrlArray.join("/") + ".py",
-        pythonLink = $(".reference.download")[0].href,
-        notebookLink = $(".reference.download")[1].href,
-        notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop();
-
-    $(".download-python-link").wrap("<a href=" + pythonLink + " data-behavior='call-to-action-event' data-response='Download Python script' download target='_blank'/>");
-    $(".download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook' download target='_blank'/>");
-    $(".github-view-link").wrap("<a href=" + githubLink + " data-behavior='call-to-action-event' data-response='View on Github' target='_blank'/>");
-    $("#right-column").addClass("page-shadow");
-  } else {
-    $(".xanadu-call-to-action-links").hide();
-    $("#bottom-dl").attr('style','display: none !important');
-  }
   </script>
-<script type="text/javascript">jQuery.noConflict(true);</script>
+
+  <script type="text/javascript">
+      $(window).scroll(function(){
+        var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+        if (scrollBottom < 342) {
+          $('.comment-container').css("height", "calc(100% - " + (342 - scrollBottom) + "px)");
+          $('.comment-container .nano-content').css("height", "calc(100% - 119px)");
+        }
+      });
+  </script>
+
+  <script type="text/javascript">
+    if ($('.current').length) {
+      var target = $('.current')[0]
+      var rect = target.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight) {
+          $(".nano").nanoScroller({ scrollTo: $('.current') });
+      } else {
+          $(".nano").nanoScroller({ scrollTop: 0 });
+      }
+    }
+    $(document).ready(function () {
+        $(".css-transitions-only-after-page-load").each(function (index, element) {
+            setTimeout(function () { $(element).removeClass("css-transitions-only-after-page-load") }, 10);
+        });
+        if (window.location.hash) {
+          var target = $("[id='"+window.location.hash.substr(1)+"']");
+          if (target.closest(".collapse").length) {
+            target.closest(".collapse").addClass("show");
+            target.closest(".collapse").prev().find(".rotate").addClass("up");
+          }
+        }
+    });
+  </script>
+
+  <script type="text/javascript">
+    var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
+    if (downloadNote.length >= 1) {
+      var tutorialUrlArray = $("#tutorial-type").text().split('/');
+      tutorialUrlArray[0] = "examples";
+
+      var githubLink = "{{ theme_github_repository_url }}" + "/blob/HEAD/" + tutorialUrlArray.join("/") + ".py",
+          pythonLink = $(".reference.download")[0].href,
+          notebookLink = $(".reference.download")[1].href,
+          notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop();
+
+      $(".download-python-link").wrap("<a href=" + pythonLink + " data-behavior='call-to-action-event' data-response='Download Python script' download target='_blank'/>");
+      $(".download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook' download target='_blank'/>");
+      $(".github-view-link").wrap("<a href=" + githubLink + " data-behavior='call-to-action-event' data-response='View on Github' target='_blank'/>");
+      $("#right-column").addClass("page-shadow");
+    } else {
+      $(".xanadu-call-to-action-links").hide();
+      $("#bottom-dl").attr('style','display: none !important');
+    }
+  </script>
+
+  <script type="text/javascript">
+    jQuery.noConflict(true);
+  </script>
+
+  {% include "footer.html" %}
+{%- endblock %}
