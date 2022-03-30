@@ -218,9 +218,8 @@
       }
     });
 
-    console.log("Before...", document.querySelectorAll(".document > .section"));
     $(".document > .section").removeClass("section");
-    console.log("After...", document.querySelectorAll(".document > .section"))
+    $("h1 ~ .section").removeClass("section");
     $(".comment-container .nano-content").css("height", $("#content").height());
     $(".comment-container").css("height", $("#content").height());
     $(".nano").nanoScroller();

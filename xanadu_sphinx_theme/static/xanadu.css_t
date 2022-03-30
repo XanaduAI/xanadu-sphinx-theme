@@ -116,6 +116,10 @@ h1 {
   padding-bottom: -29px;
 }
 
+h1 + div > h2 {
+  margin-top: -10px;
+}
+
 h2 {
   margin-top: 40px;
   font-size: 28px;
