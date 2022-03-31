@@ -20,12 +20,32 @@
 
   <!-- [Mobile] Collapsible Content -->
   <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links on the Left -->
+    <ul class="navbar-nav mr-auto">
+      {% for link in theme_navbar_left_links %}
+        {% if link.active %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+            <span class="sr-only">(current)</span>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <!-- Links on the Right -->
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ theme_github_repository_url }}">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </li>
+      {% for link in theme_navbar_right_links %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ pathto(link.href, 1) }}">
+            <i class="{{ link.icon }} pr-1"></i> {{ link.name }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 
