@@ -76,6 +76,11 @@
   <div class="footer-copyright py-3 mt-0 text-center">
       <div class="container-fluid">
         Copyright © 2022 Xanadu Quantum Technologies
+
+        {% for copyright in theme_extra_copyrights %}
+          <br>
+          {{ copyright }}
+        {% endfor %}
       </div>
   </div>
 </footer>
