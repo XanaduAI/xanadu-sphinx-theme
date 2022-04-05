@@ -2,7 +2,29 @@
 This module registers the Xanadu Sphinx Theme. For more information, see
 https://www.sphinx-doc.org/en/master/development/theming.html
 """
-from os import path
+from pathlib import Path
+
+from .directives import (
+    CommunityCardDirective,
+    DetailsDirective,
+    GalleryItemDirective,
+    RelatedDemoDirective,
+    TitleCardDirective,
+    YouTubeVideoDirective,
+)
+
 
 def setup(app):
-    app.add_html_theme("xanadu", path.abspath(path.dirname(__file__)))
+    cwd = Path(__file__).resolve().parent
+    app.add_html_theme("xanadu", str(cwd))
+
+    directives = {
+        "community-card": CommunityCardDirective,
+        "details": DetailsDirective,
+        "gallery-item": GalleryItemDirective,
+        "related-demo": RelatedDemoDirective,
+        "title-card": TitleCardDirective,
+        "youtube-video": YouTubeVideoDirective,
+    }
+    for name, cls in directives.items():
+        app.add_directive(name, cls)
