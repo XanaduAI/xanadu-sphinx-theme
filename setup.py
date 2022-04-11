@@ -24,6 +24,7 @@ info = {
     "include_package_data": True,
     "name": "xanadu-sphinx-theme",
     "packages": find_packages(where="."),
+    "package_data": {"xanadu_sphinx_theme": ["static/*", "*.html", "theme.conf"]},
     "provides": ["xanadu_sphinx_theme"],
     "url": "https://github.com/XanaduAI/xanadu-sphinx-theme",
     "version": version,
