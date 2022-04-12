@@ -1719,7 +1719,7 @@ footer.page-footer .footer-copyright {
     margin-bottom: -25px;
   }
 
-  .comment-container {
+  .localtoc-container {
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
@@ -1731,7 +1731,7 @@ footer.page-footer .footer-copyright {
     margin-bottom: unset;
   }
 
-  .comment-container {
+  .localtoc-container {
     display: none;
   }
 
@@ -1824,7 +1824,7 @@ footer.page-footer .footer-copyright {
 }
 
 @media screen and (max-width: 1500px) and (min-width: 768px) {
-  .comment-container {
+  .localtoc-container {
     margin-left: calc(50% - 300px);
     padding-left: 0;
     padding-right: 0;
@@ -1859,7 +1859,7 @@ footer.page-footer .footer-copyright {
     float: none;
   }
 
-  .comment-container {
+  .localtoc-container {
     display: none;
   }
 
