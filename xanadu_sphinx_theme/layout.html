@@ -133,7 +133,7 @@
         <div id="content">
           <div id="right-column">
             {% block breadcrumbs %}
-            <div role="navigation" aria-label="breadcrumbs navigation">
+            <div role="~" aria-label="breadcrumbs navigation">
               <ol class="breadcrumb">
                 <li><a href="{{ pathto(master_doc) }}">Docs</a></li>
                 {% for doc in parents %}
@@ -207,21 +207,21 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
 
   <script type="text/javascript">
-    $('a.reference.internal').each(function(){
+    $("a.reference.internal").each(function(){
       var link = $(this).attr("href");
 
-      var hash = link.split('#')[1];
-      var page = link.split('#')[0].split('/').slice(-1)[0].replace(".html", "");
+      var hash = link.split("#")[1];
+      var page = link.split("#")[0].split("/").slice(-1)[0].replace(".html", "");
 
       if (hash == page) {
-        $(this).attr('href', link.split('#')[0]);
+        $(this).attr("href", link.split("#")[0]);
       }
     });
 
     $(".document > .section").removeClass("section");
     $("h1 ~ .section").removeClass("section");
-    $(".comment-container .nano-content").css("height", $("#content").height());
-    $(".comment-container").css("height", $("#content").height());
+    $(".localtoc-container .nano-content").css("height", $("#content").height());
+    $(".localtoc-container").css("height", $("#content").height());
     $(".nano").nanoScroller();
   </script>
 
@@ -229,18 +229,18 @@
       $(window).scroll(function(){
         var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
         if (scrollBottom < 342) {
-          $('.comment-container').css("height", "calc(100% - " + (342 - scrollBottom) + "px)");
-          $('.comment-container .nano-content').css("height", "calc(100% - 119px)");
+          $(".localtoc-container").css("height", "calc(100% - " + (342 - scrollBottom) + "px)");
+          $(".localtoc-container .nano-content").css("height", "calc(100% - 119px)");
         }
       });
   </script>
 
   <script type="text/javascript">
-    if ($('.current').length) {
-      var target = $('.current')[0]
+    if ($(".current").length) {
+      var target = $(".current")[0]
       var rect = target.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
-          $(".nano").nanoScroller({ scrollTo: $('.current') });
+          $(".nano").nanoScroller({ scrollTo: $(".current") });
       } else {
           $(".nano").nanoScroller({ scrollTop: 0 });
       }
@@ -250,7 +250,7 @@
             setTimeout(function () { $(element).removeClass("css-transitions-only-after-page-load") }, 10);
         });
         if (window.location.hash) {
-          var target = $("[id='"+window.location.hash.substr(1)+"']");
+          var target = $("[id='" + window.location.hash.substr(1) + "']");
           if (target.closest(".collapse").length) {
             target.closest(".collapse").addClass("show");
             target.closest(".collapse").prev().find(".rotate").addClass("up");
@@ -262,13 +262,13 @@
   <script type="text/javascript">
     var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
     if (downloadNote.length >= 1) {
-      var tutorialUrlArray = $("#tutorial-type").text().split('/');
+      var tutorialUrlArray = $("#tutorial-type").text().split("/");
       tutorialUrlArray[0] = "examples";
 
       var githubLink = "{{ theme_github_repository_url }}" + "/blob/HEAD/" + tutorialUrlArray.join("/") + ".py",
           pythonLink = $(".reference.download")[0].href,
           notebookLink = $(".reference.download")[1].href,
-          notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop();
+          notebookDownloadPath = notebookLink.split("_downloads")[1].split("/").pop();
 
       $(".download-python-link").wrap("<a href=" + pythonLink + " data-behavior='call-to-action-event' data-response='Download Python script' download target='_blank'/>");
       $(".download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook' download target='_blank'/>");
@@ -276,7 +276,7 @@
       $("#right-column").addClass("page-shadow");
     } else {
       $(".xanadu-call-to-action-links").hide();
-      $("#bottom-dl").attr('style','display: none !important');
+      $("#bottom-dl").attr("style","display: none !important");
     }
   </script>
 
