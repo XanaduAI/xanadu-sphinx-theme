@@ -11,19 +11,19 @@ TEMPLATE = cleandoc(
 
         <div class="col-lg-4 mb-2 align-items-stretch">
             <a href="{link}">
-            <div class="card rounded-lg" style="height:100%;">
-                <div class="d-flex">
-                    <div>
-                        <h3 class="card-title pl-3 mt-4">
-                            {name}
-                        </h3>
-                        <p class="mb-3 grey-text px-3">
-                            {description}
-                            <i class="fas fa-angle-double-right"></i>
-                        </p>
+                <div class="card rounded-lg" style="height:100%;">
+                    <div class="d-flex">
+                        <div>
+                            <h3 class="card-title pl-3 mt-4">
+                                {name}
+                            </h3>
+                            <p class="mb-3 grey-text px-3">
+                                {description}
+                                <i class="fas fa-angle-double-right"></i>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
             </a>
         </div>
     """
