@@ -173,8 +173,8 @@ code, pre, tt {
   font-family: Consolas, monospace;
 }
 
-code, tt {
-  color: #8D1A38 !important;
+code, tt, a > code {
+  color: {{ theme_code_colour }};
 }
 
 tt {
@@ -2203,6 +2203,7 @@ div.sphinx-tabs>div.closeable>button.code-tab:focus {
 
 /* Overloaded Python Functions
 ----------------------------------------------------------------------------- */
+
 dl.py>dd>ol {
   border-top: 1px solid #ccc;
   list-style: none;
@@ -2214,6 +2215,53 @@ dl.py>dd>ol {
 dl.py>dd>ol>li>p {
   font-style: italic;
   font-weight: bold;
+}
+
+/* Pills
+----------------------------------------------------------------------------- */
+
+.nav-link {
+  color: black;
+}
+
+.nav-link.active:hover {
+  color: white !important;
+}
+
+.picker {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+  border-radius: 10px 10px 0 0;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.nav-pills .active {
+  border-radius: 0;
+  background-color: {{ theme_prev_next_button_colour }} !important;
+}
+
+.tab-content {
+  margin-top: -23px;
+}
+
+.nav-item input {
+  opacity: 0;
+  margin-left: -10px;
+}
+
+label {
+  margin-bottom: unset;
+}
+
+.tab-pane pre code {
+  padding: 0 40px !important;
+  font-size: 120% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0 0 10px 10px;
+}
+
+pre {
+  margin-bottom: 0;
 }
 
 /* Syntax Highlighting
