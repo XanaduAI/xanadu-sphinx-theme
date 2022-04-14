@@ -2611,15 +2611,15 @@ pre {
 }
 
 .gallery-item-thumbcontainer a.reference {
-  bottom: 0px;
+  bottom: 0;
   display: flex;
   left: 0;
   justify-content: center;
   align-items: flex-begin;
-  padding: 0 10px 0 10px;
+  padding: 150px 10px 0 10px;
   position: absolute;
   right: 0;
-  top: 160px;
+  top: 0;
   color: #575757;
 }
 
