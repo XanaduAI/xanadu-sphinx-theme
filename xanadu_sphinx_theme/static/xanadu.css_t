@@ -929,10 +929,6 @@ table.docutils col {
   width: auto;
 }
 
-table.docutils colgroup {
-  display: none;
-}
-
 img.toggler {
   margin-right: 3px;
   margin-top: 3px;
