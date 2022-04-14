@@ -1183,11 +1183,12 @@ div.body p.centered {
 }
 
 div.seealso {
-  background-color: #ffc;
-  border: 1px solid #ff6;
-  padding: 20px 10px 0 20px;
+  background-color: #e8eaf6;
 }
 
+div.seealso .admonition-title {
+  color: #49599a;
+}
 
 .admonition.see {
   font-style: italic;
@@ -2595,7 +2596,7 @@ pre {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .08);
   float: left;
   margin: 12px;
-  min-height: 200px;
+  min-height: 210px;
   padding-top: 5px;
   position: relative;
   text-align: center;
@@ -2610,15 +2611,15 @@ pre {
 }
 
 .gallery-item-thumbcontainer a.reference {
-  bottom: 0;
+  bottom: 0px;
   display: flex;
   left: 0;
   justify-content: center;
-  align-items: flex-end;
-  padding: 0 10px 10px 10px;
+  align-items: flex-begin;
+  padding: 0 10px 0 10px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 160px;
   color: #575757;
 }
 
@@ -2646,8 +2647,8 @@ pre {
 
 .gallery-item-thumbcontainer img {
   display: inline;
-  max-height: 160px;
-  width: 200px;
+  max-height: 140px;
+  max-width: 200px;
 }
 
 .gallery-item-thumbcontainer[tooltip]:hover:after {
