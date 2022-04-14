@@ -49,7 +49,7 @@ TEMPLATE = cleandoc(
     """
     .. raw:: html
 
-        <div class="gallery-item-thumbcontainer" data-category="{tags}" tooltip="{tooltip}">
+        <div class="gallery-item-thumbcontainer" {attributes}>
 
     .. only:: html
 
@@ -107,11 +107,19 @@ class GalleryItemDirective(Directive):
 
         thumbnail = "/" + str(path_to_thumbnail.relative_to(path_to_root))
 
+        attributes_dict = {}
+        if "tags" in self.options:
+            attributes_dict["data-category"] = self.options["tags"]
+        if "tooltip" in self.options:
+            attributes_dict["tooltip"] = self.options["tooltip"][:195]
+
+        attributes_list = [f"{k}='{v}'" for k, v in attributes_dict.items()]
+        attributes_html = " ".join(attributes_list)
+
         thumbnail_rst = TEMPLATE.format(
             description=self.options["description"],
-            tags=self.options.get("tags", ""),
             thumbnail=thumbnail,
-            tooltip=self.options.get("tooltip", "")[:195],
+            attributes=attributes_html,
         )
         thumbnail = StringList(thumbnail_rst.split("\n"))
         thumb = nodes.paragraph()
