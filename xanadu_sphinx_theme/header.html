@@ -3,7 +3,11 @@
   <!-- Logo and Title -->
   <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
     <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
-    <h1 id="title">{{ theme_navbar_name }}</h1>
+    {% if theme_navbar_wordmark_path %}
+      <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
+    {% else %}
+      <h1 id="title">{{ theme_navbar_name }}</h1>
+    {% endif %}
   </a>
 
   <!-- [Mobile] Collapse Button -->
