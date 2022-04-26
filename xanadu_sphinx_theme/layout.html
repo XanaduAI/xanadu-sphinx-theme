@@ -321,6 +321,18 @@
     });
   </script>
 
+  <!-- Hide the rendering of :orphan: metadata. -->
+  <script type="text/javascript">
+    $(document).ready(() => {
+      const elements = document.getElementsByClassName("field-odd");
+      for (const element of elements) {
+          if (element.innerHTML.trim() === "orphan") {
+            element.style.display = "none";
+          }
+      }
+    });
+  </script>
+
   <script type="text/javascript">
     jQuery.noConflict(true);
   </script>
