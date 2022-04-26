@@ -203,6 +203,8 @@
   <!-- jQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
@@ -285,6 +287,38 @@
       $(".xanadu-call-to-action-links").hide();
       $("#bottom-dl").attr("style","display: none !important");
     }
+  </script>
+
+  <!-- Account for MathJax when navigating to anchor tags. -->
+  <script type="text/javascript">
+    function scrollToElement(e) {
+      // Scrolls to the given element, taking into account the navbar.
+      MathJax.Hub.Queue(function() {
+        // The following MUST be done asynchronously to take effect.
+        setTimeout(function() {
+          const navbar = document.querySelector("nav.navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 0;
+          const scrollToY = e.offsetTop + e.offsetParent.offsetTop - navbarHeight;
+          window.scrollTo(0, scrollToY);
+        }, 0);
+      });
+    }
+
+    function scrollToFragment(fragment) {
+      // Scrolls to the position of the given URL fragment (which includes the "#").
+      const elementID = fragment.replace(".", "\\.");
+      if (elementID !== "") {
+        const element = document.querySelector(elementID);
+        if (element !== null) {
+          scrollToElement(element);
+        }
+      }
+    }
+
+    $(document).ready(() => {
+      scrollToFragment(window.location.hash);
+      window.addEventListener("popstate", (_) => scrollToFragment(document.location.hash), false);
+    });
   </script>
 
   <script type="text/javascript">
