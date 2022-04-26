@@ -1,10 +1,9 @@
 """This module implements the ``youtube-video`` reST directive."""
 from inspect import cleandoc
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
-
 
 TEMPLATE = cleandoc(
     """
@@ -12,7 +11,10 @@ TEMPLATE = cleandoc(
 
         <a href="https://youtube.com/watch?v={id}" target="_blank">
             <div class="card">
-                <img class="card-img-top img-fluid" src="https://img.youtube.com/vi/{id}/hqdefault.jpg"/>
+                <img
+                  class="card-img-top img-fluid"
+                  src="https://img.youtube.com/vi/{id}/hqdefault.jpg"
+                />
                 <div class="card-body">
                     <h4 class="card-title">{title}</h4>
                     <p class="card-text grey-text">{author}</p>

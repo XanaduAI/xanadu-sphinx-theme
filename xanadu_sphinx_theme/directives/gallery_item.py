@@ -34,16 +34,15 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-from pathlib import Path
 import os
 from inspect import cleandoc
+from pathlib import Path
 from shutil import copyfile
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
 from sphinx_gallery.gen_rst import scale_image
-
 
 TEMPLATE = cleandoc(
     """

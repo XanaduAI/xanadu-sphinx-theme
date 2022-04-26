@@ -1,9 +1,9 @@
 """This module implements the ``index-card`` reST directive."""
 from inspect import cleandoc
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
 
 TEMPLATE = cleandoc(
     """

@@ -2,9 +2,9 @@
 import re
 from inspect import cleandoc
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
 
 COMMUNITY_CARD_TEMPLATE = cleandoc(
     """
@@ -28,7 +28,11 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                                 {description}
                             </p>
                             <div class="mt-auto plugin-card__read-more-wrapper">
-                                <a class="plugin-card__read-more text-primary d-none" data-toggle="modal" data-target="#{id}-modal">
+                                <a
+                                  class="plugin-card__read-more text-primary d-none"
+                                  data-toggle="modal"
+                                  data-target="#{id}-modal"
+                                >
                                     Read More
                                 </a>
                             </div>
@@ -45,12 +49,23 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
             </div>
         </div>
 
-        <div class="modal fade" id="{id}-modal" tabindex="-1" role="dialog" aria-labelledby="{id}-modal" aria-hidden="true">
+        <div
+          class="modal fade" id="{id}-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="{id}-modal"
+          aria-hidden="true"
+        >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title mt-0">{title}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

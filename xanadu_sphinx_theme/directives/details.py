@@ -1,15 +1,21 @@
 """This module implements the ``details`` reST directive."""
 from inspect import cleandoc
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
 
 TEMPLATE = cleandoc(
     """
     .. raw:: html
 
-        <a class="details-header collapse-header" data-toggle="collapse" href="#details" aria-expanded="false" aria-controls="details">
+        <a
+          class="details-header collapse-header"
+          data-toggle="collapse"
+          href="#details"
+          aria-expanded="false"
+          aria-controls="details"
+        >
             <h2 style="font-size: 24px;">
                 <i class="fas fa-angle-down rotate" style="float: right;"></i> {title}
             </h2>

@@ -1,3 +1,7 @@
+"""
+This package implements custom Xanadu Sphinx directives.
+"""
+
 from .community_card import CommunityCardDirective
 from .details import DetailsDirective
 from .gallery_item import GalleryItemDirective

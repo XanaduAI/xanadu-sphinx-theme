@@ -16,6 +16,7 @@ from .directives import (
 
 
 def setup(app):
+    """See https://www.sphinx-doc.org/en/master/extdev/appapi.html."""
     cwd = Path(__file__).resolve().parent
     app.add_html_theme("xanadu", str(cwd))
 

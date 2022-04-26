@@ -1,9 +1,9 @@
 """This module implements the ``title-card`` reST directive."""
 from inspect import cleandoc
 
+from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
-from docutils import nodes
 
 TEMPLATE = cleandoc(
     """
@@ -44,7 +44,7 @@ class TitleCardDirective(Directive):
         desc = self.options["description"]
 
         thumbnail_rst = TEMPLATE.format(name=name, link=link, description=desc)
-        thumbnail = StringList(thumbnail_rst.split('\n'))
+        thumbnail = StringList(thumbnail_rst.split("\n"))
 
         thumb = nodes.paragraph()
         self.state.nested_parse(thumbnail, self.content_offset, thumb)
