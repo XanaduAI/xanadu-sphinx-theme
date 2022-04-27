@@ -67,7 +67,7 @@ Once installed, simply add or modify the following variables of your Sphinx
         "navbar_left_links": [
             {
                 "name": "Tutorials",
-                "href": "https://example.com/tutorials/",
+                "href": "https://example.com/tutorials",
             },
             {
                 "name": "Install",
@@ -195,33 +195,75 @@ The Xanadu Sphinx Theme implements the custom Sphinx directives listed below.
 For more information, consult the relevant Python module in the
 `directives <xanadu_sphinx_theme/directives>`_ package.
 
-``CommunityCardDirective``
+**Community Card**
 
-    <Screenshot is unavailable.>
+    <No example is available yet.>
 
-``DetailsDirective``
+**Details**
 
-    <Screenshot is unavailable.>
+    .. code-block:: rest
+    
+        .. details::
+            :title: Usage Details
 
-``GalleryItemDirective``
+            In general, the block takes D parameters and **must** have the following signature:
 
-    <Screenshot is unavailable.>
+            .. code-block:: python
 
-``IndexCardDirective``
+                unitary(parameter1, parameter2, ... parameterD, wires)
 
-    <Screenshot is unavailable.>
+            For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
+            For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
+            
+    .. image:: https://user-images.githubusercontent.com/5883774/165625247-46e3b49f-7a09-489a-a162-5c3823bf325b.png
+        :alt: Details
+        :height: 253
 
-``RelatedDemoDirective``
+**Gallery Item**
 
-    <Screenshot is unavailable.>
+    .. code-block:: rest
 
-``TitleCardDirective``
+        .. gallery-item::
+            :description: :doc:`AmplitudeEmbedding <../code/api/pennylane.AmplitudeEmbedding>`
+            :figure: _static/templates/embeddings/amplitude.png
 
-    <Screenshot is unavailable.>
+    .. image:: https://user-images.githubusercontent.com/5883774/165626023-46524665-5d2e-4599-99dc-92f092100218.png
+        :alt: Gallery Item
+        :height: 232
 
-``YouTubeVideoDirective``
+**Index Card**
 
-    <Screenshot is unavailable.>
+    .. code-block:: rest
+
+        .. index-card::
+            :name: Using PennyLane
+            :link: introduction/pennylane.html
+            :description: A guided tour of the core features of PennyLane
+        
+    .. image:: https://user-images.githubusercontent.com/5883774/165626763-d3b4d65f-2fef-405d-86a8-d6838dbb6479.png
+        :alt: Index Card
+        :height: 159
+           
+**Related Demo**
+
+    <No example is available yet.>
+
+**Title Card**
+
+    .. code-block:: rest
+
+        .. title-card::
+            :name: 'lightning.qubit'
+            :description: A fast state-vector qubit simulator written in C++
+            :link: devices.html
+
+    .. image:: https://user-images.githubusercontent.com/5883774/165627639-fc04bdb6-499a-4d47-a4ac-93baa73da26c.png
+        :alt: Title Card
+        :height: 161
+
+**YouTube Video**
+
+    <No example is available yet.>
 
 
 Support
