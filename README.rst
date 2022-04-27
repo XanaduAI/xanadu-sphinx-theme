@@ -60,13 +60,52 @@ Once installed, simply add or modify the following variables of your Sphinx
 
     html_theme_options = {
         "navbar_name": "Example Project",
-        "border_colour": "#444444",
-        "prev_next_button_colour": "#666666",
-        "prev_next_button_hover_colour": "#222222",
-        "toc_marker_colour": "#444444",
-        "table_header_background_colour": "#444444",
-        "text_accent_colour": "#444444",
-        "github_repository_url": "https://github.com/XanaduAI/Example",
+        "navbar_logo_colour": "#123456",
+
+        "navbar_home_link": "https://example.com",
+
+        "navbar_left_links": [
+            {
+                "name": "Tutorials",
+                "href": "https://example.com/tutorials/",
+            },
+            {
+                "name": "Install",
+                "href": "install.html",
+            },
+            {
+                "name": "Documentation",
+                "href": "index.html",
+                "active": True,
+            }
+        ],
+
+        "navbar_right_links": [
+            {
+                "name": "FAQ",
+                "href": "https://example.com/faq.html",
+                "icon": "fas fa-question",
+            },
+            {
+                "name": "GitHub",
+                "href": "https://github.com/XanaduAI/example",
+                "icon": "fab fa-github",
+            }
+        ],
+
+        "extra_copyrights": [
+            "TensorFlow, the TensorFlow logo, and any related marks are "
+            "trademarks of Google Inc."
+        ],
+
+        "google_analytics_tracking_id": "UA-116279123-2",
+
+        "prev_next_button_colour": "#b13a59",
+        "prev_next_button_hover_colour": "#712b3d",
+        "toc_marker_colour": "#b13a59",
+        "table_header_background_colour": "#ffdce5",
+        "border_colour": "#b13a59",
+        "text_accent_colour": "#b13a59",
     }
 
 
@@ -79,9 +118,6 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 ``google_analytics_tracking_id``
     Google Analytics tracking ID to enable website analytics.
 
-``github_repository_url``
-    URL to the project GitHub repository.
-
 Navigation Bar
 --------------
 
@@ -90,14 +126,40 @@ The following options customize the appearance of the navigation bar.
 ``navbar_name``
     Name of the project to appear in the navigation bar.
 
+``navbar_wordmark_path``
+    Path to the project wordmark to appear in the navigation bar. Specifying
+    this option will replace the project name in the navigation bar. Eventually,
+    this option will be removed in favour of ``navbar_name`` for the sake of
+    consistency.
+
 ``navbar_logo_path``
     Path to the project logo that appears in the navigation bar. Defaults to
-    ``_static/x.svg`` which points to the instantiated Xanadu (X) SVG logo
-    (see ``navbar_logo_colour``).
+    ``_static/xanadu_logo.svg`` which points to the generated Xanadu (X) logo
+    logo (see ``navbar_logo_colour``).
 
 ``navbar_logo_colour``
-    Colour to apply to the Xanadu (X) SVG logo template. Defaults to ``#000000``
-    (i.e., black).
+    Colour of the auto-generated Xanadu (X) logo (available at
+    ``_static/xanadu_logo.svg``). Defaults to ``#000000`` (i.e., black).
+
+``navbar_home_link``
+    Link that is opened when the name or logo on the navigation bar is clicked.
+    Defaults to ``index.html``.
+
+``navbar_left_links``
+    Links on the LHS of the navigation bar in the form of a list of dictionaries
+    with the ``"name"``, ``"href"``, and optionally, ``"active"`` keys.
+
+``navbar_right_links``
+    Links on the RHS of the navigation bar in the form of a list of dictionaries
+    with the ``"name"`` and ``"href"`` keys.
+
+Footer
+------
+
+The following options customize the appearance of the footer.
+
+``extra_copyrights``
+    List of extra copyright notices to place in the footer.
 
 Style Colours
 -------------
@@ -108,6 +170,9 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 
 ``border_colour``
     Border colour of accent rules and table headers.
+
+``code_colour``
+    Colour of code blocks and teletype text. Defaults to ``#8D1A38``.
 
 ``prev_next_button_colour`` and ``prev_next_button_hover_colour``
     Colours of the "Next" and "Previous" navigation buttons located at the
@@ -121,6 +186,42 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 
 ``toc_marker_colour``
     Colour of the marker beside the current ToC entry.
+
+
+Directives
+==========
+
+The Xanadu Sphinx Theme implements the custom Sphinx directives listed below.
+For more information, consult the relevant Python module in the
+`directives <xanadu_sphinx_theme/directives>`_ package.
+
+``CommunityCardDirective``
+
+    <Screenshot is unavailable.>
+
+``DetailsDirective``
+
+    <Screenshot is unavailable.>
+
+``GalleryItemDirective``
+
+    <Screenshot is unavailable.>
+
+``IndexCardDirective``
+
+    <Screenshot is unavailable.>
+
+``RelatedDemoDirective``
+
+    <Screenshot is unavailable.>
+
+``TitleCardDirective``
+
+    <Screenshot is unavailable.>
+
+``YouTubeVideoDirective``
+
+    <Screenshot is unavailable.>
 
 
 Support
