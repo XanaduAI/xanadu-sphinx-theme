@@ -2,10 +2,7 @@
 
 Please complete the following checklist when submitting a PR:
 
-- [ ] All new classes, functions, and members must be clearly commented and
-      documented.
-
-- [ ] Ensure that the test suite passes by running `make test`.
+- [ ] All new classes, functions, and members must be clearly commented and documented.
 
 - [ ] Ensure that code is properly formatted by running `make format lint`.
 
