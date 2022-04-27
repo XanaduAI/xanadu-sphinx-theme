@@ -1,4 +1,4 @@
-.. image:: doc/_static/xst_title.svg
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/xst_title.svg
     :alt: Xanadu Sphinx Theme
     :height: 65
     :width: 100%
@@ -215,7 +215,7 @@ For more information, consult the relevant Python module in the
             For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
             For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
             
-    .. image:: https://user-images.githubusercontent.com/5883774/165625247-46e3b49f-7a09-489a-a162-5c3823bf325b.png
+    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/details.png
         :alt: Details
         :height: 253
 
@@ -227,7 +227,7 @@ For more information, consult the relevant Python module in the
             :description: :doc:`AmplitudeEmbedding <../code/api/pennylane.AmplitudeEmbedding>`
             :figure: _static/templates/embeddings/amplitude.png
 
-    .. image:: https://user-images.githubusercontent.com/5883774/165626023-46524665-5d2e-4599-99dc-92f092100218.png
+    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/gallery_item.png
         :alt: Gallery Item
         :height: 232
 
@@ -240,7 +240,7 @@ For more information, consult the relevant Python module in the
             :link: introduction/pennylane.html
             :description: A guided tour of the core features of PennyLane
         
-    .. image:: https://user-images.githubusercontent.com/5883774/165626763-d3b4d65f-2fef-405d-86a8-d6838dbb6479.png
+    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/index_card.png
         :alt: Index Card
         :height: 159
            
@@ -257,7 +257,7 @@ For more information, consult the relevant Python module in the
             :description: A fast state-vector qubit simulator written in C++
             :link: devices.html
 
-    .. image:: https://user-images.githubusercontent.com/5883774/165627639-fc04bdb6-499a-4d47-a4ac-93baa73da26c.png
+    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/title_card.png
         :alt: Title Card
         :height: 161
 
