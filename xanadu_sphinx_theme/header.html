@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light white sticky-top">
+
+  <!-- Logo and Title -->
+  <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
+    <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
+    {% if theme_navbar_wordmark_path %}
+      <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
+    {% else %}
+      <h1 id="title">{{ theme_navbar_name }}</h1>
+    {% endif %}
+  </a>
+
+  <!-- [Mobile] Collapse Button -->
+  <div class="row right">
+    <a href="#" class="btn navbar-toggler black-text mr-1 justify-content-center" id="mobile-toggle">
+      <i class="fas fa-search"></i>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- [Mobile] Collapsible Content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links on the Left -->
+    <ul class="navbar-nav mr-auto">
+      {% for link in theme_navbar_left_links %}
+        {% if link.active %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+            <span class="sr-only">(current)</span>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <!-- Links on the Right -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      {% for link in theme_navbar_right_links %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ pathto(link.href, 1) }}">
+            <i class="{{ link.icon }} pr-1"></i> {{ link.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</nav>

@@ -1,2 +1,0 @@
-git+git://github.com/XanaduAI/xanadu-sphinx-theme#egg=xanadu-sphinx-theme
-sphinx_gallery
