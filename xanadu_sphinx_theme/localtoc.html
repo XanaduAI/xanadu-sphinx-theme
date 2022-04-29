@@ -1,10 +1,16 @@
-{% if (pagename != "search") and display_toc %}
+{% if (pagename != "search") %}
 <div class="localtoc-container nano has-scrollbar">
   <div class="nano-content">
     <div id="localtoc">
         <h3>Contents</h3>
-        {{ toc | replace("<li>", "<li class='current'>")
-               | replace("<ul>", "<ul class='current'>") }}
+        {% if display_toc %}
+          <!-- Display the ToC for the current document if it is not empty. -->
+          {{ toc | replace("<li>", "<li class='current'>")
+                 | replace("<ul>", "<ul class='current'>")}}
+        {% else %}
+          <!-- Display the ToC for a subset of the current document tree. -->
+          {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
+        {% endif %}
     </div>
   </div>
 </div>
