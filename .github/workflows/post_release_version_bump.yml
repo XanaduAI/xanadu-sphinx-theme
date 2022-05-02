@@ -42,10 +42,10 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          base: main
+          base: master
           title: Post-release version bump to `${{ steps.versions.outputs.new_version }}`
           body: >
-            This PR bumps the XIR version from `${{ steps.versions.outputs.old_version }}`
+            This PR bumps the XST version from `${{ steps.versions.outputs.old_version }}`
             to `${{ steps.versions.outputs.new_version }}`.
           commit-message: Bump version to `${{ steps.versions.outputs.new_version }}`
           branch: post-release-version-bump
