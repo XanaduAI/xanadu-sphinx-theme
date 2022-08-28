@@ -160,6 +160,15 @@ The following options customize the appearance of the footer.
 
 ``extra_copyrights``
     List of extra copyright notices to place in the footer.
+    
+Table of contents
+-----------------
+
+The following options customize the table of contents.
+
+``toc_overview``
+    If ``True``, the project name, and a link to the homepage ``index.rst``, is included
+    in the left-hand table of contents.
 
 Style Colours
 -------------
