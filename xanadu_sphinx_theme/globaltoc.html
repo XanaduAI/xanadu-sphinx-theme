@@ -1,6 +1,14 @@
 
 <div class="sidebar-block">
   <div class="sidebar-toc">
+    {% if theme_toc_overview %}
+    <p class="caption">{{ theme_navbar_name or shorttitle }}</p>
+    <ul class="mb-0">
+      <li class="caption toctree-l1 {{'current' if pagename == 'index' }}">
+        <a class="reference internal" href="{{ pathto('index') }}">Overview</a>
+      </li>
+    </ul>
+    {% endif %}
     {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
   </div>
 </div>
