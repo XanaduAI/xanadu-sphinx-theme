@@ -4,17 +4,11 @@ https://www.sphinx-doc.org/en/master/development/theming.html
 """
 from pathlib import Path
 
-from .directives import (
-    CommunityCardDirective,
-    DetailsDirective,
-    GalleryItemDirective,
-    IndexCardDirective,
-    RelatedDemoDirective,
-    TitleCardDirective,
-    YouTubeVideoDirective,
-)
-
 from ._version import __version__
+from .directives import (CommunityCardDirective, DetailsDirective,
+                         GalleryItemDirective, IndexCardDirective,
+                         RelatedDemoDirective, TitleCardDirective,
+                         YouTubeVideoDirective)
 
 
 def setup(app):
