@@ -268,16 +268,19 @@
     });
   </script>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
     if (downloadNote.length >= 1) {
-      var tutorialUrlArray = $("#tutorial-type").text().split("/");
-      tutorialUrlArray[0] = "examples";
+      var tutorialUrlArray = $("#tutorial-type").text().split('/');
 
-      var githubLink = "{{ theme_github_repository_url }}" + "/blob/HEAD/" + tutorialUrlArray.join("/") + ".py",
-          pythonLink = $(".reference.download")[0].href,
-          notebookLink = $(".reference.download")[1].href,
-          notebookDownloadPath = notebookLink.split("_downloads")[1].split("/").pop();
+      if (tutorialUrlArray[0] == "demos") {
+        tutorialUrlArray[0] = "demonstrations";
+      }
+
+      var githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
+          pythonLink = $(".sphx-glr-download .reference.download")[0].href,
+          notebookLink = $(".sphx-glr-download .reference.download")[1].href,
+          notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop();
 
       $(".download-python-link").wrap("<a href=" + pythonLink + " data-behavior='call-to-action-event' data-response='Download Python script' download target='_blank'/>");
       $(".download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook' download target='_blank'/>");
@@ -285,9 +288,35 @@
       $("#right-column").addClass("page-shadow");
     } else {
       $(".xanadu-call-to-action-links").hide();
-      $("#bottom-dl").attr("style","display: none !important");
+      $("#bottom-dl").attr('style','display: none !important');
     }
-  </script>
+    </script>
+
+    <script type="text/javascript">
+      function makeUL(urls, text) {
+          var list = document.createElement('ul');
+
+          for (var i = 0; i < urls.length; i++) {
+              var item = document.createElement('li');
+              var a = document.createElement('a');
+              var linkText = document.createTextNode(text[i]);
+              a.appendChild(linkText);
+              a.href = urls[i];
+              item.appendChild(a);
+              list.appendChild(item);
+          }
+          return list;
+      }
+
+      if (typeof related_tutorials !== 'undefined') {
+          document.getElementById('related-tutorials').appendChild(makeUL(related_tutorials, related_tutorials_titles));
+          $("#related-tutorials ul li a").append(' <i class="fas fa-angle-double-right" style="font-size: smaller;"></i>')
+          $("#related-tutorials").show();
+
+    } else {
+          $("#related-tutorials").hide();
+    }
+    </script>
 
   <!-- Account for MathJax when navigating to anchor tags. -->
   <script type="text/javascript">

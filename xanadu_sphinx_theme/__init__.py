@@ -14,6 +14,8 @@ from .directives import (
     YouTubeVideoDirective,
 )
 
+from ._version import __version__
+
 
 def setup(app):
     """See https://www.sphinx-doc.org/en/master/extdev/appapi.html."""
@@ -25,7 +27,7 @@ def setup(app):
         "details": DetailsDirective,
         "gallery-item": GalleryItemDirective,
         "index-card": IndexCardDirective,
-        "related-demo": RelatedDemoDirective,
+        "related": RelatedDemoDirective,
         "title-card": TitleCardDirective,
         "youtube-video": YouTubeVideoDirective,
     }

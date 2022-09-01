@@ -73,9 +73,13 @@ class GalleryItemDirective(Directive):
     **Example**
 
     .. gallery-item::
-        :tooltip: This tutorial is directed at people who are new to NLP.
-        :figure: /_static/img/thumbnails/babel.jpg
-        :description: :doc:`/beginner/deep_learning_nlp_tutorial`
+        :tooltip: Get started
+        :figure: _static/teleport.png
+        :description: :doc:`/started`
+
+    .. raw:: html
+
+        <div style="clear:both;">
     """
 
     required_arguments = 0

@@ -3,6 +3,8 @@
     :height: 65
     :width: 100%
 
+.. header-start-inclusion-marker-do-not-remove
+
 The **Xanadu Sphinx Theme** (XST) is a Sphinx theme used for open-source Xanadu
 software projects.
 
@@ -17,28 +19,29 @@ Sphinx theme, the theme has the following features:
 
 * *Cohesive Design*. Unifies the appearance of all Xanadu Sphinx documentation.
 
+.. header-end-inclusion-marker-do-not-remove
+
 
 Installation
 ============
+
+.. installation-start-inclusion-marker-do-not-remove
 
 The Xanadu Sphinx Theme requires Python 3.7 or later. The latest version of the
 XST can be installed directly from the GitHub repository using ``pip``:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/XanaduAI/xanadu-sphinx-theme
+    pip install xanadu-sphinx-theme
 
 
-For use on `Read the Docs <https://readthedocs.org>`_, add the following to your
-``doc/requirements.txt`` file:
-
-.. code-block:: bash
-
-    git+git://github.com/XanaduAI/xanadu-sphinx-theme#egg=xanadu-sphinx-theme
+.. installation-end-inclusion-marker-do-not-remove
 
 
 Getting Started
 ===============
+
+.. getting-started-start-inclusion-marker-do-not-remove
 
 Once installed, simply add or modify the following variables of your Sphinx
 ``conf.py`` configuration file to start using the Xanadu Sphinx Theme:
@@ -108,9 +111,12 @@ Once installed, simply add or modify the following variables of your Sphinx
         "text_accent_colour": "#b13a59",
     }
 
+.. getting-started-end-inclusion-marker-do-not-remove
 
 Configuration
 =============
+
+.. configuration-start-inclusion-marker-do-not-remove
 
 The Xanadu Sphinx Theme supports the following options. These should be added to
 the ``html_theme_options`` dictionary in your ``conf.py`` file.
@@ -160,7 +166,7 @@ The following options customize the appearance of the footer.
 
 ``extra_copyrights``
     List of extra copyright notices to place in the footer.
-    
+
 Table of contents
 -----------------
 
@@ -196,87 +202,100 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 ``toc_marker_colour``
     Colour of the marker beside the current ToC entry.
 
+.. configuration-end-inclusion-marker-do-not-remove
 
 Directives
 ==========
+
+.. directives-start-inclusion-marker-do-not-remove
 
 The Xanadu Sphinx Theme implements the custom Sphinx directives listed below.
 For more information, consult the relevant Python module in the
 `directives <xanadu_sphinx_theme/directives>`_ package.
 
-**Community Card**
+Community Card
+--------------
 
-    <No example is available yet.>
+<No example is available yet.>
 
 **Details**
 
-    .. code-block:: rest
-    
-        .. details::
-            :title: Usage Details
+.. code-block:: rest
 
-            In general, the block takes D parameters and **must** have the following signature:
+    .. details::
+        :title: Usage Details
 
-            .. code-block:: python
+        In general, the block takes D parameters and **must** have the following signature:
 
-                unitary(parameter1, parameter2, ... parameterD, wires)
+        .. code-block:: python
 
-            For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
-            For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
-            
-    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/details.png
-        :alt: Details
-        :height: 253
+            unitary(parameter1, parameter2, ... parameterD, wires)
 
-**Gallery Item**
+        For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
+        For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
 
-    .. code-block:: rest
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/details.png
+    :alt: Details
+    :height: 253
 
-        .. gallery-item::
-            :description: :doc:`AmplitudeEmbedding <../code/api/pennylane.AmplitudeEmbedding>`
-            :figure: _static/templates/embeddings/amplitude.png
+Gallery Item
+------------
 
-    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/gallery_item.png
-        :alt: Gallery Item
-        :height: 232
+.. code-block:: rest
 
-**Index Card**
+    .. gallery-item::
+        :description: :doc:`AmplitudeEmbedding <../code/api/pennylane.AmplitudeEmbedding>`
+        :figure: _static/templates/embeddings/amplitude.png
 
-    .. code-block:: rest
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/gallery_item.png
+    :alt: Gallery Item
+    :height: 232
 
-        .. index-card::
-            :name: Using PennyLane
-            :link: introduction/pennylane.html
-            :description: A guided tour of the core features of PennyLane
-        
-    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/index_card.png
-        :alt: Index Card
-        :height: 159
-           
-**Related Demo**
+Index Card
+----------
 
-    <No example is available yet.>
+.. code-block:: rest
 
-**Title Card**
+    .. index-card::
+        :name: Using PennyLane
+        :link: introduction/pennylane.html
+        :description: A guided tour of the core features of PennyLane
 
-    .. code-block:: rest
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/index_card.png
+    :alt: Index Card
+    :height: 159
 
-        .. title-card::
-            :name: 'lightning.qubit'
-            :description: A fast state-vector qubit simulator written in C++
-            :link: devices.html
+Related Demo
+------------
 
-    .. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/title_card.png
-        :alt: Title Card
-        :height: 161
+<No example is available yet.>
 
-**YouTube Video**
+Title Card
+----------
 
-    <No example is available yet.>
+.. code-block:: rest
 
+    .. title-card::
+        :name: 'lightning.qubit'
+        :description: A fast state-vector qubit simulator written in C++
+        :link: devices.html
+
+.. image:: https://raw.githubusercontent.com/XanaduAI/xanadu-sphinx-theme/master/doc/_static/directives/title_card.png
+    :alt: Title Card
+    :height: 161
+
+YouTube Video
+-------------
+
+<No example is available yet.>
+
+
+.. directives-end-inclusion-marker-do-not-remove
 
 Support
 =======
+
+.. support-start-inclusion-marker-do-not-remove
 
 - **Source Code:** https://github.com/XanaduAI/xanadu-sphinx-theme
 - **Issue Tracker:** https://github.com/XanaduAI/xanadu-sphinx-theme/issues
@@ -284,9 +303,14 @@ Support
 If you are having issues, please let us know by posting the issue on our Github
 issue tracker.
 
+.. support-end-inclusion-marker-do-not-remove
 
 License
 =======
 
+.. license-start-inclusion-marker-do-not-remove
+
 The Xanadu Sphinx Theme is **free** and **open source**, released under the
 `Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>`_.
+
+.. license-end-inclusion-marker-do-not-remove

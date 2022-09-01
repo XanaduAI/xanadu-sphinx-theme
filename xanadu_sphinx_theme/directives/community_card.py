@@ -10,39 +10,37 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
     """
     .. raw:: html
 
-        <div class="col-lg-6 mb-4">
-            <div class="card plugin-card" id={id}>
-                <div class="card-header {colour} lighten-4">
-                    <h4 class="card-header__text">{title}</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-8 d-flex flex-column">
-                            <div>
-                                <h6>{author}</h6>
-                                <p class="font-small">
-                                    <i class="far fa-clock pr-1"></i> {date}
-                                </p>
-                            </div>
-                            <p class="plugin-card__description">
-                                {description}
+        <div class="card plugin-card" id={id}>
+            <div class="card-header {colour} lighten-4">
+                <h4 class="card-header__text">{title}</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-8 d-flex flex-column">
+                        <div>
+                            <h6>{author}</h6>
+                            <p class="font-small">
+                                <i class="far fa-clock pr-1"></i> {date}
                             </p>
-                            <div class="mt-auto plugin-card__read-more-wrapper">
-                                <a
-                                  class="plugin-card__read-more text-primary d-none"
-                                  data-toggle="modal"
-                                  data-target="#{id}-modal"
-                                >
-                                    Read More
-                                </a>
-                            </div>
                         </div>
-                        <div class="col-lg-4 d-flex">
-                            <div class="plugin-card__buttons">
-                                {paper_footer}
-                                {blog_footer}
-                                {code_footer}
-                            </div>
+                        <p class="plugin-card__description">
+                            {description}
+                        </p>
+                        <div class="mt-auto plugin-card__read-more-wrapper">
+                            <a
+                              class="plugin-card__read-more text-primary d-none"
+                              data-toggle="modal"
+                              data-target="#{id}-modal"
+                            >
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-flex">
+                        <div class="plugin-card__buttons">
+                            {paper_footer}
+                            {blog_footer}
+                            {code_footer}
                         </div>
                     </div>
                 </div>
@@ -85,25 +83,19 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
 
 PAPER_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{paper}" class="btn btn-info plugin-card__paper-btn">
-        <i class="fas fa-book"></i> Paper
-    </a>
+    <a href="{paper}" class="btn btn-info plugin-card__paper-btn" style="width: 100%;"><i class="fas fa-book"></i> Paper</a>
     """
 )
 
 BLOG_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{blog}" class="btn btn-info plugin-card__blog-btn">
-        <i class="fas fa-newspaper"></i> Blog
-    </a>
+    <a href="{blog}" class="btn btn-info plugin-card__blog-btn" style="width: 100%;"><i class="fas fa-newspaper"></i> Blog</a>
     """
 )
 
 CODE_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{code}" class="btn btn-default plugin-card__code-btn">
-        <i class="fas fa-code-branch"></i></i> Code
-    </a>
+    <a href="{code}" class="btn btn-default plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
     """
 )
 
@@ -112,7 +104,7 @@ class CommunityCardDirective(Directive):
     """Creates a community card."""
 
     required_arguments = 0
-    optional_arguments = 0
+    optional_arguments = 4
     option_spec = {
         "title": directives.unchanged_required,
         "author": directives.unchanged_required,
@@ -142,7 +134,7 @@ class CommunityCardDirective(Directive):
             code_footer = ""
 
         if "blog" in self.options:
-            blog_footer = BLOG_FOOTER_TEMPLATE.format(paper=self.options["blog"])
+            blog_footer = BLOG_FOOTER_TEMPLATE.format(blog=self.options["blog"])
         else:
             blog_footer = ""
 
