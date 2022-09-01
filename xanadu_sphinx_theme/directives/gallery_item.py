@@ -66,7 +66,7 @@ TEMPLATE = cleandoc(
 class GalleryItemDirective(Directive):
     """Creates a sphinx-gallery-style thumbnail.
 
-    Note that the ``description``option can be a link to a document. Also,
+    Note that the ``description`` option can be a link to a document. Also,
     thumbnails will be created out of figures and stored in ``/_static/thumbs``.
     Therefore, consider ``/_static/thumbs`` as a "built" directory.
 
