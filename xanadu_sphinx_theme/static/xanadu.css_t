@@ -1,11 +1,6 @@
 /* Sphinx Themes
 ----------------------------------------------------------------------------- */
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr5TRA.woff2) format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
 body {
   margin: 0;

@@ -1,8 +1,16 @@
-## Release 0.3.0 (development release)
+## Release 0.2.1 (development release)
+
+### Improvements
+
+* [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans) is now imported
+  using `@import` instead of `@font-face` for stability reasons.
+  [#9](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/9)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Mikhail Andrenkov](https://github.com/Mandrenkov)
 
 ## Release 0.2.0 (current release)
 
@@ -10,7 +18,7 @@ This release contains contributions from (in alphabetical order):
 
 * Adds the `toc_overview` option, which allows the table of contents to
   optionally display the project title and a link to the documentation
-  homepage.
+  homepage. [#7](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/7)
 
 ### Contributors
 
