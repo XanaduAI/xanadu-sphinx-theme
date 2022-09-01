@@ -1,8 +1,14 @@
 # Release 0.3.0 (development release)
 
+### Improvements
+
+* Added documentation. [#13](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/13)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Josh Izaac](https://github.com/josh146).
 
 # Release 0.2.1 (current release)
 
