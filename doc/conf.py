@@ -117,7 +117,7 @@ html_theme_options = {
             "href": "javascript:void(0);",
         },
         {
-            "name": "Example2",
+            "name": "Blog",
             "href": "javascript:void(0);",
         },
         {
