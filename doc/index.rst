@@ -65,6 +65,12 @@ License
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
+
+   release_notes
+
+.. toctree::
+   :maxdepth: 1
    :caption: Usage
    :hidden:
 
