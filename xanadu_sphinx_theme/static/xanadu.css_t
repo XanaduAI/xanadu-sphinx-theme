@@ -2650,7 +2650,7 @@ pre {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .08);
   float: left;
   margin: 12px;
-  min-height: 210px;
+  min-height: 230px;
   padding-top: 5px;
   position: relative;
   text-align: center;
@@ -2701,8 +2701,8 @@ pre {
 
 .gallery-item-thumbcontainer img {
   display: inline;
-  max-height: 140px;
-  max-width: 200px;
+  max-height: 160px;
+  max-width: 160px;
 }
 
 .gallery-item-thumbcontainer[tooltip]:hover:after {
@@ -2766,94 +2766,6 @@ pre {
 
 /* Gallery  */
 /*---------------------------------------------------*/
-
-/*
-Sphinx-Gallery has compatible CSS to fix default sphinx themes
-Tested for Sphinx 1.3.1 for all themes: default, alabaster, sphinxdoc,
-scrolls, agogo, traditional, nature, haiku, pyramid
-Tested for Read the Docs theme 0.1.7 */
-.sphx-glr-thumbcontainer {
-  background: #fff;
-  border: solid #dedede 0px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.05),0 2px 25px 2px rgba(0,0,0,.08);
-  float: left;
-  margin: 12px;
-  min-height: 230px;
-  padding-top: 5px;
-  position: relative;
-  text-align: center;
-  border-radius: 10px;
-  transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-.sphx-glr-thumbcontainer:hover {
-  border: solid #b4ddfc 0px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.05),0 2px 25px 2px rgba(0,0,0,.2);
-  transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-/*.sphx-glr-thumbcontainer:hover > .figure > img {*/
-  /*transform: scale(1.08);*/
-  /*transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);*/
-/*}*/
-
-
-.sphx-glr-thumbcontainer a.internal {
-  bottom: 0;
-  display: block;
-  left: 0;
-  padding: 150px 10px 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  color: #575757;
-}
-
-/* Next one is to avoid Sphinx traditional theme to cover all the
-thumbnail with its default link Background color */
-.sphx-glr-thumbcontainer a.internal:hover {
-  background-color: transparent;
-  color: #575757;
-  text-decoration: none;
-}
-
-.sphx-glr-thumbcontainer p {
-  margin: 0 0 .1em 0;
-}
-.sphx-glr-thumbcontainer .figure {
-  margin: 10px;
-  width: 160px;
-}
-.sphx-glr-thumbcontainer img {
-  display: inline;
-  max-height: 160px;
-  width: 160px;
-}
-.sphx-glr-thumbcontainer[tooltip]:hover:after {
-  background: rgba(0, 0, 0, 0.8);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  color: #fff;
-  content: attr(tooltip);
-  left: 95%;
-  padding: 5px 15px;
-  position: absolute;
-  z-index: 98;
-  width: 220px;
-  bottom: 52%;
-}
-.sphx-glr-thumbcontainer[tooltip]:hover:before {
-  border: solid;
-  border-color: #333 transparent;
-  border-width: 18px 0 0 20px;
-  bottom: 58%;
-  content: '';
-  left: 85%;
-  position: absolute;
-  z-index: 99;
-}
 
 .highlight-pytb pre {
   background-color: #ffe4e4;
