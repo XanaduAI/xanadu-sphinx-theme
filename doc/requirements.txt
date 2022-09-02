@@ -1,0 +1,5 @@
+pillow==9.1.1
+m2r2
+sphinx==4.5.0
+sphinx-copybutton
+sphinx-gallery==0.10.1

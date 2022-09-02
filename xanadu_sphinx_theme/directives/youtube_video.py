@@ -10,7 +10,7 @@ TEMPLATE = cleandoc(
     .. raw:: html
 
         <a href="https://youtube.com/watch?v={id}" target="_blank">
-            <div class="card">
+            <div class="card video-card">
                 <img
                   class="card-img-top img-fluid"
                   src="https://img.youtube.com/vi/{id}/hqdefault.jpg"

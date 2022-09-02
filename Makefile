@@ -30,7 +30,7 @@ dist:
 
 .PHONY : docs
 docs:
-	make -C docs html
+	make -C doc html
 
 .PHONY: lint
 lint:
@@ -49,5 +49,5 @@ clean:
 
 .PHONY : clean-docs
 clean-docs:
-	rm -rf docs/api
-	make -C docs clean
+	rm -rf doc/api
+	make -C doc clean

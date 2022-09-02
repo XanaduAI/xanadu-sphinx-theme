@@ -66,16 +66,20 @@ TEMPLATE = cleandoc(
 class GalleryItemDirective(Directive):
     """Creates a sphinx-gallery-style thumbnail.
 
-    Note that the ``description``option can be a link to a document. Also,
+    Note that the ``description`` option can be a link to a document. Also,
     thumbnails will be created out of figures and stored in ``/_static/thumbs``.
     Therefore, consider ``/_static/thumbs`` as a "built" directory.
 
     **Example**
 
     .. gallery-item::
-        :tooltip: This tutorial is directed at people who are new to NLP.
-        :figure: /_static/img/thumbnails/babel.jpg
-        :description: :doc:`/beginner/deep_learning_nlp_tutorial`
+        :tooltip: Get started
+        :figure: _static/teleport.png
+        :description: :doc:`/started`
+
+    .. raw:: html
+
+        <div style="clear:both;">
     """
 
     required_arguments = 0
