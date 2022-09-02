@@ -4,3 +4,4 @@ sphinx-gallery==0.10.1
 m2r2
 sphinx-automodapi==0.13
 sphinx-copybutton
+matplotlib
