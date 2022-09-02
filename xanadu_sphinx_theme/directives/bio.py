@@ -5,7 +5,6 @@ from inspect import cleandoc
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 
-
 TEMPLATE = cleandoc(
     """
     <div class="bio" >
