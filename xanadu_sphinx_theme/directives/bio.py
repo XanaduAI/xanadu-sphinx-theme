@@ -15,7 +15,7 @@ TEMPLATE = cleandoc(
             <h4 class="bio-text__author-name">{author}</h4>
             <p class="bio-text__author-description">{bio}</p>
         </div>
-    </div>'
+    </div>
     """
 )
 
