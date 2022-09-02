@@ -50,7 +50,6 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
-    "sphinx_automodapi.automodapi",
     "sphinx_gallery.gen_gallery",
     "m2r2"
 ]
@@ -68,6 +67,7 @@ master_doc = "index"
 
 autosummary_generate = True
 autosummary_imported_members = False
+autosummary_imported_members = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -106,8 +106,6 @@ html_sidebars = {
     ]
 }
 
-breadcrumbs = False
-
 
 # Xanadu theme options (see theme.conf for more information).
 html_theme_options = {
@@ -137,15 +135,15 @@ html_theme_options = {
         },
     ],
     "extra_copyrights": [
-        "Any extra copyrights can be added here"
+        "Any extra copyrights can be added here."
     ],
-    "border_colour": "#19b37b",
-    "prev_next_button_colour": "#19b37b",
-    "prev_next_button_hover_colour": "#0e714d",
-    "table_header_background_colour": "#edf7f4",
-    "text_accent_colour": "#19b37b",
-    "toc_marker_colour": "#19b37b",
-    "toc_overview": True,
+    "border_colour": "#f48fb1",
+    "prev_next_button_colour": "#f48fb1",
+    "prev_next_button_hover_colour": "#ec407a",
+    "table_header_background_colour": "#f8bbd0",
+    "text_accent_colour": "#f48fb1",
+    "toc_marker_colour": "#f48fb1",
+    "toc_overview": True
     "toc_global": False,
     "relations": False
 }

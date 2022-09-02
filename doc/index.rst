@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 .. Xanadu Sphinx Theme documentation master file, created by
    sphinx-quickstart on Thu Sep  1 14:09:16 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+=======
+>>>>>>> master
 Xanadu Sphinx Theme
 ===================
 
@@ -46,21 +49,21 @@ Features
 --------
 
 .. include:: ../README.rst
-  :start-after:   header-start-inclusion-marker-do-not-remove
+  :start-after: header-start-inclusion-marker-do-not-remove
   :end-before: header-end-inclusion-marker-do-not-remove
 
 Support
 -------
 
 .. include:: ../README.rst
-  :start-after:   support-start-inclusion-marker-do-not-remove
+  :start-after: support-start-inclusion-marker-do-not-remove
   :end-before: support-end-inclusion-marker-do-not-remove
 
 License
 -------
 
 .. include:: ../README.rst
-  :start-after:   license-start-inclusion-marker-do-not-remove
+  :start-after: license-start-inclusion-marker-do-not-remove
   :end-before: license-end-inclusion-marker-do-not-remove
 
 .. toctree::
@@ -81,8 +84,8 @@ License
    configuration
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: API
    :hidden:
 
-   code
+   api/xanadu_sphinx_theme

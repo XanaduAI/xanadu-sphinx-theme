@@ -1,4 +1,4 @@
-{{ name | replace("pennylane", "qml") | escape | underline}}
+{{ fullname | escape | underline}}
 
 .. currentmodule:: {{ module }}
 

@@ -234,7 +234,7 @@ Community Card
     .. details::
         :title: Usage Details
 
-        In general, the block takes D parameters and **must** have the following signature:
+        In general, the block takes :math:`D` parameters and **must** have the following signature:
 
         .. code-block:: python
 
@@ -297,7 +297,6 @@ YouTube Video
 -------------
 
 <No example is available yet.>
-
 
 .. directives-end-inclusion-marker-do-not-remove
 
