@@ -2137,7 +2137,7 @@ footer.page-footer .footer-copyright {
 .md-input .bar {
   position: relative;
   display: block;
-  width: 300px;
+  width: 109%;
 }
 
 .md-input .bar:before,

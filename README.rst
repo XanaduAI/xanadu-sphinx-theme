@@ -176,6 +176,15 @@ The following options customize the table of contents.
     If ``True``, the project name, and a link to the homepage ``index.rst``, is included
     in the left-hand table of contents.
 
+``toc_global``
+    Whether to show the global table of contents by default via the left sidebar.
+    If ``False``, then the left sidebar will be disabled. Instead, hovering
+    over the navbar logo will show the global table of contents as a dropdown.
+
+``relations``
+    If ``True``, then Next and Previous buttons are included at the bottom of
+    every page, allowing navigation according to the table of contents.
+
 Style Colours
 -------------
 
