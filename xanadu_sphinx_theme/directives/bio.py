@@ -1,7 +1,24 @@
 """This module implements the ``bio`` reST directive."""
 
+from inspect import cleandoc
+
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
+
+
+TEMPLATE = cleandoc(
+    """
+    <div class="bio" >
+        <div class="photo" >
+            <img class="photo__img" src="{photo}" alt="{author}" >
+        </div>
+        <div class="bio-text">
+            <h4 class="bio-text__author-name">{author}</h4>
+            <p class="bio-text__author-description">{bio}</p>
+        </div>
+    </div>'
+    """
+)
 
 
 class BioDirective(Directive):
@@ -18,11 +35,6 @@ class BioDirective(Directive):
         Write the author bio content here. It must be preceded by a blank line.
     """
 
-    def boolean(argument):
-        """Conversion function for yes/no True/False."""
-        value = directives.choice(argument, ("yes", "True", "no", "False"))
-        return value in ("yes", "True")
-
     required_arguments = 1
     optional_arguments = 8
     option_spec = {
@@ -31,14 +43,17 @@ class BioDirective(Directive):
     final_argument_whitespace = False
     has_content = True
 
+    def boolean(self):
+        """Conversion function for yes/no True/False."""
+        value = directives.choice(self, ("yes", "True", "no", "False"))
+        return value in ("yes", "True")
+
     def run(self):
-        authorStringArray = self.arguments
-        author = " ".join([str(item) for item in authorStringArray])
+        author_string = self.arguments
+        author = " ".join([str(item) for item in author_string])
         photo = self.options.get("photo", None)
         bio = self.content[0].strip()
-        bio_block = '<div class="bio" > <div class="photo" ><img class="photo__img" src="{}" alt="{}" ></div><div class="bio-text"><h4 class="bio-text__author-name">{}</h4><p class="bio-text__author-description">{}</p></div></div>'.format(
-            photo, author, author, bio
-        )
+        bio_block = TEMPLATE.format(photo=photo, author=author, bio=bio)
         return [
             nodes.raw("", bio_block, format="html"),
         ]
