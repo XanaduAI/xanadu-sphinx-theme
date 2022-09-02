@@ -6,6 +6,7 @@ from pathlib import Path
 
 from ._version import __version__
 from .directives import (
+    BioDirective,
     CommunityCardDirective,
     DetailsDirective,
     GalleryItemDirective,
@@ -22,6 +23,7 @@ def setup(app):
     app.add_html_theme("xanadu", str(cwd))
 
     directives = {
+        "bio": BioDirective,
         "community-card": CommunityCardDirective,
         "details": DetailsDirective,
         "gallery-item": GalleryItemDirective,

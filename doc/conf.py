@@ -51,6 +51,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_automodapi.automodapi",
+    "sphinx_gallery.gen_gallery",
     "m2r2"
 ]
 
@@ -105,6 +106,8 @@ html_sidebars = {
     ]
 }
 
+breadcrumbs = False
+
 
 # Xanadu theme options (see theme.conf for more information).
 html_theme_options = {
@@ -142,5 +145,30 @@ html_theme_options = {
     "table_header_background_colour": "#edf7f4",
     "text_accent_colour": "#19b37b",
     "toc_marker_colour": "#19b37b",
-    "toc_overview": True
+    "toc_overview": True,
+    # "toc_global": False,
+    # "relations": False
+}
+
+
+# -- Options for Sphinx Gallery --------------------------------------------
+
+sphinx_gallery_conf = {
+    # path to your example scripts
+    "examples_dirs": ["tutorials"],
+    # path where to save gallery generated examples
+    "gallery_dirs": ["gallery"],
+    # execute files that match the following filename pattern,
+    # and skip those that don't. If the following option is not provided,
+    # all example scripts in the 'examples_dirs' folder will be skiped.
+    "filename_pattern": r"tutorial",
+    "pypandoc": True,
+    # first notebook cell in generated Jupyter notebooks
+    "first_notebook_cell": (
+        "# This cell is added by sphinx-gallery\n"
+        "# It can be customized to whatever you like\n"
+        "%matplotlib inline"
+    ),
+    # thumbnail size
+    "thumbnail_size": (400, 400),
 }
