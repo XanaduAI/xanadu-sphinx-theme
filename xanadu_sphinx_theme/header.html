@@ -2,16 +2,7 @@
 
   <!-- Logo and Title -->
 
-{% if theme_toc_global %}
-  <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
-    <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
-    {% if theme_navbar_wordmark_path %}
-      <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
-    {% else %}
-      <h1 id="title">{{ theme_navbar_name }}</h1>
-    {% endif %}
-  </a>
-{% else %}
+{% if not toc_global and theme_navbar_left_links|length == 0 %}
 <!-- Dropdown -->
 <li class="nav-item dropdown">
     <a
@@ -33,6 +24,15 @@
     {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
   </div>
 </li>
+{% else %}
+  <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
+    <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
+    {% if theme_navbar_wordmark_path %}
+      <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
+    {% else %}
+      <h1 id="title">{{ theme_navbar_name }}</h1>
+    {% endif %}
+  </a>
 {% endif %}
 
   <!-- [Mobile] Collapse Button -->
@@ -56,10 +56,32 @@
     <ul class="navbar-nav mr-auto">
       {% for link in theme_navbar_left_links %}
         {% if link.active %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
-            <span class="sr-only">(current)</span>
-          </li>
+
+          {% if not theme_toc_global %}
+            <!-- Dropdown -->
+            <li class="nav-item dropdown active">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="{{ pathto(theme_navbar_home_link, 1) }}"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{ link.name }}
+                </a>
+                <span class="sr-only">(current)</span>
+              <div class="sidebar-toc dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+              <span class="sr-only">(current)</span>
+            </li>
+          {% endif %}
+
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>

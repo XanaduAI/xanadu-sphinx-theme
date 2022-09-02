@@ -3251,12 +3251,12 @@ p.sphx-glr-signature a.reference.external {
   cursor: pointer;
   transition: all 0.1s;
   border: #19b37b4a solid 1px;
-  color: {{ theme_download_button }};
+  color: {{ theme_toc_marker_colour }};
   font-size: 90%;
 }
 
 .filters label:hover {
-  background: {{ theme_download_button }};
+  background: {{ theme_toc_marker_colour }};
   color: #fff;
 }
 
@@ -3265,7 +3265,7 @@ p.sphx-glr-signature a.reference.external {
 }
 
 .filters label.active {
-  background: {{ theme_download_button }};
-  border: {{ theme_download_button }} solid 1px;
+  background: {{ theme_toc_marker_colour }};
+  border: {{ theme_toc_marker_colour }} solid 1px;
   color: #fff;
 }

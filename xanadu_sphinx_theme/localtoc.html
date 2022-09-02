@@ -7,7 +7,7 @@
           <!-- Display the ToC for the current document if it is not empty. -->
           {{ toc | replace("<li>", "<li class='current'>")
                  | replace("<ul>", "<ul class='current'>")}}
-        {% else %}
+        {% elif theme_toc_subset %}
           <h3>Contents</h3>
           <!-- Display the ToC for a subset of the current document tree. -->
           {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
