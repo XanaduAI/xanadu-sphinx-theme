@@ -50,7 +50,6 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
-    "sphinx_automodapi.automodapi",
     "m2r2"
 ]
 
