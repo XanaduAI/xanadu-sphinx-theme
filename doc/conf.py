@@ -134,7 +134,7 @@ html_theme_options = {
         },
     ],
     "extra_copyrights": [
-        "Any extra copyrights can be added here"
+        "Any extra copyrights can be added here."
     ],
     "border_colour": "#f48fb1",
     "prev_next_button_colour": "#f48fb1",

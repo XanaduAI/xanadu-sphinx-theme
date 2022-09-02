@@ -2708,19 +2708,18 @@ pre {
 
 
 #related-tutorials {
-    display: none;
+  display: none;
 }
 
-
 #related-tutorials ul > li > ul > li > ul {
-    margin-top: -7px;
-    margin-left: 20px;
-    margin-bottom: -15px;
-    font-size: smaller;
+  margin-top: -7px;
+  margin-left: 20px;
+  margin-bottom: -15px;
+  font-size: smaller;
 }
 
 #related-tutorials ul > li > ul > li > ul > li {
-    margin-bottom: -15px;
+  margin-bottom: -15px;
 }
 
 #related-tutorials a:hover {
@@ -2739,7 +2738,6 @@ pre {
 
 #related-tutorials a {
   font-family: Roboto,Noto Sans,"Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
-  /*color: #444;*/
   color: #606060;
   text-decoration: none;
 }
@@ -2758,11 +2756,10 @@ pre {
   padding-bottom: 10px;
 }
 
-
 #related-tutorials ul li a {
-display: block;
-padding: 7px;
-border-radius: 7px;
+  display: block;
+  padding: 7px;
+  border-radius: 7px;
 }
 
 #related-tutorials ul li a:hover {
