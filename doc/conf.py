@@ -136,11 +136,11 @@ html_theme_options = {
     "extra_copyrights": [
         "Any extra copyrights can be added here"
     ],
-    "border_colour": "#19b37b",
-    "prev_next_button_colour": "#19b37b",
-    "prev_next_button_hover_colour": "#0e714d",
-    "table_header_background_colour": "#edf7f4",
-    "text_accent_colour": "#19b37b",
-    "toc_marker_colour": "#19b37b",
+    "border_colour": "#f48fb1",
+    "prev_next_button_colour": "#f48fb1",
+    "prev_next_button_hover_colour": "#ec407a",
+    "table_header_background_colour": "#f8bbd0",
+    "text_accent_colour": "#f48fb1",
+    "toc_marker_colour": "#f48fb1",
     "toc_overview": True
 }
