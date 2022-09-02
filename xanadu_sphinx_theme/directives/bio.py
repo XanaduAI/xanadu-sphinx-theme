@@ -3,8 +3,9 @@
 from docutils.parsers.rst import Directive, directives
 from docutils import nodes
 
+
 class BioDirective(Directive):
-    """ Embed author bio in posts (ReST format).
+    """Embed author bio in posts (ReST format).
 
     Based on the pelican_youtube plugin:
     https://github.com/kura/pelican_youtube
@@ -32,11 +33,12 @@ class BioDirective(Directive):
 
     def run(self):
         authorStringArray = self.arguments
-        author = ' '.join([str(item) for item in authorStringArray])
+        author = " ".join([str(item) for item in authorStringArray])
         photo = self.options.get("photo", None)
         bio = self.content[0].strip()
         bio_block = '<div class="bio" > <div class="photo" ><img class="photo__img" src="{}" alt="{}" ></div><div class="bio-text"><h4 class="bio-text__author-name">{}</h4><p class="bio-text__author-description">{}</p></div></div>'.format(
-            photo, author, author, bio)
+            photo, author, author, bio
+        )
         return [
             nodes.raw("", bio_block, format="html"),
         ]
