@@ -75,8 +75,8 @@ License
    configuration
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: API
    :hidden:
 
-   code
+   api/xanadu_sphinx_theme

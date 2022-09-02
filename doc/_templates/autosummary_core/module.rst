@@ -6,6 +6,7 @@
 ={% for i in range(objname|length) %}={% endfor %}{{ underline }}
 
 .. automodule:: {{ fullname }}
+   :recursive:
 
    {% block functions %}
    {% if functions %}

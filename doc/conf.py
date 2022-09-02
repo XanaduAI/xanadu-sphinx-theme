@@ -66,7 +66,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 master_doc = "index"
 
 autosummary_generate = True
-autosummary_imported_members = False
+autosummary_imported_members = True
 
 # -- Options for HTML output -------------------------------------------------
 
