@@ -10,7 +10,7 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
     """
     .. raw:: html
 
-        <div class="card plugin-card" id={id}>
+        <div class="card community-card plugin-card" id={id}>
             <div class="card-header {colour} lighten-4">
                 <h4 class="card-header__text">{title}</h4>
             </div>
