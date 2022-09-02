@@ -1,7 +1,7 @@
 """This module implements the ``bio`` reST directive."""
 
-from docutils.parsers.rst import Directive, directives
 from docutils import nodes
+from docutils.parsers.rst import Directive, directives
 
 
 class BioDirective(Directive):

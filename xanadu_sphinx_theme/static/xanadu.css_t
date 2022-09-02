@@ -2732,7 +2732,7 @@ pre {
 }
 
 .video-card {
-  width:  250px;
+  width:  350px;
   margin-left: 30px;
   margin-right: 30px;
 }
