@@ -1,53 +1,50 @@
-{{ name | replace("pennylane", "qml") | escape | underline}}
+{{ fullname | escape | underline}}
 
 .. automodule:: {{ fullname }}
 
-   {% block modules %}
-   {% if modules %}
-   .. rubric:: Modules
+{% block classes %}
+{% if classes %}
 
-   .. autosummary::
-      :toctree:
+Classes
+-------
 
-   {% for item in modules %}
-      {{ item }}
-   {%- endfor %}
-   {% endif %}
-   {% endblock %}
+.. autosummary::
+   :toctree:
 
-   {% block classes %}
-   {% if classes %}
-   .. rubric:: Classes
+{% for item in classes %}
+   {{ item }}
+{%- endfor %}
 
-   .. autosummary::
-      :toctree:
+{% endif %}
+{% endblock %}
 
-   {% for item in classes %}
-      {{ item }}
-   {%- endfor %}
-   {% endif %}
-   {% endblock %}
+{% block functions %}
+{% if functions %}
 
-   {% block functions %}
-   {% if functions %}
-   .. rubric:: Functions
+Functions
+---------
 
-   .. autosummary::
-      :toctree:
+.. autosummary::
+   :toctree:
 
-   {% for item in functions %}
-      {{ item }}
-   {%- endfor %}
-   {% endif %}
-   {% endblock %}
+{% for item in functions %}
+   {{ item }}
+{%- endfor %}
 
-   {% block exceptions %}
-   {% if exceptions %}
-   .. rubric:: Exceptions
+{% endif %}
+{% endblock %}
 
-   .. autosummary::
-   {% for item in exceptions %}
-      {{ item }}
-   {%- endfor %}
-   {% endif %}
-   {% endblock %}
+{% block exceptions %}
+{% if exceptions %}
+
+Exceptions
+----------
+
+.. autosummary::
+
+{% for item in exceptions %}
+   {{ item }}
+{%- endfor %}
+
+{% endif %}
+{% endblock %}
