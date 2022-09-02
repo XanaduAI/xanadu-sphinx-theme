@@ -4,6 +4,13 @@
 
 * Added documentation. [#13](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/13)
 
+* Add a new `.. bio::` directive, which supports inserting author bios. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
+
+* Add support for Sphinx Gallery. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
+
+* Adds a new option `toc_global` which allows the left-hand global TOC sidebar
+  to be disabled. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
