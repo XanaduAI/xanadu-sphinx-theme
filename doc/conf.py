@@ -146,8 +146,9 @@ html_theme_options = {
     "text_accent_colour": "#19b37b",
     "toc_marker_colour": "#19b37b",
     "toc_overview": True,
-    # "toc_global": False,
-    # "relations": False
+    # The following options disable the global left-hand-side TOC
+    "toc_global": False,
+    "relations": False
 }
 
 
