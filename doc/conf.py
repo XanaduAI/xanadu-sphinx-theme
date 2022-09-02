@@ -143,7 +143,7 @@ html_theme_options = {
     "table_header_background_colour": "#f8bbd0",
     "text_accent_colour": "#f48fb1",
     "toc_marker_colour": "#f48fb1",
-    "toc_overview": True
+    "toc_overview": True,
     "toc_global": False,
     "relations": False
 }
