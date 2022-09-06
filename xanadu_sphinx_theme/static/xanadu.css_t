@@ -3078,8 +3078,12 @@ p.sphx-glr-signature a.reference.external {
         justify-content: unset;
     }
     .photo {
-        margin-right: unset;
+        margin-right: auto;
+        margin-left: auto;
         margin-bottom: 1em;
+    }
+    .bio-text__author-name {
+        text-align: center;
     }
 }
 
