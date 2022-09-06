@@ -65,12 +65,16 @@ XANADU_FOOTER = {
                     "href": "https://pennylane.ai/qml",
                 },
                 {
+                    "name": "Demonstrations",
+                    "href": "https://pennylane.ai/qml/demonstrations.html",
+                },
+                {
                     "name": "Documentation",
                     "href": "https://docs.pennylane.ai/",
                 },
                 {
                     "name": "GitHub",
-                    "href": "https://github.com/XanaduAI/pennylane",
+                    "href": "https://github.com/PennyLaneAI/pennylane",
                 },
                 {
                     "name": "Twitter",
@@ -79,6 +83,31 @@ XANADU_FOOTER = {
                 {
                     "name": "Blog",
                     "href": "https://pennylane.ai/blog",
+                },
+            ],
+        },
+        {
+            "title": "Strawberry Fields",
+            "links": [
+                {
+                    "name": "Home",
+                    "href": "https://strawberryfields.ai/",
+                },
+                {
+                    "name": "Photonics",
+                    "href": "https://strawberryfields.ai/photonics",
+                },
+                {
+                    "name": "Demonstrations",
+                    "href": "https://strawberryfields.ai/photonics/demonstrations.html",
+                },
+                {
+                    "name": "Documentation",
+                    "href": "https://strawberryfields.readthedocs.io/",
+                },
+                {
+                    "name": "GitHub",
+                    "href": "https://github.com/XanaduAI/strawberryfields",
                 },
             ],
         },
