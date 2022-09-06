@@ -117,8 +117,8 @@ html_theme_options = {
             "href": "javascript:void(0);",
         },
         {
-            "name": "Blog",
-            "href": "javascript:void(0);",
+            "name": "Search",
+            "href": "search.html",
         },
         {
             "name": "Documentation",
@@ -144,6 +144,7 @@ html_theme_options = {
     "toc_marker_colour": "#f48fb1",
     "toc_overview": True,
     "toc_global": False,
+    "toc_hover": True,
     "relations": False
 }
 

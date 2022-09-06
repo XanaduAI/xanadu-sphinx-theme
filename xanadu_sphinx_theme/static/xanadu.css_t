@@ -455,7 +455,7 @@ div.sphinxsidebar .sidebar-toc ul ul {
 
 .sidebar-toc.dropdown-menu {
   padding: 20px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .011), 0 5px 19px 0px rgba(0, 0, 0, .05);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .011), 0 20px 20px 0px rgba(0, 0, 0, .05);
   border-radius: 0;
   border: none;
   line-height: 2;
