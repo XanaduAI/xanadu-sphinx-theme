@@ -25,7 +25,9 @@ def setup(app):
     # set default footer sections
     for section in ["about", "links", "socials", "tagline"]:
         if f"footer_{section}" not in app.config["html_theme_options"]:
-            app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[f"footer_{section}"]
+            app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[
+                f"footer_{section}"
+            ]
 
     directives = {
         "bio": BioDirective,
@@ -48,7 +50,7 @@ XANADU_FOOTER = {
         Located in the heart of downtown Toronto, we've brought together
         exceptional minds from around the world to build quantum computers
         that are useful and available to people everywhere.
-        """
+        """,
     },
     "footer_links": [
         {
@@ -78,7 +80,7 @@ XANADU_FOOTER = {
                     "name": "Blog",
                     "href": "https://pennylane.ai/blog",
                 },
-            ]
+            ],
         },
         {
             "title": "Xanadu",
@@ -87,22 +89,13 @@ XANADU_FOOTER = {
                     "name": "Home",
                     "href": "https://xanadu.ai/",
                 },
-                {
-                    "name": "About",
-                    "href": "https://xanadu.ai/about/"
-                },
+                {"name": "About", "href": "https://xanadu.ai/about/"},
                 {
                     "name": "Hardware",
                     "href": "https://xanadu.ai/photonics",
                 },
-                {
-                    "name": "Careers",
-                    "href": "https://xanadu.ai/careers/"
-                },
-                {
-                    "name": "Cloud",
-                    "href": "https://cloud.xanadu.ai"
-                },
+                {"name": "Careers", "href": "https://xanadu.ai/careers/"},
+                {"name": "Cloud", "href": "https://cloud.xanadu.ai"},
                 {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
@@ -111,37 +104,22 @@ XANADU_FOOTER = {
                     "name": "Blog",
                     "href": "https://xanadu.ai/blog",
                 },
-            ]
-        }
+            ],
+        },
     ],
     "footer_socials": [
-        {
-            "icon": "fab fa-twitter",
-            "href": "https://twitter.com/xanaduai"
-        },
-        {
-            "icon": "fab fa-github",
-            "href": "https://github.com/XanaduAI"
-        },
-        {
-            "icon": "fab fa-linkedin-in",
-            "href": "https://linkedin.com/company/xanaduai/"
-        },
-        {
-            "icon": "fab fa-discourse",
-            "href": "https://discuss.pennylane.ai"
-        },
+        {"icon": "fab fa-twitter", "href": "https://twitter.com/xanaduai"},
+        {"icon": "fab fa-github", "href": "https://github.com/XanaduAI"},
+        {"icon": "fab fa-linkedin-in", "href": "https://linkedin.com/company/xanaduai/"},
+        {"icon": "fab fa-discourse", "href": "https://discuss.pennylane.ai"},
         {
             "icon": "fab fa-slack",
             "href": "https://u.strawberryfields.ai/slack",
         },
-        {
-            "icon": "fas fa-rss",
-            "href": "https://xanadu.ai/blog"
-        }
+        {"icon": "fas fa-rss", "href": "https://xanadu.ai/blog"},
     ],
     "footer_tagline": {
         "text": "Stay updated with our newsletter",
-        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630"
-    }
+        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
+    },
 }
