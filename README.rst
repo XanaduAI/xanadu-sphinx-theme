@@ -201,7 +201,7 @@ Footer
 
 ``footer_about``
     A dictionary of the form ``{"title": ..., "description": ...}`` that specifies
-    the 'About' section of the footer. Set to ``{}`` to remove.
+    the 'About' section of the footer. Set to an empty dictionary to remove.
 
 ``footer_links``
     A list of dictionaries of the form
