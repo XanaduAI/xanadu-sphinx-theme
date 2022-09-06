@@ -19,7 +19,7 @@ import re
 # -- Project information -----------------------------------------------------
 
 project = 'Xanadu Sphinx Theme'
-copyright = '2022, Xanadu, Inc.'
+copyright = '2022, Xanadu Quantum Technologies'
 author = 'Xanadu Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -145,7 +145,7 @@ html_theme_options = {
     "toc_overview": True,
     "toc_global": True,
     "toc_hover": False,
-    "relations": True
+    "relations": True,
 }
 
 

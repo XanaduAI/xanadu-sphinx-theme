@@ -196,6 +196,67 @@ The following options customize the table of contents.
     If ``True``, then Next and Previous buttons are included at the bottom of
     every page, allowing navigation according to the table of contents.
 
+Footer
+------
+
+``footer_about``
+    A dictionary of the form ``{"title": ..., "description": ...}`` that specifies
+    the 'About' section of the footer. Set to ``{}`` to remove.
+
+``footer_links``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_links": [
+            {
+                "title": "Column1",
+                "links": [
+                    {
+                        "name": "Home",
+                        "href": "https://pennylane.ai/",
+                    },
+                    {
+                        "name": "Learn",
+                        "href": "https://pennylane.ai/qml",
+                    }
+                ]
+            },
+            {
+                "title": "Column2",
+                "links": [...]
+            }
+        ]
+
+    that specifies footer links. Each top-level dictionary in the list is a
+    separate titled column. Set to an empty list to remove.
+
+
+``footer_socials``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_socials": [
+            {
+                "icon": "fab fa-twitter",
+                "href": "https://twitter.com/xanaduai"
+            },
+            {
+                "icon": "fab fa-github",
+                "href": "https://github.com/XanaduAI"
+            },
+            ...
+        ]
+
+    specifying social media icons. ``icon`` should correspond to a FontAwesome5 icon.
+    Set to an empty list to remove.
+
+``footer_tagline``
+    A dictionary of the form ``{"text": "Some text", "href": "https://..."}`` specifying
+    a tagline hyperlink that appears underneath the social media icons. Set to an
+    empty dictionary to remove.
+
 Style Colours
 -------------
 

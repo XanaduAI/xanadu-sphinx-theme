@@ -22,6 +22,11 @@ def setup(app):
     cwd = Path(__file__).resolve().parent
     app.add_html_theme("xanadu", str(cwd))
 
+    # set default footer sections
+    for section in ["about", "links", "socials", "tagline"]:
+        if f"footer_{section}" not in app.config["html_theme_options"]:
+            app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[f"footer_{section}"]
+
     directives = {
         "bio": BioDirective,
         "community-card": CommunityCardDirective,
@@ -34,3 +39,109 @@ def setup(app):
     }
     for name, cls in directives.items():
         app.add_directive(name, cls)
+
+
+XANADU_FOOTER = {
+    "footer_about": {
+        "title": "Xanadu",
+        "description": """\
+        Located in the heart of downtown Toronto, we've brought together
+        exceptional minds from around the world to build quantum computers
+        that are useful and available to people everywhere.
+        """
+    },
+    "footer_links": [
+        {
+            "title": "PennyLane",
+            "links": [
+                {
+                    "name": "Home",
+                    "href": "https://pennylane.ai/",
+                },
+                {
+                    "name": "Learn",
+                    "href": "https://pennylane.ai/qml",
+                },
+                {
+                    "name": "Documentation",
+                    "href": "https://docs.pennylane.ai/",
+                },
+                {
+                    "name": "GitHub",
+                    "href": "https://github.com/XanaduAI/pennylane",
+                },
+                {
+                    "name": "Twitter",
+                    "href": "https://twitter.com/pennylaneai",
+                },
+                {
+                    "name": "Blog",
+                    "href": "https://pennylane.ai/blog",
+                },
+            ]
+        },
+        {
+            "title": "Xanadu",
+            "links": [
+                {
+                    "name": "Home",
+                    "href": "https://xanadu.ai/",
+                },
+                {
+                    "name": "About",
+                    "href": "https://xanadu.ai/about/"
+                },
+                {
+                    "name": "Hardware",
+                    "href": "https://xanadu.ai/photonics",
+                },
+                {
+                    "name": "Careers",
+                    "href": "https://xanadu.ai/careers/"
+                },
+                {
+                    "name": "Cloud",
+                    "href": "https://cloud.xanadu.ai"
+                },
+                {
+                    "name": "Forum",
+                    "href": "https://discuss.pennylane.ai/",
+                },
+                {
+                    "name": "Blog",
+                    "href": "https://xanadu.ai/blog",
+                },
+            ]
+        }
+    ],
+    "footer_socials": [
+        {
+            "icon": "fab fa-twitter",
+            "href": "https://twitter.com/xanaduai"
+        },
+        {
+            "icon": "fab fa-github",
+            "href": "https://github.com/XanaduAI"
+        },
+        {
+            "icon": "fab fa-linkedin-in",
+            "href": "https://linkedin.com/company/xanaduai/"
+        },
+        {
+            "icon": "fab fa-discourse",
+            "href": "https://discuss.pennylane.ai"
+        },
+        {
+            "icon": "fab fa-slack",
+            "href": "https://u.strawberryfields.ai/slack",
+        },
+        {
+            "icon": "fas fa-rss",
+            "href": "https://xanadu.ai/blog"
+        }
+    ],
+    "footer_tagline": {
+        "text": "Stay updated with our newsletter",
+        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630"
+    }
+}

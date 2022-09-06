@@ -13,6 +13,13 @@
 
 * Update heading and navbar font to Quicksand. [#15](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/15)
 
+* Add new options to customize the footer: [#16](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/16)
+
+  - `footer_about` set the 'about' section of the footer
+  - `footer_links` to create columns of links
+  - `footer_social` to customize social media icons
+  - `footer_tagline` to set the tagline
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
