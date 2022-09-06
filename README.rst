@@ -178,8 +178,19 @@ The following options customize the table of contents.
 
 ``toc_global``
     Whether to show the global table of contents by default via the left sidebar.
-    If ``False``, then the left sidebar will be disabled. Instead, hovering
-    over the navbar logo will show the global table of contents as a dropdown.
+    If ``False``, then the left sidebar will be disabled.
+
+``toc_hover``
+    Whether hovering over the active navbar link (or navbar logo if there is
+    no active navbar link) will show the global table of contents as a dropdown.
+    Only applies if ``toc_global=False``.
+
+``toc_subset``
+    If set to ``True``, and the current page has no local table of contents,
+    the right-hand table of contents will instead display the current subset
+    of the document tree. That is, the right-hand ToC will display the location
+    in the document of the current page. If ``False``, and the current page
+    has no local table of contents, no right-hand ToC will be shown.
 
 ``relations``
     If ``True``, then Next and Previous buttons are included at the bottom of
