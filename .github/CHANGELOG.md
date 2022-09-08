@@ -15,7 +15,7 @@
 
 * Add new options to customize the footer: [#16](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/16)
 
-  - `footer_about` set the 'about' section of the footer
+  - `footer_about` set the 'About' section of the footer
   - `footer_links` to create columns of links
   - `footer_social` to customize social media icons
   - `footer_tagline` to set the tagline

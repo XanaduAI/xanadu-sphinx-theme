@@ -41,9 +41,9 @@
       </ul>
       {% if theme_footer_tagline %}
         {% if "href" in theme_footer_tagline %}
-        <a href="{{ theme_footer_tagline.href }}" style="font-size: initial;">
-          {{ theme_footer_tagline.text }}
-        </a>
+          <a href="{{ theme_footer_tagline.href }}" style="font-size: initial;">
+            {{ theme_footer_tagline.text }}
+          </a>
         {% else %}
           <span class="footer-copyright" style="font-size: initial;">
             {{ theme_footer_tagline.text }}
