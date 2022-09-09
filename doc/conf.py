@@ -109,7 +109,7 @@ html_sidebars = {
 # Xanadu theme options (see theme.conf for more information).
 html_theme_options = {
     "navbar_name": "Xanadu Sphinx Theme",
-    "navbar_logo_colour": "#2d7c7f",
+    "navbar_logo_colour": "#f48fb1",
     # "navbar_home_link": "https://pennylane.ai",
     "navbar_left_links": [
         {
