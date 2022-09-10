@@ -113,7 +113,7 @@ html_theme_options = {
     # "navbar_home_link": "https://pennylane.ai",
     "navbar_left_links": [
         {
-            "name": "Example1",
+            "name": "Blog",
             "href": "javascript:void(0);",
         },
         {

@@ -8,7 +8,7 @@
 
 * Add support for Sphinx Gallery. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
 
-* Adds a new option `toc_global` which allows the left-hand global TOC sidebar
+* Add a new option `toc_global` which allows the left-hand global ToC sidebar
   to be disabled. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
 
 ### Contributors

@@ -49,7 +49,8 @@ class BioDirective(Directive):
 
     def run(self):
         author_string = self.arguments
-        author = " ".join([str(item) for item in author_string])
+        author = " ".join(map(str, author_string))
+
         photo = self.options.get("photo", None)
         bio = self.content[0].strip()
         bio_block = TEMPLATE.format(photo=photo, author=author, bio=bio)
