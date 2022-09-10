@@ -11,6 +11,8 @@
 * Add a new option `toc_global` which allows the left-hand global ToC sidebar
   to be disabled. [#14](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/14)
 
+* Update heading and navbar font to Quicksand. [#15](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/15)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):

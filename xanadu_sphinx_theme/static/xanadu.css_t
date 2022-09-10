@@ -1,12 +1,12 @@
 /* Sphinx Themes
 ----------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   font-weight: 400 !important;
-  font-family: Roboto, Noto Sans, "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+  font-family: Roboto, Quicksand, "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
   color: #333;
   line-height: 1.4;
@@ -17,10 +17,10 @@ body {
 #title {
   color: #515151;
   display: inline;
-  font-variant: small-caps;
+  font-variant: all-petite-caps;
   font-size: 20px;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif !important;
   line-height: 20px;
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
   font-weight: normal;
   padding: 0;
-  font-family: 'Noto Sans', 'Roboto', sans-serif !important;
+  font-family: 'Quicksand', 'Roboto', sans-serif !important;
 }
 
 h1, h2, h3 {
@@ -365,7 +365,7 @@ div.sphinxsidebar p {
   margin: 20px 0px 10px 21px;
   font-weight: normal;
   padding: 0;
-  font-family: 'Noto Sans', 'Roboto', sans-serif !important;
+  font-family: 'Quicksand', 'Roboto', sans-serif !important;
   font-size: 24px;
   color: #515151;
 }
@@ -835,7 +835,7 @@ td:first-child {
 }
 
 #localtoc a {
-  font-family: Roboto, Noto Sans, "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+  font-family: Roboto, Quicksand, "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
   color: #606060;
   text-decoration: none;
 }
@@ -2035,10 +2035,11 @@ footer.page-footer .footer-copyright {
   margin-left: 20px;
   font-size: initial;
   color: black;
-  font-family: 'Noto Sans', 'Roboto', sans-serif !important;
+  font-family: 'Quicksand', 'Roboto', sans-serif !important;
   margin-bottom: -9px;
   border-bottom: 3px solid;
   border-bottom-color: white;
+  font-weight: 500;
 }
 
 .nav-item:hover,
@@ -3123,7 +3124,7 @@ p.sphx-glr-signature a.reference.external {
 }
 
 #related-tutorials a {
-  font-family: Roboto,Noto Sans,"Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+  font-family: Roboto,Quicksand,"Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
   color: #606060;
   text-decoration: none;
 }
