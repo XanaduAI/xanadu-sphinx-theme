@@ -167,3 +167,19 @@ YouTube Video
 .. raw:: html
 
     </div>
+
+
+Author bio
+----------
+
+.. code-block:: rest
+
+    .. bio:: John Smith
+        :photo: _static/teleport.png
+
+        Write the author bio content here. It must be preceded by a blank line.
+
+.. bio:: John Smith
+    :photo: _static/teleport.png
+
+    Write the author bio content here. It must be preceded by a blank line.

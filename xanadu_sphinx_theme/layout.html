@@ -131,12 +131,15 @@
 
 {%- block content %}
     <div class="container-wrapper">
+      {%- if theme_toc_global %}
       {%- block sidebar1 %}{{ guzzle_sidebar() }}{% endblock %}
+      {%- endif %}
       {%- block document_wrapper %}
         {%- block document %}
         <div id="content">
           <div id="right-column">
             {% block breadcrumbs %}
+            {%- if theme_toc_global %}
             <div role="navigation" aria-label="breadcrumbs navigation">
               <ol class="breadcrumb">
                 <li><a href="{{ pathto(master_doc) }}">Docs</a></li>
@@ -156,6 +159,7 @@
                 {%- endif %}
               </ol>
             </div>
+            {%- endif %}
             {% endblock %}
 
             <div class="document clearer body">
@@ -177,13 +181,27 @@
               </div>
 
             </div>
+            {% if theme_relations %}
             {%- block bottom_rel_links %}
               {{ render_relations() }}
             {%- endblock %}
+            {% endif %}
           </div>
           {%- block comments -%}
             {% include "localtoc.html" %}
           {%- endblock %}
+
+          {%- if not theme_toc_global %}
+          <div class="up-button">
+            {% if parents|length > 0 %}
+              {% with doc = parents|last %}
+                <a href="{{ doc.link|e }}"><i class="fas fa-angle-double-left"></i></a>
+              {% endwith %}
+            {% elif pagename != "index" %}
+                <a href="{{ pathto(master_doc) }}"><i class="fas fa-angle-double-left"></i></a>
+            {% endif %}
+          </div>
+          {%- endif %}
 
           <div class="clearfix"></div>
         </div>
@@ -268,7 +286,7 @@
     });
   </script>
 
-   <script type="text/javascript">
+    <script type="text/javascript">
     var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
     if (downloadNote.length >= 1) {
       var tutorialUrlArray = $("#tutorial-type").text().split('/');

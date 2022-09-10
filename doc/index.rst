@@ -72,6 +72,7 @@ License
    started
    elements
    directives
+   gallery
    configuration
 
 .. toctree::

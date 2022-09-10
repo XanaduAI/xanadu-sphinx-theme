@@ -1,20 +1,58 @@
 <nav class="navbar navbar-expand-lg navbar-light white sticky-top">
 
-  <!-- Logo and Title -->
+<!-- Logo and Title -->
+{%- macro wordmark() %}
+  <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
+  {% if theme_navbar_wordmark_path %}
+    <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
+  {% else %}
+    <h1 id="title">{{ theme_navbar_name }}</h1>
+  {% endif %}
+{%- endmacro %}
+
+{% macro hover_toc(name, href, class="", active=False) %}
+  {# Creates a navbar entry that supports a hover-enabled ToC #}
+  <li class="nav-item dropdown {{ 'active' if active else '' }}">
+      <a
+        class="{{ class }} nav-link dropdown-toggle"
+        href="{{ href }}"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-mdb-toggle="dropdown"
+        aria-expanded="false"
+      >
+      {{ name }}
+    </a>
+    <div class="sidebar-toc dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
+    </div>
+  </li>
+{% endmacro %}
+
+{# Determine whether or not to use the hover ToC #}
+{% set use_hover_toc = not theme_toc_global and theme_toc_hover %}
+
+{% if use_hover_toc and theme_navbar_left_links|length != 0 %}
+  {# Extract active navbar entries #}
+  {% set dropdown_link = theme_navbar_left_links|selectattr("active") | map(attribute="name") | list %}
+{% endif %}
+
+{% if use_hover_toc and dropdown_link|length == 0 %}
+  {# The project wordmark provides a hover TOC #}
+  {{ hover_toc(wordmark(), pathto(theme_navbar_home_link, 1), "navbar-brand") }}
+{% else %}
   <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
-    <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
-    {% if theme_navbar_wordmark_path %}
-      <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
-    {% else %}
-      <h1 id="title">{{ theme_navbar_name }}</h1>
-    {% endif %}
+    {{ wordmark() }}
   </a>
+{% endif %}
 
   <!-- [Mobile] Collapse Button -->
   <div class="row right">
+    {% if theme_toc_global %}
     <a href="#" class="btn navbar-toggler black-text mr-1 justify-content-center" id="mobile-toggle">
       <i class="fas fa-search"></i>
     </a>
+    {% endif %}
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
       aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,10 +67,16 @@
     <ul class="navbar-nav mr-auto">
       {% for link in theme_navbar_left_links %}
         {% if link.active %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
-            <span class="sr-only">(current)</span>
-          </li>
+          {% if link.name in dropdown_link %}
+            {# The active navbar link provides a hover TOC #}
+            {{ hover_toc(link.name, link.href, "", True) }}
+          {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+              <span class="sr-only">(current)</span>
+            </li>
+          {% endif %}
+
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
@@ -50,6 +94,7 @@
           </a>
         </li>
       {% endfor %}
+
     </ul>
   </div>
 

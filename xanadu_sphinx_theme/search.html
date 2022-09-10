@@ -18,6 +18,10 @@
     {% endtrans %}
   </p>
 
+  {% if not theme_toc_global %}
+  {% include "searchbox.html" %}
+  {% endif %}
+
   {% if search_performed %}
     <h2>{{ _('Search Results') }}</h2>
   {% endif %}
