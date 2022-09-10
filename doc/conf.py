@@ -143,9 +143,9 @@ html_theme_options = {
     "text_accent_colour": "#f48fb1",
     "toc_marker_colour": "#f48fb1",
     "toc_overview": True,
-    "toc_global": False,
-    "toc_hover": True,
-    "relations": False
+    "toc_global": True,
+    "toc_hover": False,
+    "relations": True
 }
 
 
