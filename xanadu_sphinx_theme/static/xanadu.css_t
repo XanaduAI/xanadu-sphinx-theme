@@ -600,7 +600,7 @@ div.sphinxsidebar input {
 
 .search-block {
   z-index: 1;
-  margin-top: -30px;
+  margin-top: {{ '-30px' if theme_toc_global else '0px' }};
   width: 92%;
   margin-left: 12px;
 }
