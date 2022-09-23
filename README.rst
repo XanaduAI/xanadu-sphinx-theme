@@ -48,6 +48,11 @@ Once installed, simply add or modify the following variables of your Sphinx
 
 .. code-block:: python
 
+    from xanadu_sphinx_theme import templates_dir
+
+    # Add Xanadu Sphinx Theme autosummary templates
+    templates_path = [templates_dir()]
+
     html_theme = "xanadu"
 
     html_theme_options = {

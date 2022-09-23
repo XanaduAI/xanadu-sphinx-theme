@@ -19,7 +19,13 @@
   - `footer_links` to create columns of links
   - `footer_social` to customize social media icons
   - `footer_tagline` to set the tagline
-  
+
+* Included autosummary templates within the Xanadu Sphinx Theme.
+  The provided templates directory is available via
+  `xanadu_sphinx_theme.templates_dir()` and can be added to the
+  `templates_path` list variable in `conf.py`.
+  [#18](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/18)
+
 ### Bug fixes
 
 * Fixed a bug where the HTML sidebars were not properly configured. [#17](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/17)

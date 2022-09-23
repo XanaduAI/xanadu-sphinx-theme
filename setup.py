@@ -6,6 +6,7 @@ with open("xanadu_sphinx_theme/_version.py") as f:
 
 requirements = [
     "sphinx",
+    "importlib_resources",
     # The packages below are used to generate thumbnail images.
     "pillow",
     "sphinx-gallery",
@@ -24,7 +25,9 @@ info = {
     "include_package_data": True,
     "name": "xanadu-sphinx-theme",
     "packages": find_packages(where="."),
-    "package_data": {"xanadu_sphinx_theme": ["static/*", "*.html", "theme.conf"]},
+    "package_data": {
+        "xanadu_sphinx_theme": ["static/*", "*.html", "theme.conf", "templates/*/*.rst"],
+    },
     "provides": ["xanadu_sphinx_theme"],
     "url": "https://github.com/XanaduAI/xanadu-sphinx-theme",
     "version": version,
