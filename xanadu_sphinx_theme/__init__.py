@@ -3,6 +3,7 @@ This module registers the Xanadu Sphinx Theme. For more information, see
 https://www.sphinx-doc.org/en/master/development/theming.html
 """
 from pathlib import Path
+
 from importlib_resources import files
 
 from ._version import __version__
@@ -16,7 +17,6 @@ from .directives import (
     TitleCardDirective,
     YouTubeVideoDirective,
 )
-
 
 
 def templates_dir():
