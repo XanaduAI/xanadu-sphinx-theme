@@ -37,7 +37,7 @@ This release contains contributions from (in alphabetical order):
 [Mikhail Andrenkov](https://github.com/Mandrenkov),
 [Josh Izaac](https://github.com/josh146).
 
-# Release 0.2.1 (current release)
+# Release 0.2.1
 
 ### Improvements
 
