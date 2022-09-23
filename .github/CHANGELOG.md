@@ -1,4 +1,4 @@
-# Release 0.3.0 (development release)
+# Release 0.3.0
 
 ### Improvements
 
