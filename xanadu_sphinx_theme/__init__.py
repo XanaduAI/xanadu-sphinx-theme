@@ -3,6 +3,7 @@ This module registers the Xanadu Sphinx Theme. For more information, see
 https://www.sphinx-doc.org/en/master/development/theming.html
 """
 from pathlib import Path
+from importlib_resources import files
 
 from ._version import __version__
 from .directives import (
@@ -15,6 +16,22 @@ from .directives import (
     TitleCardDirective,
     YouTubeVideoDirective,
 )
+
+
+
+def templates_dir():
+    """Returns the directory path containing provided Autosummary
+    templates.
+
+    To use this in your theme, add the following to your ``conf.py``
+    configuration file:
+
+    .. code-block:: python
+
+        import xanadu_sphinx_theme
+        templates_path = [xanadu_sphinx_theme.templates_dir()]
+    """
+    return str(files("xanadu_sphinx_theme").joinpath("templates"))
 
 
 def setup(app):
