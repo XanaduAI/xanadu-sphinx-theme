@@ -19,6 +19,10 @@
   - `footer_links` to create columns of links
   - `footer_social` to customize social media icons
   - `footer_tagline` to set the tagline
+  
+### Bug fixes
+
+* Fixed a bug where the HTML sidebars were not properly configured. [#17](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/17)
 
 ### Contributors
 
