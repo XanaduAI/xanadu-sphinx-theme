@@ -22,8 +22,8 @@
 
 * Included autosummary templates within the Xanadu Sphinx Theme.
   The provided templates directory is available via
-  ``xanadu_sphinx_theme.templates_dir()`` and can be added to the
-  ``templates_path`` list variable in ``conf.py``.
+  `xanadu_sphinx_theme.templates_dir()` and can be added to the
+  `templates_path` list variable in `conf.py`.
   [#18](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/18)
 
 ### Bug fixes
