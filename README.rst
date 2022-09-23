@@ -50,17 +50,6 @@ Once installed, simply add or modify the following variables of your Sphinx
 
     html_theme = "xanadu"
 
-.. code-block:: python
-
-    html_sidebars = {
-        "**" : [
-            "searchbox.html",
-            "globaltoc.html",
-        ]
-    }
-
-.. code-block:: python
-
     html_theme_options = {
         "navbar_name": "Example Project",
         "navbar_logo_colour": "#123456",

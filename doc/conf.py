@@ -96,15 +96,6 @@ todo_include_todos = False
 # pixels large.
 html_favicon = "_static/favicon.ico"
 
-# Custom sidebar templates, must be a dictionary that maps document names
-# to template names.
-html_sidebars = {
-    "**": [
-        "searchbox.html",
-        "globaltoc.html",
-    ]
-}
-
 
 # Xanadu theme options (see theme.conf for more information).
 html_theme_options = {
