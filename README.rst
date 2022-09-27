@@ -65,6 +65,8 @@ Once installed, simply add or modify the following variables of your Sphinx
             {
                 "name": "Tutorials",
                 "href": "https://example.com/tutorials",
+                "img": "_static/tutorial.png",
+                "img_width": "30px",
             },
             {
                 "name": "Install",
@@ -147,7 +149,9 @@ The following options customize the appearance of the navigation bar.
 
 ``navbar_left_links``
     Links on the LHS of the navigation bar in the form of a list of dictionaries
-    with the ``"name"``, ``"href"``, and optionally, ``"active"`` keys.
+    with the ``"name"``, ``"href"``, and optionally, ``"active"`` keys. In addition,
+    the ``"img"`` key can be used to specify an image for the navbar link,
+    alongside ``"img_width"`` to specify the width of the image.
 
 ``navbar_right_links``
     Links on the RHS of the navigation bar in the form of a list of dictionaries

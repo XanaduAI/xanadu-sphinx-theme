@@ -1,4 +1,14 @@
-## Release 0.4.0 (development release)
+## Release 0.3.1 (development release)
+
+### Improvements
+
+* Added support for images in navbar links. [#21](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/21)
+
+### Bug fixes
+
+- Fixes a bug where the navbar would incorrectly display a drop shadow
+  with small screen widths when the global TOC was active.
+  [#20](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/20)
 
 ### Bug fixes
 
@@ -10,9 +20,9 @@
 
 This release contains contributions from (in alphabetical order):
 
-[Josh Izaac](https://github.com/josh146)
+[Josh Izaac](https://github.com/josh146).
 
-# Release 0.3.0
+## Release 0.3.0 (current release)
 
 ### Improvements
 
@@ -51,7 +61,7 @@ This release contains contributions from (in alphabetical order):
 [Mikhail Andrenkov](https://github.com/Mandrenkov),
 [Josh Izaac](https://github.com/josh146).
 
-# Release 0.2.1
+## Release 0.2.1
 
 ### Improvements
 
@@ -65,7 +75,7 @@ This release contains contributions from (in alphabetical order):
 
 [Mikhail Andrenkov](https://github.com/Mandrenkov)
 
-# Release 0.2.0
+## Release 0.2.0
 
 ### New features since last release
 
@@ -80,7 +90,7 @@ This release contains contributions from (in alphabetical order):
 [Mikhail Andrenkov](https://github.com/Mandrenkov),
 [Josh Izaac](https://github.com/josh146).
 
-# Release 0.1.0
+## Release 0.1.0
 
 ### New features since last release
 

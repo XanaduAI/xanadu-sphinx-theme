@@ -10,7 +10,15 @@
   {% endif %}
 {%- endmacro %}
 
-{% macro hover_toc(name, href, class="", active=False) %}
+{% macro render_navbar_link(name, img=None, width=None) %}
+  {% if img %}
+    <img src="{{ pathto(img, 1) }}" {% if width %} width="{{ width }}" {% endif %} /> {{ name }}
+  {% else %}
+    {{ name }}
+  {% endif %}
+{% endmacro %}
+
+{% macro hover_toc(name, href, class="", active=False, img=None, width=None) %}
   {# Creates a navbar entry that supports a hover-enabled ToC #}
   <li class="nav-item dropdown {{ 'active' if active else '' }}">
       <a
@@ -21,7 +29,7 @@
         data-mdb-toggle="dropdown"
         aria-expanded="false"
       >
-      {{ name }}
+        {{ render_navbar_link(name, img, width) }}
     </a>
     <div class="sidebar-toc dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
       {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
@@ -69,17 +77,21 @@
         {% if link.active %}
           {% if link.name in dropdown_link %}
             {# The active navbar link provides a hover TOC #}
-            {{ hover_toc(link.name, link.href, "", True) }}
+            {{ hover_toc(link.name, link.href, "", True, link.img, link.img_width) }}
           {% else %}
             <li class="nav-item active">
-              <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+              <a class="nav-link" href="{{ pathto(link.href, 1) }}">
+                {{ render_navbar_link(link.name, link.img, link.img_width) }}
+              </a>
               <span class="sr-only">(current)</span>
             </li>
           {% endif %}
 
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ pathto(link.href, 1) }}">{{ link.name }}</a>
+            <a class="nav-link" href="{{ pathto(link.href, 1) }}">
+                {{ render_navbar_link(link.name, link.img, link.img_width) }}
+            </a>
           </li>
         {% endif %}
       {% endfor %}
