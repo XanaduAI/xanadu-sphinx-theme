@@ -2,7 +2,7 @@
 
 ### Bug fixes
 
-- Fixes a bug where the navbar would incorrectly display a drop shadow
+* Fixes a bug where the navbar would incorrectly display a drop shadow
   with small screen widths when the global TOC was active.
   [#20](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/20)
 
