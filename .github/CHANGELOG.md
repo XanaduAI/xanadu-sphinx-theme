@@ -2,7 +2,7 @@
 
 ### Improvements
 
-* Added support for images in navbar links. [#](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/)
+* Added support for images in navbar links. [#21](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/21)
 
 ### Bug fixes
 
