@@ -1,4 +1,4 @@
-## Release 0.3.1 (development release)
+## Release 0.3.1 (current release)
 
 ### Improvements
 
@@ -19,7 +19,7 @@ This release contains contributions from (in alphabetical order):
 
 [Josh Izaac](https://github.com/josh146).
 
-## Release 0.3.0 (current release)
+## Release 0.3.0
 
 ### Improvements
 
