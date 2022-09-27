@@ -12,7 +12,7 @@
 
 {% macro render_navbar_link(name, img=None, width=None) %}
   {% if img %}
-    <img src="{{ pathto(img, 1) }}" {% if width %}width="{{ width }}" {% endif %} /> {{ name}}
+    <img src="{{ pathto(img, 1) }}" {% if width %} width="{{ width }}" {% endif %} /> {{ name }}
   {% else %}
     {{ name }}
   {% endif %}
