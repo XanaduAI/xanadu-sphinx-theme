@@ -104,7 +104,10 @@ html_theme_options = {
     # "navbar_home_link": "https://pennylane.ai",
     "navbar_left_links": [
         {
+            # revert this before merging
             "name": "Blog",
+            "img": "_static/teleport.png",
+            "img_width": "30px",
             "href": "javascript:void(0);",
         },
         {

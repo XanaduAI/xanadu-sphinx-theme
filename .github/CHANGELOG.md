@@ -1,10 +1,16 @@
-## Release 0.4.0 (development release)
+## Release 0.3.1 (development release)
+
+### Improvements
+
+* Added support for images in navbar links. [#](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
 
-# Release 0.3.0
+[Josh Izaac](https://github.com/josh146).
+
+## Release 0.3.0
 
 ### Improvements
 
@@ -43,7 +49,7 @@ This release contains contributions from (in alphabetical order):
 [Mikhail Andrenkov](https://github.com/Mandrenkov),
 [Josh Izaac](https://github.com/josh146).
 
-# Release 0.2.1
+## Release 0.2.1
 
 ### Improvements
 
@@ -57,7 +63,7 @@ This release contains contributions from (in alphabetical order):
 
 [Mikhail Andrenkov](https://github.com/Mandrenkov)
 
-# Release 0.2.0
+## Release 0.2.0
 
 ### New features since last release
 
@@ -72,7 +78,7 @@ This release contains contributions from (in alphabetical order):
 [Mikhail Andrenkov](https://github.com/Mandrenkov),
 [Josh Izaac](https://github.com/josh146).
 
-# Release 0.1.0
+## Release 0.1.0
 
 ### New features since last release
 
