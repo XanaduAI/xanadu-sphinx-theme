@@ -16,7 +16,7 @@ This release contains contributions from (in alphabetical order):
 
 [Josh Izaac](https://github.com/josh146).
 
-### Release 0.3.0
+## Release 0.3.0
 
 ### Improvements
 
