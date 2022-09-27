@@ -2720,12 +2720,14 @@ pre {
   margin: 0 0 .1em 0;
 }
 
-.gallery-item-thumbcontainer > div.figure {
+.gallery-item-thumbcontainer > div.figure,
+.gallery-item-thumbcontainer > figure {
   padding-bottom: 10px;
   padding-top: 10px;
 }
 
-.gallery-item-thumbcontainer .figure {
+.gallery-item-thumbcontainer .figure,
+.gallery-item-thumbcontainer figure {
   margin: 10px;
   width: 160px;
 }
