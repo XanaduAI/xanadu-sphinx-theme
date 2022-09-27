@@ -6,15 +6,12 @@
 
 ### Bug fixes
 
-- Fixes a bug where the navbar would incorrectly display a drop shadow
+* Fixed a bug where the navbar would incorrectly display a drop shadow
   with small screen widths when the global TOC was active.
   [#20](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/20)
 
-### Bug fixes
-
-* Fixes a bug where the navbar would incorrectly display a drop shadow
-  with small screen widths when the global TOC was active.
-  [#20](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/20)
+* Fixed a bug where gallery card margins would not reduce on smaller
+  width displays. [#22](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/22)
 
 ### Contributors
 

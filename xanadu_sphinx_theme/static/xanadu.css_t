@@ -1757,6 +1757,7 @@ footer.page-footer .footer-copyright {
 @media screen and (max-width: 560px) {
   .gallery-item-thumbcontainer {
     width: calc(100% / 2.2);
+    margin: 5px !important;
   }
 
   .gallery-item-thumbcontainer img {
@@ -2719,12 +2720,14 @@ pre {
   margin: 0 0 .1em 0;
 }
 
-.gallery-item-thumbcontainer > div.figure {
+.gallery-item-thumbcontainer > div.figure,
+.gallery-item-thumbcontainer > figure {
   padding-bottom: 10px;
   padding-top: 10px;
 }
 
-.gallery-item-thumbcontainer .figure {
+.gallery-item-thumbcontainer .figure,
+.gallery-item-thumbcontainer figure {
   margin: 10px;
   width: 160px;
 }
