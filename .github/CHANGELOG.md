@@ -2,7 +2,7 @@
 
 ### Bug fixes
 
-* Added missing variables: `github_link` and `gallery_dirs` to address the View on GitHub link not working for demos.
+* Added missing variables: `github_repo` and `gallery_dirs` to address the View on GitHub link not working for demos.
   [#24](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/24)
 
 ### Contributors
