@@ -1,10 +1,17 @@
-## Release 0.4.0 (development release)
+## Release 0.3.2
+
+### Bug fixes
+
+* Added missing variables: `github_link` and `gallery_dirs` to address the View on GitHub link not working for demos.
+  [#24](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/24)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
 
-## Release 0.3.1 (current release)
+[Lucas Silbernagel](https://github.com/LucasSilbernagel)
+
+## Release 0.3.1
 
 ### Improvements
 
