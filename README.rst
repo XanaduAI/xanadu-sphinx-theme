@@ -61,6 +61,10 @@ Once installed, simply add or modify the following variables of your Sphinx
 
         "navbar_home_link": "https://example.com",
 
+        "github_link": "",
+        
+        "gallery_dirs": [],
+
         "navbar_left_links": [
             {
                 "name": "Tutorials",
