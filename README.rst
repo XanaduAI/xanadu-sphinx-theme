@@ -121,10 +121,10 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 ``google_analytics_tracking_id``
     Google Analytics tracking ID to enable website analytics.
     
-``github_link``
+``github_repo``
     The GitHub organization and repository associated with the documentation. E.g.,
     for a GitHub repository https://github.com/Organization/repo, this should be
-    ``"github_link": "Organization/repo"``.
+    ``"github_repo": "Organization/repo"``.
 
 Navigation Bar
 --------------
