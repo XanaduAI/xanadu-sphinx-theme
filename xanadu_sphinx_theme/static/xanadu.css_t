@@ -3069,8 +3069,10 @@ p.sphx-glr-signature a.reference.external {
     margin-right: 1em;
 }
 .photo__img {
-    width: 100%;
+    width: 60px;
     border-radius: 50%;
+    height: 60px;
+    object-fit: cover;
 }
 .bio-text__author-name {
     margin-top: 0;
