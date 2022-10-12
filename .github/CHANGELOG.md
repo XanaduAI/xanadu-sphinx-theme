@@ -5,11 +5,14 @@
 * Added missing variables: `github_repo` and `gallery_dirs` to address the View on GitHub link not working for demos.
   [#24](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/24)
 
+* Fixed a bug where author bio photos would appear squished. [#25](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/25)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
 
 [Lucas Silbernagel](https://github.com/LucasSilbernagel)
+[Josh Izaac](https://github.com/josh146).
 
 ## Release 0.3.1
 
