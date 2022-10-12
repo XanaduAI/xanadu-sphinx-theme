@@ -1,8 +1,14 @@
-## Release 0.4.0 (development release)
+## Release 0.3.2
+
+### Bug fixes
+
+* Fixed a bug where author bio photos would appear squished. [#25](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/25)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Josh Izaac](https://github.com/josh146).
 
 ## Release 0.3.1 (current release)
 
