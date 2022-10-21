@@ -1442,6 +1442,14 @@ dl.glossary dt {
   background-color: #ffa;
 }
 
+.footnote-reference.brackets::before {
+  content: "[";
+}
+
+.footnote-reference.brackets::after {
+  content: "]";
+}
+
 .line-block {
   display: block;
   margin-top: 1em;
