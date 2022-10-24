@@ -1,8 +1,15 @@
-## Release 0.4.0 (development release)
+## Release 0.3.3 (current release)
+
+### Bug fixes
+
+* Fixed an issue where footnote references were being rendered without brackets.
+  [#25](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/25)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Josh Izaac](https://github.com/josh146).
 
 ## Release 0.3.2
 
