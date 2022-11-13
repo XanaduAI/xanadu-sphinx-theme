@@ -2,6 +2,17 @@
 
 {# Do this so that bootstrap is included before the main CSS file. #}
 {%- block htmltitle %}
+
+
+  <meta property="og:title" content="{{ title|striptags|e }} &#8212; PennyLane">
+  <meta property="og:url" content="{{ pageurl }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {% if metatags is defined %}
+  {% set description = metatags.split('\n') %}
+  {{ description[0] | replace("og:", "") | replace("property", "name") }}
+  {% endif %}
+
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">

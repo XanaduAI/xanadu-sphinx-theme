@@ -2,6 +2,10 @@
 Example Sphinx-Gallery demo
 ===========================
 
+.. meta::
+    :property="og:description": An example demo using the Xanadu Sphinx Theme generated using Sphinx Gallery.
+    :property="og:image": https://pennylane.ai/qml/_static/wigner.png
+
 This tutorial is an example demo generated using Sphinx Gallery. Here are a few
 references to see what they look like [#stokes2019]_ [#sweke2019]_.
 
