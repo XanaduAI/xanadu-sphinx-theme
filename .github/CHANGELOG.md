@@ -4,7 +4,7 @@
 
 * Fixed an issue the `meta` directive in ReST files was not properly registering
   an open graph Twitter card.
-  [#27](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/27)
+  [#29](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/29)
 
 ### Contributors
 
