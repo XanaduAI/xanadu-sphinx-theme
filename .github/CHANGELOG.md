@@ -2,8 +2,8 @@
 
 ### Bug fixes
 
-* Fixed an issue the `meta` directive in ReST files was not properly registering
-  an open graph Twitter card.
+* Fixed an issue where the `meta` directive in ReST files was not properly registering
+  an Open Graph Twitter card.
   [#29](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/29)
 
 ### Contributors
