@@ -31,8 +31,9 @@ TEMPLATE = cleandoc(
 )
 
 
-def lower_and_hyphenize(s):
-    return s.lower().replace(" ", "-")
+def lower_and_hyphenize(string):
+    """Turns a string into lower case and replaces spaces by hyphens."""
+    return string.lower().replace(" ", "-")
 
 
 class DetailsDirective(Directive):
