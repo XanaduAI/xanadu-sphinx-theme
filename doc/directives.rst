@@ -39,6 +39,7 @@ Details Dropdown
 
     .. details::
         :title: Usage Details
+        :href: #usage-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
