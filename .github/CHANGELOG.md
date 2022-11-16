@@ -1,9 +1,6 @@
-## Release 0.3.3 (current release)
+## Release 0.3.4
 
-### Bug fixes
-
-* Fixed an issue where footnote references were being rendered without brackets.
-  [#25](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/25)
+### Improvements
 
 * Added the option to customize the href fragment of the details directive
   [#26](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/26)
@@ -12,8 +9,20 @@
 
 This release contains contributions from (in alphabetical order):
 
-[Josh Izaac](https://github.com/josh146).
 [David Wierichs](https://github.com/dwierichs).
+
+## Release 0.3.3
+
+### Bug fixes
+
+* Fixed an issue where footnote references were being rendered without brackets.
+  [#25](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/25)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+[Josh Izaac](https://github.com/josh146).
 
 ## Release 0.3.2
 
