@@ -42,7 +42,7 @@ class DetailsDirective(Directive):
     add_index = False
 
     def run(self):
-        title = self.options.get("title", "Details and Conventions")
+        title = self.options.get("title", "Usage Details")
         title_fragment = self.options.get("href", title.replace(" ", "-"))
         rst = TEMPLATE.format(
             title=title, content="\n".join(self.content), title_fragment=title_fragment
