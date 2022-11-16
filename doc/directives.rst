@@ -38,8 +38,8 @@ Details Dropdown
 .. code-block:: rest
 
     .. details::
-        :title: Important Usage Details
-        :href: #usage-details
+        :title: Important Details
+        :href: #important-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
@@ -49,12 +49,23 @@ Details Dropdown
 
         For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
         For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
+
+    .. details::
+        :title: Usage Details
+
+        This function can be used with any of the supported autodifferentiation frameworks. It also supports
+        just-in-time compilation with JAX:
+
+        .. code-block:: python
+
+            jax.jit(unitary)(parameter1, parameter2, ... parameterD, wires)
+
 
 .. admonition:: Example:
 
     .. details::
-        :title: Important Usage Details
-        :href: #usage-details
+        :title: Important Details
+        :href: #important-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
@@ -64,6 +75,16 @@ Details Dropdown
 
         For a block with multiple parameters, ``n_params_block`` is equal to the number of parameters in ``block``.
         For a block with a single parameter, ``n_params_block`` is equal to the length of the parameter array.
+
+    .. details::
+        :title: Usage Details
+
+        This function can be used with any of the supported autodifferentiation frameworks. It also supports
+        just-in-time compilation with JAX:
+
+        .. code-block:: python
+
+            jax.jit(unitary)(parameter1, parameter2, ... parameterD, wires)
 
 
 Gallery Item
