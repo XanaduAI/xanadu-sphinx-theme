@@ -34,6 +34,7 @@ TEMPLATE = cleandoc(
 def lower_and_hyphenize(s):
     return s.lower().replace(" ", "-")
 
+
 class DetailsDirective(Directive):
     """Creates a collapsable Details section."""
 
