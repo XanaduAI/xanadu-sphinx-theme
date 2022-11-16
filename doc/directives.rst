@@ -38,7 +38,7 @@ Details Dropdown
 .. code-block:: rest
 
     .. details::
-        :title: Usage Details
+        :title: Important Usage Details
         :href: #usage-details
 
         In general, the block takes D parameters and **must** have the following signature:
@@ -53,7 +53,8 @@ Details Dropdown
 .. admonition:: Example:
 
     .. details::
-        :title: Usage Details
+        :title: Important Usage Details
+        :href: #usage-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
