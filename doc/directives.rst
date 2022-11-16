@@ -39,7 +39,7 @@ Details Dropdown
 
     .. details::
         :title: Important Details
-        :href: #important-details
+        :href: important-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
@@ -65,7 +65,7 @@ Details Dropdown
 
     .. details::
         :title: Important Details
-        :href: #important-details
+        :href: important-details
 
         In general, the block takes D parameters and **must** have the following signature:
 
