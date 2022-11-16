@@ -12,7 +12,7 @@ TEMPLATE = cleandoc(
         <a
           class="details-header collapse-header"
           data-toggle="collapse"
-          href="#details"
+          href="{title_fragment}"
           aria-expanded="false"
           aria-controls="details"
         >
@@ -43,7 +43,10 @@ class DetailsDirective(Directive):
 
     def run(self):
         title = self.options.get("title", "Details and Conventions")
-        rst = TEMPLATE.format(title=title, content="\n".join(self.content))
+        title_fragment = self.options.get("href", title.replace(" ", "-"))
+        rst = TEMPLATE.format(
+            title=title, content="\n".join(self.content), title_fragment=title_fragment
+        )
         string_list = StringList(rst.split("\n"))
         node = nodes.tbody()
         self.state.nested_parse(string_list, self.content_offset, node)
