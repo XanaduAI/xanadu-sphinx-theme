@@ -12,7 +12,7 @@ TEMPLATE = cleandoc(
         <a
           class="details-header collapse-header"
           data-toggle="collapse"
-          href="{title_fragment}"
+          href="#{href}"
           aria-expanded="false"
           aria-controls="details"
         >
@@ -20,7 +20,7 @@ TEMPLATE = cleandoc(
                 <i class="fas fa-angle-down rotate" style="float: right;"></i> {title}
             </h2>
         </a>
-        <div class="collapse" id="details">
+        <div class="collapse" id="{href}">
 
     {content}
 
@@ -31,22 +31,23 @@ TEMPLATE = cleandoc(
 )
 
 
+def lower_and_hyphenize(s):
+    return s.lower().replace(" ", "-")
+
 class DetailsDirective(Directive):
     """Creates a collapsable Details section."""
 
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = False
-    option_spec = {"title": directives.unchanged}
+    option_spec = {"title": directives.unchanged, "href": lower_and_hyphenize}
     has_content = True
     add_index = False
 
     def run(self):
         title = self.options.get("title", "Usage Details")
-        title_fragment = self.options.get("href", title.replace(" ", "-"))
-        rst = TEMPLATE.format(
-            title=title, content="\n".join(self.content), title_fragment=title_fragment
-        )
+        href = self.options.get("href", lower_and_hyphenize(title))
+        rst = TEMPLATE.format(title=title, content="\n".join(self.content), href=href)
         string_list = StringList(rst.split("\n"))
         node = nodes.tbody()
         self.state.nested_parse(string_list, self.content_offset, node)
