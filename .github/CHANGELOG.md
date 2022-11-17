@@ -12,6 +12,19 @@ This release contains contributions from (in alphabetical order):
 
 [Josh Izaac](https://github.com/josh146).
 
+## Release 0.3.4
+
+### Improvements
+
+* Added the option to customize the href fragment of the details directive
+  [#26](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/26)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+[David Wierichs](https://github.com/dwierichs).
+
 ## Release 0.3.3
 
 ### Bug fixes
