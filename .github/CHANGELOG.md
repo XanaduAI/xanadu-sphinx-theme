@@ -1,3 +1,17 @@
+## Release 0.3.4 (current release)
+
+### Bug fixes
+
+* Fixed an issue where the `meta` directive in ReST files was not properly registering
+  an Open Graph Twitter card.
+  [#29](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/29)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+[Josh Izaac](https://github.com/josh146).
+
 ## Release 0.3.4
 
 ### Improvements
