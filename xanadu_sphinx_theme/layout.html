@@ -11,7 +11,7 @@
 
   {% if metatags is defined %}
   {% set description = metatags.split('\n') %}
-  {{ description[0] | replace("og:", "") | replace("property", "name") }}
+  {{ description[0] }}
   {% endif %}
 
   <!-- Google Fonts -->
