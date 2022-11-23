@@ -1,4 +1,4 @@
 importlib-resources==5.9.0
-pillow==9.1.1
+pillow==9.3.0
 sphinx==4.5.0
 sphinx-gallery==0.10.1
