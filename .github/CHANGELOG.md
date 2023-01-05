@@ -2,7 +2,7 @@
 
 ### Improvements
 
-- Bumped `wheel` to v0.38.1. [(#18)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/33)
+- Bumped `wheel` to v0.38.1. [(#33](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/33)
 
 ### Contributors
 
