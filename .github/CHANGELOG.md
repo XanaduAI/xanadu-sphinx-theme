@@ -1,5 +1,9 @@
 ## Release 0.4.0 (development release)
 
+### Improvements
+
+* Bumped `wheel` to v0.38.1. [(#33](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/33)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
