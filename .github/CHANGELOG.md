@@ -10,6 +10,11 @@ This release contains contributions from (in alphabetical order):
 
 * Bumped `wheel` to v0.38.1. [(#33](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/33)
 
+### Bug fixes
+
+* Fixed an issue where the `dropdown_link` Jinja variable is accessed but undefined.
+  [#36](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/36)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
