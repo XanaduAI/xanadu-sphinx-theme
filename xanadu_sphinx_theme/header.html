@@ -43,6 +43,8 @@
 {% if use_hover_toc and theme_navbar_left_links|length != 0 %}
   {# Extract active navbar entries #}
   {% set dropdown_link = theme_navbar_left_links|selectattr("active") | map(attribute="name") | list %}
+{% else %}
+  {% set dropdown_link = [] %}
 {% endif %}
 
 {% if use_hover_toc and dropdown_link|length == 0 %}
