@@ -120,7 +120,7 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``google_analytics_tracking_id``
     Google Analytics tracking ID to enable website analytics.
-    
+
 ``github_repo``
     The GitHub organization and repository associated with the documentation. E.g.,
     for a GitHub repository https://github.com/Organization/repo, this should be
@@ -204,8 +204,8 @@ Footer
 ------
 
 ``footer_about``
-    A dictionary of the form ``{"title": ..., "description": ...}`` that specifies
-    the 'About' section of the footer. Set to an empty dictionary to remove.
+    A dictionary of the form ``{"title": ..., "icon": ..., "description": ...}``
+    that specifies the 'About' section of the footer.
 
 ``footer_links``
     A list of dictionaries of the form
@@ -235,7 +235,6 @@ Footer
     that specifies footer links. Each top-level dictionary in the list is a
     separate titled column. Set to an empty list to remove.
 
-
 ``footer_socials``
     A list of dictionaries of the form
 
@@ -256,10 +255,45 @@ Footer
     specifying social media icons. ``icon`` should correspond to a FontAwesome5 icon.
     Set to an empty list to remove.
 
-``footer_tagline``
-    A dictionary of the form ``{"text": "Some text", "href": "https://..."}`` specifying
-    a tagline hyperlink that appears underneath the social media icons. Set to an
-    empty dictionary to remove.
+``footer_taglines``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_socials": [
+            {
+                "text": "Some text",
+                "href": "https://..."
+            },
+            {
+                "icon": "Some more text",
+                "href": "https://..."
+            },
+            ...
+        ]
+
+    specifying tagline hyperlinks that appear underneath the social media icons.
+    Set to an empty list to remove.
+
+``footer_policies``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_policies": [
+            {
+                "text": "Some text",
+                "href": "https://..."
+            },
+            {
+                "icon": "Some more text",
+                "href": "https://..."
+            },
+            ...
+        ]
+
+    specifying policy hyperlinks that appear at the bottom of the footer. Set to
+    an empty list to remove.
 
 Style Colours
 -------------
