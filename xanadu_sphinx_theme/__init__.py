@@ -164,8 +164,10 @@ XANADU_FOOTER = {
         },
         {"icon": "fas fa-rss", "href": "https://xanadu.ai/blog"},
     ],
-    "footer_tagline": {
-        "text": "Stay updated with our newsletter",
-        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
-    },
+    "footer_taglines": [
+        {
+            "text": "Stay updated with our newsletter",
+            "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
+        },
+    ]
 }

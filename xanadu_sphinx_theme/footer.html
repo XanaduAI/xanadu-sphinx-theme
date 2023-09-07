@@ -1,73 +1,79 @@
-{% set num_link_cols = theme_footer_links|length %}
+<hr class="p-0 m-0">
 
-<footer class="page-footer text-md-left pt-4">
+<footer>
+  <div class="footer-top">
+    <!-- About -->
+    <div class="footer-about">
+      <a class="footer-icon" href="https://pennylane.ai/">
+        <img src="{{ theme_footer_about.icon }}" alt="{{ theme_footer_about.title }}" height="40px" width="40px">
+      </a>
+      <p class="footer-description">
+        {{ theme_footer_about.description }}
+      </p>
+    </div>
 
-  <hr class="pb-0 mb-0">
-  <div class="container-fluid">
-    <div class="row justify-content-md-center">
-
-      {% if theme_footer_about %}
-      <!-- About -->
-      <div class="{{ 'col-md-6 text-center' if theme_footer_links|length==0 else 'col-md-' + [12 - 2 * num_link_cols, 4] | min | string }}">
-        <h5 class="mb-1 footer-heading">{{ theme_footer_about.title }}</h5>
-        <hr width=100px class="d-inline-block mt-0 mb-1 accent-4">
-        <p>{{ theme_footer_about.description }}</p>
+    <div class="footer-socials-and-taglines">
+      <!-- Social -->
+      <div class="footer-socials">
+        {% for link in theme_footer_socials %}
+          <a href="{{ link.href }}">
+            <i class="{{ link.icon }}"></i>
+          </a>
+        {% endfor %}
       </div>
-      {% endif %}
 
-      <!-- Links -->
+      <!-- Taglines -->
+      {% for tagline in theme_footer_taglines %}
+      <a class="footer-tagline" href="{{ tagline.href }}">
+        {{ tagline.text }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Links -->
+    <div class="footer-links">
       {% for column in theme_footer_links %}
-      <div class="col-md-2 col-4">
-        <h5 class="mb-1 footer-heading">{{ column.title }}</h5>
-        <hr width=100px class="d-inline-block mt-0 mb-1 accent-4">
-        <ul class="list-unstyled">
-          {% for link in column.links %}
-          <li><a href="{{ link.href }}">{{ link.name }}</a></li>
-          {% endfor %}
-        </ul>
+      <div class="footer-link-column">
+        <p class="footer-link-heading">{{ column.title }}</p>
+        {% for link in column.links %}
+          <a class="footer-link-item" href="{{ link.href }}">{{ link.name }}</a>
+        {% endfor %}
       </div>
       {% endfor %}
-
     </div>
   </div>
-  <hr>
 
-  <!-- Social -->
-  <div class="social-section text-center">
-      <ul class="list-unstyled list-inline mb-0">
-          {% for link in theme_footer_socials %}
-          <li class="list-inline-item"><a class="btn-git" href="{{ link.href }}"><i class="{{ link.icon }}"> </i></a></li>
-          {% endfor %}
-      </ul>
-      {% if theme_footer_tagline %}
-        {% if "href" in theme_footer_tagline %}
-          <a href="{{ theme_footer_tagline.href }}" style="font-size: initial;">
-            {{ theme_footer_tagline.text }}
-          </a>
-        {% else %}
-          <span class="footer-copyright" style="font-size: initial;">
-            {{ theme_footer_tagline.text }}
-          </span>
-        {% endif %}
-      {% endif %}
-  </div>
+  <hr class="footer-separator">
 
-  <!-- Copyright -->
-  <div class="footer-copyright py-3 mt-0 text-center">
-      <div class="container-fluid">
-
-        {%- if show_copyright %}
+  <div class="footer-bottom">
+    <!-- Copyright -->
+    <div class="footer-copyrights">
+      {%- if show_copyright %}
+        <p class="footer-copyright-item">
           {%- if hasdoc('copyright') %}
             {% trans path=pathto('copyright'), copyright=copyright|e %}<a href="{{ path }}">Copyright</a> &copy; {{ copyright }}{% endtrans %}
           {%- else %}
             {% trans copyright=copyright|e %}Copyright &copy; {{ copyright }}{% endtrans %}
           {%- endif %}
-        {%- endif %}
-
-        {% for copyright in theme_extra_copyrights %}
-          <br>
+        </p>
+      {%- endif %}
+      {% for copyright in theme_extra_copyrights %}
+        <p class="footer-copyright-item">
           {{ copyright }}
+        </p>
+      {% endfor %}
+    </div>
+
+    <!-- Policies -->
+    <div class="footer-policies">
+      {% if theme_footer_policies %}
+        <a class="footer-policy-item" href="{{ theme_footer_policies[0].href }}"><u>{{ theme_footer_policies[0].text }}</u></a>
+        {% for legal in theme_footer_policies[1:] %}
+          <div class="footer-policy-border"></div>
+          <a class="footer-policy-item" href="{{ legal.href }}"><u>{{ legal.text }}</u></a>
         {% endfor %}
-      </div>
+      {% endif %}
+    </div>
   </div>
+
 </footer>
