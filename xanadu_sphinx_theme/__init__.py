@@ -40,7 +40,7 @@ def setup(app):
     app.add_html_theme("xanadu", str(cwd))
 
     # set default footer sections
-    for section in ["about", "links", "socials", "tagline"]:
+    for section in ["about", "links", "policies", "socials", "taglines"]:
         if f"footer_{section}" not in app.config["html_theme_options"]:
             app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[
                 f"footer_{section}"
@@ -171,5 +171,6 @@ XANADU_FOOTER = {
             "text": "Stay updated with our newsletter",
             "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
         },
-    ]
+    ],
+    "footer_policies": [],
 }
