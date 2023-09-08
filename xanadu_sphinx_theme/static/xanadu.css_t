@@ -1685,7 +1685,7 @@ footer {
 }
 
 .footer-socials i {
-  color: #0078EE;
+  color: {{ theme_social_icon_colour }};
   font-size: 22px;
 }
 

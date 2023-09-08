@@ -63,6 +63,8 @@ def setup(app):
 XANADU_FOOTER = {
     "footer_about": {
         "title": "Xanadu",
+        "icon": "_static/xanadu_logo.svg",
+        "href": "https://xanadu.ai",
         "description": """\
         Located in the heart of downtown Toronto, we've brought together
         exceptional minds from around the world to build quantum computers

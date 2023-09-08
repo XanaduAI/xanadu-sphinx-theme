@@ -131,6 +131,7 @@ html_theme_options = {
     "prev_next_button_colour": "#f48fb1",
     "prev_next_button_hover_colour": "#ec407a",
     "table_header_background_colour": "#f8bbd0",
+    "social_icon_colour": "#ec407a",
     "text_accent_colour": "#f48fb1",
     "toc_marker_colour": "#f48fb1",
     "toc_overview": True,

@@ -204,7 +204,17 @@ Footer
 ------
 
 ``footer_about``
-    A dictionary of the form ``{"title": ..., "icon": ..., "description": ...}``
+    A dictionary of the form
+
+    .. code-block:: python
+
+        "footer_about": {
+            "title": "Title",
+            "icon": "https://...",
+            "href": "https://...",
+            "description": "Description"
+        }
+
     that specifies the 'About' section of the footer.
 
 ``footer_links``
@@ -311,6 +321,9 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 ``prev_next_button_colour`` and ``prev_next_button_hover_colour``
     Colours of the "Next" and "Previous" navigation buttons located at the
     bottom of most pages.
+
+``social_icon_colour``
+    Colour of the social icons.
 
 ``table_header_background_colour``
     Background colour of table headers.
