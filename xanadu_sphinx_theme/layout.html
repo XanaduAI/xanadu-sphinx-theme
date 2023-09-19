@@ -17,8 +17,11 @@
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Box Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
@@ -144,7 +147,13 @@
 {%- block content %}
     <div class="container-wrapper">
       {%- if theme_toc_global %}
-      {%- block sidebar1 %}{{ guzzle_sidebar() }}{% endblock %}
+        <div class="toc-heading mobile">
+          <button onclick="toggleMobileToC(this)">
+            <span>Table of contents</span>
+            <i class="bx bx-chevron-down"></i>
+          </button>
+        </div>
+        {%- block sidebar1 %}{{ guzzle_sidebar() }}{% endblock %}
       {%- endif %}
       {%- block document_wrapper %}
         {%- block document %}
@@ -389,6 +398,62 @@
           }
       }
     });
+  </script>
+
+  <!-- Delays the closing of the links on the LHS of the desktop navbar by 1 second. -->
+  <script type="text/javascript">
+    $(document).ready(() => {
+      let timers = {};
+      const navbar_left_links = document.querySelectorAll(".navbar-left-link");
+      for (const [index, link] of navbar_left_links.entries()) {
+        const dropdown = link.querySelector(".navbar-dropdown");
+        if (dropdown !== null) {
+          timers[index] = undefined;
+          link.addEventListener("mouseover", function(event){
+            dropdown.classList.add("open");
+            clearTimeout(timers[index]);
+          });
+          link.addEventListener("mouseout", function(event){
+            timers[index] = setTimeout(function(event){
+              dropdown.classList.remove("open");
+            }, 1000);
+          });
+        }
+      }
+    });
+  </script>
+
+  <!-- Toggles whether the global ToC is displayed on mobile. -->
+  <script type="text/javascript">
+    function toggleMobileToC(button) {
+      const sidebar = document.querySelector("#left-column");
+      const chevron = button.querySelector("i");
+      if (sidebar !== null) {
+        sidebar.classList.toggle("open");
+        chevron.classList.toggle("open");
+      }
+    }
+  </script>
+
+  <!-- Toggles whether the navbar dropdown is displayed on mobile. -->
+  <script type="text/javascript">
+    function toggleMobileNavbar(button) {
+      const dropdown = document.querySelector(".mobile.navbar-links > ul");
+      if (dropdown !== null) {
+        dropdown.classList.toggle("open");
+        button.classList.toggle("open");
+      }
+    }
+  </script>
+
+  <!-- Toggles whether the dropdown from a navbar link is displayed on mobile. -->
+  <script type="text/javascript">
+    function toggleMobileNavbarLink(button) {
+      const dropdown = button.parentElement.querySelector("ul");
+      if (dropdown !== null) {
+        dropdown.classList.toggle("open");
+      }
+    }
   </script>
 
   <script type="text/javascript">

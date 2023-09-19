@@ -1,115 +1,196 @@
-<nav class="navbar navbar-expand-lg navbar-light white sticky-top">
+<nav>
+  <!-- Logo and Title -->
 
-<!-- Logo and Title -->
-{%- macro wordmark() %}
-  <img class="pr-1" src=" {{ pathto(theme_navbar_logo_path, 1) }}" width="28px"></img>
-  {% if theme_navbar_wordmark_path %}
-    <img id="navbar-wordmark" src="{{ pathto(theme_navbar_wordmark_path, 1) }}"></img>
-  {% else %}
-    <h1 id="title">{{ theme_navbar_name }}</h1>
-  {% endif %}
-{%- endmacro %}
-
-{% macro render_navbar_link(name, img=None, width=None) %}
-  {% if img %}
-    <img src="{{ pathto(img, 1) }}" {% if width %} width="{{ width }}" {% endif %} /> {{ name }}
-  {% else %}
-    {{ name }}
-  {% endif %}
-{% endmacro %}
-
-{% macro hover_toc(name, href, class="", active=False, img=None, width=None) %}
-  {# Creates a navbar entry that supports a hover-enabled ToC #}
-  <li class="nav-item dropdown {{ 'active' if active else '' }}">
-      <a
-        class="{{ class }} nav-link dropdown-toggle"
-        href="{{ href }}"
-        id="navbarDropdownMenuLink"
-        role="button"
-        data-mdb-toggle="dropdown"
-        aria-expanded="false"
-      >
-        {{ render_navbar_link(name, img, width) }}
-    </a>
-    <div class="sidebar-toc dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
-    </div>
-  </li>
-{% endmacro %}
-
-{# Determine whether or not to use the hover ToC #}
-{% set use_hover_toc = not theme_toc_global and theme_toc_hover %}
-
-{% if use_hover_toc and theme_navbar_left_links|length != 0 %}
-  {# Extract active navbar entries #}
-  {% set dropdown_link = theme_navbar_left_links|selectattr("active") | map(attribute="name") | list %}
-{% else %}
-  {% set dropdown_link = [] %}
-{% endif %}
-
-{% if use_hover_toc and dropdown_link|length == 0 %}
-  {# The project wordmark provides a hover TOC #}
-  {{ hover_toc(wordmark(), pathto(theme_navbar_home_link, 1), "navbar-brand") }}
-{% else %}
-  <a class="navbar-brand nav-link" href="{{ pathto(theme_navbar_home_link, 1) }}">
-    {{ wordmark() }}
-  </a>
-{% endif %}
-
-  <!-- [Mobile] Collapse Button -->
-  <div class="row right">
-    {% if theme_toc_global %}
-    <a href="#" class="btn navbar-toggler black-text mr-1 justify-content-center" id="mobile-toggle">
-      <i class="fas fa-search"></i>
-    </a>
+  <a class="navbar-logo-title-container" href="{{ pathto(theme_navbar_home_link, 1) }}">
+    {% if theme_navbar_wordmark_path %}
+      <img class="navbar-logo-title-image" src="{{ pathto(theme_navbar_wordmark_path, 1) }}" height="24px"></img>
+    {% else %}
+      <img class="navbar-logo-title-logo" src=" {{ pathto(theme_navbar_logo_path, 1) }}" height="24px"></img>
+      <div class="navbar-logo-title-title">{{ theme_navbar_name }}</div>
     {% endif %}
+  </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <!-- Desktop Links -->
+
+  {% macro render_desktop_navbar_left_link(name, href=None, img=None, width=None, external=false, dropdown=[]) %}
+    <li class="navbar-left-link desktop">
+      {% if img %}
+        <a href="{{ pathto(href, 1) }}">
+          <img src="{{ pathto(img, 1) }}" height="35px" {% if width %} width="{{ width }}" {% endif %} />
+          <span>{{ name }}</span>
+        </a>
+      {% else %}
+        <a href="{{ pathto(href, 1) }}">
+          <span>{{ name }}</span>
+          {% if external %}
+            <i class="bx bx-link-external"></i>
+          {% endif %}
+        </a>
+        {% if dropdown %}
+          <button>
+            <i class="bx bx-chevron-down"></i>
+          </button>
+          <ul class="navbar-dropdown desktop">
+            {% for link in dropdown %}
+              <li>
+                <a href="{{ pathto(link.href, 1) }}">
+                  {%- if link.name -%}
+                    {{ link.name }}
+                  {%- endif -%}
+                  {% if link.external %}
+                    <i class="bx bx-link-external"></i>
+                  {% endif %}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endmacro %}
+
+  {% macro render_desktop_navbar_right_link(name, href, icon=None) %}
+    <li class="navbar-right-link desktop">
+      {% if icon %}
+        <a href="{{ pathto(href, 1) }}">
+          <i class="{{ icon }}"></i>
+        </a>
+      {% else %}
+        <a class="navbar-button desktop" href="{{ pathto(href, 1) }}">
+          {{ name }}
+        </a>
+      {% endif %}
+    </li>
+  {% endmacro %}
+
+  <div class="navbar-links desktop">
+    <ul class="navbar-left-links desktop">
+      {% for link in theme_navbar_left_links %}
+        {{
+            render_desktop_navbar_left_link(
+              link.name,
+              link.href,
+              link.img,
+              link.img_width,
+              link.external,
+              link.dropdown
+            )
+        }}
+      {% endfor %}
+    </ul>
+    <ul class="navbar-right-links desktop">
+      {% for link in theme_navbar_right_links %}
+        {{
+          render_desktop_navbar_right_link(
+            link.name,
+            link.href,
+            link.icon,
+          )
+        }}
+      {% endfor %}
+    </ul>
   </div>
 
-  <!-- [Mobile] Collapsible Content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+  <!-- Mobile Links -->
 
-    <!-- Links on the Left -->
-    <ul class="navbar-nav mr-auto">
-      {% for link in theme_navbar_left_links %}
-        {% if link.active %}
-          {% if link.name in dropdown_link %}
-            {# The active navbar link provides a hover TOC #}
-            {{ hover_toc(link.name, link.href, "", True, link.img, link.img_width) }}
-          {% else %}
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ pathto(link.href, 1) }}">
-                {{ render_navbar_link(link.name, link.img, link.img_width) }}
-              </a>
-              <span class="sr-only">(current)</span>
-            </li>
+  {% macro render_mobile_navbar_link(name, href, external=false, dropdown=[]) %}
+    <li class="navbar-link mobile">
+      {% if dropdown %}
+        <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)">
+          <div>
+            <span>{{ name }}</span>
+            {% if external %}
+              <i class="bx bx-link-external"></i>
+            {% endif %}
+          </div>
+          {% if dropdown %}
+          <i class="bx bx-chevron-down"></i>
           {% endif %}
-
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ pathto(link.href, 1) }}">
-                {{ render_navbar_link(link.name, link.img, link.img_width) }}
+        </button>
+      {% else %}
+        <button class="navbar-link-heading mobile">
+          <a href="{{ pathto(href, 1) }}">
+            <span>{{ name }}</span>
+            {% if external %}
+              <i class="bx bx-link-external"></i>
+            {% endif %}
+          </a>
+        </button>
+      {% endif %}
+      <ul class="navbar-dropdown mobile">
+        {% if dropdown %}
+          <li>
+            <a href="{{ pathto(href, 1) }}">
+              {%- if name -%}
+                {{ name }}
+              {%- endif -%}
+              {% if external %}
+                <i class="bx bx-link-external"></i>
+              {% endif %}
             </a>
           </li>
         {% endif %}
-      {% endfor %}
-    </ul>
+        {% for link in dropdown %}
+          <li>
+            <a href="{{ pathto(link.href, 1) }}">
+              {%- if link.name -%}
+                {{ link.name }}
+              {%- endif -%}
+              {% if link.external %}
+                <i class="bx bx-link-external"></i>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endmacro %}
 
-    <!-- Links on the Right -->
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      {% for link in theme_navbar_right_links %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ pathto(link.href, 1) }}">
-            <i class="{{ link.icon }} pr-1"></i> {{ link.name }}
-          </a>
-        </li>
-      {% endfor %}
+  {% macro render_mobile_navbar_button(name, href) %}
+    <li class="navbar-button mobile">
+      <a href="{{ pathto(href, 1) }}">
+        {{ name }}
+      </a>
+    </li>
+  {% endmacro %}
 
-    </ul>
+  <div class="navbar-menu mobile">
+    <button onclick="toggleMobileNavbar(this)">
+      <i class="bx bx-menu"></i>
+      <i class="bx bx-x"></i>
+    </button>
   </div>
-
 </nav>
+
+<div class="navbar-links mobile">
+  <ul>
+    {% for link in theme_navbar_left_links %}
+      {{
+          render_mobile_navbar_link(
+            link.name,
+            link.href,
+            link.external,
+            link.dropdown,
+          )
+      }}
+    {% endfor %}
+
+    {% for link in theme_navbar_right_links|selectattr("icon") %}
+      {{
+          render_mobile_navbar_link(
+            link.name,
+            link.href,
+          )
+      }}
+    {% endfor %}
+
+    {% for link in theme_navbar_right_links|rejectattr("icon") %}
+      {{
+          render_mobile_navbar_button(
+            link.name,
+            link.href,
+          )
+      }}
+    {% endfor %}
+  </ul>
+</div>

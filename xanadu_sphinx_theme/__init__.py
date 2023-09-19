@@ -137,13 +137,22 @@ XANADU_FOOTER = {
                     "name": "Home",
                     "href": "https://xanadu.ai/",
                 },
-                {"name": "About", "href": "https://xanadu.ai/about/"},
+                {
+                    "name": "About",
+                    "href": "https://xanadu.ai/about/",
+                },
                 {
                     "name": "Hardware",
                     "href": "https://xanadu.ai/photonics",
                 },
-                {"name": "Careers", "href": "https://xanadu.ai/careers/"},
-                {"name": "Cloud", "href": "https://cloud.xanadu.ai"},
+                {
+                    "name": "Careers",
+                    "href": "https://xanadu.ai/careers/",
+                },
+                {
+                    "name": "Cloud",
+                    "href": "https://cloud.xanadu.ai",
+                },
                 {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
@@ -155,16 +164,31 @@ XANADU_FOOTER = {
             ],
         },
     ],
-    "footer_socials": [
-        {"icon": "fab fa-twitter", "href": "https://twitter.com/xanaduai"},
-        {"icon": "fab fa-github", "href": "https://github.com/XanaduAI"},
-        {"icon": "fab fa-linkedin-in", "href": "https://linkedin.com/company/xanaduai/"},
-        {"icon": "fab fa-discourse", "href": "https://discuss.pennylane.ai"},
+    "footer_social_icons": [
         {
-            "icon": "fab fa-slack",
+            "icon": "bx bxl-twitter",
+            "href": "https://twitter.com/xanaduai",
+        },
+        {
+            "icon": "bx bxl-github",
+            "href": "https://github.com/XanaduAI",
+        },
+        {
+            "icon": "bx bxl-linkedin",
+            "href": "https://linkedin.com/company/xanaduai/",
+        },
+        {
+            "icon": "bx bxl-discourse",
+            "href": "https://discuss.pennylane.ai",
+        },
+        {
+            "icon": "bx bxl-slack",
             "href": "https://u.strawberryfields.ai/slack",
         },
-        {"icon": "fas fa-rss", "href": "https://xanadu.ai/blog"},
+        {
+            "icon": "bx bx-rss",
+            "href": "https://xanadu.ai/blog",
+        },
     ],
     "footer_taglines": [
         {
