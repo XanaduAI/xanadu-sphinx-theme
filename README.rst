@@ -155,21 +155,22 @@ The following options customize the appearance of the navigation bar.
 
 ``navbar_left_links``
     Links on the LHS of the navigation bar in the form of a list of dictionaries
-    with the ``"name"``, ``"href"``, and optionally, ``"active"`` keys. In addition,
-    the ``"img"`` key can be used to specify an image for the navbar link,
-    alongside ``"img_width"`` to specify the width of the image.
+    with the ``"name"``, ``"href"``, and optionally, ``"external"`` and
+    ``"dropdown"`` keys.
+
+    The ``"external"`` key only determines if an "external link" icon should be
+    displayed next to the name of the link in the navbar. Otherwise, the value
+    of the ``"dropdown"`` key is another list of dictionaries of the same form
+    (except for the ``"dropdown"`` key) and specifies the links which should be
+    displayed in a dropdrown from the current link.
+
+    In addition, the ``"img"`` key can be used to specify an image to replace
+    the navbar link, alongside ``"img_width"`` to specify the width of the image.
 
 ``navbar_right_links``
     Links on the RHS of the navigation bar in the form of a list of dictionaries
-    with the ``"name"`` and ``"href"`` keys.
-
-Footer
-------
-
-The following options customize the appearance of the footer.
-
-``extra_copyrights``
-    List of extra copyright notices to place in the footer.
+    with the ``"name"``, ``"href"``, and optionally, ``"icon"`` keys. If a link
+    does not have an ``"icon"`` key, it will be displayed as a solid button.
 
 Table of contents
 -----------------
@@ -202,6 +203,12 @@ The following options customize the table of contents.
 
 Footer
 ------
+
+
+The following options customize the appearance of the footer.
+
+``extra_copyrights``
+    List of extra copyright notices to place in the footer.
 
 ``footer_about``
     A dictionary of the form
@@ -245,12 +252,12 @@ Footer
     that specifies footer links. Each top-level dictionary in the list is a
     separate titled column. Set to an empty list to remove.
 
-``footer_socials``
+``footer_social_icons``
     A list of dictionaries of the form
 
     .. code-block:: python
 
-        "footer_socials": [
+        "footer_social_icons": [
             {
                 "icon": "fab fa-twitter",
                 "href": "https://twitter.com/xanaduai"
@@ -270,7 +277,7 @@ Footer
 
     .. code-block:: python
 
-        "footer_socials": [
+        "footer_social_icons": [
             {
                 "text": "Some text",
                 "href": "https://..."
@@ -333,6 +340,9 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 
 ``toc_marker_colour``
     Colour of the marker beside the current ToC entry.
+
+``toc_mobile_heading_colour`` and ``toc_mobile_heading_background_colour``
+    Text and background colours of the mobile ToC heading.
 
 .. configuration-end-inclusion-marker-do-not-remove
 
