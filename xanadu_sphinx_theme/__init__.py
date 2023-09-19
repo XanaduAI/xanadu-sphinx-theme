@@ -40,7 +40,7 @@ def setup(app):
     app.add_html_theme("xanadu", str(cwd))
 
     # set default footer sections
-    for section in ["about", "links", "policies", "socials", "taglines"]:
+    for section in ["about", "links", "policies", "social_icons", "taglines"]:
         if f"footer_{section}" not in app.config["html_theme_options"]:
             app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[
                 f"footer_{section}"
