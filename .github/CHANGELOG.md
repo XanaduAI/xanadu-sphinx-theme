@@ -2,7 +2,7 @@
 
 ### Improvements
 
-* Updated the navbar and footer styles to match the new PennyLane website.
+* Updated the navbar and footer configuration and styles to match the PennyLane website.
   [#33](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/33)
 
 ### Contributors
