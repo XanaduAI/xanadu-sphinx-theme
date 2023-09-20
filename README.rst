@@ -185,11 +185,6 @@ The following options customize the table of contents.
     Whether to show the global table of contents by default via the left sidebar.
     If ``False``, then the left sidebar will be disabled.
 
-``toc_hover``
-    Whether hovering over the active navbar link (or navbar logo if there is
-    no active navbar link) will show the global table of contents as a dropdown.
-    Only applies if ``toc_global=False``.
-
 ``toc_subset``
     If set to ``True``, and the current page has no local table of contents,
     the right-hand table of contents will instead display the current subset
@@ -277,7 +272,7 @@ The following options customize the appearance of the footer.
 
     .. code-block:: python
 
-        "footer_social_icons": [
+        "footer_taglines": [
             {
                 "text": "Some text",
                 "href": "https://..."
