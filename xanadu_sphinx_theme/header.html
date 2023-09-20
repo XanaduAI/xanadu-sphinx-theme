@@ -20,7 +20,7 @@
           <span>{{ name }}</span>
         </a>
       {% else %}
-        <a href="{{ pathto(href, 1) }}">
+        <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
           <span>{{ name }}</span>
           {% if external %}
             <i class="bx bx-link-external"></i>
@@ -33,7 +33,7 @@
           <ul class="navbar-dropdown desktop">
             {% for link in dropdown %}
               <li>
-                <a href="{{ pathto(link.href, 1) }}">
+                <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
                   {%- if link.name -%}
                     {{ link.name }}
                   {%- endif -%}
@@ -52,7 +52,7 @@
   {% macro render_desktop_navbar_right_link(name, href, icon=None) %}
     <li class="navbar-right-link desktop">
       {% if icon %}
-        <a href="{{ pathto(href, 1) }}">
+        <a href="{{ pathto(href, 1) }}" target="_blank">
           <i class="{{ icon }}"></i>
         </a>
       {% else %}
@@ -109,7 +109,7 @@
         </button>
       {% else %}
         <button class="navbar-link-heading mobile">
-          <a href="{{ pathto(href, 1) }}">
+          <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
             <span>{{ name }}</span>
             {% if external %}
               <i class="bx bx-link-external"></i>
@@ -120,7 +120,7 @@
       <ul class="navbar-dropdown mobile">
         {% if dropdown %}
           <li>
-            <a href="{{ pathto(href, 1) }}">
+            <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
               {%- if name -%}
                 {{ name }}
               {%- endif -%}
@@ -132,7 +132,7 @@
         {% endif %}
         {% for link in dropdown %}
           <li>
-            <a href="{{ pathto(link.href, 1) }}">
+            <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
               {%- if link.name -%}
                 {{ link.name }}
               {%- endif -%}
