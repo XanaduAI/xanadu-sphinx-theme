@@ -1983,6 +1983,10 @@ nav {
   display: block;
 }
 
+.desktop.navbar-dropdown.open {
+  display: block;
+}
+
 .desktop.navbar-left-link button:has(~ .desktop.navbar-dropdown.open) i {
   transform: rotate(180deg);
 }

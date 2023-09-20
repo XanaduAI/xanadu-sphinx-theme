@@ -400,6 +400,36 @@
     });
   </script>
 
+  <!-- Delays the closing of dropdowns on the LHS of the navigation bar. -->
+  <script type="text/javascript">
+    $(document).ready(() => {
+      const timers = [];
+      const navbar_left_links = document.querySelectorAll(".navbar-left-link");
+      for (const [i, link] of navbar_left_links.entries()) {
+        const dropdown = link.querySelector(".navbar-dropdown");
+        if (dropdown !== null) {
+          timers.push({dropdown: dropdown, timeout: undefined});
+
+          link.addEventListener("mouseenter", function(event){
+            for (const [j, timer] of Object.entries(timers)) {
+              clearTimeout(timer.timeout);
+              if (i !== j) {
+                timer.dropdown.classList.remove("open")
+              }
+            }
+            dropdown.classList.add("open");
+          });
+
+          link.addEventListener("mouseleave", function(event){
+            timers[i].timeout = setTimeout(function(event){
+              dropdown.classList.remove("open");
+            }, 1000);
+          });
+        }
+      }
+    });
+  </script>
+
   <!-- Toggles whether the global ToC is displayed on mobile. -->
   <script type="text/javascript">
     function toggleMobileToC(button) {
