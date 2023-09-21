@@ -150,10 +150,6 @@ XANADU_FOOTER = {
                     "href": "https://xanadu.ai/careers/",
                 },
                 {
-                    "name": "Cloud",
-                    "href": "https://cloud.xanadu.ai",
-                },
-                {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
                 },
