@@ -1911,7 +1911,7 @@ nav {
 }
 
 .desktop.navbar-left-link a:hover {
-  color: #000000B2;
+  color: {{ theme_border_colour }};
   transition-duration: 0.15s;
 }
 
