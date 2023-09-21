@@ -1681,6 +1681,10 @@ footer {
   text-decoration: underline;
 }
 
+.footer-tagline:hover {
+  color: {{ theme_border_colour }};
+}
+
 .footer-links {
   display: flex;
   flex-direction: row;
@@ -1745,6 +1749,10 @@ footer {
   color: #757575;
   margin-bottom: 20px;
   white-space: nowrap;
+}
+
+.footer-policy-item:hover {
+  color: {{ theme_border_colour }};
 }
 
 .footer-policy-border {
