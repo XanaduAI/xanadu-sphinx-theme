@@ -1915,6 +1915,10 @@ nav {
   transition-duration: 0.15s;
 }
 
+.desktop.navbar-left-link:hover button i {
+  color: {{ theme_border_colour }};
+}
+
 .desktop.navbar-left-link:hover::after {
   background-color: {{ theme_border_colour }};
   content: "";
@@ -1983,10 +1987,6 @@ nav {
   position: absolute;
   top: 47.7px;
   width: 200px;
-}
-
-.navbar-left-link.desktop:hover .navbar-dropdown {
-  display: block;
 }
 
 .desktop.navbar-left-link.open .navbar-dropdown {
