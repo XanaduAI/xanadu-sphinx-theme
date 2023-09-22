@@ -40,7 +40,7 @@ def setup(app):
     app.add_html_theme("xanadu", str(cwd))
 
     # set default footer sections
-    for section in ["about", "links", "socials", "tagline"]:
+    for section in ["about", "links", "policies", "social_icons", "taglines"]:
         if f"footer_{section}" not in app.config["html_theme_options"]:
             app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[
                 f"footer_{section}"
@@ -63,6 +63,8 @@ def setup(app):
 XANADU_FOOTER = {
     "footer_about": {
         "title": "Xanadu",
+        "icon": "_static/xanadu_logo.svg",
+        "href": "https://xanadu.ai",
         "description": """\
         Located in the heart of downtown Toronto, we've brought together
         exceptional minds from around the world to build quantum computers
@@ -135,13 +137,18 @@ XANADU_FOOTER = {
                     "name": "Home",
                     "href": "https://xanadu.ai/",
                 },
-                {"name": "About", "href": "https://xanadu.ai/about/"},
+                {
+                    "name": "About",
+                    "href": "https://xanadu.ai/about/",
+                },
                 {
                     "name": "Hardware",
                     "href": "https://xanadu.ai/photonics",
                 },
-                {"name": "Careers", "href": "https://xanadu.ai/careers/"},
-                {"name": "Cloud", "href": "https://cloud.xanadu.ai"},
+                {
+                    "name": "Careers",
+                    "href": "https://xanadu.ai/careers/",
+                },
                 {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
@@ -153,19 +160,37 @@ XANADU_FOOTER = {
             ],
         },
     ],
-    "footer_socials": [
-        {"icon": "fab fa-twitter", "href": "https://twitter.com/xanaduai"},
-        {"icon": "fab fa-github", "href": "https://github.com/XanaduAI"},
-        {"icon": "fab fa-linkedin-in", "href": "https://linkedin.com/company/xanaduai/"},
-        {"icon": "fab fa-discourse", "href": "https://discuss.pennylane.ai"},
+    "footer_social_icons": [
         {
-            "icon": "fab fa-slack",
+            "icon": "bx bxl-twitter",
+            "href": "https://twitter.com/xanaduai",
+        },
+        {
+            "icon": "bx bxl-github",
+            "href": "https://github.com/XanaduAI",
+        },
+        {
+            "icon": "bx bxl-linkedin",
+            "href": "https://linkedin.com/company/xanaduai/",
+        },
+        {
+            "icon": "bx bxl-discourse",
+            "href": "https://discuss.pennylane.ai",
+        },
+        {
+            "icon": "bx bxl-slack",
             "href": "https://u.strawberryfields.ai/slack",
         },
-        {"icon": "fas fa-rss", "href": "https://xanadu.ai/blog"},
+        {
+            "icon": "bx bx-rss",
+            "href": "https://xanadu.ai/blog",
+        },
     ],
-    "footer_tagline": {
-        "text": "Stay updated with our newsletter",
-        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
-    },
+    "footer_taglines": [
+        {
+            "text": "Stay updated with our newsletter",
+            "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
+        },
+    ],
+    "footer_policies": [],
 }

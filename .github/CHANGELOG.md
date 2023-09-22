@@ -1,10 +1,17 @@
-## Release 0.4.0 (development release)
+## Release 0.4.0 (current release)
+
+### Improvements
+
+* Updated the navbar and footer configuration and styles to match the PennyLane website.
+  [#40](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/40)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
 
-## Release 0.3.7 (current release)
+[Mikhail Andrenkov](https://github.com/Mandrenkov).
+
+## Release 0.3.7
 
 ### Improvements
 

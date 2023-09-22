@@ -19,7 +19,7 @@ import re
 # -- Project information -----------------------------------------------------
 
 project = 'Xanadu Sphinx Theme'
-copyright = '2022, Xanadu Quantum Technologies'
+copyright = '2023 | Xanadu | All rights reserved'
 author = 'Xanadu Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -101,12 +101,7 @@ html_favicon = "_static/favicon.ico"
 html_theme_options = {
     "navbar_name": "Xanadu Sphinx Theme",
     "navbar_logo_colour": "#f48fb1",
-    # "navbar_home_link": "https://pennylane.ai",
     "navbar_left_links": [
-        {
-            "name": "Blog",
-            "href": "javascript:void(0);",
-        },
         {
             "name": "Search",
             "href": "search.html",
@@ -114,15 +109,30 @@ html_theme_options = {
         {
             "name": "Documentation",
             "href": "index.html",
-            "active": True,
-        }
+            "dropdown": [
+                {
+                    "name": "Getting Started",
+                    "href": "started.html",
+                },
+                {
+                    "name": "GitHub",
+                    "href": "https://github.com/XanaduAI/xanadu-sphinx-theme",
+                    "external": True,
+                }
+            ]
+        },
+        {
+            "name": "Support",
+            "href": "https://discuss.pennylane.ai",
+            "external": True,
+        },
     ],
     "navbar_right_links": [
         {
             "name": "GitHub",
             "href": "https://github.com/XanaduAI/xanadu-sphinx-theme",
-            "icon": "fab fa-github",
-        },
+            "icon": "bx bxl-github",
+        }
     ],
     "extra_copyrights": [
         "Any extra copyrights can be added here."
@@ -131,11 +141,13 @@ html_theme_options = {
     "prev_next_button_colour": "#f48fb1",
     "prev_next_button_hover_colour": "#ec407a",
     "table_header_background_colour": "#f8bbd0",
+    "social_icon_colour": "#ec407a",
     "text_accent_colour": "#f48fb1",
     "toc_marker_colour": "#f48fb1",
+    "toc_mobile_heading_colour": "#ec407a",
+    "toc_mobile_heading_background_colour": "#fcd9e5",
     "toc_overview": True,
     "toc_global": True,
-    "toc_hover": False,
     "relations": True
 }
 

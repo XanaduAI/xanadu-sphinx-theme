@@ -120,7 +120,7 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
 
 ``google_analytics_tracking_id``
     Google Analytics tracking ID to enable website analytics.
-    
+
 ``github_repo``
     The GitHub organization and repository associated with the documentation. E.g.,
     for a GitHub repository https://github.com/Organization/repo, this should be
@@ -155,21 +155,22 @@ The following options customize the appearance of the navigation bar.
 
 ``navbar_left_links``
     Links on the LHS of the navigation bar in the form of a list of dictionaries
-    with the ``"name"``, ``"href"``, and optionally, ``"active"`` keys. In addition,
-    the ``"img"`` key can be used to specify an image for the navbar link,
-    alongside ``"img_width"`` to specify the width of the image.
+    with the ``"name"``, ``"href"``, and optionally, ``"external"`` and
+    ``"dropdown"`` keys.
+
+    The ``"external"`` key only determines if an "external link" icon should be
+    displayed next to the name of the link in the navbar. Otherwise, the value
+    of the ``"dropdown"`` key is another list of dictionaries of the same form
+    (except for the ``"dropdown"`` key) and specifies the links which should be
+    displayed in a dropdrown from the current link.
+
+    In addition, the ``"img"`` key can be used to specify an image to replace
+    the navbar link, alongside ``"img_width"`` to specify the width of the image.
 
 ``navbar_right_links``
     Links on the RHS of the navigation bar in the form of a list of dictionaries
-    with the ``"name"`` and ``"href"`` keys.
-
-Footer
-------
-
-The following options customize the appearance of the footer.
-
-``extra_copyrights``
-    List of extra copyright notices to place in the footer.
+    with the ``"name"``, ``"href"``, and optionally, ``"icon"`` keys. If a link
+    does not have an ``"icon"`` key, it will be displayed as a solid button.
 
 Table of contents
 -----------------
@@ -183,11 +184,6 @@ The following options customize the table of contents.
 ``toc_global``
     Whether to show the global table of contents by default via the left sidebar.
     If ``False``, then the left sidebar will be disabled.
-
-``toc_hover``
-    Whether hovering over the active navbar link (or navbar logo if there is
-    no active navbar link) will show the global table of contents as a dropdown.
-    Only applies if ``toc_global=False``.
 
 ``toc_subset``
     If set to ``True``, and the current page has no local table of contents,
@@ -203,9 +199,25 @@ The following options customize the table of contents.
 Footer
 ------
 
+
+The following options customize the appearance of the footer.
+
+``extra_copyrights``
+    List of extra copyright notices to place in the footer.
+
 ``footer_about``
-    A dictionary of the form ``{"title": ..., "description": ...}`` that specifies
-    the 'About' section of the footer. Set to an empty dictionary to remove.
+    A dictionary of the form
+
+    .. code-block:: python
+
+        "footer_about": {
+            "title": "Title",
+            "icon": "https://...",
+            "href": "https://...",
+            "description": "Description"
+        }
+
+    that specifies the 'About' section of the footer.
 
 ``footer_links``
     A list of dictionaries of the form
@@ -235,13 +247,12 @@ Footer
     that specifies footer links. Each top-level dictionary in the list is a
     separate titled column. Set to an empty list to remove.
 
-
-``footer_socials``
+``footer_social_icons``
     A list of dictionaries of the form
 
     .. code-block:: python
 
-        "footer_socials": [
+        "footer_social_icons": [
             {
                 "icon": "fab fa-twitter",
                 "href": "https://twitter.com/xanaduai"
@@ -256,10 +267,45 @@ Footer
     specifying social media icons. ``icon`` should correspond to a FontAwesome5 icon.
     Set to an empty list to remove.
 
-``footer_tagline``
-    A dictionary of the form ``{"text": "Some text", "href": "https://..."}`` specifying
-    a tagline hyperlink that appears underneath the social media icons. Set to an
-    empty dictionary to remove.
+``footer_taglines``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_taglines": [
+            {
+                "text": "Some text",
+                "href": "https://..."
+            },
+            {
+                "icon": "Some more text",
+                "href": "https://..."
+            },
+            ...
+        ]
+
+    specifying tagline hyperlinks that appear underneath the social media icons.
+    Set to an empty list to remove.
+
+``footer_policies``
+    A list of dictionaries of the form
+
+    .. code-block:: python
+
+        "footer_policies": [
+            {
+                "text": "Some text",
+                "href": "https://..."
+            },
+            {
+                "icon": "Some more text",
+                "href": "https://..."
+            },
+            ...
+        ]
+
+    specifying policy hyperlinks that appear at the bottom of the footer. Set to
+    an empty list to remove.
 
 Style Colours
 -------------
@@ -278,6 +324,9 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
     Colours of the "Next" and "Previous" navigation buttons located at the
     bottom of most pages.
 
+``social_icon_colour``
+    Colour of the social icons.
+
 ``table_header_background_colour``
     Background colour of table headers.
 
@@ -286,6 +335,9 @@ These should be fully qualified CSS color specifiers such as ``#004B6B`` or
 
 ``toc_marker_colour``
     Colour of the marker beside the current ToC entry.
+
+``toc_mobile_heading_colour`` and ``toc_mobile_heading_background_colour``
+    Text and background colours of the mobile ToC heading.
 
 .. configuration-end-inclusion-marker-do-not-remove
 
