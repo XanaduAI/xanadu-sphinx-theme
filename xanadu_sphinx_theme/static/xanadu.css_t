@@ -289,6 +289,10 @@ fieldset[disabled] .btn-xanadu.active {
   background-color: #ffffff;
 }
 
+img {
+  max-width: 100%;
+}
+
 /* References and Footnotes
 ----------------------------------------------------------------------------- */
 
