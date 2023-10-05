@@ -85,7 +85,8 @@ h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
 h1, h2, h3, h4, h5, h6 {
   color: black;
   font-weight: normal;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 0;
   font-family: 'Quicksand', 'Roboto', sans-serif !important;
 }
@@ -293,6 +294,16 @@ fieldset[disabled] .btn-xanadu.active {
 img {
   max-width: 100%;
 }
+
+.figure {
+  max-width: 100%;
+}
+
+table {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 
 /* References and Footnotes
 ----------------------------------------------------------------------------- */
@@ -2328,6 +2339,11 @@ nav {
     font-size: 26px;
   }
 
+  table {
+    display: block !important;
+    max-width: fit-content !important;
+  }
+
   .mobile.toc-heading {
     display: block;
   }
@@ -2734,15 +2750,6 @@ div.body>div>span,
   position: relative;
   top: -40px;
   visibility: hidden;
-}
-
-.figure {
-  max-width: 100%;
-}
-
-table {
-  display: block;
-  overflow-x: scroll;
 }
 
 dl.attribute>dt:before,
