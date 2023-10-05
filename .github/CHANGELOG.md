@@ -3,10 +3,13 @@
 ### Bug fixes
 
 * Obviated the need for horizontal scrolling on mobile.
-  [(#XYZ)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/XYZ)
+  [(#42)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/42)
 
 * Prevented overlap of local ToC with footer.
-  [(#XYZ)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/XYZ)
+  [(#42)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/42)
+
+* Added missing Read the Docs configuration file.
+  [(#42)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/42)
 
 ### Contributors
 
