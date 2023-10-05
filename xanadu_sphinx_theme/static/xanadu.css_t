@@ -770,21 +770,24 @@ td:first-child {
 
 .localtoc-container {
   width: 300px;
-  top: 119px;
+  top: 120px;
   max-width: 300px;
   right: calc(50% - 820px);
   position: fixed;
   transition-property: opacity;
   transition-duration: 1s;
   opacity: 0.5;
-  height: 100%;
+}
+
+.localtoc-container .nano-content{
+  overscroll-behavior: contain;
 }
 
 .localtoc-container:hover {
-    transition-property: opacity;
-    transition-duration: 0.2s;
-    opacity: 1;
-    transition-timing-function: linear;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  opacity: 1;
+  transition-timing-function: linear;
 }
 
 .localtoc-container h3 {
@@ -2407,18 +2410,6 @@ nav {
   }
 
   .localtoc-container {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    position: inherit;
-    float: none;
-    margin-top: unset;
-    margin-bottom: unset;
-  }
-
-  .localtoc-container {
     display: none;
   }
 
@@ -2509,20 +2500,6 @@ nav {
 }
 
 @media screen and (max-width: 1500px) and (min-width: 951px) {
-  .localtoc-container {
-    margin-left: calc(50% - 300px);
-    padding-right: 0;
-    padding-left: 0;
-    max-width: 900px;
-    width: -webkit-calc(100% - 300px);
-    width: -moz-calc(100% - 300px);
-    width: calc(100% - 300px);
-    position: inherit;
-    float: left;
-    margin-top: unset;
-    margin-bottom: unset;
-  }
-
   .page-footer {
     {% if theme_toc_global %}
     margin-left: 260px;

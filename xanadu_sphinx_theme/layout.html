@@ -268,19 +268,39 @@
 
     $(".document > .section").removeClass("section");
     $("h1 ~ .section").removeClass("section");
-    $(".localtoc-container .nano-content").css("height", $("#content").height());
-    $(".localtoc-container").css("height", $("#content").height());
     $(".nano").nanoScroller();
   </script>
 
   <script type="text/javascript">
-      $(window).scroll(function(){
-        var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
-        if (scrollBottom < 342) {
-          $(".localtoc-container").css("height", "calc(100% - " + (342 - scrollBottom) + "px)");
-          $(".localtoc-container .nano-content").css("height", "calc(100% - 119px)");
+    $(document).ready(() => {
+      const localToCTop = parseInt($(".localtoc-container").css("top"), 10);
+      const navbarHeight = $("nav").height();
+      const footerHeight = $("footer").height();
+      const localToCPadding = localToCTop - navbarHeight;
+
+      function adjustLocalToC() {
+        // Adjusts the height and vertical offset of the local ToC.
+        const scrollTop = $(window).scrollTop();
+        const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+
+        const localToCHeight = $(window).height() - localToCTop - Math.max(0, footerHeight - scrollBottom) - localToCPadding;
+        $(".localtoc-container").css("height", localToCHeight + "px");
+        $(".localtoc-container .nano-content").css("height", localToCHeight + "px");
+
+        if (scrollBottom <= 1) {
+          // Switching the position away from "fixed" ensures that the local ToC
+          // "bounces" with the content and stays above the footer.
+          $(".localtoc-container").css("position", "absolute");
+          $(".localtoc-container").css("top", (scrollTop + localToCPadding) + "px");
+        } else {
+          $(".localtoc-container").css("position", "fixed");
+          $(".localtoc-container").css("top", localToCTop + "px");
         }
-      });
+      }
+
+      adjustLocalToC();
+      $(window).scroll(adjustLocalToC);
+    });
   </script>
 
   <script type="text/javascript">
