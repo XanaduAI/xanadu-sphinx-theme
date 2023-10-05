@@ -85,6 +85,7 @@ h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
 h1, h2, h3, h4, h5, h6 {
   color: black;
   font-weight: normal;
+  overflow-x: scroll;
   padding: 0;
   font-family: 'Quicksand', 'Roboto', sans-serif !important;
 }
@@ -2733,6 +2734,15 @@ div.body>div>span,
   position: relative;
   top: -40px;
   visibility: hidden;
+}
+
+.figure {
+  max-width: 100%;
+}
+
+table {
+  display: block;
+  overflow-x: scroll;
 }
 
 dl.attribute>dt:before,
