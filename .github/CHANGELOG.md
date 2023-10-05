@@ -1,15 +1,25 @@
 ## Release 0.5.0 (development release)
 
+### Bug fixes
+
+* Obviated the need for horizontal scrolling on mobile.
+  [(#XYZ)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/XYZ)
+
+* Prevented overlap of local ToC with footer.
+  [(#XYZ)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/XYZ)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Mikhail Andrenkov](https://github.com/Mandrenkov).
 
 ## Release 0.4.0 (current release)
 
 ### Improvements
 
 * Updated the navbar and footer configuration and styles to match the PennyLane website.
-  [#40](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/40)
+  [(#40)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/40)
 
 ### Contributors
 
