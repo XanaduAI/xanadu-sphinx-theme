@@ -1,5 +1,11 @@
 ## Release 0.5.0 (development release)
 
+### Improvements
+
+* Improved the accessibility of the navbar and footer by adding missing `alt`
+  text and ARIA labels and fixing issues with keyboard navigation.
+  [(#43)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/43)
+
 ### Bug fixes
 
 * Obviated the need for horizontal scrolling on mobile.
