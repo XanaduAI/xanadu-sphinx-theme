@@ -53,7 +53,7 @@
   {% macro render_desktop_navbar_right_link(name, href, icon=None) %}
     <li class="navbar-right-link desktop">
       {% if icon %}
-        <a href="{{ pathto(href, 1) }}" target="_blank">
+        <a href="{{ pathto(href, 1) }}" target="_blank" aria-label="{{ name }}">
           <i class="{{ icon }}"></i>
         </a>
       {% else %}
