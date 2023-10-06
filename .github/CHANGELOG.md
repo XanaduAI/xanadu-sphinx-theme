@@ -1,4 +1,4 @@
-## Release 0.5.0 (development release)
+## Release 0.5.0 (current release)
 
 ### Improvements
 
@@ -23,7 +23,7 @@ This release contains contributions from (in alphabetical order):
 
 [Mikhail Andrenkov](https://github.com/Mandrenkov).
 
-## Release 0.4.0 (current release)
+## Release 0.4.0
 
 ### Improvements
 
