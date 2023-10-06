@@ -468,7 +468,13 @@
       const dropdown = document.querySelector(".mobile.navbar-links");
       if (dropdown !== null) {
         dropdown.classList.toggle("open");
-        button.classList.toggle("open");
+        if (button.classList.toggle("open")) {
+          button.ariaLabel = "close menu";
+          button.ariaExpanded = "true";
+        } else {
+          button.ariaLabel = "open menu";
+          button.ariaExpanded = "false";
+        }
       }
     }
   </script>
