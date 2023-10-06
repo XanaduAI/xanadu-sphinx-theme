@@ -556,6 +556,40 @@
     });
   </script>
 
+  <!-- Trap focus in the navbar dropdown on mobile if it is expanded. -->
+  <script type="text/javascript">
+    // Using ``keyup`` would cause the last element to be quickly "skipped".
+    $(document).keydown(function(event) {
+      // The keycode of TAB is 9.
+      if (event.keyCode == 9) {
+        // Do nothing if the navbar dropdown is collapsed on mobile.
+        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+        if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
+          return;
+        }
+
+        const links = document.querySelectorAll(".mobile.navbar-links a");
+        const bot = links[links.length - 1];
+        const top = document.querySelector(".mobile.navbar-menu button");
+
+        // Do nothing if there is a missing focus element.
+        if (top === null || bot === undefined) {
+          return;
+        }
+
+        // Wrap the focus to the top or bottom element if needed. The direction
+        // of the wrapping depends on whether TAB or SHIFT + TAB is pressed.
+        if (!event.shiftKey && document.activeElement === bot) {
+          top.focus();
+          event.preventDefault();
+        } else if (event.shiftKey && document.activeElement === top) {
+          bot.focus();
+          event.preventDefault();
+        }
+      }
+    });
+  </script>
+
   <script type="text/javascript">
     jQuery.noConflict(true);
   </script>
