@@ -445,24 +445,45 @@
         if (dropdown !== null) {
           timers[i] = {link: link, button: button, timeout: undefined};
 
-          link.addEventListener("mouseenter", function(event){
+          // Expands the current dropdown and closes other dropdowns.
+          const expandDropdown = () => {
             for (const [j, timer] of Object.entries(timers)) {
               clearTimeout(timer.timeout);
               if (i !== j) {
-                timer.link.classList.remove("open")
+                timer.link.classList.remove("open");
                 setAriaAttributes(timer.button, false);
               }
             }
             link.classList.add("open");
             setAriaAttributes(button, true);
-          });
+          }
 
-          link.addEventListener("mouseleave", function(event){
+          // Closes the current dropdown after the given delay.
+          const collapseDropdown = (delay = 1000) => {
             timers[i].timeout = setTimeout(function(event){
               link.classList.remove("open");
               setAriaAttributes(button, false);
-            }, 1000);
-          });
+            }, delay);
+          }
+
+          // Toggles the current dropdown.
+          const toggleDropdown = () => {
+            if (link.classList.contains("open")) {
+              collapseDropdown(0);
+            } else {
+              expandDropdown();
+            }
+          }
+
+          link.addEventListener("mouseenter", expandDropdown);
+          link.addEventListener("mouseleave", collapseDropdown);
+
+          button.addEventListener("keyup", function(event){
+            // The keycode of ESC is 13.
+            if (event.keyCode === 13) {
+              toggleDropdown()
+            }
+          })
         }
       }
     });
@@ -498,6 +519,41 @@
       button.parentElement.classList.toggle("open");
       toggleAriaAttributes(button);
     }
+  </script>
+
+  <!-- Collapses the most specific menu when ESC is pressed. -->
+  <script type="text/javascript">
+    $(document).keyup(function(event) {
+      // The keycode of ESC is 27.
+      if (event.keyCode == 27) {
+        // Collapse an open dropdown from a navbar link on mobile.
+        const mobileSubMenuButtons = document.querySelectorAll(".mobile.navbar-link button");
+        for (const button of mobileSubMenuButtons) {
+          if (button.parentElement.classList.contains("open")) {
+            toggleMobileNavbarLink(button);
+            return;
+          }
+        }
+
+        // Collapse the navbar dropdown on mobile.
+        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+        if (mobileMenuButton !== null && mobileMenuButton.classList.contains("open")) {
+          toggleMobileNavbar(mobileMenuButton);
+          return;
+        }
+
+        // Close an open navbar dropdown on desktop.
+        const navbar_left_links = document.querySelectorAll(".navbar-left-link");
+        for (const link of navbar_left_links.values()) {
+          const button = link.querySelector("button");
+          if (link.classList.contains("open")) {
+            link.classList.remove("open");
+            setAriaAttributes(button, true);
+            return;
+          }
+        }
+      }
+    });
   </script>
 
   <script type="text/javascript">
