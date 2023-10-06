@@ -162,26 +162,32 @@ XANADU_FOOTER = {
     ],
     "footer_social_icons": [
         {
+            "name": "Twitter",
             "icon": "bx bxl-twitter",
             "href": "https://twitter.com/xanaduai",
         },
         {
+            "name": "GitHub",
             "icon": "bx bxl-github",
             "href": "https://github.com/XanaduAI",
         },
         {
+            "name": "LinkedIn",
             "icon": "bx bxl-linkedin",
             "href": "https://linkedin.com/company/xanaduai/",
         },
         {
+            "name": "Discourse",
             "icon": "bx bxl-discourse",
             "href": "https://discuss.pennylane.ai",
         },
         {
+            "name": "Slack",
             "icon": "bx bxl-slack",
             "href": "https://u.strawberryfields.ai/slack",
         },
         {
+            "name": "RSS",
             "icon": "bx bx-rss",
             "href": "https://xanadu.ai/blog",
         },

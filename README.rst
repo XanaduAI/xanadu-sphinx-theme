@@ -256,17 +256,19 @@ The following options customize the appearance of the footer.
 
         "footer_social_icons": [
             {
+                "name": "Twitter",
                 "icon": "fab fa-twitter",
                 "href": "https://twitter.com/xanaduai"
             },
             {
+                "name": "GitHub",
                 "icon": "fab fa-github",
                 "href": "https://github.com/XanaduAI"
             },
             ...
         ]
 
-    specifying social media icons. ``icon`` should correspond to a FontAwesome5 icon.
+    specifying social media icons. ``icon`` should correspond to a Boxicons icon.
     Set to an empty list to remove.
 
 ``footer_taglines``
