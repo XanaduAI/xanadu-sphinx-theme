@@ -423,6 +423,7 @@
   <!-- Utility functions for setting ARIA attributes on buttons that show menus. -->
   <script type="text/javascript">
     function setAriaAttributes(button, expand) {
+      console.log("setAriaAttributes()", button, expand);
       const skip = button.ariaLabel.indexOf(" ");
       const menu = button.ariaLabel.substr(skip);
       button.ariaLabel = (expand ? "close" : "open") + menu;
@@ -444,10 +445,12 @@
         const button = link.querySelector("button");
         if (dropdown !== null) {
           timers[i] = {link: link, button: button, timeout: undefined};
+          console.log("for", i, timers[i]);
 
           // Expands the current dropdown and closes other dropdowns.
           const expandDropdown = () => {
             for (const [j, timer] of Object.entries(timers)) {
+              console.log("expandDropdown()", i, j, timer);
               clearTimeout(timer.timeout);
               if (i !== j) {
                 timer.link.classList.remove("open");
@@ -461,6 +464,7 @@
           // Closes the current dropdown after the given delay.
           const collapseDropdown = (event, delay = 1000) => {
             timers[i].timeout = setTimeout(function(event){
+              console.log("collapseDropdown()", i, link, button, timers[i].timeout);
               link.classList.remove("open");
               setAriaAttributes(button, false);
             }, delay);
