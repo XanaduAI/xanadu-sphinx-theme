@@ -469,7 +469,7 @@
           // Toggles the current dropdown.
           const toggleDropdown = (event) => {
             if (link.classList.contains("open")) {
-              collapseDropdown(0);
+              collapseDropdown(event, 0);
             } else {
               expandDropdown();
             }
@@ -477,6 +477,7 @@
 
           link.addEventListener("mouseenter", expandDropdown);
           link.addEventListener("mouseleave", collapseDropdown);
+          button.addEventListener("click", toggleDropdown);
 
           button.addEventListener("keyup", function(event){
             // The keycode of ESC is 13.
