@@ -459,7 +459,7 @@
           }
 
           // Closes the current dropdown after the given delay.
-          const collapseDropdown = (delay = 1000) => {
+          const collapseDropdown = (event, delay = 1000) => {
             timers[i].timeout = setTimeout(function(event){
               link.classList.remove("open");
               setAriaAttributes(button, false);
@@ -467,7 +467,7 @@
           }
 
           // Toggles the current dropdown.
-          const toggleDropdown = () => {
+          const toggleDropdown = (event) => {
             if (link.classList.contains("open")) {
               collapseDropdown(0);
             } else {
