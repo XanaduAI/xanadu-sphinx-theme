@@ -561,43 +561,32 @@
   <script type="text/javascript">
     // Using ``keyup`` would cause the last element to be quickly "skipped".
     $(document).keydown(function(event) {
-      // Do nothing if the navbar dropdown is collapsed on mobile.
-      const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
-      if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
-        return;
-      }
+      // The keycode of TAB is 9.
+      if (event.keyCode == 9) {
+        // Do nothing if the navbar dropdown is collapsed on mobile.
+        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+        if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
+          return;
+        }
 
-      const links = document.querySelectorAll(".mobile.navbar-links a");
-      const bot = links[links.length - 1];
-      const top = document.querySelector(".mobile.navbar-menu button");
+        const links = document.querySelectorAll(".mobile.navbar-links a");
+        const bot = links[links.length - 1];
+        const top = document.querySelector(".mobile.navbar-menu button");
 
-      // Do nothing if there is a missing focus element.
-      if (top === null || bot === undefined) {
-        return;
-      }
+        // Do nothing if there is a missing focus element.
+        if (top === null || bot === undefined) {
+          return;
+        }
 
-      const forward = (
-        // TAB
-        (!event.shiftKey && event.keyCode == 9) ||
-        // OPTION + COMMAND + RIGHT
-        (event.metaKey && event.altKey && event.keyCode == 39)
-      );
-
-      const backward = (
-        // SHIFT + TAB
-        (event.shiftKey && event.keyCode == 9) ||
-        // OPTION + COMMAND + LEFT
-        (event.metaKey && event.altKey && event.keyCode == 37)
-      );
-
-      // Wrap the focus to the top or bottom element if needed. The direction
-      // of the wrapping depends on the direction of navigation.
-      if (forward && document.activeElement === bot) {
-        top.focus();
-        event.preventDefault();
-      } else if (backward && document.activeElement === top) {
-        bot.focus();
-        event.preventDefault();
+        // Wrap the focus to the top or bottom element if needed. The direction
+        // of the wrapping depends on whether TAB or SHIFT + TAB is pressed.
+        if (!event.shiftKey && document.activeElement === bot) {
+          top.focus();
+          event.preventDefault();
+        } else if (event.shiftKey && document.activeElement === top) {
+          bot.focus();
+          event.preventDefault();
+        }
       }
     });
   </script>
