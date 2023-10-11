@@ -510,6 +510,12 @@
         dropdown.classList.toggle("open");
         button.classList.toggle("open");
         toggleAriaAttributes(button);
+
+        const hidden = button.getAttribute("aria-expanded") === "true";
+        const hidden_elements = document.querySelectorAll(".container-wrapper, footer");
+        for (const element of hidden_elements) {
+          element.setAttribute("aria-hidden", hidden.toString());
+        }
       }
     }
   </script>
