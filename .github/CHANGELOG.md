@@ -6,6 +6,9 @@
   text and ARIA labels and fixing issues with keyboard navigation.
   [(#43)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/43)
 
+* Added transition animations to the navbar dropdowns on mobile.
+  [(#44)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/44)
+
 ### Bug fixes
 
 * Obviated the need for horizontal scrolling on mobile.
