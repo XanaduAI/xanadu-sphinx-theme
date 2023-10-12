@@ -16,7 +16,7 @@
       <!-- Social Icons -->
       <div class="footer-social-icons">
         {% for link in theme_footer_social_icons %}
-          <a href="{{ link.href }}">
+          <a href="{{ link.href }}" aria-label="{{ link.name }}">
             <i class="{{ link.icon }}"></i>
           </a>
         {% endfor %}

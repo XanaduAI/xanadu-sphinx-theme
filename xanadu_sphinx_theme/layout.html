@@ -420,6 +420,20 @@
     });
   </script>
 
+  <!-- Utility functions for setting ARIA attributes on buttons that show menus. -->
+  <script type="text/javascript">
+    function setAriaAttributes(button, expand) {
+      const skip = button.getAttribute("aria-label").indexOf(" ");
+      const menu = button.getAttribute("aria-label").substr(skip);
+      button.setAttribute("aria-label", (expand ? "close" : "open") + menu);
+      button.setAttribute("aria-expanded", expand.toString());
+    }
+
+    function toggleAriaAttributes(button) {
+      setAriaAttributes(button, button.getAttribute("aria-expanded") === "false");
+    }
+  </script>
+
   <!-- Delays the closing of dropdowns on the LHS of the navigation bar. -->
   <script type="text/javascript">
     $(document).ready(() => {
@@ -427,24 +441,43 @@
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
       for (const [i, link] of navbar_left_links.entries()) {
         const dropdown = link.querySelector(".navbar-dropdown");
+        const button = link.querySelector("button");
         if (dropdown !== null) {
-          timers[i] = {link: link, timeout: undefined};
+          timers[i] = {link: link, button: button, timeout: undefined};
 
-          link.addEventListener("mouseenter", function(event){
+          // Expands the current dropdown and closes other dropdowns.
+          const expandDropdown = () => {
             for (const [j, timer] of Object.entries(timers)) {
               clearTimeout(timer.timeout);
               if (i !== j) {
-                timer.link.classList.remove("open")
+                timer.link.classList.remove("open");
+                setAriaAttributes(timer.button, false);
               }
             }
             link.classList.add("open");
-          });
+            setAriaAttributes(button, true);
+          }
 
-          link.addEventListener("mouseleave", function(event){
+          // Closes the current dropdown after the given delay.
+          const collapseDropdown = (event, delay = 1000) => {
             timers[i].timeout = setTimeout(function(event){
               link.classList.remove("open");
-            }, 1000);
-          });
+              setAriaAttributes(button, false);
+            }, delay);
+          }
+
+          // Toggles the current dropdown.
+          const toggleDropdown = (event) => {
+            if (link.classList.contains("open")) {
+              collapseDropdown(event, 0);
+            } else {
+              expandDropdown();
+            }
+          }
+
+          link.addEventListener("mouseenter", expandDropdown);
+          link.addEventListener("mouseleave", collapseDropdown);
+          button.addEventListener("click", toggleDropdown);
         }
       }
     });
@@ -469,6 +502,13 @@
       if (dropdown !== null) {
         dropdown.classList.toggle("open");
         button.classList.toggle("open");
+        toggleAriaAttributes(button);
+
+        const hidden = button.getAttribute("aria-expanded") === "true";
+        const hidden_elements = document.querySelectorAll(".container-wrapper, footer");
+        for (const element of hidden_elements) {
+          element.setAttribute("aria-hidden", hidden.toString());
+        }
       }
     }
   </script>
@@ -476,8 +516,78 @@
   <!-- Toggles whether the dropdown from a navbar link is displayed on mobile. -->
   <script type="text/javascript">
     function toggleMobileNavbarLink(button) {
-      const link = button.parentElement.classList.toggle("open");
+      button.parentElement.classList.toggle("open");
+      toggleAriaAttributes(button);
     }
+  </script>
+
+  <!-- Collapses the most specific menu when ESC is pressed. -->
+  <script type="text/javascript">
+    $(document).keyup(function(event) {
+      // The keycode of ESC is 27.
+      if (event.keyCode == 27) {
+        // Collapse an open dropdown from a navbar link on mobile.
+        const mobileSubMenuButtons = document.querySelectorAll(".mobile.navbar-link button");
+        for (const button of mobileSubMenuButtons) {
+          if (button.parentElement.classList.contains("open")) {
+            toggleMobileNavbarLink(button);
+            return;
+          }
+        }
+
+        // Collapse the navbar dropdown on mobile.
+        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+        if (mobileMenuButton !== null && mobileMenuButton.classList.contains("open")) {
+          toggleMobileNavbar(mobileMenuButton);
+          return;
+        }
+
+        // Close an open navbar dropdown on desktop.
+        const navbar_left_links = document.querySelectorAll(".navbar-left-link");
+        for (const link of navbar_left_links.values()) {
+          const button = link.querySelector("button");
+          if (link.classList.contains("open")) {
+            link.classList.remove("open");
+            setAriaAttributes(button, true);
+            return;
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- Trap focus in the navbar dropdown on mobile if it is expanded. -->
+  <script type="text/javascript">
+    // Using ``keyup`` would cause the last element to be quickly "skipped".
+    $(document).keydown(function(event) {
+      // The keycode of TAB is 9.
+      if (event.keyCode == 9) {
+        // Do nothing if the navbar dropdown is collapsed on mobile.
+        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+        if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
+          return;
+        }
+
+        const links = document.querySelectorAll(".mobile.navbar-links a");
+        const bot = links[links.length - 1];
+        const top = document.querySelector(".mobile.navbar-menu button");
+
+        // Do nothing if there is a missing focus element.
+        if (top === null || bot === undefined) {
+          return;
+        }
+
+        // Wrap the focus to the top or bottom element if needed. The direction
+        // of the wrapping depends on whether TAB or SHIFT + TAB is pressed.
+        if (!event.shiftKey && document.activeElement === bot) {
+          top.focus();
+          event.preventDefault();
+        } else if (event.shiftKey && document.activeElement === top) {
+          bot.focus();
+          event.preventDefault();
+        }
+      }
+    });
   </script>
 
   <script type="text/javascript">
