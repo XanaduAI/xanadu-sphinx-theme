@@ -136,9 +136,11 @@ The following options customize the appearance of the navigation bar.
 
 ``navbar_wordmark_path``
     Path to the project wordmark to appear in the navigation bar. Specifying
-    this option will replace the project name in the navigation bar. Eventually,
-    this option will be removed in favour of ``navbar_name`` for the sake of
-    consistency.
+    this option will replace the project logo and name in the navigation bar.
+
+``navbar_logo_alt``
+    Alternative text to display in lieu of the wordmark or logo in the navigation bar.
+    Defaults to the value of ``navbar_name``.
 
 ``navbar_logo_path``
     Path to the project logo that appears in the navigation bar. Defaults to
@@ -254,17 +256,19 @@ The following options customize the appearance of the footer.
 
         "footer_social_icons": [
             {
+                "name": "Twitter",
                 "icon": "fab fa-twitter",
                 "href": "https://twitter.com/xanaduai"
             },
             {
+                "name": "GitHub",
                 "icon": "fab fa-github",
                 "href": "https://github.com/XanaduAI"
             },
             ...
         ]
 
-    specifying social media icons. ``icon`` should correspond to a FontAwesome5 icon.
+    specifying social media icons. ``icon`` should correspond to a Boxicons icon.
     Set to an empty list to remove.
 
 ``footer_taglines``

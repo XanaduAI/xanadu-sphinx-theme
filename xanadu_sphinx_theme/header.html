@@ -1,11 +1,12 @@
 <nav>
   <!-- Logo and Title -->
 
-  <a class="navbar-logo-title-container" href="{{ pathto(theme_navbar_home_link, 1) }}">
+  <a class="navbar-logo-title-container" href="{{ pathto(theme_navbar_home_link, 1) }}" aria-label="home">
+    {% set navbar_alt = theme_navbar_logo_alt if theme_navbar_logo_alt else theme_navbar_name %}
     {% if theme_navbar_wordmark_path %}
-      <img class="navbar-logo-title-image" src="{{ pathto(theme_navbar_wordmark_path, 1) }}" height="24px"></img>
+      <img class="navbar-logo-title-image" src="{{ pathto(theme_navbar_wordmark_path, 1) }}" alt="{{ navbar_alt }}" height="24px"></img>
     {% else %}
-      <img class="navbar-logo-title-logo" src=" {{ pathto(theme_navbar_logo_path, 1) }}" height="24px"></img>
+      <img class="navbar-logo-title-logo" src=" {{ pathto(theme_navbar_logo_path, 1) }}" alt="{{ navbar_alt }}" height="24px"></img>
       <div class="navbar-logo-title-title">{{ theme_navbar_name }}</div>
     {% endif %}
   </a>
@@ -27,7 +28,7 @@
           {% endif %}
         </a>
         {% if dropdown %}
-          <button>
+          <button aria-label="open {{ name }} sub-menu" aria-expanded="false">
             <i class="bx bx-chevron-down"></i>
           </button>
           <ul class="navbar-dropdown desktop">
@@ -52,7 +53,7 @@
   {% macro render_desktop_navbar_right_link(name, href, icon=None) %}
     <li class="navbar-right-link desktop">
       {% if icon %}
-        <a href="{{ pathto(href, 1) }}" target="_blank">
+        <a href="{{ pathto(href, 1) }}" target="_blank" aria-label="{{ name }}">
           <i class="{{ icon }}"></i>
         </a>
       {% else %}
@@ -96,7 +97,7 @@
   {% macro render_mobile_navbar_link(name, href, external=false, dropdown=[]) %}
     <li class="navbar-link mobile">
       {% if dropdown %}
-        <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)">
+        <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)" aria-label="open {{ name }} sub-menu" aria-expanded="false">
           <div>
             <span>{{ name }}</span>
             {% if external %}
@@ -155,7 +156,7 @@
   {% endmacro %}
 
   <div class="navbar-menu mobile">
-    <button onclick="toggleMobileNavbar(this)">
+    <button onclick="toggleMobileNavbar(this)" aria-label="open menu" aria-expanded="false">
       <i class="bx bx-menu"></i>
       <i class="bx bx-x"></i>
     </button>
