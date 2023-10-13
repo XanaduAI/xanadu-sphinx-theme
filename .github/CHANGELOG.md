@@ -4,7 +4,7 @@
 
 * Improved the accessibility of the navbar and footer by adding missing `alt`
   text and ARIA labels and fixing issues with keyboard navigation.
-  [(#43)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/43)
+  [(#44)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/44)
 
 * Added transition animations to the navbar dropdowns on mobile.
   [(#45)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/45)
