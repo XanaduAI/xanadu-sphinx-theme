@@ -118,32 +118,34 @@
           </a>
         </button>
       {% endif %}
-      <ul class="navbar-dropdown mobile">
-        {% if dropdown %}
-          <li>
-            <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
-              {%- if name -%}
-                {{ name }}
-              {%- endif -%}
-              {% if external %}
-                <i class="bx bx-link-external"></i>
-              {% endif %}
-            </a>
-          </li>
-        {% endif %}
-        {% for link in dropdown %}
-          <li>
-            <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
-              {%- if link.name -%}
-                {{ link.name }}
-              {%- endif -%}
-              {% if link.external %}
-                <i class="bx bx-link-external"></i>
-              {% endif %}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+      <div class="navbar-dropdown mobile">
+        <ul>
+          {% if dropdown %}
+            <li>
+              <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
+                {%- if name -%}
+                  {{ name }}
+                {%- endif -%}
+                {% if external %}
+                  <i class="bx bx-link-external"></i>
+                {% endif %}
+              </a>
+            </li>
+          {% endif %}
+          {% for link in dropdown %}
+            <li>
+              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
+                {%- if link.name -%}
+                  {{ link.name }}
+                {%- endif -%}
+                {% if link.external %}
+                  <i class="bx bx-link-external"></i>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </li>
   {% endmacro %}
 

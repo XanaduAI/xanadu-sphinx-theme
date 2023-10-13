@@ -2081,12 +2081,17 @@ nav {
 
 .mobile.navbar-links {
   background-color: #FFFFFF;
-  display: none;
+  display: block;
   left: 0;
-  height: calc(100% - 50px);
+  height: 0;
   margin-bottom: 0;
+  overflow-y: hidden;
   position: fixed;
   top: 54px;
+  transition-delay: 0, 350ms;
+  transition-duration: 350ms;
+  transition-property: height, visibility;
+  visibility: hidden;
   width: 100%;
   z-index: 3000;
 }
@@ -2104,8 +2109,13 @@ nav {
   border-bottom: 1px solid #CFCFCF;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0px;
   padding: 16px 0;
+  transition-duration: 350ms;
+}
+
+.mobile.navbar-link.open {
+  gap: 16px;
 }
 
 .mobile.navbar-link-heading {
@@ -2183,7 +2193,17 @@ nav {
 ----------------------------------------------------------------------------- */
 
 .mobile.navbar-link .navbar-dropdown {
-  display: none;
+  display: block;
+  height: 0px;
+  overflow-y: hidden;
+  transition-delay: 0s, 350ms;
+  transition-duration: 350ms;
+  transition-property: height, visibility;
+  visibility: hidden;
+}
+
+.mobile.navbar-link .navbar-dropdown ul {
+  display: flex;
   flex-direction: column;
   list-style-type: none;
   gap: 8px;
@@ -2192,7 +2212,9 @@ nav {
 }
 
 .mobile.navbar-link.open .navbar-dropdown {
-  display: flex;
+  /* The height is automatically calculated in layout.html. */
+  transition-delay: 0s;
+  visibility: visible;
 }
 
 .mobile.navbar-link.open .navbar-link-heading i.bx-chevron-down {
@@ -2228,7 +2250,9 @@ nav {
   }
 
   .mobile.navbar-links.open {
-    display: block;
+    height: calc(100% - 50px);
+    transition-delay: 0s;
+    visibility: visible;
   }
 
   .mobile.navbar-menu {

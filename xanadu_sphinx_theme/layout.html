@@ -515,8 +515,32 @@
 
   <!-- Toggles whether the dropdown from a navbar link is displayed on mobile. -->
   <script type="text/javascript">
+    function getIntStyleProperty(element, property) {
+      const style = window.getComputedStyle(element);
+      return parseInt(style.getPropertyValue(property), 10);
+    }
+
+    function getDropdownHeight(dropdown) {
+      const dropdown_list = dropdown.querySelector("ul");
+      const dropdown_list_items = dropdown_list.querySelectorAll("li");
+      const dropdown_list_gap = getIntStyleProperty(dropdown_list, "gap");
+
+      let dropdown_list_height = -dropdown_list_gap;
+      for (const list_item of dropdown_list_items) {
+        dropdown_list_height += getIntStyleProperty(list_item, "height");
+        dropdown_list_height += dropdown_list_gap
+      }
+      return dropdown_list_height + "px";
+    }
+
     function toggleMobileNavbarLink(button) {
-      button.parentElement.classList.toggle("open");
+      const item = button.parentElement;
+      const dropdown = item.querySelector(".mobile.navbar-dropdown");
+      if (dropdown !== null) {
+        const hidden = button.getAttribute("aria-expanded") === "true";
+        dropdown.style.height = hidden ? "0px" : getDropdownHeight(dropdown);
+      }
+      item.classList.toggle("open");
       toggleAriaAttributes(button);
     }
   </script>
