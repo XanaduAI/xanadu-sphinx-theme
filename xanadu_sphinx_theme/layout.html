@@ -440,7 +440,7 @@
       const timers = {};
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
       for (const [i, link] of navbar_left_links.entries()) {
-        const dropdown = link.querySelector(".navbar-dropdown ul");
+        const dropdown = link.querySelector(".navbar-dropdown");
         const button = link.querySelector("button");
         if (dropdown !== null) {
           timers[i] = {link: link, button: button, timeout: undefined};
