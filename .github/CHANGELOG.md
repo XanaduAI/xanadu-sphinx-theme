@@ -7,7 +7,7 @@
   [(#43)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/43)
 
 * Added transition animations to the navbar dropdowns on mobile.
-  [(#44)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/44)
+  [(#45)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/45)
 
 ### Bug fixes
 
