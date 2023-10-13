@@ -17,6 +17,8 @@
 * Added missing Read the Docs configuration file.
   [(#42)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/42)
 
+* Bumped `pillow` to version 10.0.1. [(#43)](https://github.com/PennyLaneAI/pennylane-sphinx-theme/pull/43)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
