@@ -3,8 +3,7 @@
   <script type="text/javascript">
     const search_version = window.location.pathname.includes("/latest/") ? "latest" : "stable";
     const search_query = new URLSearchParams(window.location.search).get("q")
-    // TOOD: Replace contentType value with "DOC".
-    const search_options = {contentType: "DEMO", q: search_query, version: search_version};
+    const search_options = {contentType: "DOC", q: search_query, version: search_version};
 
     const redirect_page = "https://pennylane.ai/search";
     const redirect_query_params = Object.entries(search_options).map(([k, v]) => `${k}=${v}`).join("&");
