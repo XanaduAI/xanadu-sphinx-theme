@@ -18,9 +18,9 @@ import re
 
 # -- Project information -----------------------------------------------------
 
-project = 'Xanadu Sphinx Theme'
-copyright = '2023 | Xanadu | All rights reserved'
-author = 'Xanadu Inc.'
+project = "Xanadu Sphinx Theme"
+copyright = "2024 | Xanadu | All rights reserved"
+author = "Xanadu Inc."
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -51,7 +51,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_gallery.gen_gallery",
-    "m2r2"
+    "m2r2",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -60,7 +60,7 @@ templates_path = [xanadu_sphinx_theme.templates_dir()]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The master toctree document.
 master_doc = "index"
@@ -73,12 +73,12 @@ autosummary_imported_members = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'xanadu'
+html_theme = "xanadu"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -118,8 +118,8 @@ html_theme_options = {
                     "name": "GitHub",
                     "href": "https://github.com/XanaduAI/xanadu-sphinx-theme",
                     "external": True,
-                }
-            ]
+                },
+            ],
         },
         {
             "name": "Support",
@@ -134,9 +134,7 @@ html_theme_options = {
             "icon": "bx bxl-github",
         }
     ],
-    "extra_copyrights": [
-        "Any extra copyrights can be added here."
-    ],
+    "extra_copyrights": ["Any extra copyrights can be added here."],
     "border_colour": "#f48fb1",
     "prev_next_button_colour": "#f48fb1",
     "prev_next_button_hover_colour": "#ec407a",
@@ -148,7 +146,8 @@ html_theme_options = {
     "toc_mobile_heading_background_colour": "#fcd9e5",
     "toc_overview": True,
     "toc_global": True,
-    "relations": True
+    "relations": True,
+    "search_on_pennylane_ai": False,
 }
 
 

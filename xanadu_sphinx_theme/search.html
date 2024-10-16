@@ -1,3 +1,18 @@
+{% if theme_search_on_pennylane_ai %}
+  <!-- If JavaScript is enabled, redirect users to https://pennylane.ai/search. -->
+  <script type="text/javascript">
+    const search_version = window.location.pathname.includes("/latest/") ? "latest" : "stable";
+    const search_query = new URLSearchParams(window.location.search).get("q") || "";
+    const search_options = {contentType: "DOC", q: search_query, version: search_version};
+
+    const redirect_page = "https://pennylane.ai/search";
+    const redirect_query_params = Object.entries(search_options).map(([k, v]) => `${k}=${v}`).join("&");
+    const redirect_url = `${redirect_page}?${redirect_query_params}`;
+
+    window.location.replace(redirect_url);
+  </script>
+{% endif %}
+
 {%- extends "basic/search.html" %}
 
 {% block body %}
