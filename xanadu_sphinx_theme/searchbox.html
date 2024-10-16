@@ -1,27 +1,13 @@
 <div class="sidebar-block search-block">
-  <div id="main-search" class="md-input">
-    <input id="main-search-input" type="text" required>
-    <span class="bar"></span>
-    <label>Search</label>
+  <div id="main-search">
+    <form action="{{ pathto('search') }}" method="GET" role="form">
+      <div class="md-input">
+        <input name="q" type="text" required>
+        <span class="bar"></span>
+        <label>Search</label>
+      </div>
+      <input type="hidden" name="check_keywords" value="yes"/>
+      <input type="hidden" name="area" value="default"/>
+    </form>
   </div>
 </div>
-
-<script type="text/javascript">
-  const search_element = document.getElementById("main-search-input");
-  if (search_element !== null) {
-    search_element.addEventListener("keyup", event => {
-      if (event.key === "Enter") {
-        const search_version = window.location.pathname.includes("/latest/") ? "latest" : "stable";
-        const search_query = search_element.value;
-        // TOOD: Replace contentType value with "DOC".
-        const search_options = {contentType: "DEMO", q: search_query, version: search_version};
-
-        const redirect_page = "https://pennylane.ai/search";
-        const redirect_query_params = Object.entries(search_options).map(([k, v]) => `${k}=${v}`).join("&");
-        const redirect_url = `${redirect_page}?${redirect_query_params}`;
-
-        window.location.href = redirect_url;
-      }
-    });
-  }
-</script>

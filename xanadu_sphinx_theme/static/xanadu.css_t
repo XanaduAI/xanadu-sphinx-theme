@@ -640,6 +640,35 @@ div.sphinxsidebar input {
   color: #515151;
 }
 
+/* Left ToC Search Box
+----------------------------------------------------------------------------- */
+.form-control:focus {
+  border-color: #119a68;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(66, 164, 94, 0.6);
+}
+
+#main-search form .input-group {
+  width: 100%;
+  margin: 0 0 12px 0;
+  padding: 0;
+  border: none;
+  position: unset !important;
+}
+
+#main-search form .input-group input {
+  padding: 4px;
+  width: 100%;
+  border-radius: 20px;
+  margin: 0;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.search-page-form {
+  width: 350px;
+}
+
 /* Two-Pane Table List
 ----------------------------------------------------------------------------- */
 
