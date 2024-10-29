@@ -1,4 +1,5 @@
 """This module implements the ``youtube-video`` reST directive."""
+
 from inspect import cleandoc
 
 from docutils import nodes

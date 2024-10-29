@@ -1,8 +1,18 @@
 ## Release 0.6.0 (development release)
 
+### Improvements
+
+* Pinned some implicit requirements in `doc/requirements.txt`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
+* Bumped the pinned versions of `black` and `pillow`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Mikhail Andrenkov](https://github.com/Mandrenkov).
 
 ## Release 0.5.0 (current release)
 
