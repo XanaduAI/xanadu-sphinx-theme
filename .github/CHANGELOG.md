@@ -1,8 +1,15 @@
 ## Release 0.6.0 (development release)
 
+### Improvements
+
+* Pin implicit requirements in `doc/requirements.txt`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Mikhail Andrenkov](https://github.com/Mandrenkov).
 
 ## Release 0.5.0 (current release)
 
