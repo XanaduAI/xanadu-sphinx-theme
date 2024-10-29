@@ -2,7 +2,10 @@
 
 ### Improvements
 
-* Pin implicit requirements in `doc/requirements.txt`.
+* Pinned some implicit requirements in `doc/requirements.txt`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
+* Bumped the pinned versions of `black` and `pillow`.
   [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
 
 ### Contributors
