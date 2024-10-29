@@ -1,4 +1,5 @@
 """This module implements the ``index-card`` reST directive."""
+
 from inspect import cleandoc
 
 from docutils import nodes

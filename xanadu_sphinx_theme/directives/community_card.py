@@ -1,4 +1,5 @@
 """This module implements the ``community-card`` reST directive."""
+
 import re
 from inspect import cleandoc
 
