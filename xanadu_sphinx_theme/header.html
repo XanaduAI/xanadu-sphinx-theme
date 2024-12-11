@@ -80,6 +80,11 @@
       {% endfor %}
     </ul>
     <ul class="navbar-right-links desktop">
+      <button class="command-palette-button desktop" onclick="openCommandPalette()" aria-label="open command palette">
+        <i class="bx bx-search"></i>
+        <span>Search</span>
+        <span id="os-label"></span>
+      </button>
       {% for link in theme_navbar_right_links %}
         {{
           render_desktop_navbar_right_link(
@@ -196,7 +201,6 @@
           )
       }}
     {% endfor %}
-    <div id="os-label"></div>
   </ul>
 </div>
 
@@ -225,7 +229,7 @@
 
   /* Set OS Label */
   const OSLabel = document.getElementById('os-label');
-  OSLabel.innerHTML = isMac ? `${macShortcut}` : `${desktopShortcut}`;
+  OSLabel.innerHTML = isMac ? macShortcut : desktopShortcut;
 
   /* Open Handler */
   function openCommandPalette() {
