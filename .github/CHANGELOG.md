@@ -1,9 +1,17 @@
-## Release 0.6.0
+## Release 0.6.1
 
 ### Improvements
 
 * Added a theme option to redirect searches to https://pennylane.ai/search.
   [(#47)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/47)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+[Mikhail Andrenkov](https://github.com/Mandrenkov).
+
+## Release 0.6.0
 
 ### Improvements
 
