@@ -126,6 +126,10 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
     for a GitHub repository https://github.com/Organization/repo, this should be
     ``"github_repo": "Organization/repo"``.
 
+``search_on_pennylane_ai``
+    If ``True``, navigating to ``search.html`` (or using the search box) will redirect
+    users to https://pennylane.ai/search with the appropriate query parameters.
+
 Navigation Bar
 --------------
 
