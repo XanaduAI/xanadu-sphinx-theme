@@ -5,6 +5,14 @@
 * Added a theme option to redirect searches to https://pennylane.ai/search.
   [(#47)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/47)
 
+### Improvements
+
+* Pinned some implicit requirements in `doc/requirements.txt`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
+* Bumped the pinned versions of `black` and `pillow`.
+  [(#48)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/48)
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
