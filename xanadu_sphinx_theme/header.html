@@ -81,9 +81,10 @@
     </ul>
     <ul class="navbar-right-links desktop">
       <button class="command-palette-button desktop" onclick="openCommandPalette()" aria-label="open command palette">
-        <i class="bx bx-search"></i>
         <span>Search</span>
-        <span id="os-label"></span>
+        <span class="command-palette-button-shortcut">
+          <span id="os-label"></span>
+        </span>
       </button>
       {% for link in theme_navbar_right_links %}
         {{
@@ -211,7 +212,7 @@
  <script type="module" src="http://localhost:4173/assets/js/widget.js"></script>
  <!-- <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> -->
 
-<script defer>
+<script>
   /* Close on ESC keydown */
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
