@@ -1,3 +1,9 @@
+## Release 0.6.2 (development release)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
 ## Release 0.6.1
 
 ### Improvements
