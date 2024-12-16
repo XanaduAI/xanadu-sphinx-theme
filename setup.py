@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("xanadu_sphinx_theme/_version.py") as f:
     version = f.readlines()[-1].split()[-1].strip("\"'")
@@ -26,7 +26,12 @@ info = {
     "name": "xanadu-sphinx-theme",
     "packages": find_packages(where="."),
     "package_data": {
-        "xanadu_sphinx_theme": ["static/*", "*.html", "theme.conf", "templates/*/*.rst"],
+        "xanadu_sphinx_theme": [
+            "static/*",
+            "*.html",
+            "theme.conf",
+            "templates/*/*.rst",
+        ],
     },
     "provides": ["xanadu_sphinx_theme"],
     "url": "https://github.com/XanaduAI/xanadu-sphinx-theme",
@@ -46,6 +51,8 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Documentation",
     "Topic :: Documentation :: Sphinx",
     "Topic :: Software Development",
