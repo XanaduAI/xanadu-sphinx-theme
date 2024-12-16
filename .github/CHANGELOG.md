@@ -1,4 +1,4 @@
-## Release 0.6.0 (current release)
+## Release 0.6.0
 
 ### Improvements
 
