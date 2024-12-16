@@ -3868,7 +3868,7 @@ p.sphx-glr-signature a.reference.external {
 }
 
 .command-palette-button.desktop {
-  width: fit-content;
+  width: 140px;
 }
 
 .command-palette-button.mobile {
