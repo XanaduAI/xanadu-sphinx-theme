@@ -3862,10 +3862,19 @@ p.sphx-glr-signature a.reference.external {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #cfcfcf;
-  gap: 10px;
+  gap: 5px;
   height: 36px;
   transition: all 0.3s;
-  width: 140px;
+}
+
+.command-palette-button.desktop {
+  width: fit-content;
+}
+
+.command-palette-button.mobile {
+  width: 100%;
+  gap: 5px;
+  justify-content: flex-start;
 }
 
 .command-palette-button:hover,
@@ -3880,16 +3889,19 @@ p.sphx-glr-signature a.reference.external {
   line-height: 140%;
 }
 
+.command-palette-button-icon {
+  color: #9e9e9e;
+  font-size: 20px;
+}
+
 .command-palette-button-shortcut {
   background-color: #f1f1f1;
   border-radius: 5px;
   padding: 1px 4px;
 }
 
-/* Command Palette Button - XL MQ */
-/*--------------------------------*/
 @media (max-width: 1280px) {
-  .command-palette-button {
+  .command-palette-button.desktop {
     width: fit-content;
   }
 }

@@ -173,6 +173,14 @@
 
 <div class="navbar-links mobile">
   <ul>
+    <!-- Command Palette Search Button -->
+    <li class="navbar-link mobile">
+      <button class="command-palette-button mobile" onclick="openCommandPalette()" aria-label="open command palette">
+        <i class="bx bx-search command-palette-button-icon"></i>
+        <span>Search</span>
+      </button>
+    </li>
+
     {% for link in theme_navbar_left_links %}
       {{
           render_mobile_navbar_link(
