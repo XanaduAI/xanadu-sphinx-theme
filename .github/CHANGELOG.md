@@ -3,7 +3,7 @@
 ### Improvements
 
 * Updated python and action versions in `upload.yml`
-  [(#52)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/51)
+  [(#51)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/51)
   [(#52)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/52)
 
 
