@@ -1,8 +1,17 @@
-## Release 0.6.2 (development release)
+## Release 0.6.2 
+
+### Improvements
+
+* Updated python and action versions in `upload.yml`
+  [(#51)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/51)
+  [(#52)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/52)
+
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Ashish Kanwar Singh](https://github.com/ashishks0522).
 
 ## Release 0.6.1
 
