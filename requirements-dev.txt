@@ -1,4 +1,4 @@
-black==24.10.0
+black==24.8.0
 build==0.7.0
 isort[colors]==5.10.1
 pylint==2.13.7
