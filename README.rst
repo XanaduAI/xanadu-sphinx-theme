@@ -130,6 +130,10 @@ the ``html_theme_options`` dictionary in your ``conf.py`` file.
     If ``True``, navigating to ``search.html`` (or using the search box) will redirect
     users to https://pennylane.ai/search with the appropriate query parameters.
 
+``command_palette_enabled``
+    When set to ``True``, the command palette is activated, enabling users to easily
+    search and navigate all content within pennylane.ai.
+
 Navigation Bar
 --------------
 
