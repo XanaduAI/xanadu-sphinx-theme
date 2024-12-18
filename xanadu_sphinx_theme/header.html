@@ -80,12 +80,15 @@
       {% endfor %}
     </ul>
     <ul class="navbar-right-links desktop">
-      <button class="command-palette-button desktop" onclick="openCommandPalette()" aria-label="open command palette">
-        <span>Search</span>
-        <span class="command-palette-button-shortcut">
-          <span id="os-label"></span>
-        </span>
-      </button>
+      {% if theme_command_palette_enabled %}
+        <!-- Command Palette Button - Desktop -->
+        <button class="command-palette-button desktop" onclick="openCommandPalette()" aria-label="open command palette">
+          <span>Search</span>
+          <span class="command-palette-button-shortcut">
+            <span id="os-label"></span>
+          </span>
+        </button>
+      {% endif %}
       {% for link in theme_navbar_right_links %}
         {{
           render_desktop_navbar_right_link(
@@ -173,13 +176,15 @@
 
 <div class="navbar-links mobile">
   <ul>
-    <!-- Command Palette Search Button -->
-    <li class="navbar-link mobile">
-      <button class="command-palette-button mobile" onclick="openCommandPalette()" aria-label="open command palette">
-        <i class="bx bx-search command-palette-button-icon"></i>
-        <span>Search</span>
-      </button>
-    </li>
+    {% if theme_command_palette_enabled %}
+      <!-- Command Palette Button - Mobile -->
+      <li class="navbar-link mobile">
+        <button class="command-palette-button mobile" onclick="openCommandPalette()" aria-label="open command palette">
+          <i class="bx bx-search command-palette-button-icon"></i>
+          <span>Search</span>
+        </button>
+      </li>
+    {% endif %}
 
     {% for link in theme_navbar_left_links %}
       {{
@@ -213,34 +218,31 @@
   </ul>
 </div>
 
-<!-- Command Palette WC -->
-<pennylane-help></pennylane-help>
+{% if theme_command_palette_enabled %}
+  
+  <!-- Initialize Command Palette Widget -->
+  <pennylane-help></pennylane-help>
+  <!-- <script type="module" src="https://widget.dev.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> -->
+  <!-- <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> --> 
+  <script type="module" src="http://localhost:4173/assets/js/widget.js"></script>
 
-<!-- Command Palette Script -->
- <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script>
- <!-- <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> -->
+  <script>
+    /* OS Detection */
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const desktopShortcut = "Ctrl+K";
+    const macShortcut = "⌘K";
+    const OSLabel = document.getElementById('os-label');
+    OSLabel.innerHTML = isMac ? macShortcut : desktopShortcut;
 
-<script>
-  /* Close on ESC keydown */
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      window.postMessage("command-palette:close", "*");
+    /* Open Handler */
+    function openCommandPalette() {
+      window.postMessage("command-palette:open", "*");
     }
-  }); 
-
-  /* Open on Keyboard Shortcut */
-  const desktopShortcut = "Ctrl+K";
-  const macShortcut = "⌘K";
-
-  /* Detect User OS */
-  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-
-  /* Set OS Label */
-  const OSLabel = document.getElementById('os-label');
-  OSLabel.innerHTML = isMac ? macShortcut : desktopShortcut;
-
-  /* Open Handler */
-  function openCommandPalette() {
-    window.postMessage("command-palette:open", "*");
-  }
-</script>
+    /* Close on ESC Handler */
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        window.postMessage("command-palette:close", "*");
+      }
+    }); 
+  </script>
+{% endif %}
