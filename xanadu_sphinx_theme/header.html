@@ -82,7 +82,12 @@
     <ul class="navbar-right-links desktop">
       {% if theme_command_palette_enabled %}
         <!-- Command Palette Button - Desktop -->
-        <button class="command-palette-button desktop" onclick="openCommandPalette()" aria-label="open command palette">
+        <button 
+          type="button" 
+          class="command-palette-button desktop" 
+          onclick="openCommandPalette()" 
+          aria-label="open command palette"
+        >
           <span>Search</span>
           <span class="command-palette-button-shortcut">
             <span id="os-label"></span>
@@ -179,7 +184,12 @@
     {% if theme_command_palette_enabled %}
       <!-- Command Palette Button - Mobile -->
       <li class="navbar-link mobile">
-        <button class="command-palette-button mobile" onclick="openCommandPalette()" aria-label="open command palette">
+        <button 
+          type="button" 
+          class="command-palette-button mobile" 
+          onclick="openCommandPalette()" 
+          aria-label="open command palette"
+        >
           <i class="bx bx-search command-palette-button-icon"></i>
           <span>Search</span>
         </button>
@@ -219,15 +229,12 @@
 </div>
 
 {% if theme_command_palette_enabled %}
-  
   <!-- Initialize Command Palette Widget -->
   <pennylane-help></pennylane-help>
-  <script type="module" src="https://widget.dev.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script>
-  <!-- <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> --> 
-  <!-- <script type="module" src="http://localhost:4173/assets/js/widget.js"></script> -->
+  <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> 
 
-  <script>
-    /* OS Detection */
+  <script type="text/javascript">
+    /* OS Detection & Shortcut Logic */
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     const desktopShortcut = "Ctrl+K";
     const macShortcut = "⌘K";
@@ -243,6 +250,6 @@
       if (event.key === 'Escape') {
         window.postMessage("command-palette:close", "*");
       }
-    }); 
+    });
   </script>
 {% endif %}
