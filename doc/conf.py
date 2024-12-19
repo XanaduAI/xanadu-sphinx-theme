@@ -99,6 +99,7 @@ html_favicon = "_static/favicon.ico"
 
 # Xanadu theme options (see theme.conf for more information).
 html_theme_options = {
+    "command_palette_enabled": False,
     "navbar_name": "Xanadu Sphinx Theme",
     "navbar_logo_colour": "#f48fb1",
     "navbar_left_links": [
