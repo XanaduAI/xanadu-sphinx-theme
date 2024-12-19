@@ -1,8 +1,16 @@
-## Release 0.7.0 (development release)
+## Release 0.7.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Alan Martin](https://github.com/alan-emartin),
+
+## Features
+
+* Embedded `pennylane-command-palette`, created button ui, and added a new
+  `command_palette_enabled` option to the theme. [(#57)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/57)
+
 
 ## Release 0.6.2 
 
