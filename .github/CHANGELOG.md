@@ -16,6 +16,7 @@ This release contains contributions from (in alphabetical order):
 
 ### Contributors
 
+This release contains contributions from (in alphabetical order):
 
 [Alan Martin](https://github.com/alan-emartin),
 
