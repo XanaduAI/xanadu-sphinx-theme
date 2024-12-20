@@ -8,7 +8,7 @@ This release contains contributions from (in alphabetical order):
 
 ### Bug fixes
 
-* fixed an issue with the `command_palette_enabled` and `search_on_pennylane` options
+* Fixed an issue with the `command_palette_enabled` and `search_on_pennylane` options
   having falsey values, big thanks to [Mikhail Andrenkov](https://github.com/Mandrenkov).
   [(#60)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/60)
 
