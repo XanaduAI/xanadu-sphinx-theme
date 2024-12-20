@@ -80,7 +80,7 @@
       {% endfor %}
     </ul>
     <ul class="navbar-right-links desktop">
-      {% if theme_command_palette_enabled %}
+      {% if theme_command_palette_enabled|lower == 'true' %}
         <!-- Command Palette Button - Desktop -->
         <button 
           type="button" 
@@ -181,7 +181,7 @@
 
 <div class="navbar-links mobile">
   <ul>
-    {% if theme_command_palette_enabled %}
+    {% if theme_command_palette_enabled|lower == 'true' %}
       <!-- Command Palette Button - Mobile -->
       <li class="navbar-link mobile">
         <button 
@@ -228,7 +228,7 @@
   </ul>
 </div>
 
-{% if theme_command_palette_enabled %}
+{% if theme_command_palette_enabled|lower == 'true' %}
   <!-- Initialize Command Palette Widget -->
   <pennylane-help></pennylane-help>
   <script type="module" src="https://widget.cloud.pennylane.ai/command-palette/assets/js/widget.js"></script> 
