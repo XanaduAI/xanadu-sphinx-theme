@@ -1,8 +1,16 @@
-## Release 0.8.0 (development release)
+## Release 0.7.1
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+- [Alan Martin](https://github.com/alan-emartin)
+
+### Bug fixes
+
+* Fixed an issue with the `command_palette_enabled` and `search_on_pennylane` options
+  having falsey values, big thanks to [Mikhail Andrenkov](https://github.com/Mandrenkov).
+  [(#60)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/60)
 
 ## Release 0.7.0
 

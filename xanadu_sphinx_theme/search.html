@@ -1,4 +1,4 @@
-{% if theme_search_on_pennylane_ai %}
+{% if theme_search_on_pennylane_ai|lower == 'true' %}
   <!-- If JavaScript is enabled, redirect users to https://pennylane.ai/search. -->
   <script type="text/javascript">
     const search_version = window.location.pathname.includes("/latest/") ? "latest" : "stable";
