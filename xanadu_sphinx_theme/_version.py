@@ -3,4 +3,4 @@ This module specifies the Xanadu Sphinx Theme version with https://semver.org/
 using the following format: <major>.<minor>.<patch>[-<pre-release>].
 """
 
-__version__ = "0.7.1"
+__version__ = "0.8.0-dev"
