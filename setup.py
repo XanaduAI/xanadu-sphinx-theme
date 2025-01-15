@@ -23,7 +23,7 @@ info = {
     "long_description": open("README.rst").read(),
     "long_description_content_type": "text/x-rst",
     "include_package_data": True,
-    "name": "xanadu-sphinx-theme",
+    "name": "xanadu_sphinx_theme",
     "packages": find_packages(where="."),
     "package_data": {
         "xanadu_sphinx_theme": [
