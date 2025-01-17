@@ -149,6 +149,7 @@ html_theme_options = {
     "toc_global": True,
     "relations": True,
     "search_on_pennylane_ai": False,
+    "hotkeys": False,
 }
 
 
