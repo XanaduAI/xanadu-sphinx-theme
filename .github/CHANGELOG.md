@@ -16,6 +16,7 @@ This release contains contributions from (in alphabetical order):
 
 - Update `name` in `setup.py` so the build does not use `-` in the name. This is to comply with [PEP 625](https://peps.python.org/pep-0625/), which is causing deprication warnings from PyPI
 - Update year in footer to 2025
+- Disable hotkeys in theme
 
 ## Release 0.7.1
 
