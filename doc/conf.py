@@ -15,11 +15,12 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
 project = "Xanadu Sphinx Theme"
-copyright = "2025 | Xanadu | All rights reserved"
+copyright = f"{datetime.now().year} | Xanadu | All rights reserved"
 author = "Xanadu Inc."
 
 # The version info for the project you're documenting, acts as replacement for
