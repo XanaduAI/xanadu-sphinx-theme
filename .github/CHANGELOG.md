@@ -1,4 +1,4 @@
-## Release 0.7.2
+## Release 0.8.0
 
 ### Contributors
 
