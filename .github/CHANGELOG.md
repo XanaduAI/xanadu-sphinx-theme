@@ -1,8 +1,16 @@
-## Release 0.8.0 (development release)
+## Release 0.8.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+- [Andrew Gardhouse](https://github.com/AndrewGardhouse)
+
+### Features
+
+- Update `name` in `setup.py` so the build does not use `-` in the name. This is to comply with [PEP 625](https://peps.python.org/pep-0625/), which is causing deprication warnings from PyPI
+- Update year in footer
+- Disable hotkeys in theme
 
 ## Release 0.7.1
 

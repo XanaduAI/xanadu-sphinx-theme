@@ -15,11 +15,12 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import re
+from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
 project = "Xanadu Sphinx Theme"
-copyright = "2024 | Xanadu | All rights reserved"
+copyright = f"{datetime.now().year} | Xanadu | All rights reserved"
 author = "Xanadu Inc."
 
 # The version info for the project you're documenting, acts as replacement for
@@ -149,6 +150,7 @@ html_theme_options = {
     "toc_global": True,
     "relations": True,
     "search_on_pennylane_ai": False,
+    "hotkeys": False,
 }
 
 
