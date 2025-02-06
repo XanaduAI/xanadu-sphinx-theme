@@ -1,3 +1,15 @@
+## Release 0.9.1
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+- [Andrew Gardhouse](https://github.com/AndrewGardhouse)
+
+### Features
+
+- Fix build workflow
+
 ## Release 0.9.0
 
 ### Contributors
