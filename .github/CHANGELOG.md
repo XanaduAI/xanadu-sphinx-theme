@@ -1,8 +1,14 @@
-## Release 0.10.0 (development release)
+## Release 0.10.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+- [Andrew Gardhouse](https://github.com/AndrewGardhouse)
+
+### Features
+
+- Fix build workflow
 
 ## Release 0.9.1
 
