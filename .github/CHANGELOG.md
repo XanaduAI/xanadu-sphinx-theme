@@ -1,8 +1,14 @@
-## Release 0.9.0 (development release)
+## Release 0.9.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+- [Andrew Gardhouse](https://github.com/AndrewGardhouse)
+
+### Features
+
+- Project filter is now passed to search options when `search_on_pennylane_ai` is `True`
 
 ## Release 0.8.0
 
