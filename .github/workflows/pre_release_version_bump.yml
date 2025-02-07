@@ -38,4 +38,4 @@ jobs:
             to `${{ steps.versions.outputs.new_version }}`.
           commit-message: Bump version to `${{ steps.versions.outputs.new_version }}`
           branch: pre-release-version-bump
-          reviewers: mandrenkov, josh146
+          reviewers: andrewgardhouse, ashishks0522, josh146
