@@ -1,8 +1,12 @@
-## Release 0.13.0 (development release)
+## Release 0.13.0
 
 ### Contributors
 
-This release contains contributions from (in alphabetical order):
+- [Andrew Gardhouse](https://github.com/AndrewGardhouse)
+
+### Features
+
+- Update `project` to `projects` in search URL query string
 
 ## Release 0.12.0
 

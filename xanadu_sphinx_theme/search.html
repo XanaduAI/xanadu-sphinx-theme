@@ -2,9 +2,9 @@
   <!-- If JavaScript is enabled, redirect users to https://pennylane.ai/search. -->
   <script type="text/javascript">
     const DOC_PROJECTS = [
-      { urlPath: '/projects/catalyst/', projects: 'catalyst' },
-      { urlPath: '/projects/lightning/', projects: 'pennylane-lightning' },
-      { urlPath: '/projects/qiskit/', projects: 'pennylane-qiskit' },
+      { urlPath: '/projects/catalyst/', project: 'catalyst' },
+      { urlPath: '/projects/lightning/', project: 'pennylane-lightning' },
+      { urlPath: '/projects/qiskit/', project: 'pennylane-qiskit' },
     ]
 
     const search_version = window.location.pathname.includes("/latest/") ? "latest" : "stable";
@@ -16,7 +16,7 @@
       contentType: 'DOC',
       q: search_query,
       version: search_version,
-      project: search_project ? search_project.projects : 'pennylane',
+      projects: search_project ? search_project.project : 'pennylane',
     }
 
     const redirect_page = "https://pennylane.ai/search";
