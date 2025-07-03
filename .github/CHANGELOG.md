@@ -1,8 +1,15 @@
-## Release 0.14.0 (development release)
+## Release 0.14.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Ashish Kanwar Singh](https://github.com/ashishks0522).
+
+### Features
+- Replaced jquery.nanoscroller with overlayscrollbars as recommended [here](https://github.com/jamesflorentino/nanoScrollerJS?tab=readme-ov-file#this-project-is-not-maintained).
+- Update JQuery implementation of right sidebar scroll logic to be in JavaScript.
+
 
 ## Release 0.13.0
 
