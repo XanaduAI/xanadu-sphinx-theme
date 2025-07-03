@@ -273,34 +273,35 @@
   </script>
 
   <script type="text/javascript">
-    $(document).ready(() => {
-      const localToCTop = parseInt($(".localtoc-container").css("top"), 10);
-      const navbarHeight = $("nav").height();
-      const footerHeight = $("footer").height();
+    document.addEventListener('DOMContentLoaded', function() {
+      const localToCContainer = document.querySelector(".localtoc-container");
+      const localToCTop = parseInt(getComputedStyle(localToCContainer).top, 10);
+      const navbarHeight = document.querySelector("nav").offsetHeight;
+      const footerHeight = document.querySelector("footer").offsetHeight;
       const localToCPadding = localToCTop - navbarHeight;
 
       function adjustLocalToC() {
         // Adjusts the height and vertical offset of the local ToC.
-        const scrollTop = $(window).scrollTop();
-        const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - scrollTop;
 
-        const localToCHeight = $(window).height() - localToCTop - Math.max(0, footerHeight - scrollBottom) - localToCPadding;
-        $(".localtoc-container").css("height", localToCHeight + "px");
-        $(".localtoc-container .nano-content").css("height", localToCHeight + "px");
+        const localToCHeight = window.innerHeight - localToCTop - Math.max(0, footerHeight - scrollBottom) - localToCPadding;
+        localToCContainer.style.height = localToCHeight + "px";
+        localToCContainer.querySelector(".nano-content").style.height = localToCHeight + "px";
 
         if (scrollBottom <= 1) {
           // Switching the position away from "fixed" ensures that the local ToC
           // "bounces" with the content and stays above the footer.
-          $(".localtoc-container").css("position", "absolute");
-          $(".localtoc-container").css("top", (scrollTop + localToCPadding) + "px");
+          localToCContainer.style.position = "absolute";
+          localToCContainer.style.top = (scrollTop + localToCPadding) + "px";
         } else {
-          $(".localtoc-container").css("position", "fixed");
-          $(".localtoc-container").css("top", localToCTop + "px");
+          localToCContainer.style.position = "fixed";
+          localToCContainer.style.top = localToCTop + "px";
         }
       }
 
       adjustLocalToC();
-      $(window).scroll(adjustLocalToC);
+      window.addEventListener('scroll', adjustLocalToC);
     });
   </script>
 
