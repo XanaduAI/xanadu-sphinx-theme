@@ -325,7 +325,7 @@
             }, 10);
         });
         if (window.location.hash) {
-          var target = document.querySelector("[id='" + window.location.hash.substr(1) + "']");
+          const target = document.querySelector("[id='" + window.location.hash.substr(1) + "']");
           if (target && target.closest(".collapse")) {
             target.closest(".collapse").classList.add("show");
             target.closest(".collapse").previousElementSibling.querySelector(".rotate").classList.add("up");
