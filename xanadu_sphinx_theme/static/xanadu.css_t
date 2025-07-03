@@ -793,6 +793,7 @@ td:first-child {
   transition-property: opacity;
   transition-duration: 1s;
   opacity: 0.5;
+  overflow: auto;
 }
 
 .localtoc-container .nano-content{
