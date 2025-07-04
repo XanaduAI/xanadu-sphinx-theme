@@ -26,8 +26,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.14/css/mdb.min.css">
-  <!-- NanoScroller -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/css/nanoscroller.min.css">
+  <!-- Overlay Scrollbars -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/styles/overlayscrollbars.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Syntax Highlighting -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow-night.min.css">
 
@@ -248,13 +248,14 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-  <!-- NanoScroller -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
+  <!-- Overlay Scrollbars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/overlayscrollbars.cjs.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Syntax Highlighting -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
   <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 
   <script type="text/javascript">
+
     $("a.reference.internal").each(function(){
       var link = $(this).attr("href");
 
@@ -268,60 +269,67 @@
 
     $(".document > .section").removeClass("section");
     $("h1 ~ .section").removeClass("section");
-    $(".nano").nanoScroller();
+    OverlayScrollbars(document.querySelector('.nano'), {});
   </script>
 
   <script type="text/javascript">
-    $(document).ready(() => {
-      const localToCTop = parseInt($(".localtoc-container").css("top"), 10);
-      const navbarHeight = $("nav").height();
-      const footerHeight = $("footer").height();
+    document.addEventListener('DOMContentLoaded', function() {
+      const localToCContainer = document.querySelector(".localtoc-container");
+      const localToCTop = parseInt(getComputedStyle(localToCContainer).top, 10);
+      const navbarHeight = document.querySelector("nav").offsetHeight;
+      const footerHeight = document.querySelector("footer").offsetHeight;
       const localToCPadding = localToCTop - navbarHeight;
 
       function adjustLocalToC() {
         // Adjusts the height and vertical offset of the local ToC.
-        const scrollTop = $(window).scrollTop();
-        const scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - scrollTop;
 
-        const localToCHeight = $(window).height() - localToCTop - Math.max(0, footerHeight - scrollBottom) - localToCPadding;
-        $(".localtoc-container").css("height", localToCHeight + "px");
-        $(".localtoc-container .nano-content").css("height", localToCHeight + "px");
+        const localToCHeight = window.innerHeight - localToCTop - Math.max(0, footerHeight - scrollBottom) - localToCPadding;
+        localToCContainer.style.height = localToCHeight + "px";
+        localToCContainer.querySelector(".nano-content").style.height = localToCHeight + "px";
 
         if (scrollBottom <= 1) {
           // Switching the position away from "fixed" ensures that the local ToC
           // "bounces" with the content and stays above the footer.
-          $(".localtoc-container").css("position", "absolute");
-          $(".localtoc-container").css("top", (scrollTop + localToCPadding) + "px");
+          localToCContainer.style.position = "absolute";
+          localToCContainer.style.top = (scrollTop + localToCPadding) + "px";
         } else {
-          $(".localtoc-container").css("position", "fixed");
-          $(".localtoc-container").css("top", localToCTop + "px");
+          localToCContainer.style.position = "fixed";
+          localToCContainer.style.top = localToCTop + "px";
         }
       }
 
       adjustLocalToC();
-      $(window).scroll(adjustLocalToC);
+      window.addEventListener('scroll', adjustLocalToC);
     });
   </script>
 
   <script type="text/javascript">
-    if ($(".current").length) {
-      var target = $(".current")[0]
+    if (document.querySelector(".current")) {
+      var target = document.querySelector(".current");
       var rect = target.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
-          $(".nano").nanoScroller({ scrollTo: $(".current") });
+          const nanoElement = document.querySelector(".nano");
+          const currentElement = document.querySelector(".current");
+          if (nanoElement && currentElement) {
+            nanoElement.scrollTop = currentElement.offsetTop - nanoElement.offsetTop;
+          }
       } else {
-          $(".nano").nanoScroller({ scrollTop: 0 });
+          document.querySelector(".nano").scrollTop = 0;
       }
     }
-    $(document).ready(function () {
-        $(".css-transitions-only-after-page-load").each(function (index, element) {
-            setTimeout(function () { $(element).removeClass("css-transitions-only-after-page-load") }, 10);
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll(".css-transitions-only-after-page-load").forEach(function (element) {
+            setTimeout(function () { 
+                element.classList.remove("css-transitions-only-after-page-load"); 
+            }, 10);
         });
         if (window.location.hash) {
-          var target = $("[id='" + window.location.hash.substr(1) + "']");
-          if (target.closest(".collapse").length) {
-            target.closest(".collapse").addClass("show");
-            target.closest(".collapse").prev().find(".rotate").addClass("up");
+          const target = document.querySelector("[id='" + window.location.hash.substr(1) + "']");
+          if (target && target.closest(".collapse")) {
+            target.closest(".collapse").classList.add("show");
+            target.closest(".collapse").previousElementSibling.querySelector(".rotate").classList.add("up");
           }
         }
     });
