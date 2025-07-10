@@ -5,12 +5,12 @@
         {% if display_toc %}
           <h3>Contents</h3>
           <!-- Display the ToC for the current document if it is not empty. -->
-          {{ toctree(maxdepth=1, collapse=True, includehidden=True) | replace("<li>", "<li class='current'>")
-                 | replace("<ul>", "<ul class='current'>")}}
+          <!-- {{ toctree | replace("<li>", "<li class='current'>")
+                 | replace("<ul>", "<ul class='current'>")}} -->
         {% elif theme_toc_subset %}
           <h3>Contents</h3>
           <!-- Display the ToC for a subset of the current document tree. -->
-          {{ toctree(maxdepth=1, collapse=True, includehidden=True) }}
+          {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
         {% endif %}
     </div>
 
