@@ -2,16 +2,7 @@
 <div class="localtoc-container nano has-scrollbar">
   <div class="nano-content">
     <div id="localtoc">
-        {% if display_toc %}
-          <h3>Contents</h3>
-          <!-- Display the ToC for the current document if it is not empty. -->
-          {{ toc | replace("<li>", "<li class='current'>")
-                 | replace("<ul>", "<ul class='current'>") | replace("docutils literal notranslate", " xref py py-obj docutils literal notranslate")}}
-        {% elif theme_toc_subset %}
-          <h3>Contents</h3>
-          <!-- Display the ToC for a subset of the current document tree. -->
-          {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
-        {% endif %}
+      {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
     </div>
 
     <div class="xanadu-call-to-action-links">
