@@ -3,6 +3,11 @@
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+- [Runor Agbaire](https://github.com/runora95)
+
+### Bug fixes
+
+* Fix docs right sidebar contents menu to reference doctree [(#91)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/91)
 
 ## Release 0.14.0
 
