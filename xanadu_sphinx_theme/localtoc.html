@@ -6,7 +6,7 @@
           <h3>Contents</h3>
           <!-- Display the ToC for the current document if it is not empty. -->
           {{ toc | replace("<li>", "<li class='current'>")
-                 | replace("<ul>", "<ul class='current'>")}}
+                 | replace("<ul>", "<ul class='current'>") | replace("docutils literal notranslate", " xref py py-obj docutils literal notranslate")}}
         {% elif theme_toc_subset %}
           <h3>Contents</h3>
           <!-- Display the ToC for a subset of the current document tree. -->
