@@ -449,9 +449,13 @@
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
       for (const [i, link] of navbar_left_links.entries()) {
         const dropdown = link.querySelector(".navbar-dropdown");
-        const button = link.querySelector("button");
+
+        // trigger is the element that controls the opening/closing of the dropdown.
+        // Will be <a> tag for links, or <button> otherwise
+        const trigger = link.querySelector(".dropdown-trigger");
+
         if (dropdown !== null) {
-          timers[i] = {link: link, button: button, timeout: undefined};
+          timers[i] = {link: link, trigger: trigger, timeout: undefined};
 
           // Expands the current dropdown and closes other dropdowns.
           const expandDropdown = () => {
@@ -459,18 +463,18 @@
               clearTimeout(timer.timeout);
               if (i !== j) {
                 timer.link.classList.remove("open");
-                setAriaAttributes(timer.button, false);
+                setAriaAttributes(timer.trigger, false);
               }
             }
             link.classList.add("open");
-            setAriaAttributes(button, true);
+            setAriaAttributes(trigger, true);
           }
 
           // Closes the current dropdown after the given delay.
-          const collapseDropdown = (event, delay = 1000) => {
+          const collapseDropdown = (event, delay = 0) => {
             timers[i].timeout = setTimeout(function(event){
               link.classList.remove("open");
-              setAriaAttributes(button, false);
+              setAriaAttributes(trigger, false);
             }, delay);
           }
 
@@ -485,7 +489,7 @@
 
           link.addEventListener("mouseenter", expandDropdown);
           link.addEventListener("mouseleave", collapseDropdown);
-          button.addEventListener("click", toggleDropdown);
+          link.addEventListener("click", toggleDropdown);
         }
       }
     });
@@ -506,7 +510,7 @@
   <!-- Toggles whether the navbar dropdown is displayed on mobile. -->
   <script type="text/javascript">
     function toggleMobileNavbar(button) {
-      const dropdown = document.querySelector(".mobile.navbar-links");
+            const dropdown = document.querySelector(".mobile.navbar-links");
       if (dropdown !== null) {
         dropdown.classList.toggle("open");
         button.classList.toggle("open");

@@ -1843,13 +1843,15 @@ footer {
 ----------------------------------------------------------------------------- */
 
 nav {
-  align-items: center;
-  background-color: white;
-  box-shadow: -1px 14px 30px -20px rgba(0, 0, 0, 0.3);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.10), 0 10px 8px 0 rgba(0, 0, 0, 0.04);
   font-family: 'Quicksand', sans-serif !important;
   height: 50px;
-  padding: 0 16px 2px 16px;
+  padding: 0 16px;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -1859,7 +1861,7 @@ nav {
 .navbar-logo-title-container {
   display: inline-block;
   line-height: 22.5px;
-  padding: 8px 20px 8px 0;
+  padding: 8px 0;
 }
 
 .navbar-logo-title-title {
@@ -1878,6 +1880,7 @@ nav {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+  height: 100%;
 }
 
 /* Navigation Bar Desktop Left Links
@@ -1894,24 +1897,22 @@ nav {
 
 .desktop.navbar-left-link {
   display: flex;
+  align-items: center;
   flex-direction: row;
-  margin-left: 16px;
   position: relative;
-}
+  height: 100%;
+  padding: 0 8px;
+  gap: 4px;
 
-.desktop.navbar-left-link img {
-  margin-right: 8px;
+  color: #000;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 }
 
 .desktop.navbar-left-link > a {
-  align-items: center;
-  color: #000;
-  display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  height: 43px;
-  padding: 4px 8px;
+  color: inherit;
 }
 
 .desktop.navbar-left-link i.bx-chevron-down {
@@ -1923,13 +1924,14 @@ nav {
   margin-left: 8px;
 }
 
-.desktop.navbar-left-link button {
+.desktop.navbar-left-link button,
+.desktop.navbar-left-link a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   background-color: #FFFFFF;
   border-width: 0px;
-  line-height: 24px;
-  padding: 0px;
-  padding-block: 0px;
-  padding-inline: 0px;
+  padding: 0;
 }
 
 .desktop.navbar-left-link button i {
@@ -1944,9 +1946,9 @@ nav {
   transition-duration: 0.15s;
 }
 
-.desktop.navbar-left-link:hover button i {
-  color: {{ theme_border_colour }};
-}
+      .desktop.navbar-left-link:hover button i {
+        color: {{ theme_border_colour }};
+      }
 
 .desktop.navbar-left-link:hover::after {
   background-color: {{ theme_border_colour }};
@@ -1954,6 +1956,7 @@ nav {
   display: block;
   position: absolute;
   height: 2.5px;
+  left: 0;
   top: 44.5px;
   width: 100%;
 }
