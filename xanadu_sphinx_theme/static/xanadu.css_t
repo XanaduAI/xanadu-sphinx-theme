@@ -1946,9 +1946,9 @@ nav {
   transition-duration: 0.15s;
 }
 
-      .desktop.navbar-left-link:hover button i {
-        color: {{ theme_border_colour }};
-      }
+.desktop.navbar-left-link:hover button i {
+  color: {{ theme_border_colour }};
+}
 
 .desktop.navbar-left-link:hover::after {
   background-color: {{ theme_border_colour }};
@@ -2056,15 +2056,16 @@ nav {
 }
 
 .mobile.navbar-menu > button {
+  display: flex;
+  align-items: center;
   background-color: #FFFFFF;
   border-width: 0px;
-  line-height: 32px;
-  padding: 4px 16px;
+  padding: 0;
 }
 
 .mobile.navbar-menu > button > i {
   color: #515151;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 400;
 }
 
@@ -2115,7 +2116,7 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  padding: 16px 0;
+  padding: 20px 0;
   transition-duration: 350ms;
 }
 
