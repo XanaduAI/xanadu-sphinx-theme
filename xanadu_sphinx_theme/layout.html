@@ -452,7 +452,7 @@
         const dropdown = link.querySelector(".navbar-dropdown");
 
         // trigger is the element that controls the opening/closing of the dropdown.
-        // Will be <a> tag for links, or <button> otherwise
+        // will be <a> tag for links, or <button> otherwise
         const trigger = link.querySelector(".dropdown-trigger");
 
         if (dropdown !== null) {
@@ -511,7 +511,7 @@
   <!-- Toggles whether the navbar dropdown is displayed on mobile. -->
   <script type="text/javascript">
     function toggleMobileNavbar(button) {
-            const dropdown = document.querySelector(".mobile.navbar-links");
+      const dropdown = document.querySelector(".mobile.navbar-links");
       if (dropdown !== null) {
         dropdown.classList.toggle("open");
         button.classList.toggle("open");
