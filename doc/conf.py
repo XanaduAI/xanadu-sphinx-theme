@@ -133,7 +133,7 @@ html_theme_options = {
         {
             "name": "GitHub",
             "href": "https://github.com/XanaduAI/xanadu-sphinx-theme",
-            "icon": "bx bxl-github",
+            "icon": "bxl bx-github",
         }
     ],
     "extra_copyrights": ["Any extra copyrights can be added here."],

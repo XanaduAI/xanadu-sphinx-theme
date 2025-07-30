@@ -12,6 +12,19 @@
       </p>
     </div>
 
+    <!-- Links -->
+    <div class="footer-links">
+      <div class="footer-link-spacer"></div>
+      {% for column in theme_footer_links %}
+      <div class="footer-link-column">
+        <p class="footer-link-heading">{{ column.title }}</p>
+        {% for link in column.links %}
+          <a class="footer-link-item" href="{{ link.href }}">{{ link.name }}</a>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
     <div class="footer-social-icons-and-taglines">
       <!-- Social Icons -->
       <div class="footer-social-icons">
@@ -30,17 +43,6 @@
       {% endfor %}
     </div>
 
-    <!-- Links -->
-    <div class="footer-links">
-      {% for column in theme_footer_links %}
-      <div class="footer-link-column">
-        <p class="footer-link-heading">{{ column.title }}</p>
-        {% for link in column.links %}
-          <a class="footer-link-item" href="{{ link.href }}">{{ link.name }}</a>
-        {% endfor %}
-      </div>
-      {% endfor %}
-    </div>
   </div>
 
   <hr class="footer-separator">
@@ -65,15 +67,15 @@
     </div>
 
     <!-- Policies -->
-    <div class="footer-policies">
-      {% if theme_footer_policies %}
-        <a class="footer-policy-item" href="{{ theme_footer_policies[0].href }}"><u>{{ theme_footer_policies[0].text }}</u></a>
-        {% for legal in theme_footer_policies[1:] %}
-          <div class="footer-policy-border"></div>
-          <a class="footer-policy-item" href="{{ legal.href }}"><u>{{ legal.text }}</u></a>
-        {% endfor %}
-      {% endif %}
-    </div>
+    {% if theme_footer_policies %}
+      <div class="footer-policies">
+          <a class="footer-policy-item" href="{{ theme_footer_policies[0].href }}"><u>{{ theme_footer_policies[0].text }}</u></a>
+          {% for legal in theme_footer_policies[1:] %}
+            <div class="footer-policy-border"></div>
+            <a class="footer-policy-item" href="{{ legal.href }}"><u>{{ legal.text }}</u></a>
+          {% endfor %}
+      </div>
+    {% endif %}
   </div>
 
 </footer>

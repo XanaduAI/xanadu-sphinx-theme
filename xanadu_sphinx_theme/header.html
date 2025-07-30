@@ -19,7 +19,7 @@
       {% if href %} <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
         <span>{{ name }}</span>
         {% if external %}
-          <i class="bx bx-link-external"></i>
+          <i class='bx bx-arrow-out-up-right-square'></i> 
         {% elif dropdown %}
           <i class="bx bx-chevron-down"></i>
         {% endif %}
@@ -34,7 +34,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class="bx bx-link-external"></i>
+                  <i class='bx bx-arrow-out-up-right-square'></i> 
                 {% endif %}
               </a>
             </li>
@@ -109,7 +109,7 @@
           <div>
             <span>{{ name }}</span>
             {% if external %}
-              <i class="bx bx-link-external"></i>
+              <i class='bx bx-arrow-out-up-right-square'></i> 
             {% endif %}
           </div>
           {% if dropdown %}
@@ -122,7 +122,7 @@
             <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
               <span>{{ name }}</span>
               {% if external %}
-                <i class="bx bx-link-external"></i>
+                <i class='bx bx-arrow-out-up-right-square'></i> 
               {% endif %}
             </a>
           {% else %}
@@ -140,7 +140,7 @@
                     {{ name }}
                   {%- endif -%}
                   {% if external %}
-                    <i class="bx bx-link-external"></i>
+                    <i class='bx bx-arrow-out-up-right-square'></i> 
                   {% endif %}
                 </a>
               {% endif %}
@@ -153,7 +153,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class="bx bx-link-external"></i>
+                  <i class='bx bx-arrow-out-up-right-square'></i> 
                 {% endif %}
               </a>
             </li>
