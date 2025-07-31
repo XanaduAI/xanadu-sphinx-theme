@@ -445,39 +445,37 @@
 
   <!-- Delays the closing of dropdowns on the LHS of the navigation bar. -->
   <script type="text/javascript">
-    $(document).ready(() => {
+    (function() {
       const timers = {};
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
-      for (const [i, link] of navbar_left_links.entries()) {
+      navbar_left_links.forEach((link, i) => {
         const dropdown = link.querySelector(".navbar-dropdown");
-
         // trigger is the element that controls the opening/closing of the dropdown.
         // will be <a> tag for links, or <button> otherwise
         const trigger = link.querySelector(".dropdown-trigger");
-
         if (dropdown !== null) {
           timers[i] = {link: link, trigger: trigger, timeout: undefined};
 
           // Expands the current dropdown and closes other dropdowns.
           const expandDropdown = () => {
-            for (const [j, timer] of Object.entries(timers)) {
+            Object.entries(timers).forEach(([j, timer]) => {
               clearTimeout(timer.timeout);
-              if (i !== j) {
+              if (parseInt(i) !== parseInt(j)) {
                 timer.link.classList.remove("open");
                 setAriaAttributes(timer.trigger, false);
               }
-            }
+            });
             link.classList.add("open");
             setAriaAttributes(trigger, true);
-          }
+          };
 
           // Closes the current dropdown after the given delay.
           const collapseDropdown = (event, delay = 0) => {
-            timers[i].timeout = setTimeout(function(event){
+            timers[i].timeout = setTimeout(function(){
               link.classList.remove("open");
               setAriaAttributes(trigger, false);
             }, delay);
-          }
+          };
 
           // Toggles the current dropdown.
           const toggleDropdown = (event) => {
@@ -486,14 +484,14 @@
             } else {
               expandDropdown();
             }
-          }
+          };
 
           link.addEventListener("mouseenter", expandDropdown);
           link.addEventListener("mouseleave", collapseDropdown);
           link.addEventListener("click", toggleDropdown);
         }
-      }
-    });
+      });
+    })();
   </script>
 
   <!-- Toggles whether the global ToC is displayed on mobile. -->
@@ -560,7 +558,7 @@
 
   <!-- Collapses the most specific menu when ESC is pressed. -->
   <script type="text/javascript">
-    $(document).keyup(function(event) {
+    document.addEventListener('keyup', function(event) {
       // The keycode of ESC is 27.
       if (event.keyCode == 27) {
         // Collapse an open dropdown from a navbar link on mobile.
@@ -581,7 +579,7 @@
 
         // Close an open navbar dropdown on desktop.
         const navbar_left_links = document.querySelectorAll(".navbar-left-link");
-        for (const link of navbar_left_links.values()) {
+        for (const link of navbar_left_links) {
           const button = link.querySelector("button");
           if (link.classList.contains("open")) {
             link.classList.remove("open");
@@ -596,7 +594,7 @@
   <!-- Trap focus in the navbar dropdown on mobile if it is expanded. -->
   <script type="text/javascript">
     // Using ``keyup`` would cause the last element to be quickly "skipped".
-    $(document).keydown(function(event) {
+    document.addEventListener('keydown', function(event) {
       // The keycode of TAB is 9.
       if (event.keyCode == 9) {
         // Do nothing if the navbar dropdown is collapsed on mobile.
