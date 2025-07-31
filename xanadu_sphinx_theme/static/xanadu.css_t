@@ -1781,6 +1781,10 @@ footer {
   color: #515151;
 }
 
+.footer-link-item:hover {
+  color: {{ theme_border_colour }};
+}
+
 .footer-separator {
   border-top-width: 0.625px;
   border-top-color: #00000015;
