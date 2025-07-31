@@ -1903,7 +1903,8 @@ nav {
   line-height: 150%;
 }
 
-.desktop.navbar-left-link > a {
+.desktop.navbar-left-link > a,
+.desktop.navbar-left-link > button {
   color: inherit;
 }
 
@@ -1926,19 +1927,22 @@ nav {
   padding: 0;
 }
 
-.desktop.navbar-left-link > a > i {
+.desktop.navbar-left-link > a > i,
+.desktop.navbar-left-link > button > i {
   line-height: 28px;
   margin-left: 0px;
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.desktop.navbar-left-link a:hover {
+.desktop.navbar-left-link a:hover,
+.desktop.navbar-left-link button:hover {
   color: {{ theme_border_colour }};
   transition-duration: 0.15s;
 }
 
-.desktop.navbar-left-link:hover > a > i {
+.desktop.navbar-left-link:hover > a > i,
+.desktop.navbar-left-link:hover > button > i {
   color: {{ theme_border_colour }};
 }
 
@@ -2027,7 +2031,8 @@ nav {
   gap: 8px;
 }
 
-.desktop.navbar-left-link.open > a > i {
+.desktop.navbar-left-link.open > a > i,
+.desktop.navbar-left-link.open > button > i {
   transform: rotate(180deg);
 }
 
