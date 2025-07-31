@@ -1746,6 +1746,7 @@ footer {
     justify-content: space-between;
     flex: 1;
     max-width: 100%;
+    flex-wrap: nowrap;
   }
 
   /* This invisible item will take up space just like a regular column
