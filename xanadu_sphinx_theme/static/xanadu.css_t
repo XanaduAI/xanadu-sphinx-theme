@@ -2243,7 +2243,7 @@ nav {
 /* Navigation Bar Desktop and Mobile
 ----------------------------------------------------------------------------- */
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1199px) {
   nav {
     box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.07), 0px 2px 2px 0px rgba(0, 0, 0, 0.06);
     height: 54px;
