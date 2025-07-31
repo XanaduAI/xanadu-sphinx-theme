@@ -1941,6 +1941,11 @@ nav {
   transition-duration: 0.15s;
 }
 
+.desktop.navbar-left-link a:focus:not(:focus-visible),
+.desktop.navbar-left-link button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .desktop.navbar-left-link:hover > a > i,
 .desktop.navbar-left-link:hover > button > i {
   color: {{ theme_border_colour }};
@@ -2174,6 +2179,10 @@ nav {
   line-height: 28px;
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile.navbar-link-heading:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .mobile.navbar-button {
