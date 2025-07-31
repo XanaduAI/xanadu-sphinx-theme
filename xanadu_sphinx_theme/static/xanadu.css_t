@@ -1897,7 +1897,7 @@ nav {
   gap: 4px;
 
   color: #000;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
@@ -2037,7 +2037,7 @@ nav {
   display: flex;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 150%;
   width: 100%;
 }
 
