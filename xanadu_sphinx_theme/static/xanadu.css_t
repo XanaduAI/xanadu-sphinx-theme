@@ -1811,7 +1811,7 @@ footer {
 }
 
 .footer-policies {
-  margin-top: 16px;
+  margin-top: 4px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1820,6 +1820,8 @@ footer {
 .footer-policy-item {
   color: #757575;
   white-space: nowrap;
+  display: flex;
+  margin-top: 12px;
 }
 
 .footer-policy-item:hover {

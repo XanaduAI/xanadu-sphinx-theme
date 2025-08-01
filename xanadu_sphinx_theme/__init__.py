@@ -163,9 +163,9 @@ XANADU_FOOTER = {
     ],
     "footer_social_icons": [
         {
-            "name": "Twitter",
-            "icon": "bxl bx-twitter-x",
-            "href": "https://twitter.com/xanaduai",
+            "name": "LinkedIn",
+            "icon": "bxl bx-linkedin",
+            "href": "https://linkedin.com/company/xanaduai/",
         },
         {
             "name": "GitHub",
@@ -173,9 +173,9 @@ XANADU_FOOTER = {
             "href": "https://github.com/XanaduAI",
         },
         {
-            "name": "LinkedIn",
-            "icon": "bxl bx-linkedin",
-            "href": "https://linkedin.com/company/xanaduai/",
+            "name": "Twitter",
+            "icon": "bxl bx-twitter-x",
+            "href": "https://twitter.com/xanaduai",
         },
         {
             "name": "Discourse",

@@ -69,10 +69,13 @@
     <!-- Policies -->
     {% if theme_footer_policies %}
       <div class="footer-policies">
-          <a class="footer-policy-item" href="{{ theme_footer_policies[0].href }}"><u>{{ theme_footer_policies[0].text }}</u></a>
-          {% for legal in theme_footer_policies[1:] %}
-            <div class="footer-policy-border"></div>
-            <a class="footer-policy-item" href="{{ legal.href }}"><u>{{ legal.text }}</u></a>
+          {% for legal in theme_footer_policies %}
+            <a class="footer-policy-item" href="{{ legal.href }}">
+              <u>{{ legal.text }}</u>
+              {% if not loop.last %}
+                <div class="footer-policy-border"></div>
+              {% endif %}
+            </a>
           {% endfor %}
       </div>
     {% endif %}
