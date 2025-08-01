@@ -1980,7 +1980,7 @@ nav {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 8px;
   list-style-type: none;
   margin-bottom: 0px;
 }
@@ -2001,18 +2001,19 @@ nav {
 }
 
 .desktop.navbar-right-links .desktop.navbar-button {
-  align-items: center;
-  background-color: {{ theme_border_colour }};
-  border-radius: 5px;
-  color: #FFFFFF;
   display: flex;
-  font-size: 14px;
-  font-weight: 600;
-  height: 35px;
+  align-items: center;
   justify-content: center;
-  line-height: 20px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background-color: {{ theme_border_colour }};
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
   transition: opacity 300ms, color 300ms, background-color 300ms;
-  width: 77px;
 }
 
 .desktop.navbar-right-links .desktop.navbar-button:hover {
@@ -2163,6 +2164,7 @@ nav {
 
 .mobile.navbar-link-heading > a {
   width: 100%;
+  color: #515151;
 }
 
 .mobile.navbar-link-heading span {
@@ -2180,7 +2182,7 @@ nav {
 }
 
 .mobile.navbar-link-heading i.bx-chevron-down {
-  color: #585858;
+  color: #515151;
   font-size: 20px;
   line-height: 28px;
   transition-duration: 0.15s;
@@ -2193,22 +2195,24 @@ nav {
 
 .mobile.navbar-button {
   flex-grow: 1;
-  padding-top: 24px;
+  padding-top: 20px;
 }
 
 .mobile.navbar-button a {
-  align-items: center;
-  background-color: {{ theme_border_colour }};
-  border-radius: 5px;
-  color: #FFFFFF;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 4px;
+  background-color: {{ theme_border_colour }};
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
   font-size: 15px;
   font-weight: 400;
-  height: 47.5px;
-  justify-content: center;
   line-height: 21px;
   transition: opacity 300ms, color 300ms, background-color 300ms;
-  width: 100%;
 }
 
 .mobile.navbar-button a:active {
