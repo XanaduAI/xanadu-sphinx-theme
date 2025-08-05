@@ -120,7 +120,8 @@
       {% else %}
         <button class="navbar-link-heading mobile">
           {% if href %}
-            <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
+            <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer"  target="_blank" {% endif %}>
+
               <span>{{ name }}</span>
               {% if external %}
                 <i class='bx bx-arrow-out-up-right-square'></i> 
