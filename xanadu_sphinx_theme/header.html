@@ -136,7 +136,8 @@
         <ul>
           {% if dropdown and href %}
             <li>
-                <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
+                <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+
                   {%- if name -%}
                     {{ name }}
                   {%- endif -%}
