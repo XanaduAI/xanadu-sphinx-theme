@@ -2032,7 +2032,7 @@ nav {
   padding-inline-start: 0px;
   position: absolute;
   top: 50px;
-  width: 220px;
+  width: 221px;
 }
 
 .desktop.navbar-left-link.open .navbar-dropdown {
