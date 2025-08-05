@@ -16,7 +16,8 @@
   {% macro render_desktop_navbar_left_link(name, href=None, img=None, width=None, external=false, dropdown=[]) %}
     <li class="navbar-left-link desktop">
 
-      {% if href %} <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
+      {% if href %} <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
+
         <span>{{ name }}</span>
         {% if external %}
           <i class='bx bx-arrow-out-up-right-square'></i> 
