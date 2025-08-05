@@ -19,7 +19,8 @@
       <div class="footer-link-column">
         <p class="footer-link-heading">{{ column.title }}</p>
         {% for link in column.links %}
-          <a class="footer-link-item" href="{{ link.href }}" {% if link.external %} target="_blank" {% endif %}>{{ link.name }}</a>
+          <a class="footer-link-item" href="{{ link.href }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>{{ link.name }}</a>
+
         {% endfor %}
       </div>
       {% endfor %}
