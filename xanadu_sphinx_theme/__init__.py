@@ -86,7 +86,7 @@ XANADU_FOOTER = {
                 },
                 {
                     "name": "Demonstrations",
-                    "href": "https://pennylane.ai/qml/demonstrations.html",
+                    "href": "https://pennylane.ai/qml/demonstrations",
                 },
                 {
                     "name": "Documentation",
@@ -95,10 +95,12 @@ XANADU_FOOTER = {
                 {
                     "name": "GitHub",
                     "href": "https://github.com/PennyLaneAI/pennylane",
+                    "external": True,
                 },
                 {
                     "name": "Twitter",
                     "href": "https://twitter.com/pennylaneai",
+                    "external": True,
                 },
                 {
                     "name": "Blog",
@@ -112,22 +114,27 @@ XANADU_FOOTER = {
                 {
                     "name": "Home",
                     "href": "https://strawberryfields.ai/",
+                    "external": True,
                 },
                 {
                     "name": "Photonics",
                     "href": "https://strawberryfields.ai/photonics",
+                    "external": True,
                 },
                 {
                     "name": "Demonstrations",
                     "href": "https://strawberryfields.ai/photonics/demonstrations.html",
+                    "external": True,
                 },
                 {
                     "name": "Documentation",
                     "href": "https://strawberryfields.readthedocs.io/",
+                    "external": True,
                 },
                 {
                     "name": "GitHub",
                     "href": "https://github.com/XanaduAI/strawberryfields",
+                    "external": True,
                 },
             ],
         },
@@ -137,26 +144,32 @@ XANADU_FOOTER = {
                 {
                     "name": "Home",
                     "href": "https://xanadu.ai/",
+                    "external": True,
                 },
                 {
                     "name": "About",
                     "href": "https://xanadu.ai/about/",
+                    "external": True,
                 },
                 {
                     "name": "Hardware",
                     "href": "https://xanadu.ai/photonics",
+                    "external": True,
                 },
                 {
                     "name": "Careers",
                     "href": "https://xanadu.ai/careers/",
+                    "external": True,
                 },
                 {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
+                    "external": True,
                 },
                 {
                     "name": "Blog",
                     "href": "https://xanadu.ai/blog",
+                    "external": True,
                 },
             ],
         },

@@ -19,7 +19,7 @@
       <div class="footer-link-column">
         <p class="footer-link-heading">{{ column.title }}</p>
         {% for link in column.links %}
-          <a class="footer-link-item" href="{{ link.href }}">{{ link.name }}</a>
+          <a class="footer-link-item" href="{{ link.href }}" {% if link.external %} target="_blank" {% endif %}>{{ link.name }}</a>
         {% endfor %}
       </div>
       {% endfor %}
@@ -29,7 +29,7 @@
       <!-- Social Icons -->
       <div class="footer-social-icons">
         {% for link in theme_footer_social_icons %}
-          <a href="{{ link.href }}" aria-label="{{ link.name }}">
+          <a href="{{ link.href }}" aria-label="{{ link.name }}" target="_blank">
             <i class="{{ link.icon }}"></i>
           </a>
         {% endfor %}
