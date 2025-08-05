@@ -29,7 +29,8 @@
       <!-- Social Icons -->
       <div class="footer-social-icons">
         {% for link in theme_footer_social_icons %}
-          <a href="{{ link.href }}" aria-label="{{ link.name }}" target="_blank">
+          <a href="{{ link.href }}" aria-label="{{ link.name }}" rel="noopener noreferrer" target="_blank">
+
             <i class="{{ link.icon }}"></i>
           </a>
         {% endfor %}
