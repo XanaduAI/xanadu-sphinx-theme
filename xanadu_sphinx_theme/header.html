@@ -29,7 +29,8 @@
         <ul class="navbar-dropdown desktop">
           {% for link in dropdown %}
             <li>
-              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
+              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+
                 {%- if link.name -%}
                   {{ link.name }}
                 {%- endif -%}
