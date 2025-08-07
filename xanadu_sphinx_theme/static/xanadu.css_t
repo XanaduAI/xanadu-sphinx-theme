@@ -1731,7 +1731,8 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 40px;
+  row-gap: 24px;
+  column-gap: 40px;
   width: 100%;
   max-width: 540px;
   grid-area: links;
