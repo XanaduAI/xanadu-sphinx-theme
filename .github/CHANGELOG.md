@@ -1,8 +1,17 @@
-## Release 0.15.0 (development release)
+## Release 0.15.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Jon Toye](https://github.com/jontoye)
+
+### Features
+
+- Update navbar and footer styling to match new designs [(#93)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/93)
+  - Update boxicons from v2 to v3 in order to use new twitter-x logo
+  - Allow `href` for `navbar_left_links` to be optional, to support non-link headings
+
 
 ## Release 0.14.0
 

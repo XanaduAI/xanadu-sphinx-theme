@@ -15,37 +15,33 @@
 
   {% macro render_desktop_navbar_left_link(name, href=None, img=None, width=None, external=false, dropdown=[]) %}
     <li class="navbar-left-link desktop">
-      {% if img %}
-        <a href="{{ pathto(href, 1) }}">
-          <img src="{{ pathto(img, 1) }}" height="35px" {% if width %} width="{{ width }}" {% endif %} />
-          <span>{{ name }}</span>
-        </a>
-      {% else %}
-        <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
-          <span>{{ name }}</span>
-          {% if external %}
-            <i class="bx bx-link-external"></i>
-          {% endif %}
-        </a>
-        {% if dropdown %}
-          <button aria-label="open {{ name }} sub-menu" aria-expanded="false">
-            <i class="bx bx-chevron-down"></i>
-          </button>
-          <ul class="navbar-dropdown desktop">
-            {% for link in dropdown %}
-              <li>
-                <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
-                  {%- if link.name -%}
-                    {{ link.name }}
-                  {%- endif -%}
-                  {% if link.external %}
-                    <i class="bx bx-link-external"></i>
-                  {% endif %}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
+
+      {% if href %} <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
+
+        <span>{{ name }}</span>
+        {% if external %}
+          <i class='bx bx-arrow-out-up-right-square'></i> 
+        {% elif dropdown %}
+          <i class="bx bx-chevron-down"></i>
         {% endif %}
+      {% if href %} </a> {% elif dropdown %} </button> {% else %} </div> {% endif %}
+
+      {% if dropdown %}
+        <ul class="navbar-dropdown desktop">
+          {% for link in dropdown %}
+            <li>
+              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+
+                {%- if link.name -%}
+                  {{ link.name }}
+                {%- endif -%}
+                {% if link.external %}
+                  <i class='bx bx-arrow-out-up-right-square'></i> 
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
       {% endif %}
     </li>
   {% endmacro %}
@@ -108,14 +104,14 @@
 
   <!-- Mobile Links -->
 
-  {% macro render_mobile_navbar_link(name, href, external=false, dropdown=[]) %}
+  {% macro render_mobile_navbar_link(name, href=None, external=false, dropdown=[]) %}
     <li class="navbar-link mobile">
       {% if dropdown %}
         <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)" aria-label="open {{ name }} sub-menu" aria-expanded="false">
           <div>
             <span>{{ name }}</span>
             {% if external %}
-              <i class="bx bx-link-external"></i>
+              <i class='bx bx-arrow-out-up-right-square'></i> 
             {% endif %}
           </div>
           {% if dropdown %}
@@ -124,26 +120,32 @@
         </button>
       {% else %}
         <button class="navbar-link-heading mobile">
-          <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
+          {% if href %}
+            <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer"  target="_blank" {% endif %}>
+
+              <span>{{ name }}</span>
+              {% if external %}
+                <i class='bx bx-arrow-out-up-right-square'></i> 
+              {% endif %}
+            </a>
+          {% else %}
             <span>{{ name }}</span>
-            {% if external %}
-              <i class="bx bx-link-external"></i>
-            {% endif %}
-          </a>
+          {% endif %}
         </button>
       {% endif %}
       <div class="navbar-dropdown mobile">
         <ul>
-          {% if dropdown %}
+          {% if dropdown and href %}
             <li>
-              <a href="{{ pathto(href, 1) }}" {% if external %} target="_blank" {% endif %}>
-                {%- if name -%}
-                  {{ name }}
-                {%- endif -%}
-                {% if external %}
-                  <i class="bx bx-link-external"></i>
-                {% endif %}
-              </a>
+                <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+
+                  {%- if name -%}
+                    {{ name }}
+                  {%- endif -%}
+                  {% if external %}
+                    <i class='bx bx-arrow-out-up-right-square'></i> 
+                  {% endif %}
+                </a>
             </li>
           {% endif %}
           {% for link in dropdown %}
@@ -153,7 +155,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class="bx bx-link-external"></i>
+                  <i class='bx bx-arrow-out-up-right-square'></i> 
                 {% endif %}
               </a>
             </li>
@@ -163,12 +165,18 @@
     </li>
   {% endmacro %}
 
-  {% macro render_mobile_navbar_button(name, href) %}
-    <li class="navbar-button mobile">
-      <a href="{{ pathto(href, 1) }}">
-        {{ name }}
-      </a>
-    </li>
+  {% macro render_mobile_navbar_button(name, href=None) %}
+    {% if href %}
+      <li class="navbar-button mobile">
+        <a href="{{ pathto(href, 1) }}">
+          {{ name }}
+        </a>
+      </li>
+    {% else %}
+      <li class="navbar-button mobile">
+        <span>{{ name }}</span>
+      </li>
+    {% endif %}
   {% endmacro %}
 
   <div class="navbar-menu mobile">

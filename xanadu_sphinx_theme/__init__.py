@@ -86,7 +86,7 @@ XANADU_FOOTER = {
                 },
                 {
                     "name": "Demonstrations",
-                    "href": "https://pennylane.ai/qml/demonstrations.html",
+                    "href": "https://pennylane.ai/qml/demonstrations",
                 },
                 {
                     "name": "Documentation",
@@ -95,10 +95,12 @@ XANADU_FOOTER = {
                 {
                     "name": "GitHub",
                     "href": "https://github.com/PennyLaneAI/pennylane",
+                    "external": True,
                 },
                 {
                     "name": "Twitter",
                     "href": "https://twitter.com/pennylaneai",
+                    "external": True,
                 },
                 {
                     "name": "Blog",
@@ -112,22 +114,27 @@ XANADU_FOOTER = {
                 {
                     "name": "Home",
                     "href": "https://strawberryfields.ai/",
+                    "external": True,
                 },
                 {
                     "name": "Photonics",
                     "href": "https://strawberryfields.ai/photonics",
+                    "external": True,
                 },
                 {
                     "name": "Demonstrations",
                     "href": "https://strawberryfields.ai/photonics/demonstrations.html",
+                    "external": True,
                 },
                 {
                     "name": "Documentation",
                     "href": "https://strawberryfields.readthedocs.io/",
+                    "external": True,
                 },
                 {
                     "name": "GitHub",
                     "href": "https://github.com/XanaduAI/strawberryfields",
+                    "external": True,
                 },
             ],
         },
@@ -137,54 +144,60 @@ XANADU_FOOTER = {
                 {
                     "name": "Home",
                     "href": "https://xanadu.ai/",
+                    "external": True,
                 },
                 {
                     "name": "About",
                     "href": "https://xanadu.ai/about/",
+                    "external": True,
                 },
                 {
                     "name": "Hardware",
                     "href": "https://xanadu.ai/photonics",
+                    "external": True,
                 },
                 {
                     "name": "Careers",
                     "href": "https://xanadu.ai/careers/",
+                    "external": True,
                 },
                 {
                     "name": "Forum",
                     "href": "https://discuss.pennylane.ai/",
+                    "external": True,
                 },
                 {
                     "name": "Blog",
                     "href": "https://xanadu.ai/blog",
+                    "external": True,
                 },
             ],
         },
     ],
     "footer_social_icons": [
         {
-            "name": "Twitter",
-            "icon": "bx bxl-twitter",
-            "href": "https://twitter.com/xanaduai",
-        },
-        {
-            "name": "GitHub",
-            "icon": "bx bxl-github",
-            "href": "https://github.com/XanaduAI",
-        },
-        {
             "name": "LinkedIn",
-            "icon": "bx bxl-linkedin",
+            "icon": "bxl bx-linkedin",
             "href": "https://linkedin.com/company/xanaduai/",
         },
         {
+            "name": "GitHub",
+            "icon": "bxl bx-github",
+            "href": "https://github.com/XanaduAI",
+        },
+        {
+            "name": "Twitter",
+            "icon": "bxl bx-twitter-x",
+            "href": "https://twitter.com/xanaduai",
+        },
+        {
             "name": "Discourse",
-            "icon": "bx bxl-discourse",
+            "icon": "bxl bx-discourse",
             "href": "https://discuss.pennylane.ai",
         },
         {
             "name": "Slack",
-            "icon": "bx bxl-slack",
+            "icon": "bxl bx-slack",
             "href": "https://u.strawberryfields.ai/slack",
         },
         {
