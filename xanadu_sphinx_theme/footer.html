@@ -19,7 +19,7 @@
       <div class="footer-link-column">
         <p class="footer-link-heading">{{ column.title }}</p>
         {% for link in column.links %}
-          <a class="footer-link-item" href="{{ link.href }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>{{ link.name }}</a>
+          <a class="footer-link-item" href="{{ link.href }}" onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_{{ column.title | lower }}_click', '{{ link.name }}')" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>{{ link.name }}</a>
 
         {% endfor %}
       </div>
@@ -30,8 +30,7 @@
       <!-- Social Icons -->
       <div class="footer-social-icons">
         {% for link in theme_footer_social_icons %}
-          <a href="{{ link.href }}" aria-label="{{ link.name }}" rel="noopener noreferrer" target="_blank">
-
+          <a href="{{ link.href }}" aria-label="{{ link.name }}" rel="noopener noreferrer" target="_blank"onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_social_click', '{{ link.name }}')">
             <i class="{{ link.icon }}"></i>
           </a>
         {% endfor %}
@@ -39,7 +38,7 @@
 
       <!-- Taglines -->
       {% for tagline in theme_footer_taglines %}
-      <a class="footer-tagline" href="{{ tagline.href }}">
+      <a class="footer-tagline" href="{{ tagline.href }}" onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_newsletter_click', '{{ tagline.text }}')">
         {{ tagline.text }}
       </a>
       {% endfor %}

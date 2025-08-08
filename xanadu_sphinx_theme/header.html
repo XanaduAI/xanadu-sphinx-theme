@@ -1,7 +1,7 @@
 <nav>
   <!-- Logo and Title -->
 
-  <a class="navbar-logo-title-container" href="{{ pathto(theme_navbar_home_link, 1) }}" aria-label="home">
+  <a class="navbar-logo-title-container" href="{{ pathto(theme_navbar_home_link, 1) }}" aria-label="home" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_logo_click', 'redirect to homepage')">
     {% set navbar_alt = theme_navbar_logo_alt if theme_navbar_logo_alt else theme_navbar_name %}
     {% if theme_navbar_wordmark_path %}
       <img class="navbar-logo-title-image" src="{{ pathto(theme_navbar_wordmark_path, 1) }}" alt="{{ navbar_alt }}" height="24px"></img>
@@ -16,7 +16,7 @@
   {% macro render_desktop_navbar_left_link(name, href=None, img=None, width=None, external=false, dropdown=[]) %}
     <li class="navbar-left-link desktop">
 
-      {% if href %} <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
+      {% if href %} <a href="{{ pathto(href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %} {% if dropdown %} aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger" {% endif %}>{% elif dropdown %} <button aria-label="open {{ name }} sub-menu" aria-expanded="false" class="dropdown-trigger"> {% else %} <div> {% endif %}
 
         <span>{{ name }}</span>
         {% if external %}
@@ -30,7 +30,7 @@
         <ul class="navbar-dropdown desktop">
           {% for link in dropdown %}
             <li>
-              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %} onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }} > {{ link.name }}')">
 
                 {%- if link.name -%}
                   {{ link.name }}
@@ -49,11 +49,11 @@
   {% macro render_desktop_navbar_right_link(name, href, icon=None) %}
     <li class="navbar-right-link desktop">
       {% if icon %}
-        <a href="{{ pathto(href, 1) }}" target="_blank" aria-label="{{ name }}">
+        <a href="{{ pathto(href, 1) }}" target="_blank" aria-label="{{ name }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')">
           <i class="{{ icon }}"></i>
         </a>
       {% else %}
-        <a class="navbar-button desktop" href="{{ pathto(href, 1) }}">
+        <a class="navbar-button desktop" href="{{ pathto(href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')">
           {{ name }}
         </a>
       {% endif %}
@@ -121,7 +121,7 @@
       {% else %}
         <button class="navbar-link-heading mobile">
           {% if href %}
-            <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer"  target="_blank" {% endif %}>
+            <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer"  target="_blank" {% endif %} onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')">
 
               <span>{{ name }}</span>
               {% if external %}
@@ -137,7 +137,7 @@
         <ul>
           {% if dropdown and href %}
             <li>
-                <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %}>
+                <a href="{{ pathto(href, 1) }}" {% if external %} rel="noopener noreferrer" target="_blank" {% endif %} onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')">
 
                   {%- if name -%}
                     {{ name }}
@@ -150,7 +150,7 @@
           {% endif %}
           {% for link in dropdown %}
             <li>
-              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %}>
+              <a href="{{ pathto(link.href, 1) }}" {% if link.external %} target="_blank" {% endif %} onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }} > {{ link.name }}')">
                 {%- if link.name -%}
                   {{ link.name }}
                 {%- endif -%}
@@ -168,7 +168,7 @@
   {% macro render_mobile_navbar_button(name, href=None) %}
     {% if href %}
       <li class="navbar-button mobile">
-        <a href="{{ pathto(href, 1) }}">
+        <a href="{{ pathto(href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ name }}')">
           {{ name }}
         </a>
       </li>
