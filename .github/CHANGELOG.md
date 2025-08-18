@@ -1,8 +1,18 @@
-## Release 0.16.0 (development release)
+## Release 0.16.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Jon Toye](https://github.com/jontoye)
+
+### Features
+
+- Added Google Analytics event tracking functionality [(#PR_NUMBER)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/PR_NUMBER)
+  - Implemented `sendCustomGAEvent` function for tracking user interactions
+  - Added safe no-op function when GA is disabled
+  - Added event tracking for navbar and footer interactions
+  - Improved event reliability with beacon transport
 
 ## Release 0.15.0
 
