@@ -92,6 +92,10 @@
      </script>
 
   <!-- Google Analytics -->
+  <script>
+    // Always define a safe no-op default for GA events
+    window.sendCustomGAEvent = function () {};
+  </script>
   {%- block ga %}
     {%- if theme_google_analytics_tracking_id %}
       <script async src="https://www.googletagmanager.com/gtag/js?id={{ theme_google_analytics_tracking_id }}"></script>
@@ -101,13 +105,13 @@
         gtag('js', new Date());
         gtag('config', '{{ theme_google_analytics_tracking_id }}');
         
-        function sendCustomGAEvent(eventName, eventCategory, eventLabel, value) {
+        window.sendCustomGAEvent = function(eventName, eventCategory, eventLabel, value) {
           gtag('event', eventName, {
             'event_category': eventCategory,
             'event_label': eventLabel,
             'value': value
           });
-        }
+        };
       </script>
     {%- endif %}
   {%- endblock %}
