@@ -2,24 +2,22 @@
 {% if pagename != "search" %}
 <div class="localtoc-container nano has-scrollbar">
   <div class="nano-content">
+    <div id="localtoc">
       <!-- Generate the HTML for the toctree with a maximum depth of 3, collapsed, and including hidden items -->
       {% set toc_html = toctree(maxdepth=3, collapse=True, includehidden=True) %}
       <!-- If a subset of the ToC should be shown, and the generated ToC is not empty and contains level 2 items -->
       {% if theme_toc_subset and toc_html.strip() %}
-      <div id="globaltoc">
         <h3>Contents</h3>
         <!-- Display the ToC for a subset of the current document tree. -->
         {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
-      </div>
       {% else %}
         <!-- This checks if the 'toc' (table of contents) variable exists and is not just whitespace. If so, the local table of contents will be displayed below. -->
         {% if toc and toc.strip() %}
-        <div id="localtoc">
-          <h3>Contents</h3>
-            {{ toc }}
-        </div>
+        <h3>Contents</h3>
+          {{ toc }}
         {% endif %}
       {% endif %}
+    </div>
   </div>
 </div>
 {% endif %}

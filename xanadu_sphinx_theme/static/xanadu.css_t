@@ -876,7 +876,7 @@ border-radius: 7px;
   display: none;
 }
 
-#localtoc > ul > li:not(.current) {
+#localtoc > ul:not(.current) {
   display: none;
 }
 
