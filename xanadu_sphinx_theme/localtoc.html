@@ -1,37 +1,22 @@
-{% if (pagename != "search") %}
+<!-- Only display the local table of contents if we are not on the search page -->
+{% if pagename != "search" %}
 <div class="localtoc-container nano has-scrollbar">
   <div class="nano-content">
     <div id="localtoc">
-        {% if display_toc %}
-          <h3>Contents</h3>
-          <!-- Display the ToC for the current document if it is not empty. -->
-          {{ toc | replace("<li>", "<li class='current'>")
-                 | replace("<ul>", "<ul class='current'>")}}
-        {% elif theme_toc_subset %}
-          <h3>Contents</h3>
-          <!-- Display the ToC for a subset of the current document tree. -->
-          {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
+      <!-- Generate the HTML for the toctree with a maximum depth of 3, collapsed, and including hidden items -->
+      {% set toc_html = toctree(maxdepth=3, collapse=True, includehidden=True) %}
+      <!-- If a subset of the ToC should be shown, and the generated ToC is not empty and contains level 2 items -->
+      {% if theme_toc_subset and toc_html.strip() and 'toctree-l2' in toc_html %}
+        <h3>Contents</h3>
+        <!-- Display the ToC for a subset of the current document tree. -->
+        {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
+      {% else %}
+        <!-- This checks if the 'toc' (table of contents) variable exists and is not just whitespace. If so, the local table of contents will be displayed below. -->
+        {% if toc and toc.strip() %}
+        <h3>Contents</h3>
+          {{ toc }}
         {% endif %}
-    </div>
-
-    <div class="xanadu-call-to-action-links">
-        <h3>Downloads</h3>
-        <div id="tutorial-type">{{ pagename }}</div>
-        <div class="download-python-link">
-            <i class="fab fa-python"></i>&nbsp;
-            <div class="call-to-action-desktop-view">Download Python script</div>
-        </div>
-        <div class="download-notebook-link">
-            <i class="fas fa-download"></i>&nbsp;
-            <div class="call-to-action-desktop-view">Download Notebook</div>
-        </div>
-        <div class="github-view-link">
-            <i class="fab fa-github"></i>&nbsp;
-            <div class="call-to-action-desktop-view">View on GitHub</div>
-        </div>
-    </div>
-    <div id="related-tutorials" class="mt-4">
-      <h3> Related</h3>
+      {% endif %}
     </div>
   </div>
 </div>
