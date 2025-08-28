@@ -1,8 +1,14 @@
-## Release 0.17.0 (development release)
+## Release 0.17.0
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Ashish Kanwar Singh](https://github.com/ashishks0522)
+
+### Bug fixes
+
+- Fixed an issue where local table of contents was missing in Catalyst documentation [(#PR_NUMBER)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/PR_NUMBER)
 
 ## Release 0.16.0
 

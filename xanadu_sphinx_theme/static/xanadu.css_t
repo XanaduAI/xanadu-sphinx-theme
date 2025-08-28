@@ -812,10 +812,6 @@ td:first-child {
   color: #515151;
 }
 
-#localtoc > ul:first-of-type > li > a{
-    display:none;
-}
-
 #localtoc ul > li > ul > li > ul {
     margin-top: -7px;
     margin-left: 20px;
@@ -876,11 +872,11 @@ border-radius: 7px;
   display: none;
 }
 
-#localtoc > ul > li:not(.current) {
+#localtoc > ul:not(.current) {
   display: none;
 }
 
-#localtoc > ul.current > li.current > a {
+#localtoc > ul > li:not(.current) {
   display: none;
 }
 
