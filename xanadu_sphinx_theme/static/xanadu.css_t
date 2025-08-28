@@ -812,10 +812,6 @@ td:first-child {
   color: #515151;
 }
 
-#localtoc > ul:first-of-type > li > a{
-    display:none;
-}
-
 #localtoc ul > li > ul > li > ul {
     margin-top: -7px;
     margin-left: 20px;
