@@ -9,7 +9,7 @@
       {% if theme_toc_subset and toc_html.strip() and 'class="current"' in toc_html %}
         <h3>Contents</h3>
         <!-- Display the ToC for a subset of the current document tree. -->
-        {{ toctree(maxdepth=3, collapse=True, includehidden=True) }}
+        {{ toc_html }}
       {% else %}
         <!-- This checks if the 'toc' (table of contents) variable exists and is not just whitespace. If so, the local table of contents will be displayed below. -->
         {% if toc and toc.strip() and 'class="current"' in toc %}

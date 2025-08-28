@@ -884,10 +884,6 @@ border-radius: 7px;
   display: none;
 }
 
-#localtoc > ul.current > li.current > a {
-  display: none;
-}
-
 /* Next and Previous Links
 ----------------------------------------------------------------------------- */
 
