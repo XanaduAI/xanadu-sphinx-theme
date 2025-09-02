@@ -8,7 +8,7 @@ This release contains contributions from (in alphabetical order):
 
 ### Bug fixes
 
-- Fixed an issue where local table of contents was missing in Catalyst documentation [(#PR_NUMBER)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/PR_NUMBER)
+- Fixed an issue where local table of contents was missing in Catalyst documentation 
 
 ## Release 0.16.0
 
