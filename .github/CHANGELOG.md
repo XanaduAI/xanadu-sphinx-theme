@@ -20,7 +20,7 @@ This release contains contributions from (in alphabetical order):
 
 ### Features
 
-- Added Google Analytics event tracking functionality [(#PR_NUMBER)](https://github.com/XanaduAI/xanadu-sphinx-theme/pull/PR_NUMBER)
+- Added Google Analytics event tracking functionality 
   - Implemented `sendCustomGAEvent` function for tracking user interactions
   - Added safe no-op function when GA is disabled
   - Added event tracking for navbar and footer interactions
