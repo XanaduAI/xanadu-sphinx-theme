@@ -2883,6 +2883,7 @@ dd>.collapse-header {
   justify-content: space-between;
   border-bottom: 1px solid #cfcfcf;
   padding: 32px 0 8px 0;
+  margin-bottom: 12px;
   color: #232323;
   text-decoration: none;
 }
