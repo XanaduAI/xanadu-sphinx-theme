@@ -2911,6 +2911,10 @@ dd>.collapse-header {
   transition: transform 0.1s linear;
 }
 
+.collapse-header[aria-expanded="true"] i.rotate {
+  transform: rotate(180deg);
+}
+
 .collapse-header i.rotate.up {
   transform: rotate(180deg);
 }
