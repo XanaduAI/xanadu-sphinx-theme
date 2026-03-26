@@ -3371,6 +3371,19 @@ pre {
   z-index: 99;
 }
 
+/* Index card */
+/*-------------------------------------------*/
+
+.index-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.index-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 /* Plugin card */
 /*-------------------------------------------*/
