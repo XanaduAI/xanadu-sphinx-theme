@@ -7,13 +7,13 @@ from docutils.parsers.rst import Directive, directives
 
 TEMPLATE = cleandoc(
     """
-    <div class="card" style="width: 15rem; float:left; margin: 10px;">
+    <div class="card title-card" style="width: 15rem; float:left; margin: 10px;">
         <a class="title-card-link" href={link}>
-            <div class="card-header">
-                <b>{name}</b>
+            <div class="card-header title-card-header">
+                <span class="title-card-title">{name}</span>
             </div>
-            <div class="card-body">
-                <p class="card-text"> {description} </p>
+            <div class="card-body title-card-body">
+                <p class="card-text title-card-description">{description}</p>
             </div>
         </a>
     </div>
