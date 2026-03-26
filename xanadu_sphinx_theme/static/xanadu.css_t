@@ -3396,6 +3396,8 @@ pre {
     border-radius: 10px 10px 0 0;
     min-height: 85px;
     display: flex;
+    background-color: #f3f8fc;
+    border-bottom: 1px solid #e4edf5;
 }
 
 .plugin-card .row {
@@ -3409,6 +3411,8 @@ pre {
 
 .plugin-card__meta {
     font-size: 0.875rem;
+    color: #6f6f6f;
+    margin-bottom: 0.5rem;
 }
 
 .plugin-card .plugin-logo {

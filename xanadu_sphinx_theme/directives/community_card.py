@@ -64,9 +64,7 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                           class="btn-close"
                           data-bs-dismiss="modal"
                           aria-label="Close"
-                        >
-                            <span class="visually-hidden">Close</span>
-                        </button>
+                        ></button>
                     </div>
                     <div class="modal-body">
                         {description}
@@ -96,7 +94,7 @@ BLOG_FOOTER_TEMPLATE = cleandoc(
 
 CODE_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{code}" class="btn btn-secondary plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
+    <a href="{code}" class="btn btn-info plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
     """
 )
 
