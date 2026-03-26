@@ -49,7 +49,7 @@ TEMPLATE = cleandoc(
     """
     .. raw:: html
 
-        <div class="gallery-item-thumbcontainer" {attributes}>
+        <div class="gallery-item-thumbcontainer col-auto" {attributes}>
 
     .. only:: html
 

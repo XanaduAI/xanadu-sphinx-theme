@@ -3296,6 +3296,10 @@ pre {
   transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+.gallery-grid .gallery-item-thumbcontainer {
+  float: none;
+}
+
 .gallery-item-thumbcontainer:hover {
   border: solid #b4ddfc 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .2);
