@@ -3395,6 +3395,10 @@ pre {
   font-style: normal;
   font-weight: 400;
   line-height: 1.4;
+  display: block;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .gallery-item-thumbcontainer:hover p.caption .caption-text,
