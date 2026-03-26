@@ -11,7 +11,7 @@ TEMPLATE = cleandoc(
     .. raw:: html
 
         <div class="card" style="width: 15rem; float:left; margin: 10px;">
-            <a href={link}>
+            <a class="title-card-link" href={link}>
                 <div class="card-header">
                     <b>{name}</b>
                 </div>

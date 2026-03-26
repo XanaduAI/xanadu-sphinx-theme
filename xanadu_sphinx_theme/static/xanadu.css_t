@@ -2845,6 +2845,12 @@ dl.class > dd > table.docutils {
 
 dd>.collapse-header {
   margin-top: 60px;
+  text-decoration: none;
+}
+
+dd>.collapse-header:hover,
+dd>.collapse-header:focus {
+  text-decoration: none;
 }
 
 .rotate {
@@ -3403,6 +3409,12 @@ pre {
   color: inherit;
 }
 
+.title-card-link,
+.title-card-link:hover,
+.title-card-link:focus {
+  text-decoration: none;
+}
+
 
 /* Plugin card */
 /*-------------------------------------------*/
@@ -3819,6 +3831,12 @@ p.sphx-glr-signature a.reference.external {
   height: 100% !important;
 }
 
+.youtube-video-link,
+.youtube-video-link:hover,
+.youtube-video-link:focus {
+  text-decoration: none;
+}
+
 .youtube-video-gallery li {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -3837,9 +3855,10 @@ p.sphx-glr-signature a.reference.external {
 }
 
 .video-card {
-    margin-right: 28px;
+    margin-right: 0;
     overflow: hidden;
-    max-width: 375px;
+    max-width: none;
+    width: 100%;
     margin-bottom: 30px;
     background-color: #fff;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.05),0 2px 25px 2px rgba(0,0,0,.2) !important;

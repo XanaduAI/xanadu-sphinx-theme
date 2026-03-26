@@ -4,13 +4,11 @@ from inspect import cleandoc
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
-from docutils.statemachine import StringList
 
 TEMPLATE = cleandoc(
     """
-    .. raw:: html
-
-        <a href="https://youtube.com/watch?v={id}" target="_blank">
+    <div class="col-lg-6 col-md-6 col-12">
+        <a class="youtube-video-link" href="https://youtube.com/watch?v={id}" target="_blank">
             <div class="card video-card">
                 <img
                   class="card-img-top img-fluid"
@@ -29,6 +27,7 @@ TEMPLATE = cleandoc(
                 </div>
             </div>
         </a>
+    </div>
     """
 )
 
@@ -51,13 +50,10 @@ class YouTubeVideoDirective(Directive):
         ytid = self.arguments[0]
         description = [i if i != "" else "<br><br>" for i in self.content]
 
-        thumbnail_rst = TEMPLATE.format(
+        html = TEMPLATE.format(
             id=ytid,
             title=self.options["title"],
             author=self.options["author"],
             description=" ".join(description),
         )
-        thumbnail = StringList(thumbnail_rst.split("\n"))
-        thumb = nodes.paragraph()
-        self.state.nested_parse(thumbnail, self.content_offset, thumb)
-        return [thumb]
+        return [nodes.raw(text=html, format="html")]
