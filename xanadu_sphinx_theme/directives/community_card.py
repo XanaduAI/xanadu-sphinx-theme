@@ -12,7 +12,7 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
     .. raw:: html
 
         <div class="card community-card plugin-card" id={id}>
-            <div class="card-header {colour} lighten-4">
+            <div class="card-header {colour}">
                 <h4 class="card-header__text">{title}</h4>
             </div>
             <div class="card-body">
@@ -20,8 +20,8 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                     <div class="col-lg-8 d-flex flex-column">
                         <div>
                             <h6>{author}</h6>
-                            <p class="font-small">
-                                <i class="far fa-clock pr-1"></i> {date}
+                            <p class="plugin-card__meta">
+                                <i class="far fa-clock pe-1"></i> {date}
                             </p>
                         </div>
                         <p class="plugin-card__description">
@@ -30,8 +30,8 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                         <div class="mt-auto plugin-card__read-more-wrapper">
                             <a
                               class="plugin-card__read-more text-primary d-none"
-                              data-toggle="modal"
-                              data-target="#{id}-modal"
+                              data-bs-toggle="modal"
+                              data-bs-target="#{id}-modal"
                             >
                                 Read More
                             </a>
@@ -61,11 +61,11 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                         <h5 class="modal-title mt-0">{title}</h5>
                         <button
                           type="button"
-                          class="close"
-                          data-dismiss="modal"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
                           aria-label="Close"
                         >
-                            <span aria-hidden="true">&times;</span>
+                            <span class="visually-hidden">Close</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -96,7 +96,7 @@ BLOG_FOOTER_TEMPLATE = cleandoc(
 
 CODE_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{code}" class="btn btn-default plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
+    <a href="{code}" class="btn btn-secondary plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
     """
 )
 
@@ -122,7 +122,7 @@ class CommunityCardDirective(Directive):
 
     def run(self):
         description = [i if i != "" else "<br><br>" for i in self.content]
-        colour = self.options.get("colour", "heavy-rain-gradient")
+        colour = self.options.get("colour", "weird-blue-gradient")
 
         if "paper" in self.options:
             paper_footer = PAPER_FOOTER_TEMPLATE.format(paper=self.options["paper"])

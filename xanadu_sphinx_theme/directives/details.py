@@ -12,7 +12,7 @@ TEMPLATE = cleandoc(
 
         <a
           class="details-header collapse-header"
-          data-toggle="collapse"
+          data-bs-toggle="collapse"
           href="#{href}"
           aria-expanded="false"
           aria-controls="details"

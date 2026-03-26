@@ -3407,6 +3407,10 @@ pre {
     margin-bottom: auto;
 }
 
+.plugin-card__meta {
+    font-size: 0.875rem;
+}
+
 .plugin-card .plugin-logo {
     height: 35px;
     width: unset;

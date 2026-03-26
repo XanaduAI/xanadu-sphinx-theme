@@ -13,7 +13,7 @@
 
    .. raw:: html
 
-      <a class="attr-details-header collapse-header" data-toggle="collapse" href="#attrDetails" aria-expanded="false" aria-controls="attrDetails">
+      <a class="attr-details-header collapse-header" data-bs-toggle="collapse" href="#attrDetails" aria-expanded="false" aria-controls="attrDetails">
          <h2 style="font-size: 24px;">
             <i class="fas fa-angle-down rotate" style="float: right;"></i> Attributes
          </h2>
@@ -48,7 +48,7 @@
 
    .. raw:: html
 
-      <a class="meth-details-header collapse-header" data-toggle="collapse" href="#methDetails" aria-expanded="false" aria-controls="methDetails">
+      <a class="meth-details-header collapse-header" data-bs-toggle="collapse" href="#methDetails" aria-expanded="false" aria-controls="methDetails">
          <h2 style="font-size: 24px;">
             <i class="fas fa-angle-down rotate" style="float: right;"></i> Methods
          </h2>
@@ -80,7 +80,12 @@
    .. raw:: html
 
       <script type="text/javascript">
-         $(".collapse-header").click(function () {
-             $(this).children('h2').eq(0).children('i').eq(0).toggleClass("up");
-         })
+         document.querySelectorAll(".collapse-header").forEach((header) => {
+             header.addEventListener("click", () => {
+                 const icon = header.querySelector("h2 i");
+                 if (icon !== null) {
+                     icon.classList.toggle("up");
+                 }
+             });
+         });
       </script>
