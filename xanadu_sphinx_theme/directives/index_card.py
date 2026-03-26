@@ -7,25 +7,23 @@ from docutils.parsers.rst import Directive, directives
 
 TEMPLATE = cleandoc(
     """
-    .. raw:: html
-
-        <div class="col-lg-4 mb-2 d-flex align-items-stretch">
-            <a class="index-card-link d-flex w-100" href="{link}">
-                <div class="card rounded-3 h-100 w-100">
-                    <div class="d-flex">
-                        <div>
-                            <h3 class="card-title ps-3 mt-4">
-                                {name}
-                            </h3>
-                            <p class="mb-3 text-muted px-3">
-                                {description}
-                                <i class="fas fa-angle-double-right"></i>
-                            </p>
-                        </div>
+    <div class="col-lg-4 mb-2 d-flex align-items-stretch">
+        <a class="index-card-link d-flex w-100" href="{link}">
+            <div class="card rounded-3 h-100 w-100">
+                <div class="d-flex">
+                    <div>
+                        <h3 class="card-title ps-3 mt-4">
+                            {name}
+                        </h3>
+                        <p class="mb-3 text-muted px-3">
+                            {description}
+                            <i class="fas fa-angle-double-right"></i>
+                        </p>
                     </div>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
+    </div>
     """
 )
 
