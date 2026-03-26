@@ -68,14 +68,15 @@ a.headerlink {
 }
 
 a {
-  color: #2a6496;
+  color: #0074E0;
   word-wrap: break-word;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  text-decoration: none;
+  color: #0074E0;
+  text-decoration: underline;
 }
 
 h1:hover>a.headerlink,
