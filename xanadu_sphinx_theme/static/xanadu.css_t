@@ -3419,6 +3419,60 @@ pre {
   color: inherit;
 }
 
+.index-card {
+  border-radius: 4px !important;
+  border: 0.5px solid #CFCFCF;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
+  overflow: hidden;
+  transition: box-shadow 150ms ease, border 150ms ease;
+}
+
+.index-card:hover {
+  border: 1px solid #CFCFCF;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.07), 0 2px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.index-card-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  background: #F5F5F5;
+}
+
+.index-card-title {
+  margin: 0;
+  color: #0074E0;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.index-card:hover .index-card-title {
+  color: #0055A5;
+}
+
+.index-card-body {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+}
+
+.index-card-description {
+  margin: 0;
+  width: 100%;
+  color: #757575;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
 .title-card-link,
 .title-card-link:hover,
 .title-card-link:focus {
@@ -3430,10 +3484,12 @@ pre {
   border: 0.5px solid #CFCFCF;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
   overflow: hidden;
+  transition: box-shadow 150ms ease, border 150ms ease;
 }
 
 .title-card:hover {
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
+  border: 1px solid #CFCFCF;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.07), 0 2px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
 
 .title-card-header {
@@ -3453,6 +3509,10 @@ pre {
   line-height: 150%;
 }
 
+.title-card:hover .title-card-title {
+  color: #0055A5;
+}
+
 .title-card-body {
   padding: 12px 16px;
   display: flex;
@@ -3463,6 +3523,13 @@ pre {
 
 .title-card-description {
   margin: 0;
+  width: 100%;
+  color: #757575;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 
