@@ -247,14 +247,18 @@
 
 {%- block footer %}
   <script type="text/javascript">
-    $("#mobile-toggle").click(function () {
-      $("#left-column").slideToggle("slow");
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileToggle = document.querySelector("#mobile-toggle");
+      const leftColumn = document.querySelector("#left-column");
+      if (mobileToggle !== null && leftColumn !== null) {
+        mobileToggle.addEventListener("click", () => {
+          const hidden = window.getComputedStyle(leftColumn).display === "none";
+          leftColumn.style.display = hidden ? "block" : "none";
+        });
+      }
     });
   </script>
 
-  <!-- jQuery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <!-- MathJax -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <!-- Bootstrap core JavaScript -->
@@ -268,20 +272,26 @@
   <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 
   <script type="text/javascript">
+    document.querySelectorAll("a.reference.internal").forEach((anchor) => {
+      const link = anchor.getAttribute("href");
+      if (!link) {
+        return;
+      }
 
-    $("a.reference.internal").each(function(){
-      var link = $(this).attr("href");
-
-      var hash = link.split("#")[1];
-      var page = link.split("#")[0].split("/").slice(-1)[0].replace(".html", "");
+      const hash = link.split("#")[1];
+      const page = link.split("#")[0].split("/").slice(-1)[0].replace(".html", "");
 
       if (hash == page) {
-        $(this).attr("href", link.split("#")[0]);
+        anchor.setAttribute("href", link.split("#")[0]);
       }
     });
 
-    $(".document > .section").removeClass("section");
-    $("h1 ~ .section").removeClass("section");
+    document.querySelectorAll(".document > .section").forEach((element) => {
+      element.classList.remove("section");
+    });
+    document.querySelectorAll("h1 ~ .section").forEach((element) => {
+      element.classList.remove("section");
+    });
     OverlayScrollbars(document.querySelector('.nano'), {});
   </script>
 
@@ -349,25 +359,69 @@
   </script>
 
     <script type="text/javascript">
-    var downloadNote = $(".sphx-glr-download-link-note.admonition.note");
-    if (downloadNote.length >= 1) {
-      var tutorialUrlArray = $("#tutorial-type").text().split('/');
-
-      if (tutorialUrlArray[0] == "demos") {
-        tutorialUrlArray[0] = "demonstrations";
+    function wrapElementWithLink(selector, attrs) {
+      const target = document.querySelector(selector);
+      if (target === null || target.parentElement === null || target.closest("a") !== null) {
+        return;
       }
 
-      var githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
-          pythonLink = $(".sphx-glr-download .reference.download")[0].href,
-          notebookLink = $(".sphx-glr-download .reference.download")[1].href;
+      const anchor = document.createElement("a");
+      Object.entries(attrs).forEach(([key, value]) => {
+        anchor.setAttribute(key, value);
+      });
+      target.parentElement.insertBefore(anchor, target);
+      anchor.appendChild(target);
+    }
 
-      $(".download-python-link").wrap("<a href=" + pythonLink + " data-behavior='call-to-action-event' data-response='Download Python script' download target='_blank'/>");
-      $(".download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook' download target='_blank'/>");
-      $(".github-view-link").wrap("<a href=" + githubLink + " data-behavior='call-to-action-event' data-response='View on Github' target='_blank'/>");
-      $("#right-column").addClass("page-shadow");
+    var downloadNote = document.querySelectorAll(".sphx-glr-download-link-note.admonition.note");
+    if (downloadNote.length >= 1) {
+      const tutorialType = document.querySelector("#tutorial-type");
+      const downloadLinks = document.querySelectorAll(".sphx-glr-download .reference.download");
+      if (tutorialType !== null && downloadLinks.length >= 2) {
+        var tutorialUrlArray = tutorialType.textContent.split('/');
+
+        if (tutorialUrlArray[0] == "demos") {
+          tutorialUrlArray[0] = "demonstrations";
+        }
+
+        var githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
+            pythonLink = downloadLinks[0].href,
+            notebookLink = downloadLinks[1].href;
+
+        wrapElementWithLink(".download-python-link", {
+          href: pythonLink,
+          "data-behavior": "call-to-action-event",
+          "data-response": "Download Python script",
+          download: "",
+          target: "_blank"
+        });
+        wrapElementWithLink(".download-notebook-link", {
+          href: notebookLink,
+          "data-behavior": "call-to-action-event",
+          "data-response": "Download Notebook",
+          download: "",
+          target: "_blank"
+        });
+        wrapElementWithLink(".github-view-link", {
+          href: githubLink,
+          "data-behavior": "call-to-action-event",
+          "data-response": "View on Github",
+          target: "_blank"
+        });
+
+        const rightColumn = document.querySelector("#right-column");
+        if (rightColumn !== null) {
+          rightColumn.classList.add("page-shadow");
+        }
+      }
     } else {
-      $(".xanadu-call-to-action-links").hide();
-      $("#bottom-dl").attr('style','display: none !important');
+      document.querySelectorAll(".xanadu-call-to-action-links").forEach((element) => {
+        element.style.display = "none";
+      });
+      const bottomDl = document.querySelector("#bottom-dl");
+      if (bottomDl !== null) {
+        bottomDl.style.setProperty("display", "none", "important");
+      }
     }
     </script>
 
@@ -388,12 +442,20 @@
       }
 
       if (typeof related_tutorials !== 'undefined') {
-          document.getElementById('related-tutorials').appendChild(makeUL(related_tutorials, related_tutorials_titles));
-          $("#related-tutorials ul li a").append(' <i class="fas fa-angle-double-right" style="font-size: smaller;"></i>')
-          $("#related-tutorials").show();
+          const relatedTutorials = document.querySelector("#related-tutorials");
+          if (relatedTutorials !== null) {
+            relatedTutorials.appendChild(makeUL(related_tutorials, related_tutorials_titles));
+            document.querySelectorAll("#related-tutorials ul li a").forEach((anchor) => {
+              anchor.insertAdjacentHTML("beforeend", ' <i class="fas fa-angle-double-right" style="font-size: smaller;"></i>');
+            });
+            relatedTutorials.style.display = "block";
+          }
 
     } else {
-          $("#related-tutorials").hide();
+          const relatedTutorials = document.querySelector("#related-tutorials");
+          if (relatedTutorials !== null) {
+            relatedTutorials.style.display = "none";
+          }
     }
     </script>
 
@@ -423,7 +485,7 @@
       }
     }
 
-    $(document).ready(() => {
+    document.addEventListener("DOMContentLoaded", () => {
       scrollToFragment(window.location.hash);
       window.addEventListener("popstate", (_) => scrollToFragment(document.location.hash), false);
     });
@@ -431,7 +493,7 @@
 
   <!-- Hide the rendering of :orphan: metadata. -->
   <script type="text/javascript">
-    $(document).ready(() => {
+    document.addEventListener("DOMContentLoaded", () => {
       const elements = document.getElementsByClassName("field-odd");
       for (const element of elements) {
           if (element.innerHTML.trim() === "orphan") {
@@ -635,10 +697,6 @@
         }
       }
     });
-  </script>
-
-  <script type="text/javascript">
-    jQuery.noConflict(true);
   </script>
 
   {% include "footer.html" %}
