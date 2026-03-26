@@ -31,6 +31,75 @@ Community Card
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 
+.. code-block:: rst
+
+    .. raw:: html
+
+        <div class="row g-3">
+            <div class="col-lg-6 col-md-6 col-12">
+
+    .. community-card::
+        :title: Weighted SubSpace QAOA to find maximum graph cliques
+        :date: 03/07/2022
+        :author: John Smith, Jane Doe
+        :paper: https://example.com
+        :code: https://code.com
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    .. raw:: html
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+
+    .. community-card::
+        :title: Quantum-Train Long Short-Term Memory (QT-LSTM) for Wave Prediction
+        :date: 09/04/2024
+        :author: John Smith, Jane Doe
+        :paper: https://example.com
+        :code: https://example.com
+
+        In this demo we introduce our new Momentum-QNG optimization algorithm and benchmark it with Momentum and QNG.
+
+    .. raw:: html
+
+            </div>
+        </div>
+
+.. raw:: html
+
+    <div class="row g-3">
+        <div class="col-lg-6 col-md-6 col-12">
+
+.. community-card::
+    :title: Weighted SubSpace QAOA to find maximum graph cliques
+    :date: 03/07/2022
+    :author: John Smith, Jane Doe
+    :paper: https://example.com
+    :code: https://code.com
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+.. raw:: html
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+
+.. community-card::
+    :title: Quantum-Train Long Short-Term Memory (QT-LSTM) for Wave Prediction
+    :date: 09/04/2024
+    :author: Lakshay Goel, Kovid Tandon
+    :paper: https://example.com
+    :code: https://example.com
+
+    In this demo we introduce our new Momentum-QNG optimization algorithm and benchmark it with Momentum and QNG.
+
+.. raw:: html
+
+        </div>
+    </div>
+
+
 
 Details Dropdown
 ----------------

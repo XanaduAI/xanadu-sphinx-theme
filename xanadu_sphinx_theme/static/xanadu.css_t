@@ -3634,6 +3634,14 @@ pre {
     background: #fff;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10);
     overflow: hidden;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+/* Override generic `.card:hover` so community cards match Figma states. */
+.plugin-card:hover,
+.plugin-card:focus-within {
+    border-color: #cfcfcf;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
 }
 
 .plugin-card .card-header {
@@ -3734,6 +3742,8 @@ pre {
 .plugin-card__read-more:focus {
     color: #0055A5;
     text-decoration: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .plugin-card__read-more-label-expanded {
@@ -3780,6 +3790,8 @@ pre {
     background: transparent;
     color: #0055A5;
     text-decoration: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .plugin-card__action-btn i {
@@ -3797,6 +3809,15 @@ pre {
 .plugin-card__action-btn--outlined:focus {
     border-color: #0055A5;
     background: #fff;
+    outline: none;
+    box-shadow: none;
+}
+
+.plugin-card__read-more:focus-visible,
+.plugin-card__action-btn:focus-visible,
+.plugin-card__action-btn--outlined:focus-visible {
+    outline: none;
+    box-shadow: none;
 }
 
 .modal {
