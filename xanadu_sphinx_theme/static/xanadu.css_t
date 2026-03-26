@@ -3895,9 +3895,9 @@ p.sphx-glr-signature a.reference.external {
     transition-duration: 1s;
 }
 
-.video-card  p {
+.video-card p {
     font-weight: 300;
-    color: #eee;
+    color: #9e9e9e;
 }
 
 .video-card:hover img {
