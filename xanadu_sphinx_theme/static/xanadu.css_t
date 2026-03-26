@@ -3300,6 +3300,14 @@ pre {
   float: none;
 }
 
+/* Bootstrap 5 applies `.row > * { width: 100% }`. Gallery items are wrapped
+   in paragraph nodes by the directive, so reset those wrappers to auto width. */
+.gallery-grid > p {
+  flex: 0 0 auto;
+  width: auto;
+  margin-bottom: 0;
+}
+
 .gallery-item-thumbcontainer:hover {
   border: solid #b4ddfc 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .2);
