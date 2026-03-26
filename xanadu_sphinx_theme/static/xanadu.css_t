@@ -3724,8 +3724,14 @@ pre {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%);
 }
 
-.plugin-card__description-collapse.show + .plugin-card__description--preview {
+.plugin-card__description-collapse.show + .plugin-card__description--preview,
+.plugin-card__description-collapse.collapsing + .plugin-card__description--preview {
     display: none;
+}
+
+.plugin-card__description-collapse.collapsing {
+    transition: height 220ms ease;
+    will-change: height;
 }
 
 .plugin-card__read-more {
@@ -3754,11 +3760,13 @@ pre {
     display: none;
 }
 
-.plugin-card__description-collapse.show ~ .plugin-card__read-more .plugin-card__read-more-label-collapsed {
+.plugin-card__description-collapse.show ~ .plugin-card__read-more .plugin-card__read-more-label-collapsed,
+.plugin-card__description-collapse.collapsing ~ .plugin-card__read-more .plugin-card__read-more-label-collapsed {
     display: none;
 }
 
-.plugin-card__description-collapse.show ~ .plugin-card__read-more .plugin-card__read-more-label-expanded {
+.plugin-card__description-collapse.show ~ .plugin-card__read-more .plugin-card__read-more-label-expanded,
+.plugin-card__description-collapse.collapsing ~ .plugin-card__read-more .plugin-card__read-more-label-expanded {
     display: inline;
 }
 
