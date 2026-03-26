@@ -3297,19 +3297,18 @@ pre {
 
 .gallery-item-thumbcontainer {
   background: #fff;
-  border: solid #dedede 0px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .08);
+  border: 0.5px solid #CFCFCF;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+  display: flex;
+  flex-direction: column;
   float: left;
   margin: 12px;
-  min-height: 230px;
-  padding-top: 5px;
+  min-width: 220px;
+  width: 220px;
+  overflow: hidden;
   position: relative;
-  text-align: center;
-  border-radius: 10px;
-  transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: box-shadow 150ms ease, border 150ms ease;
 }
 
 .gallery-grid .gallery-item-thumbcontainer {
@@ -3332,52 +3331,76 @@ pre {
 }
 
 .gallery-item-thumbcontainer:hover {
-  border: solid #b4ddfc 0px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .05), 0 2px 25px 2px rgba(0, 0, 0, .2);
-  transition: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  border: 1px solid #CFCFCF;
+  border-radius: 4px;
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.07), 0 2px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .gallery-item-thumbcontainer a.reference {
-  bottom: 0;
-  display: flex;
-  left: 0;
-  justify-content: center;
-  align-items: flex-begin;
-  padding: 150px 10px 0 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  color: #575757;
+  color: inherit;
+  position: static;
 }
 
 /* This avoids the Sphinx traditional theme which covers all of the thumbnail
   with its default link background color */
 .gallery-item-thumbcontainer a.reference:hover {
   background-color: transparent;
-  color: #575757;
+  color: inherit;
   text-decoration: none;
 }
 
 .gallery-item-thumbcontainer p {
-  margin: 0 0 .1em 0;
+  margin: 0;
 }
 
 .gallery-item-thumbcontainer > div.figure,
 .gallery-item-thumbcontainer > figure {
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .gallery-item-thumbcontainer .figure,
 .gallery-item-thumbcontainer figure {
-  margin: 10px;
-  width: 160px;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
 }
 
 .gallery-item-thumbcontainer img {
-  display: inline;
-  max-height: 160px;
-  max-width: 160px;
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: rgba(230, 241, 252, 0.8);
+  padding: 12px 12px 0 12px;
+}
+
+.gallery-item-thumbcontainer p.caption {
+  margin: 0;
+  padding: 12px 12px 24px 12px;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.gallery-item-thumbcontainer p.caption > a.headerlink {
+  display: none;
+}
+
+.gallery-item-thumbcontainer p.caption .caption-text {
+  color: #515151;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.gallery-item-thumbcontainer:hover p.caption .caption-text,
+.gallery-item-thumbcontainer:hover p.caption .caption-text a {
+  color: #232323;
 }
 
 .gallery-item-thumbcontainer[tooltip]:hover:after {
