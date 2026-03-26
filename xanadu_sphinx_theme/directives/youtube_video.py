@@ -10,20 +10,23 @@ TEMPLATE = cleandoc(
     <div class="col-lg-6 col-md-6 col-12">
         <a class="youtube-video-link" href="https://youtube.com/watch?v={id}" target="_blank">
             <div class="card video-card">
-                <img
-                  class="card-img-top img-fluid"
-                  src="https://img.youtube.com/vi/{id}/hqdefault.jpg"
-                />
+                <div class="video-card__media">
+                    <img
+                      class="card-img-top img-fluid"
+                      src="https://img.youtube.com/vi/{id}/hqdefault.jpg"
+                      alt="{title}"
+                    />
+                </div>
                 <div class="card-body">
                     <h4 class="card-title">{title}</h4>
-                    <p class="card-text grey-text">{author}</p>
-                    <p class="card-text">
+                    <p class="card-text video-card__author">{author}</p>
+                    <p class="card-text video-card__description">
                         {description}
                     </p>
                 </div>
-                <div class="white-text watch">
-                    <hr>
-                    <h5>Watch <i class="fas fa-angle-double-right"></i></h5>
+                <div class="video-card__footer">
+                    <span class="video-card__watch-label">Watch</span>
+                    <i class="bx bx-chevron-right video-card__watch-icon"></i>
                 </div>
             </div>
         </a>

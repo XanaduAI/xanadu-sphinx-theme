@@ -4055,69 +4055,112 @@ p.sphx-glr-signature a.reference.external {
     margin-top: 20px;
 }
 
-.video-card h5 {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 5px;
-}
-
 .video-card h4 {
-    margin-top: 10px;
-    font-weight: 300;
-    color: #535353;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #232323;
 }
 
 .video-card {
-    margin-right: 0;
+    margin: 0;
     overflow: hidden;
     max-width: none;
     width: 100%;
-    margin-bottom: 30px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.05),0 2px 25px 2px rgba(0,0,0,.2) !important;
+    min-width: 0;
+    border: 0.5px solid #cfcfcf;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+    transition: border 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
 .video-card .card-body {
     z-index: 2;
-    box-sizing: content-box;
-    padding-top: 20px;
+    box-sizing: border-box;
+    padding: 16px;
     position: relative;
-    background-color: #fff;
-    margin-bottom: 45px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .video-card:hover {
-    border: 0;
-    transition-duration: 0.4s;
-    border-radius: 10px!important;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px !important;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.06), 0 4px 3px 0 rgba(0, 0, 0, 0.07);
 }
 
 
+.video-card__media {
+    padding: 16px 16px 0 16px;
+    background-color: #ffffff;
+}
+
 .video-card img {
-    transform: scale(1);
-    transition-duration: 1s;
+    display: block;
+    width: 100%;
+    aspect-ratio: 397 / 223;
+    object-fit: cover;
+    border-radius: 2px;
+    transform: none;
+    transition: none;
+}
+
+.video-card:hover .video-card__media,
+.video-card:hover .card-body,
+.video-card:hover .video-card__footer {
+    background-color: #f5f5f5;
 }
 
 .video-card p {
-    font-weight: 300;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.4;
     color: #9e9e9e;
 }
 
-.video-card:hover img {
-    transform: scale(1.10);
-    transition-duration: 1s;
+.video-card__author {
+    color: #757575;
 }
 
-.video-card .watch hr{
-  position: absolute;
-  bottom: 25px;
-  width: 100%;
+.video-card__description {
+    color: #757575;
 }
 
-.video-card .watch h5{
-    right: 20px;
-    position: absolute;
-    bottom: 0;
+.video-card__footer {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 12px 16px;
+}
+
+.video-card__watch-label {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #0074E0;
+}
+
+.video-card__watch-icon {
+    color: #0074E0;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.video-card:hover .video-card__watch-label,
+.video-card:hover .video-card__watch-icon {
+    color: #0055A5;
 }
 
 
