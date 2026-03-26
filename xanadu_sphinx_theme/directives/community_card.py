@@ -9,69 +9,38 @@ from docutils.parsers.rst import Directive, directives
 COMMUNITY_CARD_TEMPLATE = cleandoc(
     """
     <div class="card community-card plugin-card" id={id}>
-        <div class="card-header {colour}">
+        <div class="card-header">
             <h4 class="card-header__text">{title}</h4>
+            <h6 class="plugin-card__author">{author}</h6>
+            <p class="plugin-card__meta">Added: {date}</p>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-8 d-flex flex-column">
-                    <div>
-                        <h6>{author}</h6>
-                        <p class="plugin-card__meta">
-                            <i class="far fa-clock pe-1"></i> {date}
-                        </p>
-                    </div>
-                    <p class="plugin-card__description">
+            <div class="plugin-card__description-section">
+                <div class="collapse plugin-card__description-collapse" id="{id}-description">
+                    <p class="plugin-card__description plugin-card__description--expanded">
                         {description}
                     </p>
-                    <div class="mt-auto plugin-card__read-more-wrapper">
-                        <a
-                          class="plugin-card__read-more text-primary d-none"
-                          data-bs-toggle="modal"
-                          data-bs-target="#{id}-modal"
-                        >
-                            Read More
-                        </a>
-                    </div>
                 </div>
-                <div class="col-lg-4 d-flex">
-                    <div class="plugin-card__buttons">
-                        {paper_footer}
-                        {blog_footer}
-                        {code_footer}
-                    </div>
-                </div>
+                <p class="plugin-card__description plugin-card__description--preview">
+                    {description}
+                </p>
+                <a
+                  class="plugin-card__read-more collapsed"
+                  data-bs-toggle="collapse"
+                  href="#{id}-description"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="{id}-description"
+                >
+                    <span class="plugin-card__read-more-label-collapsed">Read more</span>
+                    <span class="plugin-card__read-more-label-expanded">Collapse</span>
+                </a>
             </div>
         </div>
-    </div>
-
-    <div
-      class="modal fade" id="{id}-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="{id}-modal"
-      aria-hidden="true"
-    >
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mt-0">{title}</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    {description}
-                </div>
-                <div class="modal-footer">
-                    {paper_footer}
-                    {blog_footer}
-                    {code_footer}
-                </div>
-            </div>
+        <div class="plugin-card__footer">
+            {paper_footer}
+            {blog_footer}
+            {code_footer}
         </div>
     </div>
     """
@@ -79,19 +48,19 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
 
 PAPER_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{paper}" class="btn btn-info plugin-card__paper-btn" style="width: 100%;"><i class="fas fa-book"></i> Paper</a>
+    <a href="{paper}" class="btn plugin-card__action-btn plugin-card__paper-btn"><i class="bx bx-book"></i> View paper</a>
     """
 )
 
 BLOG_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{blog}" class="btn btn-info plugin-card__blog-btn" style="width: 100%;"><i class="fas fa-newspaper"></i> Blog</a>
+    <a href="{blog}" class="btn plugin-card__action-btn plugin-card__blog-btn"><i class="bx bx-news"></i> Blog</a>
     """
 )
 
 CODE_FOOTER_TEMPLATE = cleandoc(
     """
-    <a href="{code}" class="btn btn-info plugin-card__code-btn" style="width: 100%;"><i class="fas fa-code-branch"></i></i> Code</a>
+    <a href="{code}" class="btn plugin-card__action-btn plugin-card__action-btn--outlined plugin-card__code-btn"><i class="bx bx-git-branch"></i> Code</a>
     """
 )
 
@@ -117,7 +86,6 @@ class CommunityCardDirective(Directive):
 
     def run(self):
         description = [i if i != "" else "<br><br>" for i in self.content]
-        colour = self.options.get("colour", "weird-blue-gradient")
 
         if "paper" in self.options:
             paper_footer = PAPER_FOOTER_TEMPLATE.format(paper=self.options["paper"])
@@ -158,7 +126,6 @@ class CommunityCardDirective(Directive):
             paper_footer=paper_footer,
             code_footer=code_footer,
             blog_footer=blog_footer,
-            colour=colour,
             id=id_,
         )
         return [nodes.raw(text=html, format="html")]
