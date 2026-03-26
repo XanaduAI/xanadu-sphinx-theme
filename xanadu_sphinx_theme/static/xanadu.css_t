@@ -3374,7 +3374,6 @@ pre {
   width: 100%;
   height: 140px;
   object-fit: contain;
-  background: rgba(230, 241, 252, 0.8);
   padding: 12px 12px 0 12px;
 }
 
