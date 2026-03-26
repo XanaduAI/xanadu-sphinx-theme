@@ -79,6 +79,14 @@ a:focus {
   text-decoration: underline;
 }
 
+/* Keep button-like controls free of link underlines. */
+a.btn:hover,
+a.btn:focus,
+button:hover,
+button:focus {
+  text-decoration: none;
+}
+
 h1:hover>a.headerlink,
 h2:hover>a.headerlink,
 h3:hover>a.headerlink,
@@ -260,6 +268,17 @@ blockquote {
   color: #ffffff;
   background-color: {{ theme_prev_next_button_colour }};
   border: none;
+  min-height: 40px;
+  padding: 0 20px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .btn-xanadu:hover,
@@ -3698,15 +3717,24 @@ pre {
 .modal-footer .plugin-card__blog-btn:hover,
 .modal-footer .plugin-card__code-btn:hover {
     box-shadow: unset;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 .plugin-card__buttons .plugin-card__paper-btn,
 .plugin-card__buttons .plugin-card__blog-btn,
 .plugin-card__buttons .plugin-card__code-btn {
     margin: 0 0 0.375rem 0;
-    max-height: 45px;
+    min-height: 40px;
     width: 100%;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .modal-footer .plugin-card__code-btn {
