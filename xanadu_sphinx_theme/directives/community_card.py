@@ -5,71 +5,37 @@ from inspect import cleandoc
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
-from docutils.statemachine import StringList
 
 COMMUNITY_CARD_TEMPLATE = cleandoc(
     """
-    .. raw:: html
-
-        <div class="card community-card plugin-card" id={id}>
-            <div class="card-header {colour}">
-                <h4 class="card-header__text">{title}</h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-8 d-flex flex-column">
-                        <div>
-                            <h6>{author}</h6>
-                            <p class="plugin-card__meta">
-                                <i class="far fa-clock pe-1"></i> {date}
-                            </p>
-                        </div>
-                        <p class="plugin-card__description">
-                            {description}
+    <div class="card community-card plugin-card" id={id}>
+        <div class="card-header {colour}">
+            <h4 class="card-header__text">{title}</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-8 d-flex flex-column">
+                    <div>
+                        <h6>{author}</h6>
+                        <p class="plugin-card__meta">
+                            <i class="far fa-clock pe-1"></i> {date}
                         </p>
-                        <div class="mt-auto plugin-card__read-more-wrapper">
-                            <a
-                              class="plugin-card__read-more text-primary d-none"
-                              data-bs-toggle="modal"
-                              data-bs-target="#{id}-modal"
-                            >
-                                Read More
-                            </a>
-                        </div>
                     </div>
-                    <div class="col-lg-4 d-flex">
-                        <div class="plugin-card__buttons">
-                            {paper_footer}
-                            {blog_footer}
-                            {code_footer}
-                        </div>
+                    <p class="plugin-card__description">
+                        {description}
+                    </p>
+                    <div class="mt-auto plugin-card__read-more-wrapper">
+                        <a
+                          class="plugin-card__read-more text-primary d-none"
+                          data-bs-toggle="modal"
+                          data-bs-target="#{id}-modal"
+                        >
+                            Read More
+                        </a>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div
-          class="modal fade" id="{id}-modal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="{id}-modal"
-          aria-hidden="true"
-        >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title mt-0">{title}</h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        {description}
-                    </div>
-                    <div class="modal-footer">
+                <div class="col-lg-4 d-flex">
+                    <div class="plugin-card__buttons">
                         {paper_footer}
                         {blog_footer}
                         {code_footer}
@@ -77,6 +43,37 @@ COMMUNITY_CARD_TEMPLATE = cleandoc(
                 </div>
             </div>
         </div>
+    </div>
+
+    <div
+      class="modal fade" id="{id}-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="{id}-modal"
+      aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">{title}</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    {description}
+                </div>
+                <div class="modal-footer">
+                    {paper_footer}
+                    {blog_footer}
+                    {code_footer}
+                </div>
+            </div>
+        </div>
+    </div>
     """
 )
 
@@ -153,7 +150,7 @@ class CommunityCardDirective(Directive):
         id_ += self.options["date"].split("/")[-1]
         id_ += self.options["title"].split(" ")[0].lower()
 
-        card_rst = COMMUNITY_CARD_TEMPLATE.format(
+        html = COMMUNITY_CARD_TEMPLATE.format(
             title=self.options["title"],
             author=self.options["author"],
             description=" ".join(description),
@@ -164,8 +161,4 @@ class CommunityCardDirective(Directive):
             colour=colour,
             id=id_,
         )
-
-        thumbnail = StringList(card_rst.split("\n"))
-        thumb = nodes.paragraph()
-        self.state.nested_parse(thumbnail, self.content_offset, thumb)
-        return [thumb]
+        return [nodes.raw(text=html, format="html")]
