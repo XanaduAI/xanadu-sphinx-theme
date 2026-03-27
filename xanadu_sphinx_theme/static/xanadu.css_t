@@ -3602,7 +3602,6 @@ pre {
 /* When title cards are already inside a `.row`, defer to Bootstrap grid. */
 .row > .title-card-col {
   display: flex;
-  width: auto;
   padding-right: 0;
 }
 
