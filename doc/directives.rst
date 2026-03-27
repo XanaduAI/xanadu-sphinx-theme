@@ -248,13 +248,33 @@ Title Card
 
     .. title-card::
         :name: Contribution guide
-        :description: How to get involved in the PennyLane community.
+        :description: How to get involved in the PennyLane community and start contributing through issues, discussions, and pull requests.
         :link: guide/contributing.html
 
     .. title-card::
         :name: Software tests
-        :description: Running tests and measuring coverage for PennyLane.
+        :description: Running tests.
         :link: guide/tests.html
+
+    .. raw:: html
+
+        </div>
+        <div class="row g-3 mt-1">
+
+    .. title-card::
+        :name: Documentation
+        :description: Building and contributing modules and packages to the PennyLane documentation.
+        :link: guide/documentation.html
+
+    .. title-card::
+        :name: Architecture Design Records
+        :description: Proposing important architectural decisions and tracking design rationale over time.
+        :link: guide/adr.html
+
+    .. title-card::
+        :name: Deprecations and Removals
+        :description: Ensuring safe migration paths when introducing breaking changes.
+        :link: guide/deprecations_removals.html
 
     .. raw:: html
 
@@ -271,13 +291,33 @@ Title Card
 
 .. title-card::
     :name: Contribution guide
-    :description: How to get involved in the PennyLane community.
+    :description: How to get involved in the PennyLane community and start contributing through issues, discussions, and pull requests.
     :link: guide/contributing.html
 
 .. title-card::
     :name: Software tests
-    :description: Running tests and measuring coverage for PennyLane.
+    :description: Running tests.
     :link: guide/tests.html
+
+.. raw:: html
+
+    </div>
+    <div class="row g-3 mt-1">
+
+.. title-card::
+    :name: Documentation
+    :description: Building and contributing modules and packages to the PennyLane documentation.
+    :link: guide/documentation.html
+
+.. title-card::
+    :name: Architecture Design Records
+    :description: Proposing important architectural decisions and tracking design rationale over time.
+    :link: guide/adr.html
+
+.. title-card::
+    :name: Deprecations and Removals
+    :description: Ensuring safe migration paths when introducing breaking changes.
+    :link: guide/deprecations_removals.html
 
 .. raw:: html
 
