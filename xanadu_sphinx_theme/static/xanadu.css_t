@@ -3436,18 +3436,24 @@ pre {
   padding: 12px 12px 0 12px;
 }
 
-.gallery-item-thumbcontainer p.caption {
+.gallery-item-thumbcontainer p.caption,
+.gallery-item-thumbcontainer figure figcaption,
+.gallery-item-thumbcontainer > figure > figcaption {
   margin: 0;
   padding: 12px 12px 24px 12px;
   background: #FFFFFF;
   text-align: center;
 }
 
-.gallery-item-thumbcontainer p.caption > a.headerlink {
+.gallery-item-thumbcontainer p.caption > a.headerlink,
+.gallery-item-thumbcontainer figure figcaption > a.headerlink,
+.gallery-item-thumbcontainer > figure > figcaption > a.headerlink {
   display: none;
 }
 
-.gallery-item-thumbcontainer p.caption .caption-text {
+.gallery-item-thumbcontainer p.caption .caption-text,
+.gallery-item-thumbcontainer figure figcaption p,
+.gallery-item-thumbcontainer > figure > figcaption > p {
   color: #515151;
   font-family: Roboto, sans-serif;
   font-size: 15px;
@@ -3458,10 +3464,13 @@ pre {
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  margin: 0;
 }
 
 .gallery-item-thumbcontainer:hover p.caption .caption-text,
-.gallery-item-thumbcontainer:hover p.caption .caption-text a {
+.gallery-item-thumbcontainer:hover p.caption .caption-text a,
+.gallery-item-thumbcontainer:hover figure figcaption p,
+.gallery-item-thumbcontainer:hover > figure > figcaption > p {
   color: #232323;
 }
 
