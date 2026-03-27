@@ -161,21 +161,117 @@ Gallery Item
 
 .. code-block:: rest
 
+    .. raw:: html
+
+        <div class="gallery-grid">
+
     .. gallery-item::
-        :description: :doc:`Getting Started <started>`
-        :figure: :figure: _static/teleport.png
+        :description: Getting Started
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Installation
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Configuration
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: API Reference
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Development Guide - API
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Plugin Tutorials  Quantum Chemistry
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Device Docs
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Optimization
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Templates
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Demos
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Machine Learning
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Quantum Chemistry
+        :figure: _static/teleport.png
 
     .. raw:: html
 
-        <div style='clear:both'>
+        </div>
+
+.. raw:: html
+
+    <div class="gallery-grid">
 
 .. gallery-item::
-    :description: :doc:`Getting Started <started>`
+    :description: Getting Started
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Installation
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Configuration
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: API Reference
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Development Guide
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Plugin Tutorials
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Device Docs
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Optimization
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Templates
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Demos
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Machine Learning
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Quantum Chemistry
     :figure: _static/teleport.png
 
 .. raw:: html
 
-    <div style='clear:both'>
+    </div>
 
 Index Card
 ----------
