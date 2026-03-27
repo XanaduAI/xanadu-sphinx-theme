@@ -3590,6 +3590,7 @@ pre {
   display: inline-flex;
   width: 33.3333%;
   box-sizing: border-box;
+  margin-bottom: 12px;
   padding-right: 12px;
   vertical-align: top;
 }

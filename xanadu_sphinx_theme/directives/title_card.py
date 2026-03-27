@@ -7,7 +7,7 @@ from docutils.parsers.rst import Directive, directives
 
 TEMPLATE = cleandoc(
     """
-    <div class="title-card-col col-lg-4 mb-2">
+    <div class="title-card-col col-lg-4">
         <a class="title-card-link d-flex w-100" href="{link}">
             <div class="card title-card h-100 w-100">
                 <div class="card-header title-card-header">
