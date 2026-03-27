@@ -79,6 +79,13 @@ a:focus {
   text-decoration: underline;
 }
 
+/* Keep header permalink anchors neutral on interaction. */
+a.headerlink:hover,
+a.headerlink:focus {
+  color: #ddd;
+  text-decoration: none;
+}
+
 /* Keep button-like controls free of link underlines. */
 a.btn:hover,
 a.btn:focus,
