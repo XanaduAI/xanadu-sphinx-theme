@@ -3548,7 +3548,7 @@ pre {
 .index-card-title {
   margin: 0;
   color: #0074E0;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif !important;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
