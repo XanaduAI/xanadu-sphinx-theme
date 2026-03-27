@@ -1,8 +1,7 @@
 name: Upload
 on:
-  release:
-    types:
-      - published
+  repository_dispatch:
+    types: [run-post-release-bump]
 
 jobs:
   upload:

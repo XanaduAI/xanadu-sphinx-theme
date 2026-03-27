@@ -1,9 +1,9 @@
 name: Post-Release Version Bump
 
 on:
-  release:
-    types:
-      - published
+  repository_dispatch:
+    types: [run-post-release-bump]
+  workflow_dispatch:
 
 jobs:
   post_release_version_bump:

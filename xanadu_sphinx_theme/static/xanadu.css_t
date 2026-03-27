@@ -3696,6 +3696,11 @@ pre {
     transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
+/* Enforce community-card visual token values. */
+.community-card {
+    border-radius: 4px !important;
+}
+
 /* Override generic `.card:hover` so community cards match Figma states. */
 .plugin-card:hover,
 .plugin-card:focus,
@@ -3735,6 +3740,10 @@ pre {
     font-weight: 400;
     line-height: 1.4;
     color: #232323;
+}
+
+.community-card .plugin-card__author {
+    font-family: Roboto, sans-serif !important;
 }
 
 .plugin-card__meta {
