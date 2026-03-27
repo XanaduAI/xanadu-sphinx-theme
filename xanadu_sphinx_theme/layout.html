@@ -261,6 +261,73 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // Bootstrap 4 -> 5 compatibility for downstream docs overrides.
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("[data-toggle]").forEach((element) => {
+        const toggleValue = element.getAttribute("data-toggle");
+        if (toggleValue !== null) {
+          element.setAttribute("data-bs-toggle", toggleValue);
+        }
+      });
+
+      document.querySelectorAll("[data-target]").forEach((element) => {
+        const targetValue = element.getAttribute("data-target");
+        if (targetValue !== null) {
+          element.setAttribute("data-bs-target", targetValue);
+        }
+      });
+
+      document.querySelectorAll("[data-dismiss]").forEach((element) => {
+        const dismissValue = element.getAttribute("data-dismiss");
+        if (dismissValue !== null) {
+          element.setAttribute("data-bs-dismiss", dismissValue);
+        }
+      });
+
+      // Keep old data-parent accordion semantics working in Bootstrap 5.
+      document.querySelectorAll(".collapse-header[data-bs-toggle='collapse']").forEach((header) => {
+        const parentSelector = header.getAttribute("data-parent");
+        if (!parentSelector) {
+          return;
+        }
+        const targetSelector = header.getAttribute("data-bs-target") || header.getAttribute("href");
+        if (!targetSelector || !targetSelector.startsWith("#")) {
+          return;
+        }
+        const collapseTarget = document.querySelector(targetSelector);
+        if (collapseTarget && !collapseTarget.hasAttribute("data-bs-parent")) {
+          collapseTarget.setAttribute("data-bs-parent", parentSelector);
+        }
+      });
+
+      // Upgrade legacy Font Awesome chevrons to Boxicons for consistency.
+      document.querySelectorAll(".collapse-header i.fa-angle-down, .collapse-header i.fas.fa-angle-down").forEach((icon) => {
+        icon.classList.remove("fa", "fas", "fa-angle-down");
+        icon.classList.add("bx", "bx-chevron-down");
+        icon.style.float = "";
+      });
+
+      // Keep icon orientation in sync with collapse state for all header variants.
+      document.querySelectorAll(".collapse-header").forEach((header) => {
+        const icon = header.querySelector("i.rotate");
+        const targetSelector = header.getAttribute("data-bs-target") || header.getAttribute("href");
+        if (icon === null || !targetSelector || !targetSelector.startsWith("#")) {
+          return;
+        }
+        const collapseTarget = document.querySelector(targetSelector);
+        if (!collapseTarget) {
+          return;
+        }
+
+        if (collapseTarget.classList.contains("show")) {
+          icon.classList.add("up");
+        }
+        collapseTarget.addEventListener("show.bs.collapse", () => icon.classList.add("up"));
+        collapseTarget.addEventListener("hide.bs.collapse", () => icon.classList.remove("up"));
+      });
+    });
+  </script>
   <!-- Overlay Scrollbars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/overlayscrollbars.cjs.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Syntax Highlighting -->
