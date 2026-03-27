@@ -3533,6 +3533,7 @@ pre {
   align-items: center;
   align-self: stretch;
   background: #F5F5F5;
+  border-bottom: 0;
 }
 
 .index-card-title {
@@ -3603,6 +3604,7 @@ pre {
   align-items: center;
   align-self: stretch;
   background: #F5F5F5;
+  border-bottom: 0;
 }
 
 .title-card-title {
