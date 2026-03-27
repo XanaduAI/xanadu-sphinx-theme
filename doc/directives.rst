@@ -235,6 +235,54 @@ Title Card
 
     <div style='clear:both'>
 
+.. code-block:: rst
+
+    .. raw:: html
+
+        <div class="row g-3">
+
+    .. title-card::
+        :name: Installation
+        :description: Install and configure PennyLane in development mode.
+        :link: guide/installation.html
+
+    .. title-card::
+        :name: Contribution guide
+        :description: How to get involved in the PennyLane community.
+        :link: guide/contributing.html
+
+    .. title-card::
+        :name: Software tests
+        :description: Running tests and measuring coverage for PennyLane.
+        :link: guide/tests.html
+
+    .. raw:: html
+
+        </div>
+
+.. raw:: html
+
+    <div class="row g-3">
+
+.. title-card::
+    :name: Installation
+    :description: Install and configure PennyLane in development mode.
+    :link: guide/installation.html
+
+.. title-card::
+    :name: Contribution guide
+    :description: How to get involved in the PennyLane community.
+    :link: guide/contributing.html
+
+.. title-card::
+    :name: Software tests
+    :description: Running tests and measuring coverage for PennyLane.
+    :link: guide/tests.html
+
+.. raw:: html
+
+    </div>
+
 YouTube Video
 -------------
 

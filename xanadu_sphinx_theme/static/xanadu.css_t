@@ -3565,7 +3565,16 @@ pre {
   text-decoration: none;
 }
 
+.title-card-link {
+  display: flex;
+  width: 100%;
+}
+
 .title-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   border-radius: 4px !important;
   border: 0.5px solid #CFCFCF;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
@@ -3603,8 +3612,9 @@ pre {
 .title-card-body {
   padding: 12px 16px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
   align-self: stretch;
 }
 
