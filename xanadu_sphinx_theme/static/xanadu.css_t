@@ -3406,6 +3406,7 @@ pre {
 
 .gallery-item-thumbcontainer {
   cursor: pointer;
+  min-height: 220px;
 }
 
 /* This avoids the Sphinx traditional theme which covers all of the thumbnail
@@ -3620,7 +3621,7 @@ pre {
 .title-card {
   display: flex;
   flex-direction: column;
-  min-height: 180px;
+  min-height: 220px;
   height: 100%;
   width: 100%;
   border-radius: 4px !important;
