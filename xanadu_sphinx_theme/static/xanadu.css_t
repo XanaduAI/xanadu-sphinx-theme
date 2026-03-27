@@ -3515,7 +3515,7 @@ pre {
 
 .index-card {
   border-radius: 4px !important;
-  border: 0.5px solid #CFCFCF;
+  border: 1px solid #CFCFCF;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
   overflow: hidden;
   transition: box-shadow 150ms ease, border 150ms ease;
@@ -3586,7 +3586,7 @@ pre {
   height: 100%;
   width: 100%;
   border-radius: 4px !important;
-  border: 0.5px solid #CFCFCF;
+  border: 1px solid #CFCFCF;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
   overflow: hidden;
   transition: box-shadow 150ms ease, border 150ms ease;
@@ -4176,7 +4176,7 @@ p.sphx-glr-signature a.reference.external {
     max-width: none;
     width: 100%;
     min-width: 0;
-    border: 0.5px solid #cfcfcf;
+    border: 1px solid #cfcfcf;
     border-radius: 4px !important;
     background-color: #ffffff;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10);
