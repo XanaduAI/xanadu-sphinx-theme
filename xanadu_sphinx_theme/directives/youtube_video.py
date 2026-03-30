@@ -8,7 +8,7 @@ from docutils.parsers.rst import Directive, directives
 TEMPLATE = cleandoc(
     """
     <div class="col-lg-6 col-md-6 col-12">
-        <a class="youtube-video-link" href="https://youtube.com/watch?v={id}" target="_blank">
+        <a class="youtube-video-link" href="https://youtube.com/watch?v={id}" target="_blank" rel="noopener noreferrer">
             <div class="card video-card">
                 <div class="video-card__media">
                     <img
