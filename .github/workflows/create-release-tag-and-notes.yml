@@ -11,7 +11,7 @@ on:
 
 jobs:
   Minor:
-    # Only trigger automatic release when pre-release branch is merged into main
+    # Only trigger automatic release when pre-release branch is merged into master
     if: github.event.pull_request.merged == true && github.head_ref == 'pre-release-version-bump'
     runs-on: ubuntu-latest
     env:
