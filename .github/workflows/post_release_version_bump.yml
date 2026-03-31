@@ -42,6 +42,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ secrets.REPO_SCOPED_PAT || github.token }}
           base: master
           title: Post-release version bump to `${{ steps.versions.outputs.new_version }}`
           body: >
@@ -49,4 +50,4 @@ jobs:
             to `${{ steps.versions.outputs.new_version }}`.
           commit-message: Bump version to `${{ steps.versions.outputs.new_version }}`
           branch: post-release-version-bump
-          team-reviewers: XanaduAI/software-cloud
+          reviewers: ashishks0522, jontoye, koeunhh
