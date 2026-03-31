@@ -45,4 +45,4 @@ jobs:
             to `${{ steps.versions.outputs.new_version }}`.
           commit-message: Bump version to `${{ steps.versions.outputs.new_version }}`
           branch: pre-release-version-bump
-          team-reviewers: XanaduAI/software-cloud
+          reviewers: ashishks0522, jontoye, koeunhh
