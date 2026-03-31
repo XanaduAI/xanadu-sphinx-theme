@@ -45,21 +45,14 @@ from docutils.parsers.rst import Directive, directives
 from docutils.statemachine import StringList
 from sphinx_gallery.gen_rst import scale_image
 
-TEMPLATE = cleandoc(
+OPEN_TEMPLATE = '<div class="gallery-item-thumbcontainer col-auto" {attributes}>'
+CLOSE_TEMPLATE = "</div>"
+
+FIGURE_TEMPLATE = cleandoc(
     """
-    .. raw:: html
+    .. figure:: {thumbnail}
 
-        <div class="gallery-item-thumbcontainer" {attributes}>
-
-    .. only:: html
-
-        .. figure:: {thumbnail}
-
-            {description}
-
-    .. raw:: html
-
-        </div>
+        {description}
     """
 )
 
@@ -120,12 +113,14 @@ class GalleryItemDirective(Directive):
         attributes_list = [f"{k}='{v}'" for k, v in attributes_dict.items()]
         attributes_html = " ".join(attributes_list)
 
-        thumbnail_rst = TEMPLATE.format(
+        figure_rst = FIGURE_TEMPLATE.format(
             description=self.options["description"],
             thumbnail=thumbnail,
-            attributes=attributes_html,
         )
-        thumbnail = StringList(thumbnail_rst.split("\n"))
-        thumb = nodes.paragraph()
-        self.state.nested_parse(thumbnail, self.content_offset, thumb)
-        return [thumb]
+        figure_list = StringList(figure_rst.split("\n"))
+        figure_node = nodes.container()
+        self.state.nested_parse(figure_list, self.content_offset, figure_node)
+
+        open_div = nodes.raw(text=OPEN_TEMPLATE.format(attributes=attributes_html), format="html")
+        close_div = nodes.raw(text=CLOSE_TEMPLATE, format="html")
+        return [open_div, *figure_node.children, close_div]

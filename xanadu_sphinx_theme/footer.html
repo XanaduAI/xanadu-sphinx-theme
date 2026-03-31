@@ -54,9 +54,9 @@
       {%- if show_copyright %}
         <p class="footer-copyright-item">
           {%- if hasdoc('copyright') %}
-            {% trans path=pathto('copyright'), copyright=copyright|e %}<a href="{{ path }}">Copyright</a> &copy; {{ copyright }}{% endtrans %}
+            {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}{% endtrans %}
           {%- else %}
-            {% trans copyright=copyright|e %}Copyright &copy; {{ copyright }}{% endtrans %}
+            {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}{% endtrans %}
           {%- endif %}
         </p>
       {%- endif %}

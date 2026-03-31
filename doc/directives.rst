@@ -18,7 +18,7 @@ Community Card
         :paper: https://example.com
         :code: https://code.com
 
-        An explanation of the work.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 
 .. community-card::
@@ -28,7 +28,76 @@ Community Card
     :paper: https://example.com
     :code: https://code.com
 
-    An explanation of the work.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+.. code-block:: rst
+
+    .. raw:: html
+
+        <div class="row g-3">
+            <div class="col-lg-6 col-md-6 col-12">
+
+    .. community-card::
+        :title: Weighted SubSpace QAOA to find maximum graph cliques
+        :date: 03/07/2022
+        :author: John Smith, Jane Doe
+        :paper: https://example.com
+        :code: https://code.com
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+    .. raw:: html
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+
+    .. community-card::
+        :title: Quantum-Train Long Short-Term Memory (QT-LSTM) for Wave Prediction
+        :date: 09/04/2024
+        :author: John Smith, Jane Doe
+        :paper: https://example.com
+        :code: https://example.com
+
+        In this demo we introduce our new Momentum-QNG optimization algorithm and benchmark it with Momentum and QNG.
+
+    .. raw:: html
+
+            </div>
+        </div>
+
+.. raw:: html
+
+    <div class="row g-3">
+        <div class="col-lg-6 col-md-6 col-12">
+
+.. community-card::
+    :title: Weighted SubSpace QAOA to find maximum graph cliques
+    :date: 03/07/2022
+    :author: John Smith, Jane Doe
+    :paper: https://example.com
+    :code: https://code.com
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+.. raw:: html
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-12">
+
+.. community-card::
+    :title: Quantum-Train Long Short-Term Memory (QT-LSTM) for Wave Prediction
+    :date: 09/04/2024
+    :author: Lakshay Goel, Kovid Tandon
+    :paper: https://example.com
+    :code: https://example.com
+
+    In this demo we introduce our new Momentum-QNG optimization algorithm and benchmark it with Momentum and QNG.
+
+.. raw:: html
+
+        </div>
+    </div>
 
 
 
@@ -92,21 +161,117 @@ Gallery Item
 
 .. code-block:: rest
 
+    .. raw:: html
+
+        <div class="gallery-grid">
+
     .. gallery-item::
-        :description: :doc:`Getting Started <started>`
-        :figure: :figure: _static/teleport.png
+        :description: Getting Started
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Installation
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Configuration
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: API Reference
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Development Guide - API
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Plugin Tutorials  Quantum Chemistry
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Device Docs
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Optimization
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Templates
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Demos
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Machine Learning
+        :figure: _static/teleport.png
+
+    .. gallery-item::
+        :description: Quantum Chemistry
+        :figure: _static/teleport.png
 
     .. raw:: html
 
-        <div style='clear:both'>
+        </div>
+
+.. raw:: html
+
+    <div class="gallery-grid">
 
 .. gallery-item::
-    :description: :doc:`Getting Started <started>`
+    :description: Getting Started
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Installation
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Configuration
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: API Reference
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Development Guide
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Plugin Tutorials
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Device Docs
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Optimization
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Templates
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Demos
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Machine Learning
+    :figure: _static/teleport.png
+
+.. gallery-item::
+    :description: Quantum Chemistry
     :figure: _static/teleport.png
 
 .. raw:: html
 
-    <div style='clear:both'>
+    </div>
 
 Index Card
 ----------
@@ -165,6 +330,94 @@ Title Card
 .. raw:: html
 
     <div style='clear:both'>
+
+.. code-block:: rst
+
+    .. raw:: html
+
+        <div class="row g-3">
+
+    .. title-card::
+        :name: Installation
+        :description: Install and configure PennyLane in development mode.
+        :link: guide/installation.html
+
+    .. title-card::
+        :name: Contribution guide
+        :description: How to get involved in the PennyLane community and start contributing through issues, discussions, and pull requests.
+        :link: guide/contributing.html
+
+    .. title-card::
+        :name: Software tests
+        :description: Running tests.
+        :link: guide/tests.html
+
+    .. raw:: html
+
+        </div>
+        <div class="row g-3 mt-1">
+
+    .. title-card::
+        :name: Documentation
+        :description: Building and contributing modules and packages to the PennyLane documentation.
+        :link: guide/documentation.html
+
+    .. title-card::
+        :name: Architecture Design Records
+        :description: Proposing important architectural decisions and tracking design rationale over time.
+        :link: guide/adr.html
+
+    .. title-card::
+        :name: Deprecations and Removals
+        :description: Ensuring safe migration paths when introducing breaking changes.
+        :link: guide/deprecations_removals.html
+
+    .. raw:: html
+
+        </div>
+
+.. raw:: html
+
+    <div class="row g-3">
+
+.. title-card::
+    :name: Installation
+    :description: Install and configure PennyLane in development mode.
+    :link: guide/installation.html
+
+.. title-card::
+    :name: Contribution guide
+    :description: How to get involved in the PennyLane community and start contributing through issues, discussions, and pull requests.
+    :link: guide/contributing.html
+
+.. title-card::
+    :name: Software tests
+    :description: Running tests.
+    :link: guide/tests.html
+
+.. raw:: html
+
+    </div>
+    <div class="row g-3 mt-1">
+
+.. title-card::
+    :name: Documentation
+    :description: Building and contributing modules and packages to the PennyLane documentation.
+    :link: guide/documentation.html
+
+.. title-card::
+    :name: Architecture Design Records
+    :description: Proposing important architectural decisions and tracking design rationale over time.
+    :link: guide/adr.html
+
+.. title-card::
+    :name: Deprecations and Removals
+    :description: Ensuring safe migration paths when introducing breaking changes.
+    :link: guide/deprecations_removals.html
+
+.. raw:: html
+
+    </div>
 
 YouTube Video
 -------------

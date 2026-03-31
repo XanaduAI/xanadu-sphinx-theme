@@ -1,0 +1,51 @@
+# This action creates automatic release for xanadu-sphinx-theme
+# when pre-release-version-bump branch is merged into master
+name: Release
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  Minor:
+    # Only trigger automatic release when pre-release branch is merged into master
+    if: github.event.pull_request.merged == true && github.head_ref == 'pre-release-version-bump'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+      - name: Minor version for each merge
+        id: taggerDryRun
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DRY_RUN: true
+          DEFAULT_BUMP: minor
+
+      - name: echo new tag
+        run: |
+          echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
+      - name: echo tag
+        run: |
+          echo "The current tag is: ${{ steps.taggerDryRun.outputs.tag }}"
+      - name: echo part
+        run: |
+          echo "The version increment was: ${{ steps.taggerDryRun.outputs.part }}"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.taggerDryRun.outputs.new_tag }} --generate-notes --notes-start-tag ${{ steps.taggerDryRun.outputs.tag }}
+
+      - name: Trigger Post Release Workflow
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: run-post-release-bump

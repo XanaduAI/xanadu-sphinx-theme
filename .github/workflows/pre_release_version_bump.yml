@@ -1,10 +1,17 @@
 name: Pre-Release Version Bump
 
 on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
   pre_release_version_bump:
+    # Skip automated release-maintenance branches to avoid recursive bump PRs.
+    if: github.event.pull_request.merged == true && github.head_ref != 'post-release-version-bump' && github.head_ref != 'pre-release-version-bump'
     runs-on: ubuntu-latest
 
     steps:

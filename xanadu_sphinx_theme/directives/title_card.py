@@ -4,22 +4,21 @@ from inspect import cleandoc
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
-from docutils.statemachine import StringList
 
 TEMPLATE = cleandoc(
     """
-    .. raw:: html
-
-        <div class="card" style="width: 15rem; float:left; margin: 10px;">
-            <a href={link}>
-                <div class="card-header">
-                    <b>{name}</b>
+    <div class="title-card-col col-lg-4">
+        <a class="title-card-link d-flex w-100" href="{link}">
+            <div class="card title-card h-100 w-100">
+                <div class="card-header title-card-header">
+                    <span class="title-card-title">{name}</span>
                 </div>
-                <div class="card-body">
-                    <p class="card-text"> {description} </p>
+                <div class="card-body title-card-body">
+                    <p class="card-text title-card-description">{description}</p>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
+    </div>
     """
 )
 
@@ -44,9 +43,5 @@ class TitleCardDirective(Directive):
         link = self.options["link"]
         desc = self.options["description"]
 
-        thumbnail_rst = TEMPLATE.format(name=name, link=link, description=desc)
-        thumbnail = StringList(thumbnail_rst.split("\n"))
-
-        thumb = nodes.paragraph()
-        self.state.nested_parse(thumbnail, self.content_offset, thumb)
-        return [thumb]
+        html = TEMPLATE.format(name=name, link=link, description=desc)
+        return [nodes.raw(text=html, format="html")]

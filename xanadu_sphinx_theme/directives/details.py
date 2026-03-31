@@ -12,14 +12,13 @@ TEMPLATE = cleandoc(
 
         <a
           class="details-header collapse-header"
-          data-toggle="collapse"
+          data-bs-toggle="collapse"
           href="#{href}"
           aria-expanded="false"
           aria-controls="details"
         >
-            <h2 style="font-size: 24px;">
-                <i class="fas fa-angle-down rotate" style="float: right;"></i> {title}
-            </h2>
+            <h2>{title}</h2>
+            <i class="bx bx-chevron-down rotate"></i>
         </a>
         <div class="collapse" id="{href}">
 

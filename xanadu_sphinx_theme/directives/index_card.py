@@ -4,29 +4,24 @@ from inspect import cleandoc
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
-from docutils.statemachine import StringList
 
 TEMPLATE = cleandoc(
     """
-    .. raw:: html
-
-        <div class="col-lg-4 mb-2 align-items-stretch">
-            <a href="{link}">
-                <div class="card rounded-lg" style="height:100%;">
-                    <div class="d-flex">
-                        <div>
-                            <h3 class="card-title pl-3 mt-4">
-                                {name}
-                            </h3>
-                            <p class="mb-3 grey-text px-3">
-                                {description}
-                                <i class="fas fa-angle-double-right"></i>
-                            </p>
-                        </div>
-                    </div>
+    <div class="col-lg-4 mb-2 d-flex align-items-stretch">
+        <a class="index-card-link d-flex w-100" href="{link}">
+            <div class="card index-card h-100 w-100">
+                <div class="card-header index-card-header">
+                    <h3 class="index-card-title">{name}</h3>
                 </div>
-            </a>
-        </div>
+                <div class="card-body index-card-body">
+                    <p class="card-text index-card-description">
+                        {description}
+                        <i class="fas fa-angle-double-right"></i>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
     """
 )
 
@@ -51,9 +46,5 @@ class IndexCardDirective(Directive):
         link = self.options["link"]
         desc = self.options["description"]
 
-        thumbnail_rst = TEMPLATE.format(name=name, link=link, description=desc)
-        thumbnail = StringList(thumbnail_rst.split("\n"))
-
-        thumb = nodes.paragraph()
-        self.state.nested_parse(thumbnail, self.content_offset, thumb)
-        return [thumb]
+        html = TEMPLATE.format(name=name, link=link, description=desc)
+        return [nodes.raw(text=html, format="html")]
