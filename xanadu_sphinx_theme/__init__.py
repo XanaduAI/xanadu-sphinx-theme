@@ -35,17 +35,19 @@ def templates_dir():
     return str(files("xanadu_sphinx_theme").joinpath("templates"))
 
 
+def _set_theme_default(app, key, value):
+    """Set a theme option when it is missing or empty in theme.conf."""
+    if not app.config["html_theme_options"].get(key):
+        app.config["html_theme_options"][key] = value
+
+
 def setup(app):
     """See https://www.sphinx-doc.org/en/master/extdev/appapi.html."""
     cwd = Path(__file__).resolve().parent
     app.add_html_theme("xanadu", str(cwd))
 
-    # set default footer sections
-    for section in ["about", "links", "policies", "social_icons", "taglines"]:
-        if f"footer_{section}" not in app.config["html_theme_options"]:
-            app.config["html_theme_options"][f"footer_{section}"] = XANADU_FOOTER[
-                f"footer_{section}"
-            ]
+    for section in ["about", "links", "policies", "social_icons", "newsletter", "xanadu", "copyright"]:
+        _set_theme_default(app, f"footer_{section}", XANADU_FOOTER.get(f"footer_{section}"))
 
     directives = {
         "bio": BioDirective,
@@ -62,9 +64,15 @@ def setup(app):
 
 
 XANADU_FOOTER = {
+    "footer_newsletter": {
+        "title": "Stay updated with our newsletter",
+        "description": "Get the latest quantum updates delivered to your inbox.",
+        "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
+        "cta": "Join the list",
+    },
     "footer_about": {
         "title": "Xanadu",
-        "icon": "_static/xanadu_logo.svg",
+        "icon": "https://assets.cloud.pennylane.ai/pennylane_website/generic/xanadu-logo.png",
         "href": "https://xanadu.ai",
         "description": """\
         Located in the heart of downtown Toronto, we've brought together
@@ -206,11 +214,12 @@ XANADU_FOOTER = {
             "href": "https://xanadu.ai/blog",
         },
     ],
-    "footer_taglines": [
-        {
-            "text": "Stay updated with our newsletter",
-            "href": "https://xanadu.us17.list-manage.com/subscribe?u=725f07a1d1a4337416c3129fd&id=294b062630",
-        },
-    ],
+    "footer_taglines": [],
     "footer_policies": [],
+    "footer_xanadu": {
+        "title": "Xanadu",
+        "icon": "https://assets.cloud.pennylane.ai/pennylane_website/generic/xanadu-logo.png",
+        "href": "https://xanadu.ai",
+    },
+    "footer_copyright": {},
 }
