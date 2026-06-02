@@ -46,7 +46,15 @@ def setup(app):
     cwd = Path(__file__).resolve().parent
     app.add_html_theme("xanadu", str(cwd))
 
-    for section in ["about", "links", "policies", "social_icons", "newsletter", "xanadu", "copyright"]:
+    for section in [
+        "about",
+        "links",
+        "policies",
+        "social_icons",
+        "newsletter",
+        "xanadu",
+        "copyright",
+    ]:
         _set_theme_default(app, f"footer_{section}", XANADU_FOOTER.get(f"footer_{section}"))
 
     directives = {
