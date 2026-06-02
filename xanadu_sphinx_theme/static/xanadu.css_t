@@ -1914,6 +1914,7 @@ footer h3.footer-middle__title {
   border: 0;
   border-top: 1px solid #CFCFCF;
   margin: 0;
+  opacity: 1;
 }
 
 .footer-bottom__logo-wrapper {
