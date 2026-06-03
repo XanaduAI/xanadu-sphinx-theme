@@ -1974,12 +1974,8 @@ footer h3.footer-middle__title {
 }
 
 /* label-sm-400 */
-.footer-bottom__copyright-tensorflow {
-  color: #757575;
-  font-family: Roboto, sans-serif;
+.footer-bottom__copyright p.footer-bottom__copyright-tensorflow {
   font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 140%;
 }
 
 .footer-bottom__policies {
