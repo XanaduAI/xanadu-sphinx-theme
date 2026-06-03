@@ -1913,6 +1913,12 @@ footer h3.footer-middle__title {
   line-height: 1;
 }
 
+.footer-middle__socials-list a:hover,
+.footer-middle__socials-list a:focus {
+  color: #0055A5;
+  text-decoration: none;
+}
+
 .footer-middle__socials-list a:focus-visible {
   outline: 2px solid #9AC7F2;
   outline-offset: 2px;
