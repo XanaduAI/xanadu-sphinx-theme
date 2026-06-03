@@ -1736,7 +1736,7 @@ footer {
 @media screen and (min-width: 1000px) {
   .footer-middle__container {
     display: grid;
-    grid-template-columns: 320px auto 1fr;
+    grid-template-columns: 400px auto 1fr;
     grid-template-areas:
       "about space links"
       "about space links"
