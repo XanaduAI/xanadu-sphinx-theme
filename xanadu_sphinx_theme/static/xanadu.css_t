@@ -1751,7 +1751,8 @@ footer {
 }
 
 .footer-middle__logo {
-  display: block;
+  display: inline-block;
+  width: fit-content;
 }
 
 .footer-middle__logo:focus-visible {
@@ -1922,7 +1923,8 @@ footer h3.footer-middle__title {
 }
 
 .footer-bottom__logo {
-  display: block;
+  display: inline-block;
+  width: fit-content;
 }
 
 .footer-bottom__logo:focus-visible {
