@@ -1713,6 +1713,13 @@ footer {
   gap: 12px;
   line-height: 140%;
   text-decoration: none;
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-newsletter__cta {
+    width: auto;
+  }
 }
 
 .footer-newsletter__cta:hover,
