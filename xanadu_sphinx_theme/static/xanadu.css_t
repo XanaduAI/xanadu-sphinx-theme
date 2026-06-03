@@ -2005,7 +2005,7 @@ footer h3.footer-middle__title {
 .footer-bottom__link:hover,
 .footer-bottom__link:focus {
   color: #757575;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .footer-bottom__link:focus-visible {
