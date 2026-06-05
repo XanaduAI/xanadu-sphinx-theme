@@ -53,7 +53,12 @@
               href="{{ link.href }}"
               onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_{{ column.title | lower | replace(' ', '_') }}_click', '{{ link.name }}')"
               {% if link.get("external") %} rel="noopener noreferrer" target="_blank" {% endif %}
-            >{{ link.name }}</a>
+            >
+              <span class="footer-middle__link-name">{{ link.name }}</span>
+              {% if link.get("external") %}
+              <i class="bx bx-arrow-out-up-right-square footer-middle__link-external-icon" aria-hidden="true"></i>
+              {% endif %}
+            </a>
           </li>
           {% endfor %}
         </ul>

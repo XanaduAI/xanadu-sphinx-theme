@@ -1863,20 +1863,38 @@ footer h3.footer-middle__title {
 
 /* label-md-400 */
 .footer-middle__link-item {
+  align-items: center;
   color: #515151;
-  display: block;
+  display: inline-flex;
   font-family: Roboto, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
+  gap: 8px;
   line-height: 140%;
   text-decoration: none;
+}
+
+.footer-middle__link-external-icon {
+  color: #757575;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .footer-middle__link-item:hover,
 .footer-middle__link-item:focus-visible {
   color: #0074E0;
+  text-decoration: none;
+}
+
+.footer-middle__link-item:hover .footer-middle__link-name,
+.footer-middle__link-item:focus-visible .footer-middle__link-name {
   text-decoration: underline;
   text-decoration-color: #0074E0;
+}
+
+.footer-middle__link-item:hover .footer-middle__link-external-icon,
+.footer-middle__link-item:focus-visible .footer-middle__link-external-icon {
+  color: #0074E0;
 }
 
 .footer-middle__link-item:focus-visible {
