@@ -1,85 +1,147 @@
-<hr class="p-0 m-0">
-
 <footer>
-  <div class="footer-top">
-    <!-- About -->
-    <div class="footer-about">
-      <a class="footer-icon" href="{{ theme_footer_about.href }}">
-        <img src="{{ theme_footer_about.icon }}" alt="{{ theme_footer_about.title }}" height="40px" width="40px">
+  {% if theme_footer_newsletter and theme_footer_newsletter.get("title") %}
+  <div class="footer-newsletter">
+    <div class="footer-newsletter__container">
+      <div class="footer-newsletter__title">{{ theme_footer_newsletter.title }}</div>
+      {% if theme_footer_newsletter.get("description") %}
+      <p class="footer-newsletter__description">{{ theme_footer_newsletter.description }}</p>
+      {% endif %}
+      <a
+        class="footer-newsletter__cta btn-xanadu"
+        href="{{ theme_footer_newsletter.href }}"
+        rel="noopener noreferrer"
+        target="_blank"
+        onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_newsletter_click', '{{ theme_footer_newsletter.cta }}')"
+      >
+        <span>{{ theme_footer_newsletter.cta }}</span>
+        <i class="bx bx-chevron-right"></i>
       </a>
-      <p class="footer-description">
-        {{ theme_footer_about.description }}
-      </p>
     </div>
+  </div>
+  {% endif %}
 
-    <!-- Links -->
-    <div class="footer-links">
-      <div class="footer-link-spacer"></div>
+  <div class="footer-middle__container">
+    {% if theme_footer_about %}
+    <div class="footer-middle__about">
+      <a class="footer-middle__logo" href="{{ theme_footer_about.get('href', '/') }}">
+        <img src="{{ theme_footer_about.icon }}" alt="{{ theme_footer_about.title }}">
+      </a>
+      {% if theme_footer_about.get("description") %}
+      <div class="footer-middle__description">
+        <p>{{ theme_footer_about.description | safe }}</p>
+      </div>
+      {% endif %}
+      {% if theme_footer_about.get("created_by") %}
+      <div class="footer-middle__created-by">
+        <p>{{ theme_footer_about.created_by | safe }}</p>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if theme_footer_links %}
+    <div class="footer-middle__links">
+      <div class="footer-middle__link-spacer"></div>
       {% for column in theme_footer_links %}
-      <div class="footer-link-column">
-        <p class="footer-link-heading">{{ column.title }}</p>
-        {% for link in column.links %}
-          <a class="footer-link-item" href="{{ link.href }}" onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_{{ column.title | lower }}_click', '{{ link.name }}')" {% if link.external %} rel="noopener noreferrer" target="_blank" {% endif %}>{{ link.name }}</a>
-
-        {% endfor %}
+      <div class="footer-middle__link-column">
+        <h3 class="footer-middle__title">{{ column.title }}</h3>
+        <ul class="footer-middle__links-list">
+          {% for link in column.links %}
+          {% set footer_ga_label = 'footer_' ~ (column.title | lower | replace(' ', '_')) ~ '_click' %}
+          <li>
+            <a
+              class="footer-middle__link-item"
+              href="{{ link.href }}"
+              onclick="sendCustomGAEvent('click', 'footer_ux', '{{ footer_ga_label }}', '{{ link.name }}')"
+              {% if link.get("external") %} rel="noopener noreferrer" target="_blank" {% endif %}
+            >
+              <span class="footer-middle__link-name">{{ link.name }}</span>
+              {% if link.get("external") %}
+              <i class="bx bx-arrow-out-up-right-square footer-middle__link-external-icon" aria-hidden="true"></i>
+              {% endif %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
       {% endfor %}
     </div>
+    {% endif %}
 
-    <div class="footer-social-icons-and-taglines">
-      <!-- Social Icons -->
-      <div class="footer-social-icons">
+    {% if theme_footer_social_icons %}
+    <div class="footer-middle__socials">
+      <ul class="footer-middle__socials-list">
         {% for link in theme_footer_social_icons %}
-          <a href="{{ link.href }}" aria-label="{{ link.name }}" rel="noopener noreferrer" target="_blank"onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_social_click', '{{ link.name }}')">
+        <li>
+          <a
+            href="{{ link.href }}"
+            aria-label="{{ link.name }}"
+            rel="noopener noreferrer"
+            target="_blank"
+            onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_social_click', '{{ link.name }}')"
+          >
             <i class="{{ link.icon }}"></i>
           </a>
+        </li>
         {% endfor %}
-      </div>
-
-      <!-- Taglines -->
-      {% for tagline in theme_footer_taglines %}
-      <a class="footer-tagline" href="{{ tagline.href }}" onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_newsletter_click', '{{ tagline.text }}')">
-        {{ tagline.text }}
-      </a>
-      {% endfor %}
+      </ul>
     </div>
-
+    {% endif %}
   </div>
 
   <hr class="footer-separator">
 
-  <div class="footer-bottom">
-    <!-- Copyright -->
-    <div class="footer-copyrights">
-      {%- if show_copyright %}
-        <p class="footer-copyright-item">
-          {%- if hasdoc('copyright') %}
-            {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}{% endtrans %}
-          {%- else %}
-            {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}{% endtrans %}
-          {%- endif %}
-        </p>
-      {%- endif %}
-      {% for copyright in theme_extra_copyrights %}
-        <p class="footer-copyright-item">
-          {{ copyright }}
-        </p>
-      {% endfor %}
+  <div class="footer-bottom__container">
+    {% if theme_footer_xanadu %}
+    <div class="footer-bottom__logo-wrapper">
+      <a class="footer-bottom__logo" href="{{ theme_footer_xanadu.href }}">
+        <img src="{{ theme_footer_xanadu.icon }}" alt="{{ theme_footer_xanadu.title }}">
+      </a>
     </div>
-
-    <!-- Policies -->
-    {% if theme_footer_policies %}
-      <div class="footer-policies">
-          {% for legal in theme_footer_policies %}
-            <a class="footer-policy-item" href="{{ legal.href }}">
-              <u>{{ legal.text }}</u>
-              {% if not loop.last %}
-                <div class="footer-policy-border"></div>
-              {% endif %}
-            </a>
-          {% endfor %}
-      </div>
     {% endif %}
-  </div>
 
+    <div class="footer-bottom__content">
+      <div class="footer-bottom__content-left">
+        <div class="footer-bottom__copyright">
+          {% if theme_footer_copyright and theme_footer_copyright.get("notice") %}
+          <p>{{ theme_footer_copyright.notice | safe }}</p>
+          {% elif theme_footer_xanadu %}
+          <p>&copy; Copyright <span class="footer-copyright-year"></span> | Xanadu | All rights reserved</p>
+          {% elif show_copyright %}
+          <p>
+            {%- if hasdoc('copyright') %}
+              {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}{% endtrans %}
+            {%- else %}
+              {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}{% endtrans %}
+            {%- endif %}
+          </p>
+          {% else %}
+          <p>&copy; Copyright <span class="footer-copyright-year"></span> | Xanadu | All rights reserved</p>
+          {% endif %}
+          {% for copyright in theme_extra_copyrights %}
+          <p>{{ copyright }}</p>
+          {% endfor %}
+          {% if theme_footer_copyright and theme_footer_copyright.get("tensorflow_notice") %}
+          <p class="footer-bottom__copyright-tensorflow">{{ theme_footer_copyright.tensorflow_notice }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if theme_footer_policies %}
+      <div class="footer-bottom__content-right">
+        <div class="footer-bottom__policies">
+          {% for legal in theme_footer_policies %}
+          <a class="footer-bottom__link" href="{{ legal.href }}">{{ legal.text }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </footer>
+
+<script>
+  document.querySelectorAll(".footer-copyright-year").forEach(function (element) {
+    element.textContent = new Date().getFullYear();
+  });
+</script>
