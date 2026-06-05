@@ -47,16 +47,17 @@
         <h3 class="footer-middle__title">{{ column.title }}</h3>
         <ul class="footer-middle__links-list">
           {% for link in column.links %}
+          {% set footer_ga_label = 'footer_' ~ (column.title | lower | replace(' ', '_')) ~ '_click' %}
           <li>
             <a
               class="footer-middle__link-item"
               href="{{ link.href }}"
-              onclick="sendCustomGAEvent('click', 'footer_ux', 'footer_{{ column.title | lower | replace(' ', '_') }}_click', '{{ link.name }}')"
+              onclick="sendCustomGAEvent('click', 'footer_ux', '{{ footer_ga_label }}', '{{ link.name }}')"
               {% if link.get("external") %} rel="noopener noreferrer" target="_blank" {% endif %}
             >
               <span class="footer-middle__link-name">{{ link.name }}</span>
               {% if link.get("external") %}
-              <i class="bx bx-link-external footer-middle__link-external-icon" aria-hidden="true"></i>
+              <i class="bx bx-arrow-out-up-right-square footer-middle__link-external-icon" aria-hidden="true"></i>
               {% endif %}
             </a>
           </li>
