@@ -1876,7 +1876,8 @@ footer h3.footer-middle__title {
 
 .footer-middle__link-external-icon {
   color: #757575;
-  font-size: 1rem;
+  flex-shrink: 0;
+  font-size: 0.875rem;
   line-height: 1;
 }
 
