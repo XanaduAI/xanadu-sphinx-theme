@@ -3394,7 +3394,10 @@ pre {
   position: static;
 }
 
-.gallery-item-thumbcontainer p.caption .caption-text a::after {
+.gallery-item-thumbcontainer p.caption a::after,
+.gallery-item-thumbcontainer p.caption .caption-text a::after,
+.gallery-item-thumbcontainer figure figcaption a::after,
+.gallery-item-thumbcontainer figure figcaption p a::after {
   position: absolute;
   top: 0;
   right: 0;
