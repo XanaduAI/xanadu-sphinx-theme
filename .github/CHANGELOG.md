@@ -4,6 +4,12 @@
 
 This release contains contributions from (in alphabetical order):
 
+[Ashish Kanwar Singh](https://github.com/ashishks0522)
+
+### Bug fixes
+
+- Fixed title cards and index cards so the entire card is clickable, not just the title text. Cards now use Bootstrap's `stretched-link` pattern to cover the full card area.
+
 ## Release 0.18.0 (current release)
 
 ### Contributors
