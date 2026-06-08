@@ -3394,7 +3394,10 @@ pre {
   position: static;
 }
 
-.gallery-item-thumbcontainer p.caption .caption-text a::after {
+.gallery-item-thumbcontainer p.caption a::after,
+.gallery-item-thumbcontainer p.caption .caption-text a::after,
+.gallery-item-thumbcontainer figure figcaption a::after,
+.gallery-item-thumbcontainer figure figcaption p a::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -3517,12 +3520,15 @@ pre {
   color: inherit;
 }
 
-.index-card-link:hover {
+.index-card-link:hover,
+.index-card-link:focus {
   text-decoration: none;
   color: inherit;
 }
 
 .index-card {
+  position: relative;
+  cursor: pointer;
   border-radius: 4px !important;
   border: 1px solid #CFCFCF;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.10) !important;
@@ -3578,12 +3584,6 @@ pre {
   line-height: 1.4;
 }
 
-.title-card-link,
-.title-card-link:hover,
-.title-card-link:focus {
-  text-decoration: none;
-}
-
 /* Fallback layout for pages that place consecutive title-card directives
    without an explicit Bootstrap `.row` wrapper (e.g. legacy docs pages). */
 .title-card-col {
@@ -3614,12 +3614,22 @@ pre {
   padding-right: 0;
 }
 
-.title-card-link {
-  display: flex;
+.title-card-col > .title-card,
+.row > .title-card-col > .title-card {
+  flex: 1;
   width: 100%;
 }
 
+.title-card-link,
+.title-card-link:hover,
+.title-card-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
 .title-card {
+  position: relative;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   min-height: 220px;

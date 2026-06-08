@@ -8,16 +8,15 @@ from docutils.parsers.rst import Directive, directives
 TEMPLATE = cleandoc(
     """
     <div class="title-card-col col-lg-4">
-        <a class="title-card-link d-flex w-100" href="{link}">
-            <div class="card title-card h-100 w-100">
-                <div class="card-header title-card-header">
-                    <span class="title-card-title">{name}</span>
-                </div>
-                <div class="card-body title-card-body">
-                    <p class="card-text title-card-description">{description}</p>
-                </div>
+        <div class="card title-card h-100 w-100">
+            <div class="card-header title-card-header">
+                <span class="title-card-title">{name}</span>
             </div>
-        </a>
+            <div class="card-body title-card-body">
+                <p class="card-text title-card-description">{description}</p>
+            </div>
+            <a class="title-card-link stretched-link" href="{link}" aria-label="{name}"></a>
+        </div>
     </div>
     """
 )
