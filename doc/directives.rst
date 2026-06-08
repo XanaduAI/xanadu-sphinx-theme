@@ -166,51 +166,51 @@ Gallery Item
         <div class="gallery-grid">
 
     .. gallery-item::
-        :description: Getting Started
+        :description: :doc:`Getting Started <started>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Installation
+        :description: :doc:`Installation <started>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Configuration
+        :description: :doc:`Configuration <configuration>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: API Reference
+        :description: :doc:`API Reference <code>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Development Guide - API
+        :description: :doc:`Development Guide <directives>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Plugin Tutorials  Quantum Chemistry
+        :description: :doc:`Plugin Tutorials <gallery>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Device Docs
+        :description: :doc:`Device Docs <elements>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Optimization
+        :description: :doc:`Optimization <elements>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Templates
+        :description: :doc:`Templates <directives>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Demos
+        :description: :doc:`Demos <gallery>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Machine Learning
+        :description: :doc:`Machine Learning <elements>`
         :figure: _static/teleport.png
 
     .. gallery-item::
-        :description: Quantum Chemistry
+        :description: :doc:`Quantum Chemistry <elements>`
         :figure: _static/teleport.png
 
     .. raw:: html
@@ -222,51 +222,51 @@ Gallery Item
     <div class="gallery-grid">
 
 .. gallery-item::
-    :description: Getting Started
+    :description: :doc:`Getting Started <started>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Installation
+    :description: :doc:`Installation <started>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Configuration
+    :description: :doc:`Configuration <configuration>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: API Reference
+    :description: :doc:`API Reference <code>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Development Guide
+    :description: :doc:`Development Guide <directives>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Plugin Tutorials
+    :description: :doc:`Plugin Tutorials <gallery>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Device Docs
+    :description: :doc:`Device Docs <elements>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Optimization
+    :description: :doc:`Optimization <elements>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Templates
+    :description: :doc:`Templates <directives>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Demos
+    :description: :doc:`Demos <gallery>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Machine Learning
+    :description: :doc:`Machine Learning <elements>`
     :figure: _static/teleport.png
 
 .. gallery-item::
-    :description: Quantum Chemistry
+    :description: :doc:`Quantum Chemistry <elements>`
     :figure: _static/teleport.png
 
 .. raw:: html
