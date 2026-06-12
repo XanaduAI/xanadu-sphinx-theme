@@ -1,10 +1,23 @@
-## Release 0.19.0 (development release)
+## Release 0.20.0 (development release)
 
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
 
-## Release 0.18.0 (current release)
+## Release 0.19.0 (current release)
+
+### Contributors
+
+This release contains contributions from (in alphabetical order):
+
+[Ashish Kanwar Singh](https://github.com/ashishks0522)
+
+### Bug fixes
+
+- Fixed title cards and index cards so the entire card is clickable, not just the title text. Cards now use Bootstrap's `stretched-link` pattern to cover the full card area.
+- Fixed gallery items so the full card (including the thumbnail image) is clickable when the description contains a link. Broadened the CSS overlay selectors to match all Sphinx figure caption markup variants.
+
+## Release 0.18.0
 
 ### Contributors
 
