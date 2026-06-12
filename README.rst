@@ -224,10 +224,54 @@ The following options customize the appearance of the footer.
             "title": "Title",
             "icon": "https://...",
             "href": "https://...",
-            "description": "Description"
+            "description": "Description",
+            "created_by": "Created with ❤️ by <a href=\"https://xanadu.ai/\">Xanadu</a>."
         }
 
-    that specifies the 'About' section of the footer.
+    that specifies the 'About' section of the footer middle area. ``created_by`` is
+    optional HTML displayed below the description.
+
+``footer_newsletter``
+    A dictionary of the form
+
+    .. code-block:: python
+
+        "footer_newsletter": {
+            "title": "Never miss a milestone",
+            "description": "Get the latest quantum updates delivered to your inbox.",
+            "href": "https://...",
+            "cta": "Join the list",
+        }
+
+    specifying the newsletter banner at the top of the footer. Set to an empty
+    dictionary to remove.
+
+``footer_xanadu``
+    A dictionary of the form
+
+    .. code-block:: python
+
+        "footer_xanadu": {
+            "title": "Xanadu",
+            "icon": "https://...",
+            "href": "https://xanadu.ai",
+        }
+
+    specifying the Xanadu logo displayed above the copyright section. Set to an
+    empty dictionary to remove.
+
+``footer_copyright``
+    A dictionary of the form
+
+    .. code-block:: python
+
+        "footer_copyright": {
+            "notice": "Optional custom copyright HTML.",
+            "tensorflow_notice": "Optional TensorFlow trademark notice.",
+        }
+
+    specifying additional copyright content in the footer bottom section. If
+    ``notice`` is omitted, a default PennyLane copyright line is shown.
 
 ``footer_links``
     A list of dictionaries of the form
@@ -280,7 +324,7 @@ The following options customize the appearance of the footer.
     Set to an empty list to remove.
 
 ``footer_taglines``
-    A list of dictionaries of the form
+    Deprecated. Use ``footer_newsletter`` instead. A list of dictionaries of the form
 
     .. code-block:: python
 
