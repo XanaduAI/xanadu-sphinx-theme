@@ -2793,6 +2793,107 @@ nav {
   font-size: 20px;
 }
 
+/* Content card layout (dynamic cards populated from the content API) */
+.mega-menu-card.ContentMenuCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ContentMenuCard__image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.ContentMenuCard__image--no-image {
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  background-color: #F5F5F5;
+}
+
+.ContentMenuCard__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.ContentMenuCard__title {
+  margin: 0;
+  flex-shrink: 0;
+  color: #232323;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8rem;
+}
+
+.ContentMenuCard__description {
+  margin: 0;
+  flex-shrink: 0;
+  color: #232323;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.45rem;
+}
+
+.ContentMenuCard--mobile.MenuCard {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.ContentMenuCard--mobile .MenuCard__border-rect {
+  rx: 7px;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__image {
+  display: none;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__content {
+  gap: 4px;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__title {
+  min-height: 2.8rem;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__description {
+  font-size: 0.75rem;
+  min-height: 1.75rem;
+}
+
+/* Loading placeholder: keep the card non-interactive and show skeleton lines. */
+.content-menu-card--loading {
+  pointer-events: none;
+}
+
+.content-menu-card--loading .ContentMenuCard__title,
+.content-menu-card--loading .ContentMenuCard__description {
+  border-radius: 4px;
+  background-color: #F5F5F5;
+  color: transparent;
+}
+
+/* Empty slot (no matching item returned): keep the grid cell but hide it. */
+.content-menu-card--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .navbar-pill {
   display: inline-flex;
   align-items: center;

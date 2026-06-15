@@ -829,5 +829,174 @@
     });
   </script>
 
+  <!-- Populates the navbar "content" cards from the PennyLane content API. -->
+  <script type="text/javascript">
+    (function () {
+      // TODO: Change to production endpoint before merging feature branch
+      var GRAPHQL_ENDPOINT = "https://dev.cloud.pennylane.ai/graphql";
+
+      var SEARCH_QUERY = [
+        "query SearchQuery($input: SearchInput!, $page: PageInput) {",
+        "  search(input: $input, page: $page) {",
+        "    totalItems",
+        "    items {",
+        "      ... on Content { id slug type title description link thumbnail }",
+        "    }",
+        "  }",
+        "}"
+      ].join("\n");
+
+      // Mirrors shared-utilities `buildSearchInput` for the subset of filters the
+      // navbar content cards use.
+      var SORT_MAP = {
+        "title": [{ field: "title", desc: false }],
+        "-title": [{ field: "title", desc: true }],
+        "publication_date": [{ field: "publishedAt", desc: true }],
+        "-publication_date": [{ field: "publishedAt", desc: false }]
+      };
+
+      function buildSearchInput(filters) {
+        filters = filters || {};
+        var contentType = (filters.contentType || "").toUpperCase();
+        var categories = filters.categories || [];
+        var specificFiltersByType = {
+          BLOG: { blogFilters: { categories: categories } },
+          CHALLENGE: { challengeFilters: { categories: categories, difficulties: filters.difficulties || [] } },
+          CODEBOOK_TOPIC: { codebookTopicFilters: { moduleCategories: filters.moduleCategories || [], moduleTitles: filters.moduleTitles || [] } },
+          COMPILATION: { compilationFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DATASET_FAMILY: { datasetFamilyFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DEMO: { demoFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DOC: { docFilters: assign({ projects: filters.projects || [] }, filters.version ? { version: filters.version } : {}) }
+        };
+
+        var input = {
+          contentTypes: contentType ? [contentType] : null,
+          genericFilters: { yearsOfPublication: filters.years },
+          sorts: (filters.sort && SORT_MAP[filters.sort]) || null
+        };
+
+        var specificFilters = specificFiltersByType[contentType];
+        if (specificFilters) {
+          input.specificFilters = specificFilters;
+        }
+        return input;
+      }
+
+      function assign(target, source) {
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+        return target;
+      }
+
+      var requestCache = {};
+
+      function fetchItems(input, limit) {
+        var cacheKey = JSON.stringify(input) + "|" + limit;
+        if (requestCache[cacheKey]) {
+          return requestCache[cacheKey];
+        }
+        var promise = fetch(GRAPHQL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: SEARCH_QUERY,
+            variables: { input: input, page: { limit: limit, offset: 0 } }
+          })
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (json) {
+            return (json && json.data && json.data.search && json.data.search.items) || [];
+          });
+        requestCache[cacheKey] = promise;
+        return promise;
+      }
+
+      function fillCard(card, item, fallbackImageSrc) {
+        var imageEl = card.querySelector(".ContentMenuCard__image");
+        var titleEl = card.querySelector(".ContentMenuCard__title");
+        var descEl = card.querySelector(".ContentMenuCard__description");
+
+        var src = (item.thumbnail && item.thumbnail.length > 0)
+          ? item.thumbnail
+          : (fallbackImageSrc || "");
+        if (src && imageEl) {
+          var img = document.createElement("img");
+          img.className = "ContentMenuCard__image";
+          img.src = src;
+          img.alt = item.title || "";
+          imageEl.parentNode.replaceChild(img, imageEl);
+        }
+
+        if (titleEl) { titleEl.textContent = item.title || ""; }
+        if (descEl) { descEl.textContent = item.description || ""; }
+
+        card.setAttribute("href", item.link || "#");
+        card.removeAttribute("aria-hidden");
+        card.removeAttribute("tabindex");
+        card.classList.remove("content-menu-card--loading");
+      }
+
+      function markEmpty(card) {
+        card.classList.remove("content-menu-card--loading");
+        card.classList.add("content-menu-card--empty");
+      }
+
+      function populateGroup(config) {
+        var groupId = config.group;
+        var cards = document.querySelectorAll(
+          '.content-menu-card[data-content-card-group="' + groupId + '"]'
+        );
+        if (cards.length === 0) {
+          return;
+        }
+
+        var input = buildSearchInput(config.filters);
+        fetchItems(input, config.limit)
+          .then(function (items) {
+            for (var i = 0; i < cards.length; i++) {
+              var card = cards[i];
+              var index = parseInt(card.getAttribute("data-content-card-index"), 10) || 0;
+              if (items[index]) {
+                fillCard(card, items[index], config.fallbackImageSrc);
+              } else {
+                markEmpty(card);
+              }
+            }
+          })
+          .catch(function (error) {
+            console.error("Failed to load navbar content cards", error);
+            for (var j = 0; j < cards.length; j++) {
+              markEmpty(cards[j]);
+            }
+          });
+      }
+
+      function init() {
+        var configScripts = document.querySelectorAll("script.content-cards-config");
+        for (var i = 0; i < configScripts.length; i++) {
+          var script = configScripts[i];
+          var config;
+          try {
+            config = JSON.parse(script.textContent);
+          } catch (error) {
+            console.error("Invalid navbar content-cards config", error);
+            continue;
+          }
+          config.group = script.getAttribute("data-group");
+          populateGroup(config);
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
   {% include "footer.html" %}
 {%- endblock %}

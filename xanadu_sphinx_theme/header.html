@@ -112,6 +112,27 @@
     </a>
   {% endmacro %}
 
+  {# Renders placeholder slots for a dynamic "content" card section. The query
+     config is embedded as JSON and the slots are populated client-side from the
+     PennyLane content API (see the content-cards script in layout.html). #}
+  {% macro render_content_card_slots(card_section, size, group_id) %}
+    <script type="application/json" class="content-cards-config" data-group="{{ group_id }}">{"limit": {{ card_section.cards.limit }}, "filters": {{ card_section.cards.filters | tojson }}, "fallbackImageSrc": {{ (card_section.cards.fallbackImageSrc or '') | tojson }}}</script>
+    {% for i in range(card_section.cards.limit) %}
+      <a class="mega-menu-card MenuCard MenuCard--light ContentMenuCard ContentMenuCard--{{ size }} content-menu-card content-menu-card--loading"
+         data-content-card-group="{{ group_id }}" data-content-card-index="{{ i }}"
+         href="#" aria-hidden="true" tabindex="-1">
+        <svg class="MenuCard__border-svg" aria-hidden="true">
+          <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
+        </svg>
+        <div class="ContentMenuCard__image ContentMenuCard__image--no-image"></div>
+        <div class="ContentMenuCard__content">
+          <h4 class="ContentMenuCard__title"></h4>
+          <p class="ContentMenuCard__description"></p>
+        </div>
+      </a>
+    {% endfor %}
+  {% endmacro %}
+
   {% macro render_mega_menu_link(item, header, parent_name) %}
     {% set is_external = is_external_href(item.href) | trim %}
     <a class="mega-menu-link" href="{{ pathto(item.href, 1) }}"
@@ -172,17 +193,21 @@
             {% endfor %}
           </div>
           {% if link.cardSections %}
-            {% set card_ns = namespace(total_card_columns=0, has_featured=false) %}
+            {% set card_ns = namespace(total_card_columns=0, has_cards=false) %}
             {% for card_section in link.cardSections %}
               {% if card_section.type == 'featured' %}
                 {% set card_ns.total_card_columns = card_ns.total_card_columns + (card_section.cards | length) %}
-                {% set card_ns.has_featured = true %}
+                {% set card_ns.has_cards = true %}
+              {% elif card_section.type == 'content' %}
+                {% set card_ns.total_card_columns = card_ns.total_card_columns + card_section.cards.limit %}
+                {% set card_ns.has_cards = true %}
               {% endif %}
             {% endfor %}
-            {% if card_ns.has_featured %}
+            {% if card_ns.has_cards %}
               <div class="navbar-mega-menu__cards-area" style="--menu-card-total-columns: {{ card_ns.total_card_columns }};">
-                {% for card_section in link.cardSections if card_section.type == 'featured' %}
-                  <div class="navbar-mega-menu__card-section-header" style="grid-column: span {{ card_section.cards | length }} / span {{ card_section.cards | length }};">
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
+                  {% set col_span = (card_section.cards | length) if card_section.type == 'featured' else card_section.cards.limit %}
+                  <div class="navbar-mega-menu__card-section-header" style="grid-column: span {{ col_span }} / span {{ col_span }};">
                     <div class="mega-menu-section-header">
                       <h3 class="mega-menu-section-header__title">{{ card_section.header }}</h3>
                       {% if card_section.cta %}
@@ -194,10 +219,14 @@
                     </div>
                   </div>
                 {% endfor %}
-                {% for card_section in link.cardSections if card_section.type == 'featured' %}
-                  {% for card in card_section.cards %}
-                    {{ render_featured_card(card, 'desktop', link.name) }}
-                  {% endfor %}
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
+                  {% if card_section.type == 'featured' %}
+                    {% for card in card_section.cards %}
+                      {{ render_featured_card(card, 'desktop', link.name) }}
+                    {% endfor %}
+                  {% else %}
+                    {{ render_content_card_slots(card_section, 'desktop', 'd-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endif %}
@@ -350,7 +379,7 @@
           {% endfor %}
         {% endfor %}
         {% if link.cardSections %}
-          {% for card_section in link.cardSections if card_section.type == 'featured' %}
+          {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
             <div class="navbar-mega-menu__section">
               <div class="mega-menu-section-header">
                 <h3 class="mega-menu-section-header__title">{{ card_section.header }}</h3>
@@ -362,9 +391,13 @@
                 {% endif %}
               </div>
               <div class="MobileMenu__cards">
-                {% for card in card_section.cards %}
-                  {{ render_featured_card(card, 'mobile', link.name) }}
-                {% endfor %}
+                {% if card_section.type == 'featured' %}
+                  {% for card in card_section.cards %}
+                    {{ render_featured_card(card, 'mobile', link.name) }}
+                  {% endfor %}
+                {% else %}
+                  {{ render_content_card_slots(card_section, 'mobile', 'm-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                {% endif %}
               </div>
             </div>
           {% endfor %}
