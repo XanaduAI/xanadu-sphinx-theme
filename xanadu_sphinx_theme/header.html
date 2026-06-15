@@ -20,7 +20,7 @@
 
         <span>{{ name }}</span>
         {% if external %}
-          <i class='bx bx-arrow-out-up-right-square'></i> 
+          <i class='bx bx-link-external'></i> 
         {% elif dropdown %}
           <i class="bx bx-chevron-down"></i>
         {% endif %}
@@ -36,7 +36,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class='bx bx-arrow-out-up-right-square'></i> 
+                  <i class='bx bx-link-external'></i> 
                 {% endif %}
               </a>
             </li>
@@ -60,19 +60,90 @@
     </li>
   {% endmacro %}
 
+  {# Whether a link should open in a new tab (anything outside the pennylane.ai ecosystem). #}
+  {% macro is_external_href(href) %}{% if href and href.startswith('http') and not (href.startswith('https://pennylane.ai') or href.startswith('https://docs.pennylane.ai')) %}1{% endif %}{% endmacro %}
+
+  {% macro render_mega_menu_link(item, header, parent_name) %}
+    {% set is_external = is_external_href(item.href) | trim %}
+    <a class="mega-menu-link" href="{{ pathto(item.href, 1) }}"
+       {% if is_external %} rel="noopener noreferrer" target="_blank" {% endif %}
+       onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ parent_name }} > {{ item.name }}')">
+      <span class="mega-menu-link__title">
+        <span class="mega-menu-link__name">{{ item.name }}</span>
+        {% if item.pill and item.pill.text %}
+          <span class="navbar-pill navbar-pill--{{ item.pill.variant }}">{{ item.pill.text }}</span>
+        {% endif %}
+        {% if is_external %}
+          <i class="bx bx-link-external mega-menu-link__external-icon"></i>
+        {% endif %}
+      </span>
+      {% if item.description %}
+        <p class="mega-menu-link__description">{{ item.description }}</p>
+      {% endif %}
+    </a>
+  {% endmacro %}
+
+  {% macro render_desktop_navbar_mega_item(link) %}
+    {% set ns = namespace(total_columns=0) %}
+    {% for link_section in link.linkSections %}{% set ns.total_columns = ns.total_columns + link_section.columns %}{% endfor %}
+    <li class="navbar-left-link desktop has-mega-menu">
+      <button class="dropdown-trigger" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
+        <span class="navbar-link__label">
+          <span>{{ link.name }}</span>
+          {% if link.pill and link.pill.text %}
+            <span class="navbar-pill navbar-pill--{{ link.pill.variant }}">{{ link.pill.text }}</span>
+          {% endif %}
+        </span>
+        <i class="bx bx-chevron-down"></i>
+      </button>
+      <div class="navbar-mega-menu desktop">
+        <div class="navbar-mega-menu__inner">
+          <div class="navbar-mega-menu__links-area" style="--menu-link-total-columns: {{ ns.total_columns }};">
+            {% for link_section in link.linkSections %}
+              <div class="navbar-mega-menu__link-section" style="grid-column: span {{ link_section.columns }} / span {{ link_section.columns }};">
+                {% for section in link_section.sections %}
+                  <div class="navbar-mega-menu__section">
+                    <div class="mega-menu-section-header">
+                      <h3 class="mega-menu-section-header__title">{{ section.header }}</h3>
+                      {% if section.cta %}
+                        <a class="mega-menu-section-header__cta" href="{{ pathto(section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ section.cta.text }}')">
+                          <span>{{ section.cta.text }}</span>
+                          <i class="bx bx-chevron-right"></i>
+                        </a>
+                      {% endif %}
+                    </div>
+                    <ul class="mega-menu-section-links {% if link_section.columns > 1 %}mega-menu-section-links--multi-column{% endif %}" style="--link-section-columns: {{ link_section.columns }};">
+                      {% for item in section['items'] %}
+                        <li>{{ render_mega_menu_link(item, section.header, link.name) }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </li>
+  {% endmacro %}
+
   <div class="navbar-links desktop">
     <ul class="navbar-left-links desktop">
       {% for link in theme_navbar_left_links %}
-        {{
-            render_desktop_navbar_left_link(
-              link.name,
-              link.href,
-              link.img,
-              link.img_width,
-              link.external,
-              link.dropdown
-            )
-        }}
+        {% if link.linkSections %}
+          {{ render_desktop_navbar_mega_item(link) }}
+        {% else %}
+          {{
+              render_desktop_navbar_left_link(
+                link.name,
+                link.href,
+                link.img,
+                link.img_width,
+                link.external,
+                link.dropdown
+              )
+          }}
+        {% endif %}
       {% endfor %}
     </ul>
     <ul class="navbar-right-links desktop">
@@ -111,7 +182,7 @@
           <div>
             <span>{{ name }}</span>
             {% if external %}
-              <i class='bx bx-arrow-out-up-right-square'></i> 
+              <i class='bx bx-link-external'></i> 
             {% endif %}
           </div>
           {% if dropdown %}
@@ -125,7 +196,7 @@
 
               <span>{{ name }}</span>
               {% if external %}
-                <i class='bx bx-arrow-out-up-right-square'></i> 
+                <i class='bx bx-link-external'></i> 
               {% endif %}
             </a>
           {% else %}
@@ -143,7 +214,7 @@
                     {{ name }}
                   {%- endif -%}
                   {% if external %}
-                    <i class='bx bx-arrow-out-up-right-square'></i> 
+                    <i class='bx bx-link-external'></i> 
                   {% endif %}
                 </a>
             </li>
@@ -155,7 +226,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class='bx bx-arrow-out-up-right-square'></i> 
+                  <i class='bx bx-link-external'></i> 
                 {% endif %}
               </a>
             </li>
@@ -164,6 +235,44 @@
       </div>
     </li>
   {% endmacro %}
+
+  {% macro render_mobile_navbar_mega(link) %}
+    <li class="navbar-link mobile">
+      <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
+        <div>
+          <span>{{ link.name }}</span>
+          {% if link.pill and link.pill.text %}
+            <span class="navbar-pill navbar-pill--{{ link.pill.variant }}">{{ link.pill.text }}</span>
+          {% endif %}
+        </div>
+      <i class="bx bx-chevron-down"></i>
+    </button>
+    <div class="navbar-dropdown mobile">
+      <div class="mobile-mega-menu">
+        {% for link_section in link.linkSections %}
+          {% for section in link_section.sections %}
+            <div class="navbar-mega-menu__section">
+              <div class="mega-menu-section-header">
+                <h3 class="mega-menu-section-header__title">{{ section.header }}</h3>
+                {% if section.cta %}
+                  <a class="mega-menu-section-header__cta" href="{{ pathto(section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ section.cta.text }}')">
+                    <span>{{ section.cta.text }}</span>
+                    <i class="bx bx-chevron-right"></i>
+                  </a>
+                {% endif %}
+              </div>
+              <ul class="mega-menu-section-links">
+                {% for item in section['items'] %}
+                  <li>{{ render_mega_menu_link(item, section.header, link.name) }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </li>
+{% endmacro %}
 
   {% macro render_mobile_navbar_button(name, href=None) %}
     {% if href %}
@@ -205,14 +314,18 @@
     {% endif %}
 
     {% for link in theme_navbar_left_links %}
-      {{
-          render_mobile_navbar_link(
-            link.name,
-            link.href,
-            link.external,
-            link.dropdown,
-          )
-      }}
+      {% if link.linkSections %}
+        {{ render_mobile_navbar_mega(link) }}
+      {% else %}
+        {{
+            render_mobile_navbar_link(
+              link.name,
+              link.href,
+              link.external,
+              link.dropdown,
+            )
+        }}
+      {% endif %}
     {% endfor %}
 
     {% for link in theme_navbar_right_links|selectattr("icon") %}

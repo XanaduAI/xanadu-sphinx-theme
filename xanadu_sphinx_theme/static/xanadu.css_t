@@ -1,6 +1,6 @@
 /* Sphinx Themes
 ----------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap');
 
 body {
   margin: 0;
@@ -182,7 +182,7 @@ code {
 
 code, pre, tt {
   font-size: 14px;
-  font-family: Consolas, monospace;
+  font-family: 'Roboto Mono', Consolas, monospace;
 }
 
 code, tt, a > code {
@@ -2052,12 +2052,12 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   background-color: white;
   box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.10), 0 10px 8px 0 rgba(0, 0, 0, 0.04);
   font-family: 'Quicksand', sans-serif !important;
   height: 50px;
-  padding: 0 16px;
+  padding: 0 20px;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -2068,6 +2068,11 @@ nav {
   display: inline-block;
   line-height: 22.5px;
   padding: 8px 0;
+}
+
+.navbar-logo-title-image {
+  width: 160px;
+  height: auto;
 }
 
 .navbar-logo-title-title {
@@ -2097,8 +2102,8 @@ nav {
   flex-direction: row;
   list-style-type: none;
   margin-bottom: 0px;
+  margin-right: 64px;
   padding-left: 0px;
-  width: 100%;
 }
 
 .desktop.navbar-left-link {
@@ -2107,19 +2112,27 @@ nav {
   flex-direction: row;
   position: relative;
   height: 100%;
-  padding: 0 8px;
+  padding: 0 6px;
+  margin: 0 3px;
   gap: 4px;
 
-  color: #000;
+  color: #232323;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 150%;
 }
 
 .desktop.navbar-left-link > a,
 .desktop.navbar-left-link > button {
   color: inherit;
+  font: inherit;
+}
+
+.desktop.navbar-left-link .navbar-link__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .desktop.navbar-left-link i.bx-chevron-down {
@@ -2131,12 +2144,12 @@ nav {
   margin-left: 8px;
 }
 
-.desktop.navbar-left-link button,
-.desktop.navbar-left-link a {
+.desktop.navbar-left-link > button,
+.desktop.navbar-left-link > a {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background-color: #FFFFFF;
+  gap: 2px;
+  background-color: transparent;
   border-width: 0px;
   padding: 0;
   text-decoration: none;
@@ -2172,9 +2185,9 @@ nav {
   content: "";
   display: block;
   position: absolute;
-  height: 2.5px;
+  height: 3px;
   left: 0;
-  top: 44.5px;
+  bottom: 0;
   width: 100%;
 }
 
@@ -2190,9 +2203,10 @@ nav {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 6px;
   list-style-type: none;
   margin-bottom: 0px;
+  margin-left: auto;
 }
 
 .desktop.navbar-right-link {
@@ -2279,6 +2293,220 @@ nav {
   color: {{ theme_border_colour }};
 }
 
+/* Navigation Bar Desktop Mega Menu
+----------------------------------------------------------------------------- */
+
+.navbar-mega-menu {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  z-index: 9999;
+  cursor: auto;
+  background-color: #FFFFFF;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow:
+    inset 0 4px 3px 0 rgba(0, 0, 0, 0.07),
+    inset 0 2px 2px 0 rgba(0, 0, 0, 0.06),
+    0px 10px 8px 0px rgba(0, 0, 0, 0.04),
+    0px 4px 3px 0px rgba(0, 0, 0, 0.10);
+}
+
+.desktop.navbar-left-link.open .navbar-mega-menu {
+  display: block;
+}
+
+.navbar-mega-menu__inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1535px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar-mega-menu__links-area {
+  display: grid;
+  gap: 40px;
+  align-self: start;
+  grid-column: span var(--menu-link-total-columns, 1) / span var(--menu-link-total-columns, 1);
+  grid-template-columns: repeat(var(--menu-link-total-columns, 1), minmax(0, 1fr));
+  background-color: #F7FAFC;
+  height: 100%;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.navbar-mega-menu__link-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-self: start;
+}
+
+.navbar-mega-menu__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-section-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.mega-menu-section-header__title {
+  margin: 0;
+  padding: 6px 0;
+  color: #757575;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+
+.mega-menu-section-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  color: #0074E0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+  text-decoration: none;
+}
+
+.mega-menu-section-header__cta i {
+  font-size: 20px;
+}
+
+.mega-menu-section-header__cta:hover {
+  color: #0055A5;
+  text-decoration: none;
+}
+
+.mega-menu-section-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-menu-section-links:not(.mega-menu-section-links--multi-column) {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mega-menu-section-links--multi-column {
+  column-count: var(--link-section-columns, 2);
+  column-gap: 40px;
+}
+
+.mega-menu-section-links--multi-column > li {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.mega-menu-link {
+  display: block;
+  text-decoration: none;
+  color: #232323;
+  transition: transform 150ms ease;
+}
+
+.mega-menu-link:hover {
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.mega-menu-link__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mega-menu-link__name {
+  color: #232323;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.mega-menu-link:hover .mega-menu-link__name,
+.mega-menu-link:hover .mega-menu-link__external-icon {
+  color: #0074E0;
+}
+
+.mega-menu-link:hover .mega-menu-link__description {
+  color: #232323;
+}
+
+.mega-menu-link__external-icon {
+  color: #757575;
+  font-size: 16px;
+}
+
+.mega-menu-link__description {
+  margin: 0;
+  color: #515151;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+}
+
+.navbar-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 140%;
+  /* Default variant: info */
+  background-color: #E6F1FC;
+  color: #515151;
+}
+
+.navbar-pill--info {
+  background-color: #E6F1FC;
+  color: #515151;
+}
+
+.navbar-pill--in-progress {
+  background-color: #0074E0;
+  color: #FFFFFF;
+}
+
+.navbar-pill--complete {
+  background-color: #008000;
+  color: #FFFFFF;
+}
+
+.navbar-pill--partial-complete {
+  background-color: #E5F2E5;
+  color: #515151;
+}
+
+.navbar-pill--error {
+  background-color: #860000;
+  color: #FFFFFF;
+}
+
 /* Navigation Bar Mobile
 ----------------------------------------------------------------------------- */
 
@@ -2292,7 +2520,8 @@ nav {
 .mobile.navbar-menu > button {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
+  justify-content: center;
+  background-color: transparent;
   border-width: 0px;
   padding: 0;
 }
@@ -2385,7 +2614,7 @@ nav {
   color: #515151;
 }
 
-.mobile.navbar-link-heading span {
+.mobile.navbar-link-heading span:not(.navbar-pill) {
   color: #232323;
   display: flex;
   font-family: 'Roboto', sans-serif;
@@ -2405,6 +2634,15 @@ nav {
   line-height: 28px;
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover state mirrors the React Accordion / MobileMenu link (text-brand-500). */
+.mobile.navbar-link-heading:hover span:not(.navbar-pill),
+.mobile.navbar-link-heading:hover i.bx-chevron-down,
+.mobile.navbar-link-heading:hover i.bx-link-external,
+.mobile.navbar-link-heading > a:hover span:not(.navbar-pill),
+.mobile.navbar-link-heading > a:hover i {
+  color: #0074E0;
 }
 
 .mobile.navbar-link-heading:focus:not(:focus-visible) {
@@ -2451,13 +2689,44 @@ nav {
   visibility: hidden;
 }
 
-.mobile.navbar-link .navbar-dropdown ul {
+.mobile.navbar-link > .navbar-dropdown > ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  gap: 8px;
-  padding-inline-start: 0px;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #F7FAFC;
   position: relative;
+}
+
+/* Rich mega-menu content rendered inside the mobile dropdown. Mirrors the
+   React Accordion content wrapper (bg-brand-100, p-3, rounded, gap-10). */
+.mobile.navbar-link .navbar-dropdown .mobile-mega-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #F7FAFC;
+}
+
+/* Mobile mega-menu typography. The shared .mega-menu-* classes carry the
+   desktop sizes; React uses smaller type below $navbar-desktop-breakpoint. */
+.mobile-mega-menu .mega-menu-section-header__title {
+  /* label-md-400 (desktop is label-lg-400 / 0.9375rem) */
+  font-size: 0.875rem;
+}
+
+.mobile-mega-menu .mega-menu-link__name {
+  /* label-lg-400 (desktop is body-sm-400 / 1rem / 150%) */
+  font-size: 0.9375rem;
+  line-height: 140%;
+}
+
+.mobile-mega-menu .mega-menu-link__description {
+  /* label-sm-300 (desktop is label-md-300 / 0.875rem) */
+  font-size: 0.75rem;
 }
 
 .mobile.navbar-link.open .navbar-dropdown {
@@ -2470,7 +2739,7 @@ nav {
   transform: rotate(180deg);
 }
 
-.mobile.navbar-dropdown a {
+.mobile.navbar-link > .navbar-dropdown > ul > li > a {
   align-items: center;
   color: #515151;
   display: flex;
@@ -2481,6 +2750,10 @@ nav {
   gap: 8px;
   line-height: 20px;
   text-decoration: none;
+}
+
+.mobile.navbar-link > .navbar-dropdown > ul > li > a:hover {
+  color: #0074E0;
 }
 
 
@@ -2500,7 +2773,9 @@ nav {
   }
 
   .mobile.navbar-links.open {
-    height: calc(100% - 50px);
+    height: calc(100% - 54px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transition-delay: 0s;
     visibility: visible;
   }
