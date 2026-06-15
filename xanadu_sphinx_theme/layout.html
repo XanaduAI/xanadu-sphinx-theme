@@ -329,7 +329,7 @@
     });
   </script>
   <!-- Overlay Scrollbars -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/overlayscrollbars.cjs.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/browser/overlayscrollbars.browser.es6.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Syntax Highlighting -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
   <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
@@ -355,7 +355,11 @@
     document.querySelectorAll("h1 ~ .section").forEach((element) => {
       element.classList.remove("section");
     });
-    OverlayScrollbars(document.querySelector('.nano'), {});
+    const OverlayScrollbarsInit = (window.OverlayScrollbarsGlobal && window.OverlayScrollbarsGlobal.OverlayScrollbars) || window.OverlayScrollbars;
+    const nanoElement = document.querySelector('.nano');
+    if (typeof OverlayScrollbarsInit === 'function' && nanoElement !== null) {
+      OverlayScrollbarsInit(nanoElement, {});
+    }
   </script>
 
   <script type="text/javascript">
@@ -584,6 +588,27 @@
   <script type="text/javascript">
     (function() {
       const timers = {};
+      const overlay = document.querySelector(".navbar-overlay");
+
+      // Shows the dimmed backdrop only while a desktop mega menu is open.
+      window.updateMegaMenuOverlay = function() {
+        if (overlay === null) return;
+        const megaOpen = document.querySelector(".desktop.navbar-left-link.has-mega-menu.open") !== null;
+        overlay.classList.toggle("open", megaOpen);
+      };
+
+      // Clicking the backdrop closes any open dropdown.
+      if (overlay !== null) {
+        overlay.addEventListener("click", function() {
+          document.querySelectorAll(".navbar-left-link.open").forEach((link) => {
+            link.classList.remove("open");
+            const trigger = link.querySelector(".dropdown-trigger");
+            if (trigger !== null) setAriaAttributes(trigger, false);
+          });
+          window.updateMegaMenuOverlay();
+        });
+      }
+
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
       navbar_left_links.forEach((link, i) => {
         const dropdown = link.querySelector(".navbar-dropdown, .navbar-mega-menu");
@@ -604,6 +629,7 @@
             });
             link.classList.add("open");
             setAriaAttributes(trigger, true);
+            window.updateMegaMenuOverlay();
           };
 
           // Closes the current dropdown after the given delay.
@@ -611,6 +637,7 @@
             timers[i].timeout = setTimeout(function(){
               link.classList.remove("open");
               setAriaAttributes(trigger, false);
+              window.updateMegaMenuOverlay();
             }, delay);
           };
 
@@ -623,10 +650,22 @@
             }
           };
 
-          link.addEventListener("mouseenter", expandDropdown);
-          link.addEventListener("mouseleave", collapseDropdown);
+          // Mega menu opens/closes on click only (no hover).
           link.addEventListener("click", toggleDropdown);
         }
+      });
+
+      // Close any open dropdown when clicking outside of the navbar links.
+      document.addEventListener("click", function(event) {
+        if (event.target.closest(".navbar-left-link") !== null) return;
+        Object.values(timers).forEach((timer) => {
+          clearTimeout(timer.timeout);
+          if (timer.link.classList.contains("open")) {
+            timer.link.classList.remove("open");
+            setAriaAttributes(timer.trigger, false);
+          }
+        });
+        window.updateMegaMenuOverlay();
       });
     })();
   </script>
@@ -651,6 +690,9 @@
         dropdown.classList.toggle("open");
         button.classList.toggle("open");
         toggleAriaAttributes(button);
+
+        // Lock background scroll while the mobile menu is open.
+        document.body.classList.toggle("mobile-menu-open", button.classList.contains("open"));
 
         const hidden = button.getAttribute("aria-expanded") === "true";
         const hidden_elements = document.querySelectorAll(".container-wrapper, footer");
@@ -715,6 +757,9 @@
           if (link.classList.contains("open")) {
             link.classList.remove("open");
             setAriaAttributes(button, true);
+            if (typeof window.updateMegaMenuOverlay === "function") {
+              window.updateMegaMenuOverlay();
+            }
             return;
           }
         }

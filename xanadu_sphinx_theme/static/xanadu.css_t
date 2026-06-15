@@ -2115,6 +2115,7 @@ nav {
   padding: 0 6px;
   margin: 0 3px;
   gap: 4px;
+  cursor: pointer;
 
   color: #232323;
   font-family: 'Roboto', sans-serif;
@@ -2163,8 +2164,10 @@ nav {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.desktop.navbar-left-link a:hover,
-.desktop.navbar-left-link button:hover {
+.desktop.navbar-left-link:hover > a,
+.desktop.navbar-left-link:hover > button,
+.desktop.navbar-left-link.open > a,
+.desktop.navbar-left-link.open > button {
   color: {{ theme_border_colour }};
   transition-duration: 0.15s;
   text-decoration: none;
@@ -2176,11 +2179,13 @@ nav {
 }
 
 .desktop.navbar-left-link:hover > a > i,
-.desktop.navbar-left-link:hover > button > i {
+.desktop.navbar-left-link:hover > button > i,
+.desktop.navbar-left-link.open > a > i,
+.desktop.navbar-left-link.open > button > i {
   color: {{ theme_border_colour }};
 }
 
-.desktop.navbar-left-link:hover::after {
+.desktop.navbar-left-link.open::after {
   background-color: {{ theme_border_colour }};
   content: "";
   display: block;
@@ -2315,6 +2320,20 @@ nav {
 }
 
 .desktop.navbar-left-link.open .navbar-mega-menu {
+  display: block;
+}
+
+/* Dimmed backdrop behind an open mega menu (matches pennylane-app's
+   .Navbar__overlay: fixed, rgba(0,0,0,0.1), below the navbar/mega menu). */
+.navbar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-overlay.open {
   display: block;
 }
 
@@ -2530,6 +2549,11 @@ nav {
   color: #515151;
   font-size: 32px;
   font-weight: 400;
+}
+
+/* Prevent the page behind the mobile menu from scrolling while it is open. */
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 .mobile.navbar-menu > button > i.bx-x {
