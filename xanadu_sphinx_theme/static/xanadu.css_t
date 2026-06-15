@@ -2687,10 +2687,6 @@ nav {
   background-repeat: repeat, no-repeat;
 }
 
-.mega-menu-card.FeaturedMenuCard--primary-blue {
-  min-height: 20rem;
-}
-
 /* Card button (non-interactive, styled like pennylane-app Button) */
 .FeaturedMenuCard__button {
   display: inline-flex;
@@ -3067,6 +3063,32 @@ body.mobile-menu-open {
   font-size: 0.75rem;
 }
 
+/* Section column layout (mirrors React .Accordion__content): single column on
+   narrow screens, 2 columns from the tablet breakpoint, and 3 columns from the
+   mobile-wide breakpoint when there are at least 3 sections. */
+@media screen and (min-width: 768px) {
+  .mobile.navbar-link .navbar-dropdown .mobile-mega-menu {
+    display: block;
+    column-count: 2;
+    column-gap: 40px;
+  }
+
+  .mobile-mega-menu > .navbar-mega-menu__section {
+    break-inside: avoid;
+    margin-bottom: 40px;
+  }
+
+  .mobile-mega-menu > .navbar-mega-menu__section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile.navbar-link .navbar-dropdown .mobile-mega-menu:has(> .navbar-mega-menu__section:nth-child(3)) {
+    column-count: 3;
+  }
+}
+
 .mobile.navbar-link.open .navbar-dropdown {
   /* The height is automatically calculated in layout.html. */
   transition-delay: 0s;
@@ -3098,7 +3120,7 @@ body.mobile-menu-open {
 /* Navigation Bar Desktop and Mobile
 ----------------------------------------------------------------------------- */
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1339.98px) {
   nav {
     box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.07), 0px 2px 2px 0px rgba(0, 0, 0, 0.06);
     height: 54px;

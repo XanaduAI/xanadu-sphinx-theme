@@ -710,19 +710,47 @@
       return parseInt(style.getPropertyValue(property), 10);
     }
 
-    function getDropdownHeight(dropdown) {
-      // scrollHeight reflects the full rendered content height (including the
-      // dropdown's padding and any multi-line descriptions / section headers),
-      // even while the container is collapsed to height: 0.
-      return dropdown.scrollHeight + "px";
+    // Expands the dropdown: animates from 0 to the measured content height, then
+    // switches to height:auto so the dropdown keeps responding to its content
+    // (e.g. when the section columns reflow on resize) instead of staying pinned
+    // to a stale fixed height.
+    function expandMobileDropdown(dropdown) {
+      dropdown.style.height = "auto";
+      const target = dropdown.offsetHeight;
+      dropdown.style.height = "0px";
+      // Force a reflow so the browser registers the 0px start before animating.
+      void dropdown.offsetHeight;
+      dropdown.style.height = target + "px";
+
+      const onTransitionEnd = (event) => {
+        if (event.propertyName !== "height") return;
+        dropdown.removeEventListener("transitionend", onTransitionEnd);
+        // Only release to auto if the dropdown is still open.
+        if (dropdown.parentElement.classList.contains("open")) {
+          dropdown.style.height = "auto";
+        }
+      };
+      dropdown.addEventListener("transitionend", onTransitionEnd);
+    }
+
+    // Collapses the dropdown: pins the current (possibly auto) height to an
+    // explicit pixel value so the transition back to 0 animates smoothly.
+    function collapseMobileDropdown(dropdown) {
+      dropdown.style.height = dropdown.scrollHeight + "px";
+      void dropdown.offsetHeight;
+      dropdown.style.height = "0px";
     }
 
     function toggleMobileNavbarLink(button) {
       const item = button.parentElement;
       const dropdown = item.querySelector(".mobile.navbar-dropdown");
       if (dropdown !== null) {
-        const hidden = button.getAttribute("aria-expanded") === "true";
-        dropdown.style.height = hidden ? "0px" : getDropdownHeight(dropdown);
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        if (isOpen) {
+          collapseMobileDropdown(dropdown);
+        } else {
+          expandMobileDropdown(dropdown);
+        }
       }
       item.classList.toggle("open");
       toggleAriaAttributes(button);
