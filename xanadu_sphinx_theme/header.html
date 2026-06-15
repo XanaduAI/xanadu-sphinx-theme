@@ -133,6 +133,42 @@
     {% endfor %}
   {% endmacro %}
 
+  {# Renders the dynamic "Latest Release" card (pennylane-app ReleaseMenuCard:
+     a primary-blue FeaturedMenuCard whose title/image/href come from the latest
+     release blog post). Populated client-side (see the release-card script in
+     layout.html). The button is static, from the card config. #}
+  {% macro render_release_card_slot(card_section, size, parent_name, group_id) %}
+    {% set icon_map = {
+      'BiRightArrowAlt': 'bx-right-arrow-alt',
+      'BiLinkExternal': 'bx-link-external',
+      'BiChevronRight': 'bx-chevron-right',
+    } %}
+    {% set button = card_section.cards.button %}
+    <script type="application/json" class="release-card-config" data-group="{{ group_id }}">{"limit": {{ card_section.cards.limit }}}</script>
+    {% for i in range(card_section.cards.limit) %}
+      <a class="mega-menu-card MenuCard MenuCard--dark FeaturedMenuCard FeaturedMenuCard--{{ size }} FeaturedMenuCard--dark FeaturedMenuCard--{{ card_section.cards.variant }} release-menu-card release-menu-card--loading"
+         data-release-card-group="{{ group_id }}" data-release-card-index="{{ i }}"
+         data-parent-name="{{ parent_name }}"
+         href="#" aria-hidden="true" tabindex="-1">
+        <svg class="MenuCard__border-svg" aria-hidden="true">
+          <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
+        </svg>
+        <div class="FeaturedMenuCard__content">
+          <h4 class="FeaturedMenuCard__title FeaturedMenuCard__title--clamp-4"></h4>
+        </div>
+        <div class="FeaturedMenuCard__image FeaturedMenuCard__image--full FeaturedMenuCard__image--placeholder release-menu-card__image" aria-hidden="true"></div>
+        <span class="FeaturedMenuCard__button FeaturedMenuCard__button--{{ button.variant }}">
+          <span class="FeaturedMenuCard__button-label">
+            <span>{{ button.text }}</span>
+            {% if button.icon and icon_map.get(button.icon) %}
+              <i class="bx {{ icon_map.get(button.icon) }}"></i>
+            {% endif %}
+          </span>
+        </span>
+      </a>
+    {% endfor %}
+  {% endmacro %}
+
   {% macro render_mega_menu_link(item, header, parent_name) %}
     {% set is_external = is_external_href(item.href) | trim %}
     <a class="mega-menu-link" href="{{ pathto(item.href, 1) }}"
@@ -198,14 +234,14 @@
               {% if card_section.type == 'featured' %}
                 {% set card_ns.total_card_columns = card_ns.total_card_columns + (card_section.cards | length) %}
                 {% set card_ns.has_cards = true %}
-              {% elif card_section.type == 'content' %}
+              {% elif card_section.type in ['content', 'release'] %}
                 {% set card_ns.total_card_columns = card_ns.total_card_columns + card_section.cards.limit %}
                 {% set card_ns.has_cards = true %}
               {% endif %}
             {% endfor %}
             {% if card_ns.has_cards %}
               <div class="navbar-mega-menu__cards-area" style="--menu-card-total-columns: {{ card_ns.total_card_columns }};">
-                {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
                   {% set col_span = (card_section.cards | length) if card_section.type == 'featured' else card_section.cards.limit %}
                   <div class="navbar-mega-menu__card-section-header" style="grid-column: span {{ col_span }} / span {{ col_span }};">
                     <div class="mega-menu-section-header">
@@ -219,11 +255,13 @@
                     </div>
                   </div>
                 {% endfor %}
-                {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
                   {% if card_section.type == 'featured' %}
                     {% for card in card_section.cards %}
                       {{ render_featured_card(card, 'desktop', link.name) }}
                     {% endfor %}
+                  {% elif card_section.type == 'release' %}
+                    {{ render_release_card_slot(card_section, 'desktop', link.name, 'd-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
                   {% else %}
                     {{ render_content_card_slots(card_section, 'desktop', 'd-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
                   {% endif %}
@@ -379,7 +417,7 @@
           {% endfor %}
         {% endfor %}
         {% if link.cardSections %}
-          {% for card_section in link.cardSections if card_section.type in ['featured', 'content'] %}
+          {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
             <div class="navbar-mega-menu__section">
               <div class="mega-menu-section-header">
                 <h3 class="mega-menu-section-header__title">{{ card_section.header }}</h3>
@@ -395,6 +433,8 @@
                   {% for card in card_section.cards %}
                     {{ render_featured_card(card, 'mobile', link.name) }}
                   {% endfor %}
+                {% elif card_section.type == 'release' %}
+                  {{ render_release_card_slot(card_section, 'mobile', link.name, 'm-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
                 {% else %}
                   {{ render_content_card_slots(card_section, 'mobile', 'm-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
                 {% endif %}

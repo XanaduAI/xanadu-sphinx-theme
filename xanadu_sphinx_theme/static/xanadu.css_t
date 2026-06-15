@@ -2585,6 +2585,20 @@ nav {
   overflow: hidden;
 }
 
+.FeaturedMenuCard__title--clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: fit-content;
+  max-height: 7.2rem;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__title--clamp-4 {
+  height: fit-content;
+  max-height: 5.6rem;
+}
+
 .FeaturedMenuCard__description {
   font-family: 'Roboto', sans-serif;
   font-size: 0.875rem;
@@ -2615,6 +2629,31 @@ nav {
   object-fit: cover;
   border-radius: 4px;
   margin: 8px 0;
+}
+
+/* Placeholder shown for a "full" image card while the release card loads its
+   thumbnail (pennylane-app FeaturedMenuCard__image--placeholder: bg-secondary). */
+.FeaturedMenuCard__image--placeholder {
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  background-color: #F5F5F5;
+}
+
+/* Release card loading state: non-interactive with a skeleton title line. */
+.release-menu-card--loading {
+  pointer-events: none;
+}
+
+.release-menu-card--loading .FeaturedMenuCard__title {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.25);
+  min-height: 1.4em;
+}
+
+/* Empty slot (no release returned): keep the grid cell but hide it. */
+.release-menu-card--empty {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Theme (text colour) */

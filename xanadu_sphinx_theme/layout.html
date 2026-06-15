@@ -998,5 +998,116 @@
     })();
   </script>
 
+  <!-- Populates the navbar "Latest Release" card from the PennyLane API. -->
+  <script type="text/javascript">
+    (function () {
+      var GRAPHQL_ENDPOINT = "https://cloud.pennylane.ai/graphql";
+      var BLOG_BASE_URL = "https://pennylane.ai";
+      var FALLBACK_IMAGE_SRC =
+        "https://assets.cloud.pennylane.ai/pennylane_website/pages/blog/typewriter.png";
+
+      var RELEASE_QUERY = [
+        "query LatestReleaseBlogPost {",
+        "  blogPostForLatestRelease {",
+        "    title",
+        "    slug",
+        "    features { thumbnail }",
+        "  }",
+        "}"
+      ].join("\n");
+
+      // Mirrors shared-utilities `mapLatestReleaseBlogPostToNavbarCard`.
+      function mapReleasePost(post) {
+        if (!post) {
+          return null;
+        }
+        var features = post.features || [];
+        var lastThumbnail =
+          features.length > 0 ? features[features.length - 1].thumbnail : "";
+        return {
+          title: post.title || "",
+          href: BLOG_BASE_URL + "/blog/" + post.slug,
+          imageSrc: lastThumbnail || FALLBACK_IMAGE_SRC
+        };
+      }
+
+      var releaseRequest = null;
+
+      function fetchRelease() {
+        if (releaseRequest) {
+          return releaseRequest;
+        }
+        releaseRequest = fetch(GRAPHQL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: RELEASE_QUERY })
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (json) {
+            return mapReleasePost(
+              json && json.data && json.data.blogPostForLatestRelease
+            );
+          });
+        return releaseRequest;
+      }
+
+      function fillCard(card, item) {
+        var titleEl = card.querySelector(".FeaturedMenuCard__title");
+        var imageEl = card.querySelector(".release-menu-card__image");
+
+        if (titleEl) { titleEl.textContent = item.title; }
+
+        if (imageEl && item.imageSrc) {
+          var img = document.createElement("img");
+          img.className =
+            "FeaturedMenuCard__image FeaturedMenuCard__image--full release-menu-card__image";
+          img.src = item.imageSrc;
+          img.alt = item.title || "";
+          imageEl.parentNode.replaceChild(img, imageEl);
+        }
+
+        card.setAttribute("href", item.href || "#");
+        card.removeAttribute("aria-hidden");
+        card.removeAttribute("tabindex");
+        card.classList.remove("release-menu-card--loading");
+      }
+
+      function markEmpty(card) {
+        card.classList.remove("release-menu-card--loading");
+        card.classList.add("release-menu-card--empty");
+      }
+
+      function init() {
+        var cards = document.querySelectorAll(".release-menu-card");
+        if (cards.length === 0) {
+          return;
+        }
+
+        fetchRelease()
+          .then(function (item) {
+            for (var i = 0; i < cards.length; i++) {
+              if (item) {
+                fillCard(cards[i], item);
+              } else {
+                markEmpty(cards[i]);
+              }
+            }
+          })
+          .catch(function (error) {
+            console.error("Failed to load navbar release card", error);
+            for (var j = 0; j < cards.length; j++) {
+              markEmpty(cards[j]);
+            }
+          });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+
   {% include "footer.html" %}
 {%- endblock %}
