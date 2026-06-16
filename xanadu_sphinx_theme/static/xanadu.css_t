@@ -2491,6 +2491,13 @@ nav a:focus {
   outline: none;
 }
 
+/* The v2 "text" Button has no underline; override the global nav link focus
+   underline so the focused CTA shows only the ring. */
+.mega-menu-section-header__cta:focus,
+.mega-menu-section-header__cta:focus-visible {
+  text-decoration: none;
+}
+
 .mega-menu-section-header__cta:focus-visible {
   outline: 2px solid #9AC7F2;
   outline-offset: 0;
@@ -3366,7 +3373,6 @@ body.mobile-menu-open {
 .mobile.navbar-link-heading:focus-visible,
 .mobile.navbar-link-heading > a:focus-visible {
   outline: 2px solid #9AC7F2;
-  outline-offset: 2px;
   border-radius: 4px;
 }
 
