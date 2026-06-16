@@ -355,11 +355,6 @@
     document.querySelectorAll("h1 ~ .section").forEach((element) => {
       element.classList.remove("section");
     });
-    const OverlayScrollbarsInit = (window.OverlayScrollbarsGlobal && window.OverlayScrollbarsGlobal.OverlayScrollbars) || window.OverlayScrollbars;
-    const nanoElement = document.querySelector('.nano');
-    if (typeof OverlayScrollbarsInit === 'function' && nanoElement !== null) {
-      OverlayScrollbarsInit(nanoElement, {});
-    }
   </script>
 
   <script type="text/javascript">
