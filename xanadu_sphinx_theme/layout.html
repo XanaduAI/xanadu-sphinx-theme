@@ -754,6 +754,19 @@
         });
         window.updateMegaMenuOverlay();
       });
+
+      // Close every open desktop dropdown/mega menu (used on breakpoint change).
+      window.closeAllDesktopMenus = function() {
+        Object.values(timers).forEach((timer) => {
+          clearTimeout(timer.timeout);
+          if (timer.link.classList.contains("open")) {
+            timer.link.classList.remove("open");
+            if (timer.trigger !== null) setAriaAttributes(timer.trigger, false);
+            resetMega(timer.link);
+          }
+        });
+        window.updateMegaMenuOverlay();
+      };
     })();
   </script>
 
@@ -933,6 +946,72 @@
 
       glideMobileAccordionToTop(item, button, dropdown);
     }
+
+    // Snap every open mobile menu/accordion shut (used on breakpoint change).
+    window.closeAllMobileMenus = function() {
+      const mobileMenu = getMobileScrollContainer();
+      const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+
+      document.querySelectorAll(".mobile.navbar-link.open").forEach((item) => {
+        const button = item.querySelector(".mobile.navbar-link-heading");
+        const dropdown = item.querySelector(".mobile.navbar-dropdown");
+        if (dropdown !== null) {
+          dropdown.style.transition = "none";
+          dropdown.style.height = "0px";
+        }
+        item.classList.remove("open");
+        if (button !== null && button.getAttribute("aria-expanded") === "true") {
+          setAriaAttributes(button, false);
+        }
+      });
+
+      if (mobileMenu !== null) {
+        mobileMenu.classList.remove("open");
+        mobileMenu.style.paddingBottom = "";
+        mobileMenu.scrollTop = 0;
+      }
+
+      if (mobileMenuButton !== null && mobileMenuButton.classList.contains("open")) {
+        mobileMenuButton.classList.remove("open");
+        setAriaAttributes(mobileMenuButton, false);
+      }
+
+      document.body.classList.remove("mobile-menu-open");
+      document.querySelectorAll(".container-wrapper, footer").forEach((element) => {
+        element.setAttribute("aria-hidden", "false");
+      });
+
+      requestAnimationFrame(function() {
+        document.querySelectorAll(".mobile.navbar-dropdown").forEach((dropdown) => {
+          dropdown.style.transition = "";
+          dropdown.style.height = "";
+        });
+      });
+    };
+  </script>
+
+  <!-- Close open menus when crossing the mobile/desktop navbar breakpoint. -->
+  <script type="text/javascript">
+    (function() {
+      const NAVBAR_DESKTOP_BREAKPOINT = 1340;
+      const mediaQuery = window.matchMedia(
+        "(min-width: " + NAVBAR_DESKTOP_BREAKPOINT + "px)"
+      );
+
+      mediaQuery.addEventListener("change", function(event) {
+        if (event.matches) {
+          // mobile -> desktop
+          if (typeof window.closeAllMobileMenus === "function") {
+            window.closeAllMobileMenus();
+          }
+        } else {
+          // desktop -> mobile
+          if (typeof window.closeAllDesktopMenus === "function") {
+            window.closeAllDesktopMenus();
+          }
+        }
+      });
+    })();
   </script>
 
   <!-- Collapses the most specific menu when ESC is pressed. -->
