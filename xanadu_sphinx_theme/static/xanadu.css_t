@@ -2067,7 +2067,17 @@ nav {
 .navbar-logo-title-container {
   display: inline-block;
   line-height: 22.5px;
-  padding: 8px 0;
+}
+
+.navbar-logo-title-container:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Prevent global link focus underlines inside the navbar. */
+nav a:focus {
+  text-decoration: none;
 }
 
 .navbar-logo-title-image {
@@ -2116,6 +2126,10 @@ nav {
   margin: 0 3px;
   gap: 4px;
   cursor: pointer;
+  /* Match pennylane-app NavItem__item border box so the focus ring insets align. */
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  box-sizing: border-box;
 
   color: #232323;
   font-family: 'Roboto', sans-serif;
@@ -2166,10 +2180,34 @@ nav {
 .desktop.navbar-left-link:hover > a,
 .desktop.navbar-left-link:hover > button,
 .desktop.navbar-left-link.open > a,
-.desktop.navbar-left-link.open > button {
+.desktop.navbar-left-link.open > button,
+.desktop.navbar-left-link:has(:focus-visible) > a,
+.desktop.navbar-left-link:has(:focus-visible) > button {
   color: {{ theme_border_colour }};
   transition-duration: 0.15s;
   text-decoration: none;
+}
+
+/* Nav item focus ring (mirrors pennylane-app NavItem__item:has(:focus-visible)::after). */
+.desktop.navbar-left-link:has(:focus-visible)::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 2px solid #9AC7F2;
+  border-radius: 4px;
+  top: -3px;
+  left: -4px;
+  right: -4px;
+  bottom: -6px;
+  z-index: 1;
+}
+
+.desktop.navbar-left-link > a:focus-visible,
+.desktop.navbar-left-link > button:focus-visible,
+.desktop.navbar-left-link > .dropdown-trigger:focus,
+.desktop.navbar-left-link > .dropdown-trigger:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .desktop.navbar-left-link a:focus:not(:focus-visible),
@@ -2180,19 +2218,15 @@ nav {
 .desktop.navbar-left-link:hover > a > i,
 .desktop.navbar-left-link:hover > button > i,
 .desktop.navbar-left-link.open > a > i,
-.desktop.navbar-left-link.open > button > i {
+.desktop.navbar-left-link.open > button > i,
+.desktop.navbar-left-link:has(:focus-visible) > a > i,
+.desktop.navbar-left-link:has(:focus-visible) > button > i {
   color: {{ theme_border_colour }};
 }
 
-.desktop.navbar-left-link.open::after {
-  background-color: {{ theme_border_colour }};
-  content: "";
-  display: block;
-  position: absolute;
-  height: 3px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+/* Open indicator uses border-bottom (mirrors pennylane-app NavItem__item.isExpanded). */
+.desktop.navbar-left-link.open {
+  border-bottom-color: {{ theme_border_colour }};
 }
 
 .desktop.navbar-left-link > ul > li > a {
@@ -2221,6 +2255,13 @@ nav {
 .desktop.navbar-right-links a {
   display: flex;
   text-decoration: none;
+}
+
+.desktop.navbar-right-link a:focus-visible,
+.desktop.navbar-right-links .desktop.navbar-button:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .desktop.navbar-right-links a i {
@@ -2432,7 +2473,9 @@ nav {
   font-weight: 400;
   line-height: 140%;
   text-decoration: none;
-  transition: all 0.15s ease;
+  outline: 2px solid transparent;
+  outline-offset: 0;
+  transition: color 0.15s ease;
 }
 
 .mega-menu-section-header__cta i {
@@ -2442,6 +2485,17 @@ nav {
 .mega-menu-section-header__cta:hover {
   color: #0055A5;
   text-decoration: none;
+}
+
+.mega-menu-section-header__cta:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.mega-menu-section-header__cta:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 0;
+  border-radius: 4px;
+  color: #0055A5;
 }
 
 .mega-menu-section-links {
@@ -2476,6 +2530,26 @@ nav {
 .mega-menu-link:hover {
   transform: translateX(3px);
   text-decoration: none;
+}
+
+.mega-menu-link:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.mega-menu-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.mega-menu-link:focus-visible .mega-menu-link__name,
+.mega-menu-link:focus-visible .mega-menu-link__external-icon {
+  color: #0074E0;
+}
+
+.mega-menu-link:focus-visible .mega-menu-link__description {
+  color: #232323;
 }
 
 .mega-menu-link__title {
@@ -2567,6 +2641,18 @@ nav {
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu-card.MenuCard:focus-visible {
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.mega-menu-card.MenuCard:focus-visible .MenuCard__border-rect {
+  stroke: #9AC7F2;
+  stroke-dashoffset: 0;
 }
 
 .mega-menu-card.MenuCard--dark {
@@ -2799,7 +2885,8 @@ nav {
   pointer-events: none;
 }
 
-.FeaturedMenuCard--dark:hover::before {
+.FeaturedMenuCard--dark:hover::before,
+.FeaturedMenuCard--dark:focus-visible::before {
   opacity: 1;
 }
 
@@ -2893,7 +2980,17 @@ nav {
   background-color: #0055A5;
 }
 
+.FeaturedMenuCard:focus-visible .FeaturedMenuCard__button--primary {
+  background-color: #0055A5;
+}
+
 .FeaturedMenuCard:hover .FeaturedMenuCard__button--secondary {
+  background-color: #F7FAFC;
+  color: #0055A5;
+  border-color: #0055A5;
+}
+
+.FeaturedMenuCard:focus-visible .FeaturedMenuCard__button--secondary {
   background-color: #F7FAFC;
   color: #0055A5;
   border-color: #0055A5;
@@ -3110,6 +3207,12 @@ nav {
   padding: 0;
 }
 
+.mobile.navbar-menu > button:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .mobile.navbar-menu > button > i {
   color: #515151;
   font-size: 32px;
@@ -3251,11 +3354,24 @@ body.mobile-menu-open {
 .mobile.navbar-link-heading:hover i.bx-chevron-down,
 .mobile.navbar-link-heading:hover i.bx-link-external,
 .mobile.navbar-link-heading > a:hover span:not(.navbar-pill),
-.mobile.navbar-link-heading > a:hover i {
+.mobile.navbar-link-heading > a:hover i,
+.mobile.navbar-link-heading:focus-visible span:not(.navbar-pill),
+.mobile.navbar-link-heading:focus-visible i.bx-chevron-down,
+.mobile.navbar-link-heading:focus-visible i.bx-link-external,
+.mobile.navbar-link-heading > a:focus-visible span:not(.navbar-pill),
+.mobile.navbar-link-heading > a:focus-visible i {
   color: #0074E0;
 }
 
-.mobile.navbar-link-heading:focus:not(:focus-visible) {
+.mobile.navbar-link-heading:focus-visible,
+.mobile.navbar-link-heading > a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.mobile.navbar-link-heading:focus:not(:focus-visible),
+.mobile.navbar-link-heading > a:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -3401,6 +3517,18 @@ body.mobile-menu-open {
 
 .mobile.navbar-link > .navbar-dropdown > ul > li > a:hover {
   color: #0074E0;
+}
+
+.mobile.navbar-link > .navbar-dropdown > ul > li > a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+  color: #0074E0;
+}
+
+.mobile.navbar-button a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
 }
 
 
@@ -5493,7 +5621,9 @@ p.sphx-glr-signature a.reference.external {
 
 .command-palette-button:hover,
 .command-palette-button:focus-visible {
-  background-color: #f1f1f1;
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .command-palette-button:focus {

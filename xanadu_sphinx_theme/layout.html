@@ -577,6 +577,52 @@
     function toggleAriaAttributes(button) {
       setAriaAttributes(button, button.getAttribute("aria-expanded") === "false");
     }
+
+    // Removes closed navbar panels from the tab order (mirrors pennylane-app's
+    // MegaMenu `inert` when collapsed and mobile FocusTrap scope).
+    window.setNavbarMenuInertState = function() {
+      document.querySelectorAll(".desktop.navbar-left-link").forEach(function(link) {
+        const isOpen = link.classList.contains("open");
+        const megaMenu = link.querySelector(".navbar-mega-menu");
+        const dropdown = link.querySelector(".navbar-dropdown.desktop");
+        if (megaMenu !== null) {
+          megaMenu.toggleAttribute("inert", !isOpen);
+        }
+        if (dropdown !== null) {
+          dropdown.toggleAttribute("inert", !isOpen);
+        }
+      });
+
+      const mobileMenu = document.querySelector(".mobile.navbar-links");
+      if (mobileMenu !== null) {
+        mobileMenu.toggleAttribute("inert", !mobileMenu.classList.contains("open"));
+      }
+
+      document.querySelectorAll(".mobile.navbar-link").forEach(function(item) {
+        const dropdown = item.querySelector(".mobile.navbar-dropdown");
+        if (dropdown !== null) {
+          dropdown.toggleAttribute("inert", !item.classList.contains("open"));
+        }
+      });
+    };
+
+    window.getNavbarKeyboardFocusable = function(container) {
+      if (container === null) {
+        return [];
+      }
+      return Array.from(container.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter(function(element) {
+        return element.closest("[inert]") === null
+          && element.getAttribute("aria-hidden") !== "true";
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", window.setNavbarMenuInertState);
+    } else {
+      window.setNavbarMenuInertState();
+    }
   </script>
 
   <!-- Delays the closing of dropdowns on the LHS of the navigation bar. -->
@@ -672,6 +718,9 @@
             if (trigger !== null) setAriaAttributes(trigger, false);
           });
           window.updateMegaMenuOverlay();
+          if (typeof window.setNavbarMenuInertState === "function") {
+            window.setNavbarMenuInertState();
+          }
         });
       }
 
@@ -720,6 +769,9 @@
             if (typeof window.loadDynamicNavbarCardsInContainer === "function") {
               window.loadDynamicNavbarCardsInContainer(link);
             }
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
+            }
           };
 
           // Closes the current dropdown after the given delay.
@@ -728,6 +780,9 @@
               link.classList.remove("open");
               setAriaAttributes(trigger, false);
               window.updateMegaMenuOverlay();
+              if (typeof window.setNavbarMenuInertState === "function") {
+                window.setNavbarMenuInertState();
+              }
             }, delay);
           };
 
@@ -756,6 +811,9 @@
           }
         });
         window.updateMegaMenuOverlay();
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
+        }
       });
 
       // Close every open desktop dropdown/mega menu (used on breakpoint change).
@@ -769,6 +827,9 @@
           }
         });
         window.updateMegaMenuOverlay();
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
+        }
       };
     })();
   </script>
@@ -801,6 +862,9 @@
         const hidden_elements = document.querySelectorAll(".container-wrapper, footer");
         for (const element of hidden_elements) {
           element.setAttribute("aria-hidden", hidden.toString());
+        }
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
         }
       }
     }
@@ -865,6 +929,9 @@
         setAriaAttributes(button, true);
         if (typeof window.loadDynamicNavbarCardsInContainer === "function") {
           window.loadDynamicNavbarCardsInContainer(item);
+        }
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
         }
       };
 
@@ -932,9 +999,15 @@
             if (event.propertyName !== "height") return;
             dropdown.removeEventListener("transitionend", onCollapseEnd);
             item.classList.remove("open");
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
+            }
           });
         } else {
           item.classList.remove("open");
+          if (typeof window.setNavbarMenuInertState === "function") {
+            window.setNavbarMenuInertState();
+          }
         }
         return;
       }
@@ -949,6 +1022,9 @@
         openItem.classList.remove("open");
         if (openButton !== null) setAriaAttributes(openButton, false);
       });
+      if (typeof window.setNavbarMenuInertState === "function") {
+        window.setNavbarMenuInertState();
+      }
 
       glideMobileAccordionToTop(item, button, dropdown);
     }
@@ -993,6 +1069,9 @@
           dropdown.style.height = "";
         });
       });
+      if (typeof window.setNavbarMenuInertState === "function") {
+        window.setNavbarMenuInertState();
+      }
     };
   </script>
 
@@ -1044,12 +1123,18 @@
         // Close an open navbar dropdown on desktop.
         const navbar_left_links = document.querySelectorAll(".navbar-left-link");
         for (const link of navbar_left_links) {
-          const button = link.querySelector("button");
+          const trigger = link.querySelector(".dropdown-trigger");
           if (link.classList.contains("open")) {
             link.classList.remove("open");
-            setAriaAttributes(button, true);
+            if (trigger !== null) {
+              setAriaAttributes(trigger, false);
+              trigger.focus();
+            }
             if (typeof window.updateMegaMenuOverlay === "function") {
               window.updateMegaMenuOverlay();
+            }
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
             }
             return;
           }
@@ -1058,36 +1143,38 @@
     });
   </script>
 
-  <!-- Trap focus in the navbar dropdown on mobile if it is expanded. -->
+  <!-- Trap focus in the mobile menu while it is open. -->
   <script type="text/javascript">
-    // Using ``keyup`` would cause the last element to be quickly "skipped".
-    document.addEventListener('keydown', function(event) {
-      // The keycode of TAB is 9.
-      if (event.keyCode == 9) {
-        // Do nothing if the navbar dropdown is collapsed on mobile.
-        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
-        if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
-          return;
-        }
+    document.addEventListener("keydown", function(event) {
+      if (event.key !== "Tab") {
+        return;
+      }
 
-        const links = document.querySelectorAll(".mobile.navbar-links a");
-        const bot = links[links.length - 1];
-        const top = document.querySelector(".mobile.navbar-menu button");
+      const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+      const mobileMenu = document.querySelector(".mobile.navbar-links");
+      if (mobileMenuButton === null || mobileMenu === null
+          || !mobileMenuButton.classList.contains("open")) {
+        return;
+      }
 
-        // Do nothing if there is a missing focus element.
-        if (top === null || bot === undefined) {
-          return;
-        }
+      const menuFocusables = window.getNavbarKeyboardFocusable
+        ? window.getNavbarKeyboardFocusable(mobileMenu)
+        : [];
+      const focusables = [mobileMenuButton].concat(menuFocusables);
+      if (focusables.length === 0) {
+        return;
+      }
 
-        // Wrap the focus to the top or bottom element if needed. The direction
-        // of the wrapping depends on whether TAB or SHIFT + TAB is pressed.
-        if (!event.shiftKey && document.activeElement === bot) {
-          top.focus();
-          event.preventDefault();
-        } else if (event.shiftKey && document.activeElement === top) {
-          bot.focus();
-          event.preventDefault();
-        }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (!event.shiftKey && active === last) {
+        first.focus();
+        event.preventDefault();
+      } else if (event.shiftKey && active === first) {
+        last.focus();
+        event.preventDefault();
       }
     });
   </script>
