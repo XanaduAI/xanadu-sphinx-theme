@@ -3098,12 +3098,33 @@ body.mobile-menu-open {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  padding: 20px 0;
+  padding: 0;
   transition-duration: 350ms;
 }
 
+.mobile.navbar-link:has(.command-palette-button.mobile) {
+  padding-block: 24px 16px;
+}
+
+.mobile.navbar-links > ul > .mobile.navbar-link:has(.mobile.navbar-dropdown):not(
+  .mobile.navbar-link:has(.mobile.navbar-dropdown) ~ .mobile.navbar-link:has(.mobile.navbar-dropdown)
+) > .mobile.navbar-link-heading {
+  border-top: 1px solid #CFCFCF;
+}
+
 .mobile.navbar-link.open {
-  gap: 16px;
+  gap: 0;
+}
+
+/* Expanded accordion button sticks to the top of the scrolling mobile menu
+   (right below the navbar) until the next item scrolls up to meet it. Mirrors
+   pennylane-app's .Accordion__expanded > .Accordion_Button sticky behaviour. */
+.mobile.navbar-link.open > .mobile.navbar-link-heading {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #CFCFCF;
 }
 
 .mobile.navbar-link-heading {
@@ -3114,7 +3135,7 @@ body.mobile-menu-open {
   flex-direction: row;
   justify-content: space-between;
   padding: 0px;
-  padding-block: 0px;
+  padding-block: 20px;
   padding-inline: 0px;
   width: 100%;
 }
@@ -3286,6 +3307,9 @@ body.mobile-menu-open {
   /* The height is automatically calculated in layout.html. */
   transition-delay: 0s;
   visibility: visible;
+  /* Mirrors pennylane-app's .Accordion__content-wrapper py-4: breathing room
+     above and below the panel content relative to the sticky toggle. */
+  padding-block: 16px;
 }
 
 .mobile.navbar-link.open .navbar-link-heading i.bx-chevron-down {

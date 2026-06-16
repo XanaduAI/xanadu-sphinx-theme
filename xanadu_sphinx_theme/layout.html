@@ -828,19 +828,110 @@
       dropdown.style.height = "0px";
     }
 
+    // Resolves the scrollable mobile menu container.
+    function getMobileScrollContainer() {
+      return document.querySelector(".mobile.navbar-links");
+    }
+
+    // Glides the tapped accordion button to the top of the scrolling menu so it
+    // pins right below the navbar, then expands its panel. Mirrors pennylane-app's
+    // useMobileMenuAnimation scroll-to-pin behaviour: the button is eased to the
+    // top (re-measured each frame so a simultaneously collapsing panel can't throw
+    // it off), with extra bottom padding reserved so it can always reach the top.
+    function glideMobileAccordionToTop(item, button, dropdown) {
+      const container = getMobileScrollContainer();
+
+      const expand = () => {
+        // Apply .open before measuring so dropdown padding (py-4) is included
+        // in the expand height animation.
+        item.classList.add("open");
+        if (dropdown !== null) expandMobileDropdown(dropdown);
+        setAriaAttributes(button, true);
+      };
+
+      if (container === null) {
+        expand();
+        return;
+      }
+
+      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+      const buttonViewportTop = () =>
+        button.getBoundingClientRect().top - container.getBoundingClientRect().top;
+
+      // Reserve room below so the button can reach the top even while collapsed.
+      container.style.paddingBottom = container.clientHeight + "px";
+
+      const expandAndSettle = () => {
+        container.scrollTop += buttonViewportTop();
+        expand();
+        // After the expand transition, trim the reserved padding while keeping
+        // the button pinned (leave just enough room if the content is short).
+        window.setTimeout(() => {
+          const target = container.scrollTop + buttonViewportTop();
+          container.style.paddingBottom = "";
+          const maxScroll = container.scrollHeight - container.clientHeight;
+          const deficit = Math.max(0, Math.ceil(target - maxScroll));
+          if (deficit > 0) container.style.paddingBottom = deficit + "px";
+          container.scrollTop = target;
+        }, 380);
+      };
+
+      const start = Math.max(0, buttonViewportTop());
+      if (start <= 1) {
+        expandAndSettle();
+        return;
+      }
+
+      // Duration scales with travel distance (clamped) so it feels consistent.
+      const duration = Math.min(700, 320 + start * 0.45);
+      const startTime = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - startTime) / duration, 1);
+        const desired = start * (1 - easeOutCubic(t));
+        container.scrollTop += buttonViewportTop() - desired;
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          expandAndSettle();
+        }
+      };
+      requestAnimationFrame(step);
+    }
+
     function toggleMobileNavbarLink(button) {
       const item = button.parentElement;
       const dropdown = item.querySelector(".mobile.navbar-dropdown");
-      if (dropdown !== null) {
-        const isOpen = button.getAttribute("aria-expanded") === "true";
-        if (isOpen) {
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      // Closing the open accordion: collapse in place while keeping the sticky
+      // toggle styled until the height transition finishes.
+      if (isOpen) {
+        setAriaAttributes(button, false);
+        if (dropdown !== null) {
           collapseMobileDropdown(dropdown);
+          dropdown.addEventListener("transitionend", function onCollapseEnd(event) {
+            if (event.propertyName !== "height") return;
+            dropdown.removeEventListener("transitionend", onCollapseEnd);
+            item.classList.remove("open");
+          });
         } else {
-          expandMobileDropdown(dropdown);
+          item.classList.remove("open");
         }
+        return;
       }
-      item.classList.toggle("open");
-      toggleAriaAttributes(button);
+
+      // Single-open accordion (like pennylane-app): collapse any other open item
+      // before opening this one.
+      document.querySelectorAll(".mobile.navbar-link.open").forEach((openItem) => {
+        if (openItem === item) return;
+        const openButton = openItem.querySelector(".mobile.navbar-link-heading");
+        const openDropdown = openItem.querySelector(".mobile.navbar-dropdown");
+        if (openDropdown !== null) collapseMobileDropdown(openDropdown);
+        openItem.classList.remove("open");
+        if (openButton !== null) setAriaAttributes(openButton, false);
+      });
+
+      glideMobileAccordionToTop(item, button, dropdown);
     }
   </script>
 
