@@ -74,11 +74,6 @@
   {# Renders a single featured navbar card (pennylane-app's FeaturedMenuCard).
      size is 'desktop' or 'mobile'. #}
   {% macro render_featured_card(card, size, parent_name) %}
-    {% set icon_map = {
-      'BiRightArrowAlt': 'bx-right-arrow-alt',
-      'BiLinkExternal': 'bx-link-external',
-      'BiChevronRight': 'bx-chevron-right',
-    } %}
     {% set light_variants = ['white', 'soft-blue', 'confetti'] %}
     {% set theme = 'light' if card.variant in light_variants else 'dark' %}
     {% set is_external = is_external_href(card.href) | trim %}
@@ -104,8 +99,8 @@
       <span class="FeaturedMenuCard__button FeaturedMenuCard__button--{{ card.button.variant }}">
         <span class="FeaturedMenuCard__button-label">
           <span>{{ card.button.text }}</span>
-          {% if card.button.icon and icon_map.get(card.button.icon) %}
-            <i class="bx {{ icon_map.get(card.button.icon) }}"></i>
+          {% if card.button.icon %}
+            <i class="bx {{ card.button.icon }}"></i>
           {% endif %}
         </span>
       </span>
@@ -138,11 +133,6 @@
      release blog post). Populated client-side (see the release-card script in
      layout.html). The button is static, from the card config. #}
   {% macro render_release_card_slot(card_section, size, parent_name, group_id) %}
-    {% set icon_map = {
-      'BiRightArrowAlt': 'bx-right-arrow-alt',
-      'BiLinkExternal': 'bx-link-external',
-      'BiChevronRight': 'bx-chevron-right',
-    } %}
     {% set button = card_section.cards.button %}
     <script type="application/json" class="release-card-config" data-group="{{ group_id }}">{"limit": {{ card_section.cards.limit }}}</script>
     {% for i in range(card_section.cards.limit) %}
@@ -160,8 +150,8 @@
         <span class="FeaturedMenuCard__button FeaturedMenuCard__button--{{ button.variant }}">
           <span class="FeaturedMenuCard__button-label">
             <span>{{ button.text }}</span>
-            {% if button.icon and icon_map.get(button.icon) %}
-              <i class="bx {{ icon_map.get(button.icon) }}"></i>
+            {% if button.icon %}
+              <i class="bx {{ button.icon }}"></i>
             {% endif %}
           </span>
         </span>
@@ -175,6 +165,9 @@
        {% if is_external %} rel="noopener noreferrer" target="_blank" {% endif %}
        onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ parent_name }} > {{ item.name }}')">
       <span class="mega-menu-link__title">
+        {% if item.icon %}
+          <i class="bx {{ item.icon }} mega-menu-link__icon"></i>
+        {% endif %}
         <span class="mega-menu-link__name">{{ item.name }}</span>
         {% if item.pill and item.pill.text %}
           <span class="navbar-pill navbar-pill--{{ item.pill.variant }}">{{ item.pill.text }}</span>
