@@ -134,28 +134,22 @@
      layout.html). The button is static, from the card config. #}
   {% macro render_release_card_slot(card_section, size, parent_name, group_id) %}
     {% set button = card_section.cards.button %}
-    <script type="application/json" class="release-card-config" data-group="{{ group_id }}">{"limit": {{ card_section.cards.limit }}}</script>
+    {% set variant = card_section.cards.variant %}
+    <script type="application/json" class="release-card-config" data-group="{{ group_id }}">{{ {"limit": card_section.cards.limit, "variant": variant, "button": button} | tojson }}</script>
     {% for i in range(card_section.cards.limit) %}
-      <a class="mega-menu-card MenuCard MenuCard--dark FeaturedMenuCard FeaturedMenuCard--{{ size }} FeaturedMenuCard--dark FeaturedMenuCard--{{ card_section.cards.variant }} release-menu-card release-menu-card--loading"
-         data-release-card-group="{{ group_id }}" data-release-card-index="{{ i }}"
-         data-parent-name="{{ parent_name }}"
-         href="#" aria-hidden="true" tabindex="-1">
-        <svg class="MenuCard__border-svg" aria-hidden="true">
-          <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
-        </svg>
-        <div class="FeaturedMenuCard__content">
-          <h4 class="FeaturedMenuCard__title FeaturedMenuCard__title--clamp-4"></h4>
+      <div class="ReleaseMenuCardSkeleton ReleaseMenuCardSkeleton--{{ size }} release-menu-card release-menu-card--loading"
+           data-release-card-group="{{ group_id }}" data-release-card-index="{{ i }}"
+           data-parent-name="{{ parent_name }}"
+           aria-hidden="true">
+        <div class="ReleaseMenuCardSkeleton__title-container">
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-first-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-second-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-third-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-fourth-line"></div>
         </div>
-        <div class="FeaturedMenuCard__image FeaturedMenuCard__image--full FeaturedMenuCard__image--placeholder release-menu-card__image" aria-hidden="true"></div>
-        <span class="FeaturedMenuCard__button FeaturedMenuCard__button--{{ button.variant }}">
-          <span class="FeaturedMenuCard__button-label">
-            <span>{{ button.text }}</span>
-            {% if button.icon %}
-              <i class="bx {{ button.icon }}"></i>
-            {% endif %}
-          </span>
-        </span>
-      </a>
+        <div class="ReleaseMenuCardSkeleton__image"></div>
+        <div class="ReleaseMenuCardSkeleton__button"></div>
+      </div>
     {% endfor %}
   {% endmacro %}
 

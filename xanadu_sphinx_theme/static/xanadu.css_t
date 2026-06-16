@@ -2684,15 +2684,85 @@ nav {
   background-color: #F5F5F5;
 }
 
-/* Release card loading state: non-interactive with a skeleton title line. */
-.release-menu-card--loading {
+.ReleaseMenuCardSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  border: 1px solid #CFCFCF;
+  border-radius: 12px;
+  background-color: #0074E0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   pointer-events: none;
 }
 
-.release-menu-card--loading .FeaturedMenuCard__title {
+.ReleaseMenuCardSkeleton__title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: auto;
+}
+
+.ReleaseMenuCardSkeleton__title {
+  width: 100%;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton__title-first-line {
+  width: 50%;
+}
+
+.ReleaseMenuCardSkeleton__title-second-line {
+  width: 80%;
+}
+
+.ReleaseMenuCardSkeleton__title-third-line {
+  width: 100%;
+}
+
+.ReleaseMenuCardSkeleton__title-fourth-line {
+  width: 60%;
+}
+
+.ReleaseMenuCardSkeleton__image {
+  width: 100%;
+  height: 100px;
+  margin-block: 8px;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.25);
-  min-height: 1.4em;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton__button {
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 4px;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton--desktop {
+  min-height: 20rem;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.ReleaseMenuCardSkeleton--mobile {
+  gap: 4px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__title-container {
+  margin-bottom: 12px;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__image {
+  display: none;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__button {
+  height: 2rem;
 }
 
 /* Empty slot (no release returned): keep the grid cell but hide it. */
