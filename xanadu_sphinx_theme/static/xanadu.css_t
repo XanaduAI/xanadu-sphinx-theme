@@ -2301,7 +2301,17 @@ nav {
 ----------------------------------------------------------------------------- */
 
 .navbar-mega-menu {
-  display: none;
+  /* Slide-down animation mirrors pennylane-app's .MegaMenu__container: the
+     container is a single-row grid that animates grid-template-rows 0fr -> 1fr
+     (height) together with opacity. The inner .navbar-mega-menu__overflow wrapper
+     has overflow: hidden so the content is clipped as the row collapses. */
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   position: fixed;
   left: 0;
   top: 50px;
@@ -2318,8 +2328,23 @@ nav {
     0px 4px 3px 0px rgba(0, 0, 0, 0.10);
 }
 
+.navbar-mega-menu__overflow {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Wrapper whose explicit pixel height is animated by JS when switching between
+   two already-open mega menus (mirrors pennylane-app's .MegaMenu__resize). When
+   no inline height is set it stays auto, so the open/close grid animation above
+   drives the reveal instead. */
+.navbar-mega-menu__resize {
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .desktop.navbar-left-link.open .navbar-mega-menu {
-  display: block;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Dimmed backdrop behind an open mega menu (matches pennylane-app's

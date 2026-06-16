@@ -592,6 +592,77 @@
         overlay.classList.toggle("open", megaOpen);
       };
 
+      // Resolves the three animation layers of a mega-menu nav item.
+      const megaParts = (link) => {
+        const container = link.querySelector(".navbar-mega-menu");
+        if (container === null) return null;
+        return {
+          container: container,
+          resize: container.querySelector(".navbar-mega-menu__resize"),
+          inner: container.querySelector(".navbar-mega-menu__inner"),
+        };
+      };
+
+      // Clears inline styles left over from a height-swap so the item can
+      // open/close via the default CSS grid animation.
+      const resetMega = (link) => {
+        const parts = megaParts(link);
+        if (parts === null) return;
+        parts.container.style.transition = "";
+        if (parts.resize !== null) {
+          parts.resize.style.transition = "";
+          parts.resize.style.height = "";
+        }
+      };
+
+      // Switches directly from one open mega menu to another by resizing the
+      // height to fit the new content, instead of closing then reopening.
+      // Mirrors pennylane-app's useMegaMenuAnimation height-swap FLIP: the old
+      // panel is snapped shut with no animation, and the new panel is shown
+      // instantly at the old height before transitioning to its own height.
+      const switchMega = (oldLink, newLink) => {
+        const o = megaParts(oldLink);
+        const n = megaParts(newLink);
+        if (o === null || n === null || o.resize === null || n.resize === null) {
+          if (o !== null) oldLink.classList.remove("open");
+          newLink.classList.add("open");
+          return;
+        }
+
+        const oldHeight = o.resize.offsetHeight;
+
+        // Snap the previous menu closed with no animation.
+        o.container.style.transition = "none";
+        o.resize.style.transition = "none";
+        oldLink.classList.remove("open");
+        o.resize.style.height = "";
+        void o.container.offsetHeight; // commit reflow
+        o.container.style.transition = "";
+        o.resize.style.transition = "";
+        const oldTrigger = oldLink.querySelector(".dropdown-trigger");
+        if (oldTrigger !== null) setAriaAttributes(oldTrigger, false);
+
+        // Reveal the new menu instantly (no slide), measure its natural height,
+        // pin it to the old height, then transition to the new height.
+        n.container.style.transition = "none";
+        n.resize.style.transition = "none";
+        newLink.classList.add("open");
+        n.resize.style.height = "";
+        const newHeight = n.inner.offsetHeight;
+        n.resize.style.height = oldHeight + "px";
+        void n.container.offsetHeight; // commit reflow at the old height
+        n.container.style.transition = "";
+        n.resize.style.transition = "";
+        n.resize.style.height = newHeight + "px";
+
+        const onEnd = (event) => {
+          if (event.target !== n.resize || event.propertyName !== "height") return;
+          n.resize.style.height = "";
+          n.resize.removeEventListener("transitionend", onEnd);
+        };
+        n.resize.addEventListener("transitionend", onEnd);
+      };
+
       // Clicking the backdrop closes any open dropdown.
       if (overlay !== null) {
         overlay.addEventListener("click", function() {
@@ -615,14 +686,35 @@
 
           // Expands the current dropdown and closes other dropdowns.
           const expandDropdown = () => {
+            // Find a mega menu that is already open (there is at most one).
+            let prevOpen = null;
             Object.entries(timers).forEach(([j, timer]) => {
               clearTimeout(timer.timeout);
-              if (parseInt(i) !== parseInt(j)) {
-                timer.link.classList.remove("open");
-                setAriaAttributes(timer.trigger, false);
+              if (parseInt(i) !== parseInt(j) && timer.link.classList.contains("open")) {
+                prevOpen = timer.link;
               }
             });
-            link.classList.add("open");
+
+            const switching =
+              prevOpen !== null &&
+              prevOpen.classList.contains("has-mega-menu") &&
+              link.classList.contains("has-mega-menu");
+
+            if (switching) {
+              // Resize from the open menu's height to this one's, no close+open.
+              switchMega(prevOpen, link);
+            } else {
+              Object.values(timers).forEach((timer) => {
+                if (timer.link !== link) {
+                  timer.link.classList.remove("open");
+                  setAriaAttributes(timer.trigger, false);
+                  resetMega(timer.link);
+                }
+              });
+              resetMega(link);
+              link.classList.add("open");
+            }
+
             setAriaAttributes(trigger, true);
             window.updateMegaMenuOverlay();
           };

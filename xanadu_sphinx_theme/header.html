@@ -196,6 +196,8 @@
         <i class="bx bx-chevron-down"></i>
       </button>
       <div class="navbar-mega-menu desktop">
+        <div class="navbar-mega-menu__overflow">
+        <div class="navbar-mega-menu__resize">
         <div class="navbar-mega-menu__inner">
           <div class="navbar-mega-menu__links-area" style="--menu-link-total-columns: {{ ns.total_columns }};">
             {% for link_section in link.linkSections %}
@@ -262,6 +264,8 @@
               </div>
             {% endif %}
           {% endif %}
+        </div>
+        </div>
         </div>
       </div>
     </li>
