@@ -3207,9 +3207,17 @@ body.mobile-menu-open {
 
 /* Mobile mega-menu typography. The shared .mega-menu-* classes carry the
    desktop sizes; React uses smaller type below $navbar-desktop-breakpoint. */
+.mobile-mega-menu .mega-menu-section-header {
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: none;
+}
+
 .mobile-mega-menu .mega-menu-section-header__title {
   /* label-md-400 (desktop is label-lg-400 / 0.9375rem) */
   font-size: 0.875rem;
+  width: 100%;
+  border-bottom: 1px solid #CFCFCF;
 }
 
 .mobile-mega-menu .mega-menu-link__name {
