@@ -3170,6 +3170,12 @@ nav a:focus {
   color: #515151;
 }
 
+/* Pills gated by startDate/expiryDate are emitted hidden and revealed by JS;
+   this overrides the .navbar-pill display so the [hidden] attribute applies. */
+.navbar-pill[hidden] {
+  display: none;
+}
+
 .navbar-pill--info {
   background-color: #E6F1FC;
   color: #515151;

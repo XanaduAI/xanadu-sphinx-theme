@@ -71,6 +71,20 @@
     {%- endfor -%}
   {%- endmacro %}
 
+  {# Renders a navbar status pill (pennylane-app's NavbarPill). Optional
+     startDate/expiryDate (ISO strings, e.g. '2026-05-01') gate the pill's
+     visibility: a dated pill is emitted hidden and revealed client-side only
+     while within the [startDate, expiryDate) window (see the navbar-pill script
+     in layout.html), since Sphinx docs render statically at build time. #}
+  {% macro render_navbar_pill(pill) -%}
+    {%- if pill and pill.text -%}
+      <span class="navbar-pill navbar-pill--{{ pill.variant }}"
+        {%- if pill.startDate %} data-pill-start-date="{{ pill.startDate }}"{% endif %}
+        {%- if pill.expiryDate %} data-pill-expiry-date="{{ pill.expiryDate }}"{% endif %}
+        {%- if pill.startDate or pill.expiryDate %} hidden{% endif %}>{{ pill.text }}</span>
+    {%- endif -%}
+  {%- endmacro %}
+
   {# Renders a single featured navbar card (pennylane-app's FeaturedMenuCard).
      size is 'desktop' or 'mobile'. #}
   {% macro render_featured_card(card, size, parent_name) %}
@@ -84,9 +98,7 @@
       <svg class="MenuCard__border-svg" aria-hidden="true">
         <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
       </svg>
-      {% if card.pill and card.pill.text %}
-        <span class="navbar-pill navbar-pill--{{ card.pill.variant }}">{{ card.pill.text }}</span>
-      {% endif %}
+      {{ render_navbar_pill(card.pill) }}
       <div class="FeaturedMenuCard__content">
         <h4 class="FeaturedMenuCard__title FeaturedMenuCard__title--truncate">{{ card.title }}</h4>
         {% if card.description %}
@@ -163,9 +175,7 @@
           <i class="bx {{ item.icon }} mega-menu-link__icon"></i>
         {% endif %}
         <span class="mega-menu-link__name">{{ item.name }}</span>
-        {% if item.pill and item.pill.text %}
-          <span class="navbar-pill navbar-pill--{{ item.pill.variant }}">{{ item.pill.text }}</span>
-        {% endif %}
+        {{ render_navbar_pill(item.pill) }}
         {% if is_external %}
           <i class="bx bx-link-external mega-menu-link__external-icon"></i>
         {% endif %}
@@ -183,9 +193,7 @@
       <button class="dropdown-trigger" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
         <span class="navbar-link__label">
           <span>{{ link.name }}</span>
-          {% if link.pill and link.pill.text %}
-            <span class="navbar-pill navbar-pill--{{ link.pill.variant }}">{{ link.pill.text }}</span>
-          {% endif %}
+          {{ render_navbar_pill(link.pill) }}
         </span>
         <i class="bx bx-chevron-down"></i>
       </button>
@@ -379,9 +387,7 @@
       <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
         <div>
           <span>{{ link.name }}</span>
-          {% if link.pill and link.pill.text %}
-            <span class="navbar-pill navbar-pill--{{ link.pill.variant }}">{{ link.pill.text }}</span>
-          {% endif %}
+          {{ render_navbar_pill(link.pill) }}
         </div>
       <i class="bx bx-chevron-down"></i>
     </button>

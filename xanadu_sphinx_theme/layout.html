@@ -1179,6 +1179,42 @@
     });
   </script>
 
+  <!-- Reveals navbar pills gated by start/expiry dates (mirrors pennylane-app's
+       NavbarPill). Dated pills render hidden; show them only within the
+       [startDate, expiryDate) window, evaluated against the visitor's clock. -->
+  <script type="text/javascript">
+    (function () {
+      function updateNavbarPills() {
+        var now = new Date();
+        var pills = document.querySelectorAll(
+          ".navbar-pill[data-pill-start-date], .navbar-pill[data-pill-expiry-date]"
+        );
+        pills.forEach(function (pill) {
+          var startDate = pill.getAttribute("data-pill-start-date");
+          var expiryDate = pill.getAttribute("data-pill-expiry-date");
+          var visible = true;
+          if (startDate && now < new Date(startDate)) {
+            visible = false;
+          }
+          if (expiryDate && now >= new Date(expiryDate)) {
+            visible = false;
+          }
+          if (visible) {
+            pill.removeAttribute("hidden");
+          } else {
+            pill.remove();
+          }
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", updateNavbarPills);
+      } else {
+        updateNavbarPills();
+      }
+    })();
+  </script>
+
   <!-- Populates the navbar "content" cards from the PennyLane content API. -->
   <script type="text/javascript">
     (function () {
