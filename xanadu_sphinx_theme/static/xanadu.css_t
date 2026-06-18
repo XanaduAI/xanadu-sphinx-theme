@@ -2741,7 +2741,7 @@ nav a:focus {
   font-family: 'Roboto', sans-serif;
   font-size: 0.875rem;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 140%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -2835,7 +2835,6 @@ nav a:focus {
 }
 
 .ReleaseMenuCardSkeleton--desktop {
-  min-height: 20rem;
   padding: 20px;
   border-radius: 12px;
 }
@@ -2967,7 +2966,7 @@ nav a:focus {
   gap: 12px;
 }
 
-.FeaturedMenuCard__button i {
+.desktop.navbar-left-link .FeaturedMenuCard__button i {
   font-size: 22px;
 }
 
@@ -3100,7 +3099,7 @@ nav a:focus {
   font-family: 'Roboto', sans-serif;
   font-size: 0.875rem;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 140%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

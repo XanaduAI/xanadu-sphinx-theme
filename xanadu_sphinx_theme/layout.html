@@ -392,8 +392,8 @@
 
   <script type="text/javascript">
     if (document.querySelector(".current")) {
-      var target = document.querySelector(".current");
-      var rect = target.getBoundingClientRect();
+      const target = document.querySelector(".current");
+      const rect = target.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
           const nanoElement = document.querySelector(".nano");
           const currentElement = document.querySelector(".current");
@@ -435,18 +435,18 @@
       anchor.appendChild(target);
     }
 
-    var downloadNote = document.querySelectorAll(".sphx-glr-download-link-note.admonition.note");
+    const downloadNote = document.querySelectorAll(".sphx-glr-download-link-note.admonition.note");
     if (downloadNote.length >= 1) {
       const tutorialType = document.querySelector("#tutorial-type");
       const downloadLinks = document.querySelectorAll(".sphx-glr-download .reference.download");
       if (tutorialType !== null && downloadLinks.length >= 2) {
-        var tutorialUrlArray = tutorialType.textContent.split('/');
+        const tutorialUrlArray = tutorialType.textContent.split('/');
 
         if (tutorialUrlArray[0] == "demos") {
           tutorialUrlArray[0] = "demonstrations";
         }
 
-        var githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
+        const githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
             pythonLink = downloadLinks[0].href,
             notebookLink = downloadLinks[1].href;
 
@@ -489,12 +489,12 @@
 
     <script type="text/javascript">
       function makeUL(urls, text) {
-          var list = document.createElement('ul');
+          const list = document.createElement('ul');
 
           for (var i = 0; i < urls.length; i++) {
-              var item = document.createElement('li');
-              var a = document.createElement('a');
-              var linkText = document.createTextNode(text[i]);
+              const item = document.createElement('li');
+              const a = document.createElement('a');
+              const linkText = document.createTextNode(text[i]);
               a.appendChild(linkText);
               a.href = urls[i];
               item.appendChild(a);
@@ -1185,13 +1185,13 @@
   <script type="text/javascript">
     (function () {
       function updateNavbarPills() {
-        var now = new Date();
-        var pills = document.querySelectorAll(
+        const now = new Date();
+        const pills = document.querySelectorAll(
           ".navbar-pill[data-pill-start-date], .navbar-pill[data-pill-expiry-date]"
         );
         pills.forEach(function (pill) {
-          var startDate = pill.getAttribute("data-pill-start-date");
-          var expiryDate = pill.getAttribute("data-pill-expiry-date");
+          const startDate = pill.getAttribute("data-pill-start-date");
+          const expiryDate = pill.getAttribute("data-pill-expiry-date");
           var visible = true;
           if (startDate && now < new Date(startDate)) {
             visible = false;
@@ -1215,13 +1215,18 @@
     })();
   </script>
 
+  <!-- Shared PennyLane GraphQL endpoint, reused by the navbar content scripts below. -->
+  <script type="text/javascript">
+    // TODO: Change to production endpoint before merging feature branch
+    window.PENNYLANE_GRAPHQL_ENDPOINT = "https://dev.cloud.pennylane.ai/graphql";
+  </script>
+
   <!-- Populates the navbar "content" cards from the PennyLane content API. -->
   <script type="text/javascript">
     (function () {
-      // TODO: Change to production endpoint before merging feature branch
-      var GRAPHQL_ENDPOINT = "https://dev.cloud.pennylane.ai/graphql";
+      const GRAPHQL_ENDPOINT = window.PENNYLANE_GRAPHQL_ENDPOINT;
 
-      var SEARCH_QUERY = [
+      const SEARCH_QUERY = [
         "query SearchQuery($input: SearchInput!, $page: PageInput) {",
         "  search(input: $input, page: $page) {",
         "    totalItems",
@@ -1234,7 +1239,7 @@
 
       // Mirrors shared-utilities `buildSearchInput` for the subset of filters the
       // navbar content cards use.
-      var SORT_MAP = {
+      const SORT_MAP = {
         "title": [{ field: "title", desc: false }],
         "-title": [{ field: "title", desc: true }],
         "publication_date": [{ field: "publishedAt", desc: true }],
@@ -1243,9 +1248,9 @@
 
       function buildSearchInput(filters) {
         filters = filters || {};
-        var contentType = (filters.contentType || "").toUpperCase();
-        var categories = filters.categories || [];
-        var specificFiltersByType = {
+        const contentType = (filters.contentType || "").toUpperCase();
+        const categories = filters.categories || [];
+        const specificFiltersByType = {
           BLOG: { blogFilters: { categories: categories } },
           CHALLENGE: { challengeFilters: { categories: categories, difficulties: filters.difficulties || [] } },
           CODEBOOK_TOPIC: { codebookTopicFilters: { moduleCategories: filters.moduleCategories || [], moduleTitles: filters.moduleTitles || [] } },
@@ -1255,13 +1260,13 @@
           DOC: { docFilters: assign({ projects: filters.projects || [] }, filters.version ? { version: filters.version } : {}) }
         };
 
-        var input = {
+        const input = {
           contentTypes: contentType ? [contentType] : null,
           genericFilters: { yearsOfPublication: filters.years },
           sorts: (filters.sort && SORT_MAP[filters.sort]) || null
         };
 
-        var specificFilters = specificFiltersByType[contentType];
+        const specificFilters = specificFiltersByType[contentType];
         if (specificFilters) {
           input.specificFilters = specificFilters;
         }
@@ -1269,7 +1274,7 @@
       }
 
       function assign(target, source) {
-        for (var key in source) {
+        for (const key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
@@ -1277,15 +1282,15 @@
         return target;
       }
 
-      var requestCache = {};
-      var loadedContentGroups = Object.create(null);
+      const requestCache = {};
+      const loadedContentGroups = Object.create(null);
 
       function fetchItems(input, limit) {
-        var cacheKey = JSON.stringify(input) + "|" + limit;
+        const cacheKey = JSON.stringify(input) + "|" + limit;
         if (requestCache[cacheKey]) {
           return requestCache[cacheKey];
         }
-        var promise = fetch(GRAPHQL_ENDPOINT, {
+        const promise = fetch(GRAPHQL_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -1302,15 +1307,15 @@
       }
 
       function fillCard(card, item, fallbackImageSrc) {
-        var imageEl = card.querySelector(".ContentMenuCard__image");
-        var titleEl = card.querySelector(".ContentMenuCard__title");
-        var descEl = card.querySelector(".ContentMenuCard__description");
+        const imageEl = card.querySelector(".ContentMenuCard__image");
+        const titleEl = card.querySelector(".ContentMenuCard__title");
+        const descEl = card.querySelector(".ContentMenuCard__description");
 
-        var src = (item.thumbnail && item.thumbnail.length > 0)
+        const src = (item.thumbnail && item.thumbnail.length > 0)
           ? item.thumbnail
           : (fallbackImageSrc || "");
         if (src && imageEl) {
-          var img = document.createElement("img");
+          const img = document.createElement("img");
           img.className = "ContentMenuCard__image";
           img.src = src;
           img.alt = item.title || "";
@@ -1332,25 +1337,25 @@
       }
 
       function populateGroup(config) {
-        var groupId = config.group;
+        const groupId = config.group;
         if (loadedContentGroups[groupId]) {
           return;
         }
         loadedContentGroups[groupId] = true;
 
-        var cards = document.querySelectorAll(
+        const cards = document.querySelectorAll(
           '.content-menu-card[data-content-card-group="' + groupId + '"]'
         );
         if (cards.length === 0) {
           return;
         }
 
-        var input = buildSearchInput(config.filters);
+        const input = buildSearchInput(config.filters);
         fetchItems(input, config.limit)
           .then(function (items) {
             for (var i = 0; i < cards.length; i++) {
-              var card = cards[i];
-              var index = parseInt(card.getAttribute("data-content-card-index"), 10) || 0;
+              const card = cards[i];
+              const index = parseInt(card.getAttribute("data-content-card-index"), 10) || 0;
               if (items[index]) {
                 fillCard(card, items[index], config.fallbackImageSrc);
               } else {
@@ -1370,9 +1375,9 @@
         if (!container) {
           return;
         }
-        var configScripts = container.querySelectorAll("script.content-cards-config");
+        const configScripts = container.querySelectorAll("script.content-cards-config");
         for (var i = 0; i < configScripts.length; i++) {
-          var script = configScripts[i];
+          const script = configScripts[i];
           var config;
           try {
             config = JSON.parse(script.textContent);
@@ -1392,12 +1397,12 @@
   <!-- Populates the navbar "Latest Release" card from the PennyLane API. -->
   <script type="text/javascript">
     (function () {
-      var GRAPHQL_ENDPOINT = "https://cloud.pennylane.ai/graphql";
-      var BLOG_BASE_URL = "https://pennylane.ai";
-      var FALLBACK_IMAGE_SRC =
+      const GRAPHQL_ENDPOINT = window.PENNYLANE_GRAPHQL_ENDPOINT;
+      const BLOG_BASE_URL = "https://pennylane.ai";
+      const FALLBACK_IMAGE_SRC =
         "https://assets.cloud.pennylane.ai/pennylane_website/pages/blog/typewriter.png";
 
-      var RELEASE_QUERY = [
+      const RELEASE_QUERY = [
         "query LatestReleaseBlogPost {",
         "  blogPostForLatestRelease {",
         "    title",
@@ -1412,8 +1417,8 @@
         if (!post) {
           return null;
         }
-        var features = post.features || [];
-        var lastThumbnail =
+        const features = post.features || [];
+        const lastThumbnail =
           features.length > 0 ? features[features.length - 1].thumbnail : "";
         return {
           title: post.title || "",
@@ -1443,7 +1448,7 @@
       }
 
       function getReleaseCardConfig(groupId) {
-        var script = document.querySelector(
+        const script = document.querySelector(
           'script.release-card-config[data-group="' + groupId + '"]'
         );
         if (script === null) {
@@ -1458,14 +1463,14 @@
       }
 
       function createFilledReleaseCard(card, item, config) {
-        var size = card.classList.contains("ReleaseMenuCardSkeleton--mobile")
+        const size = card.classList.contains("ReleaseMenuCardSkeleton--mobile")
           ? "mobile"
           : "desktop";
-        var variant = (config && config.variant) || "primary-blue";
-        var button = (config && config.button) || {};
-        var parentName = card.getAttribute("data-parent-name") || "";
+        const variant = (config && config.variant) || "primary-blue";
+        const button = (config && config.button) || {};
+        const parentName = card.getAttribute("data-parent-name") || "";
 
-        var link = document.createElement("a");
+        const link = document.createElement("a");
         link.className =
           "mega-menu-card MenuCard MenuCard--dark FeaturedMenuCard FeaturedMenuCard--"
           + size + " FeaturedMenuCard--dark FeaturedMenuCard--" + variant
@@ -1484,51 +1489,51 @@
           );
         });
 
-        var svgNS = "http://www.w3.org/2000/svg";
-        var svg = document.createElementNS(svgNS, "svg");
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
         svg.setAttribute("class", "MenuCard__border-svg");
         svg.setAttribute("aria-hidden", "true");
-        var rect = document.createElementNS(svgNS, "rect");
+        const rect = document.createElementNS(svgNS, "rect");
         rect.setAttribute("class", "MenuCard__border-rect");
         rect.setAttribute("rx", "5");
         rect.setAttribute("pathLength", "400");
         svg.appendChild(rect);
         link.appendChild(svg);
 
-        var content = document.createElement("div");
+        const content = document.createElement("div");
         content.className = "FeaturedMenuCard__content";
-        var titleEl = document.createElement("h4");
+        const titleEl = document.createElement("h4");
         titleEl.className = "FeaturedMenuCard__title FeaturedMenuCard__title--clamp-4";
         titleEl.textContent = item.title || "";
         content.appendChild(titleEl);
         link.appendChild(content);
 
         if (item.imageSrc) {
-          var img = document.createElement("img");
+          const img = document.createElement("img");
           img.className =
             "FeaturedMenuCard__image FeaturedMenuCard__image--full release-menu-card__image";
           img.src = item.imageSrc;
           img.alt = item.title || "";
           link.appendChild(img);
         } else {
-          var placeholder = document.createElement("div");
+          const placeholder = document.createElement("div");
           placeholder.className =
             "FeaturedMenuCard__image FeaturedMenuCard__image--full FeaturedMenuCard__image--placeholder release-menu-card__image";
           placeholder.setAttribute("aria-hidden", "true");
           link.appendChild(placeholder);
         }
 
-        var btn = document.createElement("span");
+        const btn = document.createElement("span");
         btn.className =
           "FeaturedMenuCard__button FeaturedMenuCard__button--"
           + (button.variant || "secondary");
-        var btnLabel = document.createElement("span");
+        const btnLabel = document.createElement("span");
         btnLabel.className = "FeaturedMenuCard__button-label";
-        var btnText = document.createElement("span");
+        const btnText = document.createElement("span");
         btnText.textContent = button.text || "";
         btnLabel.appendChild(btnText);
         if (button.icon) {
-          var icon = document.createElement("i");
+          const icon = document.createElement("i");
           icon.className = "bx " + button.icon;
           btnLabel.appendChild(icon);
         }
@@ -1539,14 +1544,14 @@
       }
 
       function fillCard(card, item) {
-        var groupId = card.getAttribute("data-release-card-group");
-        var config = getReleaseCardConfig(groupId);
-        var filled = createFilledReleaseCard(card, item, config);
+        const groupId = card.getAttribute("data-release-card-group");
+        const config = getReleaseCardConfig(groupId);
+        const filled = createFilledReleaseCard(card, item, config);
         card.parentNode.replaceChild(filled, card);
       }
 
       function markEmpty(card) {
-        var empty = document.createElement("div");
+        const empty = document.createElement("div");
         empty.className = "mega-menu-card release-menu-card release-menu-card--empty";
         empty.setAttribute("aria-hidden", "true");
         card.parentNode.replaceChild(empty, card);
@@ -1556,7 +1561,7 @@
         if (!container) {
           return;
         }
-        var cards = container.querySelectorAll(".release-menu-card.release-menu-card--loading");
+        const cards = container.querySelectorAll(".release-menu-card.release-menu-card--loading");
         if (cards.length === 0) {
           return;
         }
