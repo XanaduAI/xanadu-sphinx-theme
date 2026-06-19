@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Box Icons -->
-  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <!-- Box Icons (regular icons pinned to v2 to match pennylane-app; brands stay on v3) -->
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -329,7 +329,7 @@
     });
   </script>
   <!-- Overlay Scrollbars -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/overlayscrollbars.cjs.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/2.11.4/browser/overlayscrollbars.browser.es6.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Syntax Highlighting -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
   <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
@@ -355,7 +355,6 @@
     document.querySelectorAll("h1 ~ .section").forEach((element) => {
       element.classList.remove("section");
     });
-    OverlayScrollbars(document.querySelector('.nano'), {});
   </script>
 
   <script type="text/javascript">
@@ -393,8 +392,8 @@
 
   <script type="text/javascript">
     if (document.querySelector(".current")) {
-      var target = document.querySelector(".current");
-      var rect = target.getBoundingClientRect();
+      const target = document.querySelector(".current");
+      const rect = target.getBoundingClientRect();
       if (rect.bottom > window.innerHeight) {
           const nanoElement = document.querySelector(".nano");
           const currentElement = document.querySelector(".current");
@@ -436,18 +435,18 @@
       anchor.appendChild(target);
     }
 
-    var downloadNote = document.querySelectorAll(".sphx-glr-download-link-note.admonition.note");
+    const downloadNote = document.querySelectorAll(".sphx-glr-download-link-note.admonition.note");
     if (downloadNote.length >= 1) {
       const tutorialType = document.querySelector("#tutorial-type");
       const downloadLinks = document.querySelectorAll(".sphx-glr-download .reference.download");
       if (tutorialType !== null && downloadLinks.length >= 2) {
-        var tutorialUrlArray = tutorialType.textContent.split('/');
+        const tutorialUrlArray = tutorialType.textContent.split('/');
 
         if (tutorialUrlArray[0] == "demos") {
           tutorialUrlArray[0] = "demonstrations";
         }
 
-        var githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
+        const githubLink = "https://github.com/" + "{{ theme_github_repo }}" + "/blob/master/" + tutorialUrlArray.join("/") + ".py",
             pythonLink = downloadLinks[0].href,
             notebookLink = downloadLinks[1].href;
 
@@ -490,12 +489,12 @@
 
     <script type="text/javascript">
       function makeUL(urls, text) {
-          var list = document.createElement('ul');
+          const list = document.createElement('ul');
 
           for (var i = 0; i < urls.length; i++) {
-              var item = document.createElement('li');
-              var a = document.createElement('a');
-              var linkText = document.createTextNode(text[i]);
+              const item = document.createElement('li');
+              const a = document.createElement('a');
+              const linkText = document.createTextNode(text[i]);
               a.appendChild(linkText);
               a.href = urls[i];
               item.appendChild(a);
@@ -578,15 +577,156 @@
     function toggleAriaAttributes(button) {
       setAriaAttributes(button, button.getAttribute("aria-expanded") === "false");
     }
+
+    // Removes closed navbar panels from the tab order (mirrors pennylane-app's
+    // MegaMenu `inert` when collapsed and mobile FocusTrap scope).
+    window.setNavbarMenuInertState = function() {
+      document.querySelectorAll(".desktop.navbar-left-link").forEach(function(link) {
+        const isOpen = link.classList.contains("open");
+        const megaMenu = link.querySelector(".navbar-mega-menu");
+        const dropdown = link.querySelector(".navbar-dropdown.desktop");
+        if (megaMenu !== null) {
+          megaMenu.toggleAttribute("inert", !isOpen);
+        }
+        if (dropdown !== null) {
+          dropdown.toggleAttribute("inert", !isOpen);
+        }
+      });
+
+      const mobileMenu = document.querySelector(".mobile.navbar-links");
+      if (mobileMenu !== null) {
+        mobileMenu.toggleAttribute("inert", !mobileMenu.classList.contains("open"));
+      }
+
+      document.querySelectorAll(".mobile.navbar-link").forEach(function(item) {
+        const dropdown = item.querySelector(".mobile.navbar-dropdown");
+        if (dropdown !== null) {
+          dropdown.toggleAttribute("inert", !item.classList.contains("open"));
+        }
+      });
+    };
+
+    window.getNavbarKeyboardFocusable = function(container) {
+      if (container === null) {
+        return [];
+      }
+      return Array.from(container.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter(function(element) {
+        return element.closest("[inert]") === null
+          && element.getAttribute("aria-hidden") !== "true";
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", window.setNavbarMenuInertState);
+    } else {
+      window.setNavbarMenuInertState();
+    }
   </script>
 
   <!-- Delays the closing of dropdowns on the LHS of the navigation bar. -->
   <script type="text/javascript">
     (function() {
       const timers = {};
+      const overlay = document.querySelector(".navbar-overlay");
+
+      // Shows the dimmed backdrop only while a desktop mega menu is open.
+      window.updateMegaMenuOverlay = function() {
+        if (overlay === null) return;
+        const megaOpen = document.querySelector(".desktop.navbar-left-link.has-mega-menu.open") !== null;
+        overlay.classList.toggle("open", megaOpen);
+      };
+
+      // Resolves the three animation layers of a mega-menu nav item.
+      const megaParts = (link) => {
+        const container = link.querySelector(".navbar-mega-menu");
+        if (container === null) return null;
+        return {
+          container: container,
+          resize: container.querySelector(".navbar-mega-menu__resize"),
+          inner: container.querySelector(".navbar-mega-menu__inner"),
+        };
+      };
+
+      // Clears inline styles left over from a height-swap so the item can
+      // open/close via the default CSS grid animation.
+      const resetMega = (link) => {
+        const parts = megaParts(link);
+        if (parts === null) return;
+        parts.container.style.transition = "";
+        if (parts.resize !== null) {
+          parts.resize.style.transition = "";
+          parts.resize.style.height = "";
+        }
+      };
+
+      // Switches directly from one open mega menu to another by resizing the
+      // height to fit the new content, instead of closing then reopening.
+      // Mirrors pennylane-app's useMegaMenuAnimation height-swap FLIP: the old
+      // panel is snapped shut with no animation, and the new panel is shown
+      // instantly at the old height before transitioning to its own height.
+      const switchMega = (oldLink, newLink) => {
+        const o = megaParts(oldLink);
+        const n = megaParts(newLink);
+        if (o === null || n === null || o.resize === null || n.resize === null) {
+          if (o !== null) oldLink.classList.remove("open");
+          newLink.classList.add("open");
+          return;
+        }
+
+        const oldHeight = o.resize.offsetHeight;
+
+        // Snap the previous menu closed with no animation.
+        o.container.style.transition = "none";
+        o.resize.style.transition = "none";
+        oldLink.classList.remove("open");
+        o.resize.style.height = "";
+        void o.container.offsetHeight; // commit reflow
+        o.container.style.transition = "";
+        o.resize.style.transition = "";
+        const oldTrigger = oldLink.querySelector(".dropdown-trigger");
+        if (oldTrigger !== null) setAriaAttributes(oldTrigger, false);
+
+        // Reveal the new menu instantly (no slide), measure its natural height,
+        // pin it to the old height, then transition to the new height.
+        n.container.style.transition = "none";
+        n.resize.style.transition = "none";
+        newLink.classList.add("open");
+        n.resize.style.height = "";
+        const newHeight = n.inner.offsetHeight;
+        n.resize.style.height = oldHeight + "px";
+        void n.container.offsetHeight; // commit reflow at the old height
+        n.container.style.transition = "";
+        n.resize.style.transition = "";
+        n.resize.style.height = newHeight + "px";
+
+        const onEnd = (event) => {
+          if (event.target !== n.resize || event.propertyName !== "height") return;
+          n.resize.style.height = "";
+          n.resize.removeEventListener("transitionend", onEnd);
+        };
+        n.resize.addEventListener("transitionend", onEnd);
+      };
+
+      // Clicking the backdrop closes any open dropdown.
+      if (overlay !== null) {
+        overlay.addEventListener("click", function() {
+          document.querySelectorAll(".navbar-left-link.open").forEach((link) => {
+            link.classList.remove("open");
+            const trigger = link.querySelector(".dropdown-trigger");
+            if (trigger !== null) setAriaAttributes(trigger, false);
+          });
+          window.updateMegaMenuOverlay();
+          if (typeof window.setNavbarMenuInertState === "function") {
+            window.setNavbarMenuInertState();
+          }
+        });
+      }
+
       const navbar_left_links = document.querySelectorAll(".navbar-left-link");
       navbar_left_links.forEach((link, i) => {
-        const dropdown = link.querySelector(".navbar-dropdown");
+        const dropdown = link.querySelector(".navbar-dropdown, .navbar-mega-menu");
         // trigger is the element that controls the opening/closing of the dropdown.
         // will be <a> tag for links, or <button> otherwise
         const trigger = link.querySelector(".dropdown-trigger");
@@ -595,15 +735,43 @@
 
           // Expands the current dropdown and closes other dropdowns.
           const expandDropdown = () => {
+            // Find a mega menu that is already open (there is at most one).
+            let prevOpen = null;
             Object.entries(timers).forEach(([j, timer]) => {
               clearTimeout(timer.timeout);
-              if (parseInt(i) !== parseInt(j)) {
-                timer.link.classList.remove("open");
-                setAriaAttributes(timer.trigger, false);
+              if (parseInt(i) !== parseInt(j) && timer.link.classList.contains("open")) {
+                prevOpen = timer.link;
               }
             });
-            link.classList.add("open");
+
+            const switching =
+              prevOpen !== null &&
+              prevOpen.classList.contains("has-mega-menu") &&
+              link.classList.contains("has-mega-menu");
+
+            if (switching) {
+              // Resize from the open menu's height to this one's, no close+open.
+              switchMega(prevOpen, link);
+            } else {
+              Object.values(timers).forEach((timer) => {
+                if (timer.link !== link) {
+                  timer.link.classList.remove("open");
+                  setAriaAttributes(timer.trigger, false);
+                  resetMega(timer.link);
+                }
+              });
+              resetMega(link);
+              link.classList.add("open");
+            }
+
             setAriaAttributes(trigger, true);
+            window.updateMegaMenuOverlay();
+            if (typeof window.loadDynamicNavbarCardsInContainer === "function") {
+              window.loadDynamicNavbarCardsInContainer(link);
+            }
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
+            }
           };
 
           // Closes the current dropdown after the given delay.
@@ -611,6 +779,10 @@
             timers[i].timeout = setTimeout(function(){
               link.classList.remove("open");
               setAriaAttributes(trigger, false);
+              window.updateMegaMenuOverlay();
+              if (typeof window.setNavbarMenuInertState === "function") {
+                window.setNavbarMenuInertState();
+              }
             }, delay);
           };
 
@@ -623,11 +795,42 @@
             }
           };
 
-          link.addEventListener("mouseenter", expandDropdown);
-          link.addEventListener("mouseleave", collapseDropdown);
+          // Mega menu opens/closes on click only (no hover).
           link.addEventListener("click", toggleDropdown);
         }
       });
+
+      // Close any open dropdown when clicking outside of the navbar links.
+      document.addEventListener("click", function(event) {
+        if (event.target.closest(".navbar-left-link") !== null) return;
+        Object.values(timers).forEach((timer) => {
+          clearTimeout(timer.timeout);
+          if (timer.link.classList.contains("open")) {
+            timer.link.classList.remove("open");
+            setAriaAttributes(timer.trigger, false);
+          }
+        });
+        window.updateMegaMenuOverlay();
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
+        }
+      });
+
+      // Close every open desktop dropdown/mega menu (used on breakpoint change).
+      window.closeAllDesktopMenus = function() {
+        Object.values(timers).forEach((timer) => {
+          clearTimeout(timer.timeout);
+          if (timer.link.classList.contains("open")) {
+            timer.link.classList.remove("open");
+            if (timer.trigger !== null) setAriaAttributes(timer.trigger, false);
+            resetMega(timer.link);
+          }
+        });
+        window.updateMegaMenuOverlay();
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
+        }
+      };
     })();
   </script>
 
@@ -652,10 +855,16 @@
         button.classList.toggle("open");
         toggleAriaAttributes(button);
 
+        // Lock background scroll while the mobile menu is open.
+        document.body.classList.toggle("mobile-menu-open", button.classList.contains("open"));
+
         const hidden = button.getAttribute("aria-expanded") === "true";
         const hidden_elements = document.querySelectorAll(".container-wrapper, footer");
         for (const element of hidden_elements) {
           element.setAttribute("aria-hidden", hidden.toString());
+        }
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
         }
       }
     }
@@ -668,29 +877,226 @@
       return parseInt(style.getPropertyValue(property), 10);
     }
 
-    function getDropdownHeight(dropdown) {
-      const dropdown_list = dropdown.querySelector("ul");
-      const dropdown_list_items = dropdown_list.querySelectorAll("li");
-      const dropdown_list_gap = getIntStyleProperty(dropdown_list, "gap");
+    // Expands the dropdown: animates from 0 to the measured content height, then
+    // switches to height:auto so the dropdown keeps responding to its content
+    // (e.g. when the section columns reflow on resize) instead of staying pinned
+    // to a stale fixed height.
+    function expandMobileDropdown(dropdown) {
+      dropdown.style.height = "auto";
+      const target = dropdown.offsetHeight;
+      dropdown.style.height = "0px";
+      // Force a reflow so the browser registers the 0px start before animating.
+      void dropdown.offsetHeight;
+      dropdown.style.height = target + "px";
 
-      let dropdown_list_height = -dropdown_list_gap;
-      for (const list_item of dropdown_list_items) {
-        dropdown_list_height += getIntStyleProperty(list_item, "height");
-        dropdown_list_height += dropdown_list_gap
+      const onTransitionEnd = (event) => {
+        if (event.propertyName !== "height") return;
+        dropdown.removeEventListener("transitionend", onTransitionEnd);
+        // Only release to auto if the dropdown is still open.
+        if (dropdown.parentElement.classList.contains("open")) {
+          dropdown.style.height = "auto";
+        }
+      };
+      dropdown.addEventListener("transitionend", onTransitionEnd);
+    }
+
+    // Collapses the dropdown: pins the current (possibly auto) height to an
+    // explicit pixel value so the transition back to 0 animates smoothly.
+    function collapseMobileDropdown(dropdown) {
+      dropdown.style.height = dropdown.scrollHeight + "px";
+      void dropdown.offsetHeight;
+      dropdown.style.height = "0px";
+    }
+
+    // Resolves the scrollable mobile menu container.
+    function getMobileScrollContainer() {
+      return document.querySelector(".mobile.navbar-links");
+    }
+
+    // Glides the tapped accordion button to the top of the scrolling menu so it
+    // pins right below the navbar, then expands its panel. Mirrors pennylane-app's
+    // useMobileMenuAnimation scroll-to-pin behaviour: the button is eased to the
+    // top (re-measured each frame so a simultaneously collapsing panel can't throw
+    // it off), with extra bottom padding reserved so it can always reach the top.
+    function glideMobileAccordionToTop(item, button, dropdown) {
+      const container = getMobileScrollContainer();
+
+      const expand = () => {
+        // Apply .open before measuring so dropdown padding (py-4) is included
+        // in the expand height animation.
+        item.classList.add("open");
+        if (dropdown !== null) expandMobileDropdown(dropdown);
+        setAriaAttributes(button, true);
+        if (typeof window.loadDynamicNavbarCardsInContainer === "function") {
+          window.loadDynamicNavbarCardsInContainer(item);
+        }
+        if (typeof window.setNavbarMenuInertState === "function") {
+          window.setNavbarMenuInertState();
+        }
+      };
+
+      if (container === null) {
+        expand();
+        return;
       }
-      return dropdown_list_height + "px";
+
+      const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+      const buttonViewportTop = () =>
+        button.getBoundingClientRect().top - container.getBoundingClientRect().top;
+
+      // Reserve room below so the button can reach the top even while collapsed.
+      container.style.paddingBottom = container.clientHeight + "px";
+
+      const expandAndSettle = () => {
+        container.scrollTop += buttonViewportTop();
+        expand();
+        // After the expand transition, trim the reserved padding while keeping
+        // the button pinned (leave just enough room if the content is short).
+        window.setTimeout(() => {
+          const target = container.scrollTop + buttonViewportTop();
+          container.style.paddingBottom = "";
+          const maxScroll = container.scrollHeight - container.clientHeight;
+          const deficit = Math.max(0, Math.ceil(target - maxScroll));
+          if (deficit > 0) container.style.paddingBottom = deficit + "px";
+          container.scrollTop = target;
+        }, 380);
+      };
+
+      const start = Math.max(0, buttonViewportTop());
+      if (start <= 1) {
+        expandAndSettle();
+        return;
+      }
+
+      // Duration scales with travel distance (clamped) so it feels consistent.
+      const duration = Math.min(700, 320 + start * 0.45);
+      const startTime = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - startTime) / duration, 1);
+        const desired = start * (1 - easeOutCubic(t));
+        container.scrollTop += buttonViewportTop() - desired;
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          expandAndSettle();
+        }
+      };
+      requestAnimationFrame(step);
     }
 
     function toggleMobileNavbarLink(button) {
       const item = button.parentElement;
       const dropdown = item.querySelector(".mobile.navbar-dropdown");
-      if (dropdown !== null) {
-        const hidden = button.getAttribute("aria-expanded") === "true";
-        dropdown.style.height = hidden ? "0px" : getDropdownHeight(dropdown);
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      // Closing the open accordion: collapse in place while keeping the sticky
+      // toggle styled until the height transition finishes.
+      if (isOpen) {
+        setAriaAttributes(button, false);
+        if (dropdown !== null) {
+          collapseMobileDropdown(dropdown);
+          dropdown.addEventListener("transitionend", function onCollapseEnd(event) {
+            if (event.propertyName !== "height") return;
+            dropdown.removeEventListener("transitionend", onCollapseEnd);
+            item.classList.remove("open");
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
+            }
+          });
+        } else {
+          item.classList.remove("open");
+          if (typeof window.setNavbarMenuInertState === "function") {
+            window.setNavbarMenuInertState();
+          }
+        }
+        return;
       }
-      item.classList.toggle("open");
-      toggleAriaAttributes(button);
+
+      // Single-open accordion (like pennylane-app): collapse any other open item
+      // before opening this one.
+      document.querySelectorAll(".mobile.navbar-link.open").forEach((openItem) => {
+        if (openItem === item) return;
+        const openButton = openItem.querySelector(".mobile.navbar-link-heading");
+        const openDropdown = openItem.querySelector(".mobile.navbar-dropdown");
+        if (openDropdown !== null) collapseMobileDropdown(openDropdown);
+        openItem.classList.remove("open");
+        if (openButton !== null) setAriaAttributes(openButton, false);
+      });
+      if (typeof window.setNavbarMenuInertState === "function") {
+        window.setNavbarMenuInertState();
+      }
+
+      glideMobileAccordionToTop(item, button, dropdown);
     }
+
+    // Snap every open mobile menu/accordion shut (used on breakpoint change).
+    window.closeAllMobileMenus = function() {
+      const mobileMenu = getMobileScrollContainer();
+      const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+
+      document.querySelectorAll(".mobile.navbar-link.open").forEach((item) => {
+        const button = item.querySelector(".mobile.navbar-link-heading");
+        const dropdown = item.querySelector(".mobile.navbar-dropdown");
+        if (dropdown !== null) {
+          dropdown.style.transition = "none";
+          dropdown.style.height = "0px";
+        }
+        item.classList.remove("open");
+        if (button !== null && button.getAttribute("aria-expanded") === "true") {
+          setAriaAttributes(button, false);
+        }
+      });
+
+      if (mobileMenu !== null) {
+        mobileMenu.classList.remove("open");
+        mobileMenu.style.paddingBottom = "";
+        mobileMenu.scrollTop = 0;
+      }
+
+      if (mobileMenuButton !== null && mobileMenuButton.classList.contains("open")) {
+        mobileMenuButton.classList.remove("open");
+        setAriaAttributes(mobileMenuButton, false);
+      }
+
+      document.body.classList.remove("mobile-menu-open");
+      document.querySelectorAll(".container-wrapper, footer").forEach((element) => {
+        element.setAttribute("aria-hidden", "false");
+      });
+
+      requestAnimationFrame(function() {
+        document.querySelectorAll(".mobile.navbar-dropdown").forEach((dropdown) => {
+          dropdown.style.transition = "";
+          dropdown.style.height = "";
+        });
+      });
+      if (typeof window.setNavbarMenuInertState === "function") {
+        window.setNavbarMenuInertState();
+      }
+    };
+  </script>
+
+  <!-- Close open menus when crossing the mobile/desktop navbar breakpoint. -->
+  <script type="text/javascript">
+    (function() {
+      const NAVBAR_DESKTOP_BREAKPOINT = 1340;
+      const mediaQuery = window.matchMedia(
+        "(min-width: " + NAVBAR_DESKTOP_BREAKPOINT + "px)"
+      );
+
+      mediaQuery.addEventListener("change", function(event) {
+        if (event.matches) {
+          // mobile -> desktop
+          if (typeof window.closeAllMobileMenus === "function") {
+            window.closeAllMobileMenus();
+          }
+        } else {
+          // desktop -> mobile
+          if (typeof window.closeAllDesktopMenus === "function") {
+            window.closeAllDesktopMenus();
+          }
+        }
+      });
+    })();
   </script>
 
   <!-- Collapses the most specific menu when ESC is pressed. -->
@@ -717,10 +1123,19 @@
         // Close an open navbar dropdown on desktop.
         const navbar_left_links = document.querySelectorAll(".navbar-left-link");
         for (const link of navbar_left_links) {
-          const button = link.querySelector("button");
+          const trigger = link.querySelector(".dropdown-trigger");
           if (link.classList.contains("open")) {
             link.classList.remove("open");
-            setAriaAttributes(button, true);
+            if (trigger !== null) {
+              setAriaAttributes(trigger, false);
+              trigger.focus();
+            }
+            if (typeof window.updateMegaMenuOverlay === "function") {
+              window.updateMegaMenuOverlay();
+            }
+            if (typeof window.setNavbarMenuInertState === "function") {
+              window.setNavbarMenuInertState();
+            }
             return;
           }
         }
@@ -728,38 +1143,455 @@
     });
   </script>
 
-  <!-- Trap focus in the navbar dropdown on mobile if it is expanded. -->
+  <!-- Trap focus in the mobile menu while it is open. -->
   <script type="text/javascript">
-    // Using ``keyup`` would cause the last element to be quickly "skipped".
-    document.addEventListener('keydown', function(event) {
-      // The keycode of TAB is 9.
-      if (event.keyCode == 9) {
-        // Do nothing if the navbar dropdown is collapsed on mobile.
-        const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
-        if (mobileMenuButton === null || !mobileMenuButton.classList.contains("open")) {
-          return;
-        }
+    document.addEventListener("keydown", function(event) {
+      if (event.key !== "Tab") {
+        return;
+      }
 
-        const links = document.querySelectorAll(".mobile.navbar-links a");
-        const bot = links[links.length - 1];
-        const top = document.querySelector(".mobile.navbar-menu button");
+      const mobileMenuButton = document.querySelector(".mobile.navbar-menu button");
+      const mobileMenu = document.querySelector(".mobile.navbar-links");
+      if (mobileMenuButton === null || mobileMenu === null
+          || !mobileMenuButton.classList.contains("open")) {
+        return;
+      }
 
-        // Do nothing if there is a missing focus element.
-        if (top === null || bot === undefined) {
-          return;
-        }
+      const menuFocusables = window.getNavbarKeyboardFocusable
+        ? window.getNavbarKeyboardFocusable(mobileMenu)
+        : [];
+      const focusables = [mobileMenuButton].concat(menuFocusables);
+      if (focusables.length === 0) {
+        return;
+      }
 
-        // Wrap the focus to the top or bottom element if needed. The direction
-        // of the wrapping depends on whether TAB or SHIFT + TAB is pressed.
-        if (!event.shiftKey && document.activeElement === bot) {
-          top.focus();
-          event.preventDefault();
-        } else if (event.shiftKey && document.activeElement === top) {
-          bot.focus();
-          event.preventDefault();
-        }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+
+      if (!event.shiftKey && active === last) {
+        first.focus();
+        event.preventDefault();
+      } else if (event.shiftKey && active === first) {
+        last.focus();
+        event.preventDefault();
       }
     });
+  </script>
+
+  <!-- Reveals navbar pills gated by start/expiry dates (mirrors pennylane-app's
+       NavbarPill). Dated pills render hidden; show them only within the
+       [startDate, expiryDate) window, evaluated against the visitor's clock. -->
+  <script type="text/javascript">
+    (function () {
+      function updateNavbarPills() {
+        const now = new Date();
+        const pills = document.querySelectorAll(
+          ".navbar-pill[data-pill-start-date], .navbar-pill[data-pill-expiry-date]"
+        );
+        pills.forEach(function (pill) {
+          const startDate = pill.getAttribute("data-pill-start-date");
+          const expiryDate = pill.getAttribute("data-pill-expiry-date");
+          var visible = true;
+          if (startDate && now < new Date(startDate)) {
+            visible = false;
+          }
+          if (expiryDate && now >= new Date(expiryDate)) {
+            visible = false;
+          }
+          if (visible) {
+            pill.removeAttribute("hidden");
+          } else {
+            pill.remove();
+          }
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", updateNavbarPills);
+      } else {
+        updateNavbarPills();
+      }
+    })();
+  </script>
+
+  <!-- Shared PennyLane GraphQL endpoint, reused by the navbar content scripts below. -->
+  <script type="text/javascript">
+    // TODO: Change to production endpoint before merging feature branch
+    window.PENNYLANE_GRAPHQL_ENDPOINT = "https://dev.cloud.pennylane.ai/graphql";
+  </script>
+
+  <!-- Populates the navbar "content" cards from the PennyLane content API. -->
+  <script type="text/javascript">
+    (function () {
+      const GRAPHQL_ENDPOINT = window.PENNYLANE_GRAPHQL_ENDPOINT;
+
+      const SEARCH_QUERY = [
+        "query SearchQuery($input: SearchInput!, $page: PageInput) {",
+        "  search(input: $input, page: $page) {",
+        "    totalItems",
+        "    items {",
+        "      ... on Content { id slug type title description link thumbnail }",
+        "    }",
+        "  }",
+        "}"
+      ].join("\n");
+
+      // Mirrors shared-utilities `buildSearchInput` for the subset of filters the
+      // navbar content cards use.
+      const SORT_MAP = {
+        "title": [{ field: "title", desc: false }],
+        "-title": [{ field: "title", desc: true }],
+        "publication_date": [{ field: "publishedAt", desc: true }],
+        "-publication_date": [{ field: "publishedAt", desc: false }]
+      };
+
+      function buildSearchInput(filters) {
+        filters = filters || {};
+        const contentType = (filters.contentType || "").toUpperCase();
+        const categories = filters.categories || [];
+        const specificFiltersByType = {
+          BLOG: { blogFilters: { categories: categories } },
+          CHALLENGE: { challengeFilters: { categories: categories, difficulties: filters.difficulties || [] } },
+          CODEBOOK_TOPIC: { codebookTopicFilters: { moduleCategories: filters.moduleCategories || [], moduleTitles: filters.moduleTitles || [] } },
+          COMPILATION: { compilationFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DATASET_FAMILY: { datasetFamilyFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DEMO: { demoFilters: assign({ categories: categories }, filters.basedOnPapers ? { basedOnPapers: true } : {}) },
+          DOC: { docFilters: assign({ projects: filters.projects || [] }, filters.version ? { version: filters.version } : {}) }
+        };
+
+        const input = {
+          contentTypes: contentType ? [contentType] : null,
+          genericFilters: { yearsOfPublication: filters.years },
+          sorts: (filters.sort && SORT_MAP[filters.sort]) || null
+        };
+
+        const specificFilters = specificFiltersByType[contentType];
+        if (specificFilters) {
+          input.specificFilters = specificFilters;
+        }
+        return input;
+      }
+
+      function assign(target, source) {
+        for (const key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+        return target;
+      }
+
+      const requestCache = {};
+      const loadedContentGroups = Object.create(null);
+
+      function fetchItems(input, limit) {
+        const cacheKey = JSON.stringify(input) + "|" + limit;
+        if (requestCache[cacheKey]) {
+          return requestCache[cacheKey];
+        }
+        const promise = fetch(GRAPHQL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: SEARCH_QUERY,
+            variables: { input: input, page: { limit: limit, offset: 0 } }
+          })
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (json) {
+            return (json && json.data && json.data.search && json.data.search.items) || [];
+          });
+        requestCache[cacheKey] = promise;
+        return promise;
+      }
+
+      function fillCard(card, item, fallbackImageSrc) {
+        const imageEl = card.querySelector(".ContentMenuCard__image");
+        const titleEl = card.querySelector(".ContentMenuCard__title");
+        const descEl = card.querySelector(".ContentMenuCard__description");
+
+        const src = (item.thumbnail && item.thumbnail.length > 0)
+          ? item.thumbnail
+          : (fallbackImageSrc || "");
+        if (src && imageEl) {
+          const img = document.createElement("img");
+          img.className = "ContentMenuCard__image";
+          img.src = src;
+          img.alt = item.title || "";
+          imageEl.parentNode.replaceChild(img, imageEl);
+        }
+
+        if (titleEl) { titleEl.textContent = item.title || ""; }
+        if (descEl) { descEl.textContent = item.description || ""; }
+
+        card.setAttribute("href", item.link || "#");
+        card.removeAttribute("aria-hidden");
+        card.removeAttribute("tabindex");
+        card.classList.remove("content-menu-card--loading");
+      }
+
+      function markEmpty(card) {
+        card.classList.remove("content-menu-card--loading");
+        card.classList.add("content-menu-card--empty");
+      }
+
+      function populateGroup(config) {
+        const groupId = config.group;
+        if (loadedContentGroups[groupId]) {
+          return;
+        }
+        loadedContentGroups[groupId] = true;
+
+        const cards = document.querySelectorAll(
+          '.content-menu-card[data-content-card-group="' + groupId + '"]'
+        );
+        if (cards.length === 0) {
+          return;
+        }
+
+        const input = buildSearchInput(config.filters);
+        fetchItems(input, config.limit)
+          .then(function (items) {
+            for (var i = 0; i < cards.length; i++) {
+              const card = cards[i];
+              const index = parseInt(card.getAttribute("data-content-card-index"), 10) || 0;
+              if (items[index]) {
+                fillCard(card, items[index], config.fallbackImageSrc);
+              } else {
+                markEmpty(card);
+              }
+            }
+          })
+          .catch(function (error) {
+            console.error("Failed to load navbar content cards", error);
+            for (var j = 0; j < cards.length; j++) {
+              markEmpty(cards[j]);
+            }
+          });
+      }
+
+      function loadContentCardsInContainer(container) {
+        if (!container) {
+          return;
+        }
+        const configScripts = container.querySelectorAll("script.content-cards-config");
+        for (var i = 0; i < configScripts.length; i++) {
+          const script = configScripts[i];
+          var config;
+          try {
+            config = JSON.parse(script.textContent);
+          } catch (error) {
+            console.error("Invalid navbar content-cards config", error);
+            continue;
+          }
+          config.group = script.getAttribute("data-group");
+          populateGroup(config);
+        }
+      }
+
+      window.loadContentCardsInContainer = loadContentCardsInContainer;
+    })();
+  </script>
+
+  <!-- Populates the navbar "Latest Release" card from the PennyLane API. -->
+  <script type="text/javascript">
+    (function () {
+      const GRAPHQL_ENDPOINT = window.PENNYLANE_GRAPHQL_ENDPOINT;
+      const BLOG_BASE_URL = "https://pennylane.ai";
+      const FALLBACK_IMAGE_SRC =
+        "https://assets.cloud.pennylane.ai/pennylane_website/pages/blog/typewriter.png";
+
+      const RELEASE_QUERY = [
+        "query LatestReleaseBlogPost {",
+        "  blogPostForLatestRelease {",
+        "    title",
+        "    slug",
+        "    features { thumbnail }",
+        "  }",
+        "}"
+      ].join("\n");
+
+      // Mirrors shared-utilities `mapLatestReleaseBlogPostToNavbarCard`.
+      function mapReleasePost(post) {
+        if (!post) {
+          return null;
+        }
+        const features = post.features || [];
+        const lastThumbnail =
+          features.length > 0 ? features[features.length - 1].thumbnail : "";
+        return {
+          title: post.title || "",
+          href: BLOG_BASE_URL + "/blog/" + post.slug,
+          imageSrc: lastThumbnail || FALLBACK_IMAGE_SRC
+        };
+      }
+
+      var releaseRequest = null;
+
+      function fetchRelease() {
+        if (releaseRequest) {
+          return releaseRequest;
+        }
+        releaseRequest = fetch(GRAPHQL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query: RELEASE_QUERY })
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (json) {
+            return mapReleasePost(
+              json && json.data && json.data.blogPostForLatestRelease
+            );
+          });
+        return releaseRequest;
+      }
+
+      function getReleaseCardConfig(groupId) {
+        const script = document.querySelector(
+          'script.release-card-config[data-group="' + groupId + '"]'
+        );
+        if (script === null) {
+          return null;
+        }
+        try {
+          return JSON.parse(script.textContent);
+        } catch (error) {
+          console.error("Invalid navbar release-card config", error);
+          return null;
+        }
+      }
+
+      function createFilledReleaseCard(card, item, config) {
+        const size = card.classList.contains("ReleaseMenuCardSkeleton--mobile")
+          ? "mobile"
+          : "desktop";
+        const variant = (config && config.variant) || "primary-blue";
+        const button = (config && config.button) || {};
+        const parentName = card.getAttribute("data-parent-name") || "";
+
+        const link = document.createElement("a");
+        link.className =
+          "mega-menu-card MenuCard MenuCard--dark FeaturedMenuCard FeaturedMenuCard--"
+          + size + " FeaturedMenuCard--dark FeaturedMenuCard--" + variant
+          + " release-menu-card";
+        link.href = item.href || "#";
+        if (item.href && /^https?:\/\//.test(item.href)) {
+          link.rel = "noopener noreferrer";
+          link.target = "_blank";
+        }
+        link.addEventListener("click", function () {
+          sendCustomGAEvent(
+            "click",
+            "navbar_ux",
+            "navbar_card_click",
+            parentName + " > " + (item.title || "")
+          );
+        });
+
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("class", "MenuCard__border-svg");
+        svg.setAttribute("aria-hidden", "true");
+        const rect = document.createElementNS(svgNS, "rect");
+        rect.setAttribute("class", "MenuCard__border-rect");
+        rect.setAttribute("rx", "5");
+        rect.setAttribute("pathLength", "400");
+        svg.appendChild(rect);
+        link.appendChild(svg);
+
+        const content = document.createElement("div");
+        content.className = "FeaturedMenuCard__content";
+        const titleEl = document.createElement("h4");
+        titleEl.className = "FeaturedMenuCard__title FeaturedMenuCard__title--clamp-4";
+        titleEl.textContent = item.title || "";
+        content.appendChild(titleEl);
+        link.appendChild(content);
+
+        if (item.imageSrc) {
+          const img = document.createElement("img");
+          img.className =
+            "FeaturedMenuCard__image FeaturedMenuCard__image--full release-menu-card__image";
+          img.src = item.imageSrc;
+          img.alt = item.title || "";
+          link.appendChild(img);
+        } else {
+          const placeholder = document.createElement("div");
+          placeholder.className =
+            "FeaturedMenuCard__image FeaturedMenuCard__image--full FeaturedMenuCard__image--placeholder release-menu-card__image";
+          placeholder.setAttribute("aria-hidden", "true");
+          link.appendChild(placeholder);
+        }
+
+        const btn = document.createElement("span");
+        btn.className =
+          "FeaturedMenuCard__button FeaturedMenuCard__button--"
+          + (button.variant || "secondary");
+        const btnLabel = document.createElement("span");
+        btnLabel.className = "FeaturedMenuCard__button-label";
+        const btnText = document.createElement("span");
+        btnText.textContent = button.text || "";
+        btnLabel.appendChild(btnText);
+        if (button.icon) {
+          const icon = document.createElement("i");
+          icon.className = "bx " + button.icon;
+          btnLabel.appendChild(icon);
+        }
+        btn.appendChild(btnLabel);
+        link.appendChild(btn);
+
+        return link;
+      }
+
+      function fillCard(card, item) {
+        const groupId = card.getAttribute("data-release-card-group");
+        const config = getReleaseCardConfig(groupId);
+        const filled = createFilledReleaseCard(card, item, config);
+        card.parentNode.replaceChild(filled, card);
+      }
+
+      function markEmpty(card) {
+        const empty = document.createElement("div");
+        empty.className = "mega-menu-card release-menu-card release-menu-card--empty";
+        empty.setAttribute("aria-hidden", "true");
+        card.parentNode.replaceChild(empty, card);
+      }
+
+      function loadReleaseCardsInContainer(container) {
+        if (!container) {
+          return;
+        }
+        const cards = container.querySelectorAll(".release-menu-card.release-menu-card--loading");
+        if (cards.length === 0) {
+          return;
+        }
+
+        fetchRelease()
+          .then(function (item) {
+            for (var i = 0; i < cards.length; i++) {
+              if (item) {
+                fillCard(cards[i], item);
+              } else {
+                markEmpty(cards[i]);
+              }
+            }
+          })
+          .catch(function (error) {
+            console.error("Failed to load navbar release card", error);
+            for (var j = 0; j < cards.length; j++) {
+              markEmpty(cards[j]);
+            }
+          });
+      }
+
+      window.loadReleaseCardsInContainer = loadReleaseCardsInContainer;
+      window.loadDynamicNavbarCardsInContainer = function (container) {
+        if (typeof window.loadContentCardsInContainer === "function") {
+          window.loadContentCardsInContainer(container);
+        }
+        loadReleaseCardsInContainer(container);
+      };
+    })();
   </script>
 
   {% include "footer.html" %}
