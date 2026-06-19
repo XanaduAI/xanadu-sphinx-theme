@@ -20,7 +20,7 @@
 
         <span>{{ name }}</span>
         {% if external %}
-          <i class='bx bx-arrow-out-up-right-square'></i> 
+          <i class='bx bx-link-external'></i> 
         {% elif dropdown %}
           <i class="bx bx-chevron-down"></i>
         {% endif %}
@@ -36,7 +36,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class='bx bx-arrow-out-up-right-square'></i> 
+                  <i class='bx bx-link-external'></i> 
                 {% endif %}
               </a>
             </li>
@@ -60,19 +60,236 @@
     </li>
   {% endmacro %}
 
+  {# Whether a link should open in a new tab (anything outside the pennylane.ai ecosystem). #}
+  {% macro is_external_href(href) %}{% if href and href.startswith('http') and not (href.startswith('https://pennylane.ai') or href.startswith('https://docs.pennylane.ai')) %}1{% endif %}{% endmacro %}
+
+  {# Minimal markdown renderer: only converts **bold** segments, mirroring the
+     limited markdown used in pennylane-app's featured card descriptions. #}
+  {% macro render_markdown_bold(text) -%}
+    {%- for part in text.split('**') -%}
+      {%- if loop.index0 is odd -%}<strong>{{ part }}</strong>{%- else -%}{{ part }}{%- endif -%}
+    {%- endfor -%}
+  {%- endmacro %}
+
+  {# Renders a navbar status pill (pennylane-app's NavbarPill). Optional
+     startDate/expiryDate (ISO strings, e.g. '2026-05-01') gate the pill's
+     visibility: a dated pill is emitted hidden and revealed client-side only
+     while within the [startDate, expiryDate) window (see the navbar-pill script
+     in layout.html), since Sphinx docs render statically at build time. #}
+  {% macro render_navbar_pill(pill) -%}
+    {%- if pill and pill.text -%}
+      <span class="navbar-pill navbar-pill--{{ pill.variant }}"
+        {%- if pill.startDate %} data-pill-start-date="{{ pill.startDate }}"{% endif %}
+        {%- if pill.expiryDate %} data-pill-expiry-date="{{ pill.expiryDate }}"{% endif %}
+        {%- if pill.startDate or pill.expiryDate %} hidden{% endif %}>{{ pill.text }}</span>
+    {%- endif -%}
+  {%- endmacro %}
+
+  {# Renders a single featured navbar card (pennylane-app's FeaturedMenuCard).
+     size is 'desktop' or 'mobile'. #}
+  {% macro render_featured_card(card, size, parent_name) %}
+    {% set light_variants = ['white', 'soft-blue', 'confetti'] %}
+    {% set theme = 'light' if card.variant in light_variants else 'dark' %}
+    {% set is_external = is_external_href(card.href) | trim %}
+    <a class="mega-menu-card MenuCard MenuCard--{{ theme }} FeaturedMenuCard FeaturedMenuCard--{{ size }} FeaturedMenuCard--{{ theme }} FeaturedMenuCard--{{ card.variant }}"
+       href="{{ pathto(card.href, 1) }}"
+       {% if is_external %} rel="noopener noreferrer" target="_blank" {% endif %}
+       onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_card_click', '{{ parent_name }} > {{ card.title }}')">
+      <svg class="MenuCard__border-svg" aria-hidden="true">
+        <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
+      </svg>
+      {{ render_navbar_pill(card.pill) }}
+      <div class="FeaturedMenuCard__content">
+        <h4 class="FeaturedMenuCard__title FeaturedMenuCard__title--truncate">{{ card.title }}</h4>
+        {% if card.description %}
+          <div class="FeaturedMenuCard__description"><p>{{ render_markdown_bold(card.description) }}</p></div>
+        {% endif %}
+      </div>
+      {% if card.imageSrc %}
+        <img class="FeaturedMenuCard__image FeaturedMenuCard__image--{{ card.imageSize }}" src="{{ card.imageSrc }}" alt="{{ card.title }}">
+      {% endif %}
+      <span class="FeaturedMenuCard__button FeaturedMenuCard__button--{{ card.button.variant }}">
+        <span class="FeaturedMenuCard__button-label">
+          <span>{{ card.button.text }}</span>
+          {% if card.button.icon %}
+            <i class="bx {{ card.button.icon }}"></i>
+          {% endif %}
+        </span>
+      </span>
+    </a>
+  {% endmacro %}
+
+  {# Renders placeholder slots for a dynamic "content" card section. The query
+     config is embedded as JSON and the slots are populated client-side from the
+     PennyLane content API (see the content-cards script in layout.html). #}
+  {% macro render_content_card_slots(card_section, size, group_id) %}
+    <script type="application/json" class="content-cards-config" data-group="{{ group_id }}">{"limit": {{ card_section.cards.limit }}, "filters": {{ card_section.cards.filters | tojson }}, "fallbackImageSrc": {{ (card_section.cards.fallbackImageSrc or '') | tojson }}}</script>
+    {% for i in range(card_section.cards.limit) %}
+      <a class="mega-menu-card MenuCard MenuCard--light ContentMenuCard ContentMenuCard--{{ size }} content-menu-card content-menu-card--loading"
+         data-content-card-group="{{ group_id }}" data-content-card-index="{{ i }}"
+         href="#" aria-hidden="true" tabindex="-1">
+        <svg class="MenuCard__border-svg" aria-hidden="true">
+          <rect class="MenuCard__border-rect" rx="5" pathLength="400"></rect>
+        </svg>
+        <div class="ContentMenuCard__image ContentMenuCard__image--no-image"></div>
+        <div class="ContentMenuCard__content">
+          <h4 class="ContentMenuCard__title"></h4>
+          <p class="ContentMenuCard__description"></p>
+        </div>
+      </a>
+    {% endfor %}
+  {% endmacro %}
+
+  {# Renders the dynamic "Latest Release" card (pennylane-app ReleaseMenuCard:
+     a primary-blue FeaturedMenuCard whose title/image/href come from the latest
+     release blog post). Populated client-side (see the release-card script in
+     layout.html). The button is static, from the card config. #}
+  {% macro render_release_card_slot(card_section, size, parent_name, group_id) %}
+    {% set button = card_section.cards.button %}
+    {% set variant = card_section.cards.variant %}
+    <script type="application/json" class="release-card-config" data-group="{{ group_id }}">{{ {"limit": card_section.cards.limit, "variant": variant, "button": button} | tojson }}</script>
+    {% for i in range(card_section.cards.limit) %}
+      <div class="ReleaseMenuCardSkeleton ReleaseMenuCardSkeleton--{{ size }} release-menu-card release-menu-card--loading"
+           data-release-card-group="{{ group_id }}" data-release-card-index="{{ i }}"
+           data-parent-name="{{ parent_name }}"
+           aria-hidden="true">
+        <div class="ReleaseMenuCardSkeleton__title-container">
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-first-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-second-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-third-line"></div>
+          <div class="ReleaseMenuCardSkeleton__title ReleaseMenuCardSkeleton__title-fourth-line"></div>
+        </div>
+        <div class="ReleaseMenuCardSkeleton__image"></div>
+        <div class="ReleaseMenuCardSkeleton__button"></div>
+      </div>
+    {% endfor %}
+  {% endmacro %}
+
+  {% macro render_mega_menu_link(item, header, parent_name) %}
+    {% set is_external = is_external_href(item.href) | trim %}
+    <a class="mega-menu-link" href="{{ pathto(item.href, 1) }}"
+       {% if is_external %} rel="noopener noreferrer" target="_blank" {% endif %}
+       onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ parent_name }} > {{ item.name }}')">
+      <span class="mega-menu-link__title">
+        {% if item.icon %}
+          <i class="bx {{ item.icon }} mega-menu-link__icon"></i>
+        {% endif %}
+        <span class="mega-menu-link__name">{{ item.name }}</span>
+        {{ render_navbar_pill(item.pill) }}
+        {% if is_external %}
+          <i class="bx bx-link-external mega-menu-link__external-icon"></i>
+        {% endif %}
+      </span>
+      {% if item.description %}
+        <p class="mega-menu-link__description">{{ item.description }}</p>
+      {% endif %}
+    </a>
+  {% endmacro %}
+
+  {% macro render_desktop_navbar_mega_item(link) %}
+    {% set ns = namespace(total_columns=0) %}
+    {% for link_section in link.linkSections %}{% set ns.total_columns = ns.total_columns + link_section.columns %}{% endfor %}
+    <li class="navbar-left-link desktop has-mega-menu">
+      <button class="dropdown-trigger" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
+        <span class="navbar-link__label">
+          <span>{{ link.name }}</span>
+          {{ render_navbar_pill(link.pill) }}
+        </span>
+        <i class="bx bx-chevron-down"></i>
+      </button>
+      <div class="navbar-mega-menu desktop">
+        <div class="navbar-mega-menu__overflow">
+        <div class="navbar-mega-menu__resize">
+        <div class="navbar-mega-menu__inner">
+          <div class="navbar-mega-menu__links-area" style="--menu-link-total-columns: {{ ns.total_columns }};">
+            {% for link_section in link.linkSections %}
+              <div class="navbar-mega-menu__link-section" style="grid-column: span {{ link_section.columns }} / span {{ link_section.columns }};">
+                {% for section in link_section.sections %}
+                  <div class="navbar-mega-menu__section">
+                    <div class="mega-menu-section-header">
+                      <h3 class="mega-menu-section-header__title">{{ section.header }}</h3>
+                      {% if section.cta %}
+                        <a class="mega-menu-section-header__cta" href="{{ pathto(section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ section.cta.text }}')">
+                          <span>{{ section.cta.text }}</span>
+                          <i class="bx bx-chevron-right"></i>
+                        </a>
+                      {% endif %}
+                    </div>
+                    <ul class="mega-menu-section-links {% if link_section.columns > 1 %}mega-menu-section-links--multi-column{% endif %}" style="--link-section-columns: {{ link_section.columns }};">
+                      {% for item in section['items'] %}
+                        <li>{{ render_mega_menu_link(item, section.header, link.name) }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+          {% if link.cardSections %}
+            {% set card_ns = namespace(total_card_columns=0, has_cards=false) %}
+            {% for card_section in link.cardSections %}
+              {% if card_section.type == 'featured' %}
+                {% set card_ns.total_card_columns = card_ns.total_card_columns + (card_section.cards | length) %}
+                {% set card_ns.has_cards = true %}
+              {% elif card_section.type in ['content', 'release'] %}
+                {% set card_ns.total_card_columns = card_ns.total_card_columns + card_section.cards.limit %}
+                {% set card_ns.has_cards = true %}
+              {% endif %}
+            {% endfor %}
+            {% if card_ns.has_cards %}
+              <div class="navbar-mega-menu__cards-area" style="--menu-card-total-columns: {{ card_ns.total_card_columns }};">
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
+                  {% set col_span = (card_section.cards | length) if card_section.type == 'featured' else card_section.cards.limit %}
+                  <div class="navbar-mega-menu__card-section-header" style="grid-column: span {{ col_span }} / span {{ col_span }};">
+                    <div class="mega-menu-section-header">
+                      <h3 class="mega-menu-section-header__title">{{ card_section.header }}</h3>
+                      {% if card_section.cta %}
+                        <a class="mega-menu-section-header__cta" href="{{ pathto(card_section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ card_section.cta.text }}')">
+                          <span>{{ card_section.cta.text }}</span>
+                          <i class="bx bx-chevron-right"></i>
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+                {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
+                  {% if card_section.type == 'featured' %}
+                    {% for card in card_section.cards %}
+                      {{ render_featured_card(card, 'desktop', link.name) }}
+                    {% endfor %}
+                  {% elif card_section.type == 'release' %}
+                    {{ render_release_card_slot(card_section, 'desktop', link.name, 'd-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                  {% else %}
+                    {{ render_content_card_slots(card_section, 'desktop', 'd-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+        </div>
+        </div>
+      </div>
+    </li>
+  {% endmacro %}
+
   <div class="navbar-links desktop">
     <ul class="navbar-left-links desktop">
       {% for link in theme_navbar_left_links %}
-        {{
-            render_desktop_navbar_left_link(
-              link.name,
-              link.href,
-              link.img,
-              link.img_width,
-              link.external,
-              link.dropdown
-            )
-        }}
+        {% if link.linkSections %}
+          {{ render_desktop_navbar_mega_item(link) }}
+        {% else %}
+          {{
+              render_desktop_navbar_left_link(
+                link.name,
+                link.href,
+                link.img,
+                link.img_width,
+                link.external,
+                link.dropdown
+              )
+          }}
+        {% endif %}
       {% endfor %}
     </ul>
     <ul class="navbar-right-links desktop">
@@ -111,7 +328,7 @@
           <div>
             <span>{{ name }}</span>
             {% if external %}
-              <i class='bx bx-arrow-out-up-right-square'></i> 
+              <i class='bx bx-link-external'></i> 
             {% endif %}
           </div>
           {% if dropdown %}
@@ -125,7 +342,7 @@
 
               <span>{{ name }}</span>
               {% if external %}
-                <i class='bx bx-arrow-out-up-right-square'></i> 
+                <i class='bx bx-link-external'></i> 
               {% endif %}
             </a>
           {% else %}
@@ -143,7 +360,7 @@
                     {{ name }}
                   {%- endif -%}
                   {% if external %}
-                    <i class='bx bx-arrow-out-up-right-square'></i> 
+                    <i class='bx bx-link-external'></i> 
                   {% endif %}
                 </a>
             </li>
@@ -155,7 +372,7 @@
                   {{ link.name }}
                 {%- endif -%}
                 {% if link.external %}
-                  <i class='bx bx-arrow-out-up-right-square'></i> 
+                  <i class='bx bx-link-external'></i> 
                 {% endif %}
               </a>
             </li>
@@ -164,6 +381,68 @@
       </div>
     </li>
   {% endmacro %}
+
+  {% macro render_mobile_navbar_mega(link) %}
+    <li class="navbar-link mobile">
+      <button class="navbar-link-heading mobile" onclick="toggleMobileNavbarLink(this)" aria-label="open {{ link.name }} sub-menu" aria-expanded="false">
+        <div>
+          <span>{{ link.name }}</span>
+          {{ render_navbar_pill(link.pill) }}
+        </div>
+      <i class="bx bx-chevron-down"></i>
+    </button>
+    <div class="navbar-dropdown mobile">
+      <div class="mobile-mega-menu">
+        {% for link_section in link.linkSections %}
+          {% for section in link_section.sections %}
+            <div class="navbar-mega-menu__section">
+              <div class="mega-menu-section-header">
+                <h3 class="mega-menu-section-header__title">{{ section.header }}</h3>
+                {% if section.cta %}
+                  <a class="mega-menu-section-header__cta" href="{{ pathto(section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ section.cta.text }}')">
+                    <span>{{ section.cta.text }}</span>
+                    <i class="bx bx-chevron-right"></i>
+                  </a>
+                {% endif %}
+              </div>
+              <ul class="mega-menu-section-links">
+                {% for item in section['items'] %}
+                  <li>{{ render_mega_menu_link(item, section.header, link.name) }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        {% endfor %}
+        {% if link.cardSections %}
+          {% for card_section in link.cardSections if card_section.type in ['featured', 'content', 'release'] %}
+            <div class="navbar-mega-menu__section">
+              <div class="mega-menu-section-header">
+                <h3 class="mega-menu-section-header__title">{{ card_section.header }}</h3>
+                {% if card_section.cta %}
+                  <a class="mega-menu-section-header__cta" href="{{ pathto(card_section.cta.href, 1) }}" onclick="sendCustomGAEvent('click', 'navbar_ux', 'navbar_button_click', '{{ link.name }} > {{ card_section.cta.text }}')">
+                    <span>{{ card_section.cta.text }}</span>
+                    <i class="bx bx-chevron-right"></i>
+                  </a>
+                {% endif %}
+              </div>
+              <div class="MobileMenu__cards">
+                {% if card_section.type == 'featured' %}
+                  {% for card in card_section.cards %}
+                    {{ render_featured_card(card, 'mobile', link.name) }}
+                  {% endfor %}
+                {% elif card_section.type == 'release' %}
+                  {{ render_release_card_slot(card_section, 'mobile', link.name, 'm-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                {% else %}
+                  {{ render_content_card_slots(card_section, 'mobile', 'm-' ~ (link.name | replace(' ', '_') | replace('&', 'and')) ~ '-' ~ loop.index0) }}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </li>
+{% endmacro %}
 
   {% macro render_mobile_navbar_button(name, href=None) %}
     {% if href %}
@@ -187,6 +466,9 @@
   </div>
 </nav>
 
+<!-- Dimmed backdrop shown while a desktop mega menu is open. -->
+<div class="navbar-overlay" aria-hidden="true"></div>
+
 <div class="navbar-links mobile">
   <ul>
     {% if theme_command_palette_enabled|lower == 'true' %}
@@ -205,14 +487,18 @@
     {% endif %}
 
     {% for link in theme_navbar_left_links %}
-      {{
-          render_mobile_navbar_link(
-            link.name,
-            link.href,
-            link.external,
-            link.dropdown,
-          )
-      }}
+      {% if link.linkSections %}
+        {{ render_mobile_navbar_mega(link) }}
+      {% else %}
+        {{
+            render_mobile_navbar_link(
+              link.name,
+              link.href,
+              link.external,
+              link.dropdown,
+            )
+        }}
+      {% endif %}
     {% endfor %}
 
     {% for link in theme_navbar_right_links|selectattr("icon") %}

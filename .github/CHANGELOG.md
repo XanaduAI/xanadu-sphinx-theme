@@ -4,6 +4,19 @@
 
 This release contains contributions from (in alphabetical order):
 
+[Koeun Lee](https://github.com/koeun-lee)
+
+### Features
+
+- Ported PennyLane's new global navbar into the Sphinx theme.
+  - On desktop it expands into a "mega menu" with multi-column sections and a slide-down animation.
+  - On mobile it collapses into an accordion with expand/collapse animations.
+  - Menus render featured cards along with content and latest-release cards that are loaded client-side when a menu first opens.
+
+### Bug fixes
+
+- Navbar menus now close automatically when switching between mobile and desktop breakpoints.
+
 ## Release 0.19.0 (current release)
 
 ### Contributors

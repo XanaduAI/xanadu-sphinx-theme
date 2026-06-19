@@ -1,6 +1,6 @@
 /* Sphinx Themes
 ----------------------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap');
 
 body {
   margin: 0;
@@ -182,7 +182,7 @@ code {
 
 code, pre, tt {
   font-size: 14px;
-  font-family: Consolas, monospace;
+  font-family: 'Roboto Mono', Consolas, monospace;
 }
 
 code, tt, a > code {
@@ -1663,25 +1663,80 @@ span.eqno {
 footer {
   z-index: 0;
   background-color: white;
-  font-size: 14px;
   margin-left: 300px;
 }
 
-.footer-top {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.footer-newsletter {
+  background-color: #E6F1FC;
+}
+
+.footer-newsletter__container,
+.footer-middle__container,
+.footer-bottom__container {
   margin-left: auto;
   margin-right: auto;
   max-width: 1100px;
-  padding: 24px 32px 32px 32px;
-  position: relative;
+  padding: 32px;
 }
 
-@media screen and (min-width: 880px) and (max-width: 950px), screen and (min-width: 1064px)  {
-  .footer-top {
+.footer-newsletter__container {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  text-align: center;
+}
+
+/* display-sm-500 */
+.footer-newsletter__title {
+  color: #232323;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 120%;
+  margin-bottom: 8px;
+}
+
+/* label-md-300 */
+.footer-newsletter__description {
+  color: #232323;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  margin: 0 0 20px;
+}
+
+/* label-lg-400 */
+.footer-newsletter__cta {
+  font-family: Roboto, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  gap: 12px;
+  line-height: 140%;
+  text-decoration: none;
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-newsletter__cta {
+    width: auto;
+  }
+}
+
+.footer-newsletter__cta:hover,
+.footer-newsletter__cta:focus,
+.footer-newsletter__cta:focus-visible {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-newsletter__cta .bx {
+  font-size: 22px;
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-middle__container {
     display: grid;
-    grid-template-columns: 320px auto 1fr;
+    grid-template-columns: 400px auto 1fr;
     grid-template-areas:
       "about space links"
       "about space links"
@@ -1689,186 +1744,305 @@ footer {
   }
 }
 
-.footer-about {
+.footer-middle__about {
   display: flex;
   flex-direction: column;
-  grid-area: about;
-}
-
-.footer-icon {
-  display: block;
-}
-
-.footer-icon img {
-  margin-bottom: 28px;
-}
-
-.footer-description {
-  color: #4F4F4F;
-  display: block;
-  font-size: 14px;
-  margin-bottom: 32px;
-  width: 100%;
+  gap: 16px;
   max-width: 540px;
 }
 
-.footer-description a {
+@media screen and (min-width: 1000px) {
+  .footer-middle__about {
+    grid-area: about;
+  }
+}
+
+.footer-middle__logo {
+  display: inline-block;
+  width: fit-content;
+}
+
+.footer-middle__logo:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
+.footer-middle__logo img {
+  height: auto;
+  width: 160px;
+}
+
+/* label-md-300 */
+.footer-middle__description p,
+.footer-middle__created-by p {
+  color: #232323;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  margin: 0;
+}
+
+.footer-middle__created-by a {
   color: #0074E0;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  text-decoration: none;
 }
 
-@media screen and (min-width: 880px) and (max-width: 950px), screen and (min-width: 1064px) {
-  .footer-description {
-    margin-bottom: 0px;
-  }
+.footer-middle__created-by a:hover,
+.footer-middle__created-by a:focus {
+  color: #0074E0;
+  text-decoration: underline;
+  text-decoration-color: #0074E0;
 }
 
-.footer-social-icons-and-taglines {
+.footer-middle__created-by a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
+.footer-middle__links {
   display: flex;
-  flex-direction: column;
-  position: relative;
+  flex-wrap: wrap;
+  gap: 24px 40px;
   margin-top: 24px;
-  grid-area: social;
+  max-width: 540px;
 }
 
-.footer-social-icons {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-
-@media screen and (min-width: 880px) and (max-width: 950px), screen and (min-width: 1064px) {
-  .footer-social-icons {
-    gap: 20px;
+@media screen and (min-width: 1000px) {
+  .footer-middle__links {
+    flex-wrap: nowrap;
+    gap: 0;
+    grid-area: links;
+    justify-content: space-between;
+    margin-top: 0;
+    max-width: 100%;
   }
 }
 
-.footer-social-icons i {
-  color: {{ theme_social_icon_colour }};
-  font-size: 22px;
-}
-
-.footer-tagline {
-  color: #515151;
-  margin-top: 8px;
-  text-decoration: underline;
-}
-
-.footer-tagline:hover {
-  color: {{ theme_border_colour }};
-  text-decoration: underline;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  row-gap: 24px;
-  column-gap: 40px;
-  width: 100%;
-  max-width: 540px;
-  grid-area: links;
-}
-
-.footer-link-spacer {
+.footer-middle__link-spacer {
   display: none;
 }
 
-@media screen and (min-width: 880px) and (max-width: 950px), screen and (min-width: 1064px)  {
-  .footer-links {
-    justify-content: space-between;
-    flex: 1;
-    max-width: 100%;
-    flex-wrap: nowrap;
-  }
-
-  /* This invisible item will take up space just like a regular column
-     when justify-content: space-between is active. */
-  .footer-link-spacer {
+@media screen and (min-width: 1000px) {
+  .footer-middle__link-spacer {
     display: block;
     flex-basis: 0;
     flex-grow: 0;
     flex-shrink: 1;
-    min-width: 0; 
-    visibility: hidden;
+    min-width: 0;
     overflow: hidden;
+    visibility: hidden;
   }
 }
 
+/* body-sm-500 — override global h3 doc styles (Quicksand/24px) */
+footer h3.footer-middle__title {
+  color: #232323;
+  font-family: Roboto, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  line-height: 150% !important;
+  margin: 0 0 12px !important;
+  overflow: visible;
+  padding: 0;
+}
 
-.footer-link-column {
+.footer-middle__links-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* label-md-400 */
+.footer-middle__link-item {
+  align-items: center;
+  color: #515151;
+  display: inline-flex;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  gap: 8px;
+  line-height: 140%;
+  text-decoration: none;
+}
+
+.footer-middle__link-external-icon {
+  color: #757575;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.footer-middle__link-item:hover,
+.footer-middle__link-item:focus-visible {
+  color: #0074E0;
+  text-decoration: none;
+}
+
+.footer-middle__link-item:hover .footer-middle__link-name,
+.footer-middle__link-item:focus-visible .footer-middle__link-name {
+  text-decoration: underline;
+  text-decoration-color: #0074E0;
+}
+
+.footer-middle__link-item:hover .footer-middle__link-external-icon,
+.footer-middle__link-item:focus-visible .footer-middle__link-external-icon {
+  color: #0074E0;
+}
+
+.footer-middle__link-item:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
+.footer-middle__socials {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 540px;
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-middle__socials {
+    grid-area: social;
+  }
+}
+
+.footer-middle__socials-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-middle__socials-list a {
+  color: {{ theme_social_icon_colour }};
+  font-size: 24px;
+  line-height: 1;
+}
+
+.footer-middle__socials-list a:hover,
+.footer-middle__socials-list a:focus {
+  color: #0055A5;
+  text-decoration: none;
+}
+
+.footer-middle__socials-list a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
+.footer-separator {
+  border: 0;
+  border-top: 1px solid #CFCFCF;
+  margin: 0;
+  opacity: 1;
+}
+
+.footer-bottom__logo-wrapper {
+  margin-bottom: 24px;
+}
+
+.footer-bottom__logo {
+  display: inline-block;
+  width: fit-content;
+}
+
+.footer-bottom__logo:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
+.footer-bottom__logo img {
+  height: auto;
+  width: 110px;
+}
+
+.footer-bottom__content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 24px 48px;
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-bottom__content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-bottom__content-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom__copyright {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.footer-link-heading {
-  color: #2E2E2E;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  padding-bottom: 4px;
-}
-
-.footer-link-item {
-  color: #515151;
-}
-
-.footer-link-item:hover {
-  color: {{ theme_border_colour }};
-}
-
-.footer-separator {
-  border-top-width: 0.625px;
-  border-top-color: #00000015;
-  margin: 0px;
-}
-
-.footer-bottom {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1100px;
-  padding: 32px 32px 16px 32px;
-}
-
-.footer-copyrights {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.footer-copyright-item {
+/* label-md-400 */
+.footer-bottom__copyright p {
   color: #757575;
-  font-size: 13px;
-  margin-bottom: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+  margin: 0;
 }
 
-.footer-policies {
-  margin-top: 4px;
+/* label-sm-400 */
+.footer-bottom__copyright p.footer-bottom__copyright-tensorflow {
+  font-size: 0.75rem;
+}
+
+.footer-bottom__policies {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  gap: 16px 32px;
 }
 
-.footer-policy-item {
+@media screen and (min-width: 1000px) {
+  .footer-bottom__policies {
+    flex-wrap: nowrap;
+    width: max-content;
+  }
+}
+
+/* label-md-400 */
+.footer-bottom__link {
   color: #757575;
+  font-family: Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+  text-decoration: none;
   white-space: nowrap;
-  display: flex;
-  margin-top: 12px;
 }
 
-.footer-policy-item:hover {
-  color: {{ theme_border_colour }};
+.footer-bottom__link:hover,
+.footer-bottom__link:focus {
+  color: #757575;
+  text-decoration: underline;
 }
 
-.footer-policy-border {
-  background-color: #CFCFCF;
-  display: block;
-  height: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 1px;
+.footer-bottom__link:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
 }
 
 /* Navigation Bar
@@ -1878,12 +2052,12 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   background-color: white;
   box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.10), 0 10px 8px 0 rgba(0, 0, 0, 0.04);
   font-family: 'Quicksand', sans-serif !important;
   height: 50px;
-  padding: 0 16px;
+  padding: 0 20px;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -1893,7 +2067,22 @@ nav {
 .navbar-logo-title-container {
   display: inline-block;
   line-height: 22.5px;
-  padding: 8px 0;
+}
+
+.navbar-logo-title-container:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Prevent global link focus underlines inside the navbar. */
+nav a:focus {
+  text-decoration: none;
+}
+
+.navbar-logo-title-image {
+  width: 160px;
+  height: auto;
 }
 
 .navbar-logo-title-title {
@@ -1923,8 +2112,8 @@ nav {
   flex-direction: row;
   list-style-type: none;
   margin-bottom: 0px;
+  margin-right: 64px;
   padding-left: 0px;
-  width: 100%;
 }
 
 .desktop.navbar-left-link {
@@ -1933,19 +2122,32 @@ nav {
   flex-direction: row;
   position: relative;
   height: 100%;
-  padding: 0 8px;
+  padding: 0 6px;
+  margin: 0 3px;
   gap: 4px;
+  cursor: pointer;
+  /* Match pennylane-app NavItem__item border box so the focus ring insets align. */
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  box-sizing: border-box;
 
-  color: #000;
+  color: #232323;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 150%;
 }
 
 .desktop.navbar-left-link > a,
 .desktop.navbar-left-link > button {
   color: inherit;
+  font: inherit;
+}
+
+.desktop.navbar-left-link .navbar-link__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .desktop.navbar-left-link i.bx-chevron-down {
@@ -1954,15 +2156,14 @@ nav {
 
 .desktop.navbar-left-link i.bx-link-external {
   font-size: 16px;
-  margin-left: 8px;
 }
 
-.desktop.navbar-left-link button,
-.desktop.navbar-left-link a {
+.desktop.navbar-left-link > button,
+.desktop.navbar-left-link > a {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background-color: #FFFFFF;
+  gap: 2px;
+  background-color: transparent;
   border-width: 0px;
   padding: 0;
   text-decoration: none;
@@ -1976,11 +2177,37 @@ nav {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.desktop.navbar-left-link a:hover,
-.desktop.navbar-left-link button:hover {
+.desktop.navbar-left-link:hover > a,
+.desktop.navbar-left-link:hover > button,
+.desktop.navbar-left-link.open > a,
+.desktop.navbar-left-link.open > button,
+.desktop.navbar-left-link:has(:focus-visible) > a,
+.desktop.navbar-left-link:has(:focus-visible) > button {
   color: {{ theme_border_colour }};
   transition-duration: 0.15s;
   text-decoration: none;
+}
+
+/* Nav item focus ring (mirrors pennylane-app NavItem__item:has(:focus-visible)::after). */
+.desktop.navbar-left-link:has(:focus-visible)::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 2px solid #9AC7F2;
+  border-radius: 4px;
+  top: -3px;
+  left: -4px;
+  right: -4px;
+  bottom: -6px;
+  z-index: 1;
+}
+
+.desktop.navbar-left-link > a:focus-visible,
+.desktop.navbar-left-link > button:focus-visible,
+.desktop.navbar-left-link > .dropdown-trigger:focus,
+.desktop.navbar-left-link > .dropdown-trigger:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .desktop.navbar-left-link a:focus:not(:focus-visible),
@@ -1989,19 +2216,17 @@ nav {
 }
 
 .desktop.navbar-left-link:hover > a > i,
-.desktop.navbar-left-link:hover > button > i {
+.desktop.navbar-left-link:hover > button > i,
+.desktop.navbar-left-link.open > a > i,
+.desktop.navbar-left-link.open > button > i,
+.desktop.navbar-left-link:has(:focus-visible) > a > i,
+.desktop.navbar-left-link:has(:focus-visible) > button > i {
   color: {{ theme_border_colour }};
 }
 
-.desktop.navbar-left-link:hover::after {
-  background-color: {{ theme_border_colour }};
-  content: "";
-  display: block;
-  position: absolute;
-  height: 2.5px;
-  left: 0;
-  top: 44.5px;
-  width: 100%;
+/* Open indicator uses border-bottom (mirrors pennylane-app NavItem__item.isExpanded). */
+.desktop.navbar-left-link.open {
+  border-bottom-color: {{ theme_border_colour }};
 }
 
 .desktop.navbar-left-link > ul > li > a {
@@ -2016,9 +2241,10 @@ nav {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 6px;
   list-style-type: none;
   margin-bottom: 0px;
+  margin-left: auto;
 }
 
 .desktop.navbar-right-link {
@@ -2029,6 +2255,13 @@ nav {
 .desktop.navbar-right-links a {
   display: flex;
   text-decoration: none;
+}
+
+.desktop.navbar-right-link a:focus-visible,
+.desktop.navbar-right-links .desktop.navbar-button:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .desktop.navbar-right-links a i {
@@ -2105,6 +2338,868 @@ nav {
   color: {{ theme_border_colour }};
 }
 
+/* Navigation Bar Desktop Mega Menu
+----------------------------------------------------------------------------- */
+
+.navbar-mega-menu {
+  /* Slide-down animation mirrors pennylane-app's .MegaMenu__container: the
+     container is a single-row grid that animates grid-template-rows 0fr -> 1fr
+     (height) together with opacity. The inner .navbar-mega-menu__overflow wrapper
+     has overflow: hidden so the content is clipped as the row collapses. */
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  position: fixed;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  z-index: 9999;
+  cursor: auto;
+  background-color: #FFFFFF;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow:
+    inset 0 4px 3px 0 rgba(0, 0, 0, 0.07),
+    inset 0 2px 2px 0 rgba(0, 0, 0, 0.06),
+    0px 10px 8px 0px rgba(0, 0, 0, 0.04),
+    0px 4px 3px 0px rgba(0, 0, 0, 0.10);
+}
+
+.navbar-mega-menu__overflow {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Wrapper whose explicit pixel height is animated by JS when switching between
+   two already-open mega menus (mirrors pennylane-app's .MegaMenu__resize). When
+   no inline height is set it stays auto, so the open/close grid animation above
+   drives the reveal instead. */
+.navbar-mega-menu__resize {
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktop.navbar-left-link.open .navbar-mega-menu {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dimmed backdrop behind an open mega menu (matches pennylane-app's
+   .Navbar__overlay: fixed, rgba(0,0,0,0.1), below the navbar/mega menu). */
+.navbar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-overlay.open {
+  display: block;
+}
+
+.navbar-mega-menu__inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1535px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar-mega-menu__links-area {
+  display: grid;
+  gap: 40px;
+  align-self: start;
+  grid-column: span var(--menu-link-total-columns, 1) / span var(--menu-link-total-columns, 1);
+  grid-template-columns: repeat(var(--menu-link-total-columns, 1), minmax(0, 1fr));
+  background-color: #F7FAFC;
+  height: 100%;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.navbar-mega-menu__link-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-self: start;
+}
+
+.navbar-mega-menu__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-section-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.mega-menu-section-header__title {
+  margin: 0;
+  padding: 6px 0;
+  color: #757575;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 140%;
+  text-transform: uppercase;
+}
+
+.mega-menu-section-header__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  color: #0074E0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 140%;
+  text-decoration: none;
+  outline: 2px solid transparent;
+  outline-offset: 0;
+  transition: color 0.15s ease;
+}
+
+.mega-menu-section-header__cta i {
+  font-size: 20px;
+}
+
+.mega-menu-section-header__cta:hover {
+  color: #0055A5;
+  text-decoration: none;
+}
+
+.mega-menu-section-header__cta:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* The v2 "text" Button has no underline; override the global nav link focus
+   underline so the focused CTA shows only the ring. */
+.mega-menu-section-header__cta:focus,
+.mega-menu-section-header__cta:focus-visible {
+  text-decoration: none;
+}
+
+.mega-menu-section-header__cta:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 0;
+  border-radius: 4px;
+  color: #0055A5;
+}
+
+.mega-menu-section-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-menu-section-links:not(.mega-menu-section-links--multi-column) {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mega-menu-section-links--multi-column {
+  column-count: var(--link-section-columns, 2);
+  column-gap: 40px;
+}
+
+.mega-menu-section-links--multi-column > li {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.mega-menu-link {
+  display: block;
+  text-decoration: none;
+  color: #232323;
+  transition: transform 150ms ease;
+}
+
+.mega-menu-link:hover {
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.mega-menu-link:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.mega-menu-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.mega-menu-link:focus-visible .mega-menu-link__name,
+.mega-menu-link:focus-visible .mega-menu-link__external-icon {
+  color: #0074E0;
+}
+
+.mega-menu-link:focus-visible .mega-menu-link__description {
+  color: #232323;
+}
+
+.mega-menu-link__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mega-menu-link__name {
+  color: #232323;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.mega-menu-link:hover .mega-menu-link__name,
+.mega-menu-link:hover .mega-menu-link__external-icon {
+  color: #0074E0;
+}
+
+.mega-menu-link:hover .mega-menu-link__description {
+  color: #232323;
+}
+
+.mega-menu-link__external-icon {
+  color: #757575;
+  font-size: 16px;
+}
+
+/* Link icons (pennylane-app MenuLink__icon): brand blue, hidden on mobile,
+   shown only when the desktop mega menu is active. */
+.mega-menu-link__icon {
+  display: none;
+  flex-shrink: 0;
+  color: #0074E0;
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 1340px) {
+  .mega-menu-link__icon {
+    display: inline-flex;
+  }
+}
+
+.mega-menu-link__description {
+  margin: 0;
+  color: #515151;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+}
+
+/* Navigation Bar Mega Menu Featured Cards
+   (mirrors pennylane-app MenuCard + FeaturedMenuCard)
+----------------------------------------------------------------------------- */
+
+.navbar-mega-menu__cards-area {
+  display: grid;
+  column-gap: 40px;
+  align-self: start;
+  grid-column: span var(--menu-card-total-columns, 1) / span var(--menu-card-total-columns, 1);
+  grid-template-columns: repeat(var(--menu-card-total-columns, 1), minmax(0, 1fr));
+}
+
+.navbar-mega-menu__card-section-header {
+  margin-top: 20px;
+}
+
+/* MenuCard shell */
+.mega-menu-card.MenuCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #CFCFCF;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  color: #232323;
+  text-decoration: none;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.mega-menu-card.MenuCard:hover {
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu-card.MenuCard:focus-visible {
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.mega-menu-card.MenuCard:focus-visible .MenuCard__border-rect {
+  stroke: #9AC7F2;
+  stroke-dashoffset: 0;
+}
+
+.mega-menu-card.MenuCard--dark {
+  border: none;
+}
+
+.mega-menu-card .MenuCard__border-svg {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  fill: none;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.mega-menu-card .MenuCard__border-rect {
+  x: 1px;
+  y: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s ease-in-out;
+  rx: 11px;
+}
+
+.mega-menu-card.MenuCard:hover .MenuCard__border-rect {
+  stroke: #9AC7F2;
+  stroke-dashoffset: 0;
+}
+
+/* Featured card layout */
+.FeaturedMenuCard {
+  position: relative;
+}
+
+.FeaturedMenuCard__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.FeaturedMenuCard__title {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.FeaturedMenuCard__title--truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.FeaturedMenuCard__title--clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: fit-content;
+  max-height: 7.2rem;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__title--clamp-4 {
+  height: fit-content;
+  max-height: 5.6rem;
+}
+
+.FeaturedMenuCard__description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.FeaturedMenuCard__description p {
+  margin: 0;
+}
+
+.FeaturedMenuCard__image--small {
+  height: 74px;
+  width: auto;
+  object-fit: contain;
+  align-self: flex-start;
+  margin: 3px 0;
+}
+
+.FeaturedMenuCard__image--full,
+.FeaturedMenuCard__image--wide {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+/* Placeholder shown for a "full" image card while the release card loads its
+   thumbnail (pennylane-app FeaturedMenuCard__image--placeholder: bg-secondary). */
+.FeaturedMenuCard__image--placeholder {
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  background-color: #F5F5F5;
+}
+
+.ReleaseMenuCardSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  border: 1px solid #CFCFCF;
+  border-radius: 12px;
+  background-color: #0074E0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.ReleaseMenuCardSkeleton__title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: auto;
+}
+
+.ReleaseMenuCardSkeleton__title {
+  width: 100%;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton__title-first-line {
+  width: 50%;
+}
+
+.ReleaseMenuCardSkeleton__title-second-line {
+  width: 80%;
+}
+
+.ReleaseMenuCardSkeleton__title-third-line {
+  width: 100%;
+}
+
+.ReleaseMenuCardSkeleton__title-fourth-line {
+  width: 60%;
+}
+
+.ReleaseMenuCardSkeleton__image {
+  width: 100%;
+  height: 100px;
+  margin-block: 8px;
+  border-radius: 4px;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton__button {
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 4px;
+  background-color: #0055A5;
+}
+
+.ReleaseMenuCardSkeleton--desktop {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.ReleaseMenuCardSkeleton--mobile {
+  gap: 4px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__title-container {
+  margin-bottom: 12px;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__image {
+  display: none;
+}
+
+.ReleaseMenuCardSkeleton--mobile .ReleaseMenuCardSkeleton__button {
+  height: 2rem;
+}
+
+/* Empty slot (no release returned): keep the grid cell but hide it. */
+.release-menu-card--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Theme (text colour) */
+.FeaturedMenuCard--light .FeaturedMenuCard__title {
+  color: #232323;
+}
+
+.FeaturedMenuCard--light .FeaturedMenuCard__description,
+.FeaturedMenuCard--light .FeaturedMenuCard__description p {
+  color: #515151;
+}
+
+.FeaturedMenuCard--dark .FeaturedMenuCard__title,
+.FeaturedMenuCard--dark .FeaturedMenuCard__description,
+.FeaturedMenuCard--dark .FeaturedMenuCard__description p {
+  color: #FFFFFF;
+}
+
+/* Dark hover overlay */
+.FeaturedMenuCard--dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.FeaturedMenuCard--dark:hover::before,
+.FeaturedMenuCard--dark:focus-visible::before {
+  opacity: 1;
+}
+
+.FeaturedMenuCard--dark .MenuCard__border-svg {
+  z-index: 2;
+}
+
+.FeaturedMenuCard--dark > *:not(.MenuCard__border-svg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Variant backgrounds (scoped with .mega-menu-card so they out-specify the
+   base .mega-menu-card.MenuCard background/border). */
+.mega-menu-card.FeaturedMenuCard--white {
+  background-color: #FFFFFF;
+}
+
+.mega-menu-card.FeaturedMenuCard--soft-blue {
+  background-color: #E6F1FC;
+}
+
+.mega-menu-card.FeaturedMenuCard--primary-blue {
+  background-color: #0074E0;
+}
+
+.mega-menu-card.FeaturedMenuCard--dark-blue {
+  background-color: #0055A5;
+}
+
+.mega-menu-card.FeaturedMenuCard--confetti {
+  background: #FFFFFF url('https://assets.cloud.pennylane.ai/pennylane_website/backgrounds/navbar-menu-card-confetti.png') no-repeat top right;
+  background-size: contain;
+}
+
+.mega-menu-card.FeaturedMenuCard--dark-gradient {
+  background: url('https://assets.cloud.pennylane.ai/pennylane_website/backgrounds/pennylane-background-tile.png'), linear-gradient(to right, #12274A, #115E97);
+  background-size: 291px 80px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+}
+
+/* Card button (non-interactive, styled like pennylane-app Button) */
+.FeaturedMenuCard__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  margin-top: auto;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 140%;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+/* Desktop card pills use the Pill "small" size (px-3 py-1); mobile uses "xs". */
+.FeaturedMenuCard--desktop .navbar-pill {
+  padding: 4px 12px;
+}
+
+.FeaturedMenuCard__button-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.desktop.navbar-left-link .FeaturedMenuCard__button i {
+  font-size: 22px;
+}
+
+.FeaturedMenuCard__button--primary {
+  background-color: #0074E0;
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.FeaturedMenuCard__button--secondary {
+  background-color: #FFFFFF;
+  color: #0074E0;
+  border-color: #0074E0;
+}
+
+.FeaturedMenuCard:hover .FeaturedMenuCard__button--primary {
+  background-color: #0055A5;
+}
+
+.FeaturedMenuCard:focus-visible .FeaturedMenuCard__button--primary {
+  background-color: #0055A5;
+}
+
+.FeaturedMenuCard:hover .FeaturedMenuCard__button--secondary {
+  background-color: #F7FAFC;
+  color: #0055A5;
+  border-color: #0055A5;
+}
+
+.FeaturedMenuCard:focus-visible .FeaturedMenuCard__button--secondary {
+  background-color: #F7FAFC;
+  color: #0055A5;
+  border-color: #0055A5;
+}
+
+/* Mobile featured cards */
+.mobile-mega-menu .MobileMenu__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 330px;
+}
+
+.FeaturedMenuCard--mobile.MenuCard {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.FeaturedMenuCard--mobile .MenuCard__border-rect {
+  rx: 7px;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__content {
+  gap: 4px;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__title {
+  font-size: 1rem;
+  line-height: 140%;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__description {
+  font-size: 0.75rem;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__image {
+  display: none;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__button {
+  height: 2rem;
+  padding: 0 12px;
+  font-size: 0.875rem;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__button-label {
+  gap: 8px;
+}
+
+.FeaturedMenuCard--mobile .FeaturedMenuCard__button i {
+  font-size: 20px;
+}
+
+/* Content card layout (dynamic cards populated from the content API) */
+.mega-menu-card.ContentMenuCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ContentMenuCard__image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.ContentMenuCard__image--no-image {
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  background-color: #F5F5F5;
+}
+
+.ContentMenuCard__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.ContentMenuCard__title {
+  margin: 0;
+  flex-shrink: 0;
+  color: #232323;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8rem;
+}
+
+.ContentMenuCard__description {
+  margin: 0;
+  flex-shrink: 0;
+  color: #232323;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 140%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.45rem;
+}
+
+.ContentMenuCard--mobile.MenuCard {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.ContentMenuCard--mobile .MenuCard__border-rect {
+  rx: 7px;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__image {
+  display: none;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__content {
+  gap: 4px;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__title {
+  min-height: 2.8rem;
+}
+
+.ContentMenuCard--mobile .ContentMenuCard__description {
+  font-size: 0.75rem;
+  min-height: 1.75rem;
+}
+
+/* Loading placeholder: keep the card non-interactive and show skeleton lines. */
+.content-menu-card--loading {
+  pointer-events: none;
+}
+
+.content-menu-card--loading .ContentMenuCard__title,
+.content-menu-card--loading .ContentMenuCard__description {
+  border-radius: 4px;
+  background-color: #F5F5F5;
+  color: transparent;
+}
+
+/* Empty slot (no matching item returned): keep the grid cell but hide it. */
+.content-menu-card--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.navbar-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  box-sizing: border-box;
+  white-space: nowrap;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 140%;
+  /* Default variant: info */
+  background-color: #E6F1FC;
+  color: #515151;
+}
+
+/* Pills gated by startDate/expiryDate are emitted hidden and revealed by JS;
+   this overrides the .navbar-pill display so the [hidden] attribute applies. */
+.navbar-pill[hidden] {
+  display: none;
+}
+
+.navbar-pill--info {
+  background-color: #E6F1FC;
+  color: #515151;
+}
+
+.navbar-pill--in-progress {
+  background-color: #0074E0;
+  color: #FFFFFF;
+}
+
+.navbar-pill--complete {
+  background-color: #008000;
+  color: #FFFFFF;
+}
+
+.navbar-pill--partial-complete {
+  background-color: #E5F2E5;
+  color: #515151;
+}
+
+.navbar-pill--error {
+  background-color: #860000;
+  color: #FFFFFF;
+}
+
 /* Navigation Bar Mobile
 ----------------------------------------------------------------------------- */
 
@@ -2118,15 +3213,27 @@ nav {
 .mobile.navbar-menu > button {
   display: flex;
   align-items: center;
-  background-color: #FFFFFF;
+  justify-content: center;
+  background-color: transparent;
   border-width: 0px;
   padding: 0;
+}
+
+.mobile.navbar-menu > button:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .mobile.navbar-menu > button > i {
   color: #515151;
   font-size: 32px;
   font-weight: 400;
+}
+
+/* Prevent the page behind the mobile menu from scrolling while it is open. */
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 .mobile.navbar-menu > button > i.bx-x {
@@ -2176,12 +3283,33 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  padding: 20px 0;
+  padding: 0;
   transition-duration: 350ms;
 }
 
+.mobile.navbar-link:has(.command-palette-button.mobile) {
+  padding-block: 24px 16px;
+}
+
+.mobile.navbar-links > ul > .mobile.navbar-link:has(.mobile.navbar-dropdown):not(
+  .mobile.navbar-link:has(.mobile.navbar-dropdown) ~ .mobile.navbar-link:has(.mobile.navbar-dropdown)
+) > .mobile.navbar-link-heading {
+  border-top: 1px solid #CFCFCF;
+}
+
 .mobile.navbar-link.open {
-  gap: 16px;
+  gap: 0;
+}
+
+/* Expanded accordion button sticks to the top of the scrolling mobile menu
+   (right below the navbar) until the next item scrolls up to meet it. Mirrors
+   pennylane-app's .Accordion__expanded > .Accordion_Button sticky behaviour. */
+.mobile.navbar-link.open > .mobile.navbar-link-heading {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #CFCFCF;
 }
 
 .mobile.navbar-link-heading {
@@ -2192,7 +3320,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   padding: 0px;
-  padding-block: 0px;
+  padding-block: 20px;
   padding-inline: 0px;
   width: 100%;
 }
@@ -2211,7 +3339,7 @@ nav {
   color: #515151;
 }
 
-.mobile.navbar-link-heading span {
+.mobile.navbar-link-heading span:not(.navbar-pill) {
   color: #232323;
   display: flex;
   font-family: 'Roboto', sans-serif;
@@ -2233,7 +3361,28 @@ nav {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mobile.navbar-link-heading:focus:not(:focus-visible) {
+/* Hover state mirrors the React Accordion / MobileMenu link (text-brand-500). */
+.mobile.navbar-link-heading:hover span:not(.navbar-pill),
+.mobile.navbar-link-heading:hover i.bx-chevron-down,
+.mobile.navbar-link-heading:hover i.bx-link-external,
+.mobile.navbar-link-heading > a:hover span:not(.navbar-pill),
+.mobile.navbar-link-heading > a:hover i,
+.mobile.navbar-link-heading:focus-visible span:not(.navbar-pill),
+.mobile.navbar-link-heading:focus-visible i.bx-chevron-down,
+.mobile.navbar-link-heading:focus-visible i.bx-link-external,
+.mobile.navbar-link-heading > a:focus-visible span:not(.navbar-pill),
+.mobile.navbar-link-heading > a:focus-visible i {
+  color: #0074E0;
+}
+
+.mobile.navbar-link-heading:focus-visible,
+.mobile.navbar-link-heading > a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  border-radius: 4px;
+}
+
+.mobile.navbar-link-heading:focus:not(:focus-visible),
+.mobile.navbar-link-heading > a:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -2277,26 +3426,94 @@ nav {
   visibility: hidden;
 }
 
-.mobile.navbar-link .navbar-dropdown ul {
+.mobile.navbar-link > .navbar-dropdown > ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
-  gap: 8px;
-  padding-inline-start: 0px;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #F7FAFC;
   position: relative;
+}
+
+/* Rich mega-menu content rendered inside the mobile dropdown. Mirrors the
+   React Accordion content wrapper (bg-brand-100, p-3, rounded, gap-10). */
+.mobile.navbar-link .navbar-dropdown .mobile-mega-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #F7FAFC;
+}
+
+/* Mobile mega-menu typography. The shared .mega-menu-* classes carry the
+   desktop sizes; React uses smaller type below $navbar-desktop-breakpoint. */
+.mobile-mega-menu .mega-menu-section-header {
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: none;
+}
+
+.mobile-mega-menu .mega-menu-section-header__title {
+  /* label-md-400 (desktop is label-lg-400 / 0.9375rem) */
+  font-size: 0.875rem;
+  width: 100%;
+  border-bottom: 1px solid #CFCFCF;
+}
+
+.mobile-mega-menu .mega-menu-link__name {
+  /* label-lg-400 (desktop is body-sm-400 / 1rem / 150%) */
+  font-size: 0.9375rem;
+  line-height: 140%;
+}
+
+.mobile-mega-menu .mega-menu-link__description {
+  /* label-sm-300 (desktop is label-md-300 / 0.875rem) */
+  font-size: 0.75rem;
+}
+
+/* Section column layout (mirrors React .Accordion__content): single column on
+   narrow screens, 2 columns from the tablet breakpoint, and 3 columns from the
+   mobile-wide breakpoint when there are at least 3 sections. */
+@media screen and (min-width: 768px) {
+  .mobile.navbar-link .navbar-dropdown .mobile-mega-menu {
+    display: block;
+    column-count: 2;
+    column-gap: 40px;
+  }
+
+  .mobile-mega-menu > .navbar-mega-menu__section {
+    break-inside: avoid;
+    margin-bottom: 40px;
+  }
+
+  .mobile-mega-menu > .navbar-mega-menu__section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile.navbar-link .navbar-dropdown .mobile-mega-menu:has(> .navbar-mega-menu__section:nth-child(3)) {
+    column-count: 3;
+  }
 }
 
 .mobile.navbar-link.open .navbar-dropdown {
   /* The height is automatically calculated in layout.html. */
   transition-delay: 0s;
   visibility: visible;
+  /* Mirrors pennylane-app's .Accordion__content-wrapper py-4: breathing room
+     above and below the panel content relative to the sticky toggle. */
+  padding-block: 16px;
 }
 
 .mobile.navbar-link.open .navbar-link-heading i.bx-chevron-down {
   transform: rotate(180deg);
 }
 
-.mobile.navbar-dropdown a {
+.mobile.navbar-link > .navbar-dropdown > ul > li > a {
   align-items: center;
   color: #515151;
   display: flex;
@@ -2309,11 +3526,27 @@ nav {
   text-decoration: none;
 }
 
+.mobile.navbar-link > .navbar-dropdown > ul > li > a:hover {
+  color: #0074E0;
+}
+
+.mobile.navbar-link > .navbar-dropdown > ul > li > a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
+  color: #0074E0;
+}
+
+.mobile.navbar-button a:focus-visible {
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+}
+
 
 /* Navigation Bar Desktop and Mobile
 ----------------------------------------------------------------------------- */
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1339.98px) {
   nav {
     box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.07), 0px 2px 2px 0px rgba(0, 0, 0, 0.06);
     height: 54px;
@@ -2326,7 +3559,9 @@ nav {
   }
 
   .mobile.navbar-links.open {
-    height: calc(100% - 50px);
+    height: calc(100% - 54px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transition-delay: 0s;
     visibility: visible;
   }
@@ -4397,7 +5632,9 @@ p.sphx-glr-signature a.reference.external {
 
 .command-palette-button:hover,
 .command-palette-button:focus-visible {
-  background-color: #f1f1f1;
+  outline: 2px solid #9AC7F2;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .command-palette-button:focus {
