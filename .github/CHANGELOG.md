@@ -1,4 +1,4 @@
-## Release 0.20.0 (development release)
+## Release 0.20.0 (current release)
 
 ### Contributors
 
@@ -17,7 +17,7 @@ This release contains contributions from (in alphabetical order):
 
 - Navbar menus now close automatically when switching between mobile and desktop breakpoints.
 
-## Release 0.19.0 (current release)
+## Release 0.19.0
 
 ### Contributors
 
