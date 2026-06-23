@@ -1,8 +1,15 @@
 ## Release 0.21.0 (development release)
 
+### Bug fixes
+
+- Removed duplicate "tensorflow" copy in the footer.
+- Lowered the mobile/desktop breakpoint to 1324px.
+
 ### Contributors
 
 This release contains contributions from (in alphabetical order):
+
+[Koeun Lee](https://github.com/koeun-lee)
 
 ## Release 0.20.0 (current release)
 
