@@ -2052,7 +2052,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
   background-color: white;
   box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.10), 0 10px 8px 0 rgba(0, 0, 0, 0.04);
   font-family: 'Quicksand', sans-serif !important;
@@ -2111,8 +2110,10 @@ nav a:focus {
   display: flex;
   flex-direction: row;
   list-style-type: none;
+  margin-top: 0px;
   margin-bottom: 0px;
-  margin-right: 64px;
+  margin-left: 16px;
+  margin-right: 16px;
   padding-left: 0px;
 }
 
@@ -2123,7 +2124,7 @@ nav a:focus {
   position: relative;
   height: 100%;
   padding: 0 6px;
-  margin: 0 3px;
+  margin: 0;
   gap: 4px;
   cursor: pointer;
   /* Match pennylane-app NavItem__item border box so the focus ring insets align. */
@@ -2196,9 +2197,9 @@ nav a:focus {
   border: 2px solid #9AC7F2;
   border-radius: 4px;
   top: -3px;
-  left: -4px;
-  right: -4px;
-  bottom: -6px;
+  left: -1px;
+  right: -1px;
+  bottom: -5px;
   z-index: 1;
 }
 
@@ -2405,16 +2406,24 @@ nav a:focus {
 .navbar-mega-menu__inner {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 40px;
+  row-gap: 40px;
+  column-gap: 20px;
   width: 100%;
   max-width: 1535px;
   margin: 0 auto;
   padding: 20px;
 }
 
+@media screen and (min-width: 1440px) {
+  .navbar-mega-menu__inner {
+    column-gap: 40px;
+  }
+}
+
 .navbar-mega-menu__links-area {
   display: grid;
-  gap: 40px;
+  row-gap: 40px;
+  column-gap: 20px;
   align-self: start;
   grid-column: span var(--menu-link-total-columns, 1) / span var(--menu-link-total-columns, 1);
   grid-template-columns: repeat(var(--menu-link-total-columns, 1), minmax(0, 1fr));
@@ -2424,10 +2433,16 @@ nav a:focus {
   border-radius: 4px;
 }
 
+@media screen and (min-width: 1440px) {
+  .navbar-mega-menu__links-area {
+    column-gap: 40px;
+  }
+}
+
 .navbar-mega-menu__link-section {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  row-gap: 40px;
   align-self: start;
 }
 
@@ -2519,7 +2534,13 @@ nav a:focus {
 
 .mega-menu-section-links--multi-column {
   column-count: var(--link-section-columns, 2);
-  column-gap: 40px;
+  column-gap: 20px;
+}
+
+@media screen and (min-width: 1440px) {
+  .mega-menu-section-links--multi-column {
+    column-gap: 40px;
+  }
 }
 
 .mega-menu-section-links--multi-column > li {
@@ -2596,7 +2617,7 @@ nav a:focus {
   font-size: 1.25rem;
 }
 
-@media screen and (min-width: 1340px) {
+@media screen and (min-width: 1324px) {
   .mega-menu-link__icon {
     display: inline-flex;
   }
@@ -2617,10 +2638,16 @@ nav a:focus {
 
 .navbar-mega-menu__cards-area {
   display: grid;
-  column-gap: 40px;
+  column-gap: 20px;
   align-self: start;
   grid-column: span var(--menu-card-total-columns, 1) / span var(--menu-card-total-columns, 1);
   grid-template-columns: repeat(var(--menu-card-total-columns, 1), minmax(0, 1fr));
+}
+
+@media screen and (min-width: 1440px) {
+  .navbar-mega-menu__cards-area {
+    column-gap: 40px;
+  }
 }
 
 .navbar-mega-menu__card-section-header {
@@ -3546,7 +3573,7 @@ body.mobile-menu-open {
 /* Navigation Bar Desktop and Mobile
 ----------------------------------------------------------------------------- */
 
-@media screen and (max-width: 1339.98px) {
+@media screen and (max-width: 1323.98px) {
   nav {
     box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.07), 0px 2px 2px 0px rgba(0, 0, 0, 0.06);
     height: 54px;
@@ -5621,7 +5648,7 @@ p.sphx-glr-signature a.reference.external {
 }
 
 .command-palette-button.desktop {
-  width: 140px;
+  width: 128px;
 }
 
 .command-palette-button.mobile {
