@@ -103,7 +103,7 @@
     <div class="footer-bottom__content">
       <div class="footer-bottom__content-left">
         <div class="footer-bottom__copyright">
-          {% if theme_footer_copyright and theme_footer_copyright.get("notice") %}
+        {% if theme_footer_copyright and theme_footer_copyright.get("notice") %}
           <p>{{ theme_footer_copyright.notice | safe }}</p>
           {% elif theme_footer_xanadu %}
           <p>&copy; Copyright <span class="footer-copyright-year"></span> | Xanadu | All rights reserved</p>
@@ -121,9 +121,7 @@
           {% for copyright in theme_extra_copyrights %}
           <p>{{ copyright }}</p>
           {% endfor %}
-          {% if theme_footer_copyright and theme_footer_copyright.get("tensorflow_notice") %}
-          <p class="footer-bottom__copyright-tensorflow">{{ theme_footer_copyright.tensorflow_notice }}</p>
-          {% endif %}
+          <p class="footer-bottom__copyright-tensorflow">TensorFlow, the TensorFlow logo and any related marks are trademarks of Google Inc.</p>
         </div>
       </div>
 
